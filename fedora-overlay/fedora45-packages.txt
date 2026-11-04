@@ -1,0 +1,48 @@
+# Added from enabled Fedora 45 repositories for the user overlay
+kitty
+fuzzel
+mako
+cliphist
+yaru-theme
+papirus-icon-theme
+rsms-inter-fonts
+jetbrains-mono-fonts
+fish
+nushell
+neovim
+xsettingsd
+kvantum-qt5
+qt5ct
+qt6ct
+swappy
+calcurse
+htop
+NetworkManager-tui
+
+# Already supplied by Fedora Sway on this install
+sway
+sway-config-fedora
+sway-systemd
+waybar
+swaybg
+swayidle
+swaylock
+grim
+slurp
+grimshot
+wl-clipboard
+brightnessctl
+playerctl
+pavucontrol
+bluez
+tuned
+tuned-ppd
+Thunar
+
+# Removed as requested
+foot
+
+# Not installed
+# power-profiles-daemon conflicts with Fedora's tuned-ppd.
+# swayosd COPR was unnecessary because Fedora has native brightness/volume OSD bindings.
+# Starship and JetBrainsMono Nerd Font are upstream per-user installs; see README.md.

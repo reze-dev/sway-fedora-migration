@@ -2,7 +2,7 @@
 
 ## User intent
 
-The user wants to replace the current Ubuntu Sway Remix base with Fedora 45 Sway Spin later, while retaining the desktop's aesthetics as a standalone repo. Once Fedora is installed, they want the same design applied there. The repository should document customizations and check required packages in Fedora repositories or COPR before installation. The Ubuntu Sway welcome app is excluded.
+Initially, the user wanted to move from Ubuntu Sway Remix to Fedora 45 Sway Spin while keeping the desktop's aesthetics in a standalone repo. That Fedora install is now complete and the first user-level overlay has been applied. The repo documents customizations and package availability. The Ubuntu Sway welcome app is excluded.
 
 ## Decisions captured
 
@@ -24,7 +24,7 @@ The original Fish config and selected Nushell/Neovim config are included in `per
 
 ## Fedora image availability check
 
-Fedora Linux 45 was announced on 2026-11-03, but the official Sway Spin download page still listed Fedora Sway Spin 44 when checked on 2026-11-04. Confirm the official Fedora 45 Sway Spin image is published before installing.
+Historical check: Fedora Linux 45 was announced on 2026-11-03, but the official Sway Spin download page still listed Fedora Sway Spin 44 when checked on 2026-11-04. The user subsequently installed Fedora 45 Sway, which is confirmed by `/etc/os-release` on the target host.
 
 ## Second-pass system audit and personal configs
 
@@ -32,4 +32,13 @@ Fedora Linux 45 was announced on 2026-11-03, but the official Sway Spin download
 - `dpkg -V` found only `/bin/start-sway` modified among the audited Sway packages. Direct comparison to the cached package showed that its NVIDIA branch condition was broadened to trigger whenever the NVIDIA module exists. The reason is unknown; preserve as evidence, not as a Fedora config.
 - Added Starship, Fish, Nushell and Neovim runtime configs plus the Azote helper. Excluded histories, Fish variables, nested Neovim `.git` metadata, and Neovim documentation. A credential-pattern scan found no likely non-placeholder credential assignments.
 
-- The system audit also found a dangling system keybind to `fuzzel-emoji` (not installed) and a Nushell config reference to a missing `~/.cargo/env.nu`; both are documented for review on Fedora.
+- The system audit found an Ubuntu keybind to `fuzzel-emoji` (not installed) and a Nushell reference to missing `~/.cargo/env.nu`. The Fedora overlay drops the dangling binding and guards the optional Cargo file.
+
+## Fedora 45 application
+
+- The user installed Fedora 45 Sway and asked to carry over the same behavior. The active system was inventoried before changes; Fedora's Sway session, GPU setup, policy agent and idle/lock integration were preserved.
+- Applied the repo's Fedora overlay: Kitty replaces Foot as the Sway terminal, Fuzzel replaces the launcher, dark Yaru/Papirus/Inter styling is in place, and the captured Ubuntu wallpaper is used. Waybar and Mako use the dark teal palette. Fedora's built-in output mode remains 1920x1080 at 144 Hz; adaptive sync is enabled.
+- Added Fuzzel-based quick, clipboard and power menus; cliphist and xsettingsd are user services attached to `graphical-session.target`. Fedora's tuned-ppd is used for power profiles rather than installing a conflicting second daemon. The existing Fedora LXQt PolicyKit agent remains the only agent.
+- Installed official Fedora packages for the selected terminal, launcher, notification daemon, themes/icons/fonts, clipboard, shell/editor, Qt theming, screenshot edit, TUI helpers and NetworkManager TUI. Removed Foot and changed the account login shell to Fish.
+- Fedora 45 has no official Starship package. The available atim COPR build was outdated, so the COPR was removed; Starship 1.27.0 and JetBrainsMono Nerd Font 3.5.1 were installed per-user from upstream release assets after checking their published SHA-256 digests.
+- QT platform environment settings are recorded in `~/.config/sway/environment`; they take full effect on the next Sway login. Existing user windows were left open.

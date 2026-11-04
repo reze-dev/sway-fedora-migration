@@ -1,6 +1,6 @@
 # Fedora 45 dependency availability
 
-Initial online audit performed 2026-11-04 against Fedora Packages and COPR. This maps the packages and commands referenced by the captured Sway/Waybar setup. It is a research snapshot, not an install script. Re-check on the installed Fedora system with `dnf repoquery --available`; the Spin may already provide packages and repository state can change.
+Initial online audit performed 2026-11-04 against Fedora Packages and COPR. This maps the packages and commands referenced by the captured Sway/Waybar setup. Fedora 45 availability was subsequently checked against the enabled repositories on the installed Sway Spin; see the applied package list in `fedora-overlay/fedora45-packages.txt`. Re-check `dnf repoquery --available` before future additions because repository state can change.
 
 ## Confirmed in Fedora 45 official repositories
 
@@ -53,7 +53,7 @@ Initial online audit performed 2026-11-04 against Fedora Packages and COPR. This
 
 The snapshot's Sway/Waybar actions call scripts under `/usr/share/sway/scripts/` for locking, keyboard backlight, working-directory detection, recording, weather, help and sunset toggling. Those Ubuntu paths do not transfer. The Fedora session provides its own base config and scripts; keep Fedora's defaults and replace only the user-level actions that are needed.
 
-Additional system helpers use `notify-send` (Fedora `libnotify`), `inotifywait` (Fedora `inotify-tools`), `rfkill`, `pkill`, `systemctl`, `swaymsg`, `swaynag`, `wl-paste`, `wl-copy`, `nmtui`, `playerctl`, `pavucontrol`, `jq`, and `wpctl`. Resolve exact Fedora ownership with `dnf repoquery --whatprovides` on the installed Spin instead of assuming Debian package names map directly. The current Nushell config also sources `~/.cargo/env.nu`, but that file is absent on this host; the repo does not fabricate it.
+Additional system helpers use `notify-send` (Fedora `libnotify`), `inotifywait` (Fedora `inotify-tools`), `rfkill`, `pkill`, `systemctl`, `swaymsg`, `swaynag`, `wl-paste`, `wl-copy`, `nmtui`, `playerctl`, `pavucontrol`, `jq`, and `wpctl`. Resolve exact Fedora ownership with `dnf repoquery --whatprovides` on the installed Spin instead of assuming Debian package names map directly. The original Nushell snapshot referenced `~/.cargo/env.nu`; that file is absent, and the Fedora overlay now sources it only when present.
 
 ## Install policy
 
@@ -61,4 +61,13 @@ Additional system helpers use `notify-send` (Fedora `libnotify`), `inotifywait` 
 2. Check Fedora's official repositories for every needed command before considering third-party sources.
 3. For each COPR, verify owner, Fedora 45 architecture/build status, recent activity and package contents. Do not enable an unverified repository.
 4. Fedora's Sway Spin may ship Foot; the user explicitly chose Kitty and removed Foot on Ubuntu. Keep Kitty as the default and remove Foot from Fedora if it is installed.
-5. No COPR has been enabled and no Fedora package has been installed from this Ubuntu machine.
+5. On Fedora 45, the user overlay is now applied. Kitty, Fuzzel, Mako, cliphist, Yaru, Papirus, Inter, JetBrains Mono, Fish, Nushell, Neovim, xsettingsd, Kvantum, qt5ct, qt6ct, Swappy, calcurse, htop and NetworkManager-tui are installed from Fedora repositories. Fedora's existing `tuned-ppd` provides the `net.hadess.PowerProfiles` D-Bus interface, so a conflicting second power-profile daemon was not installed. Foot was removed as previously requested.
+6. Starship is absent from Fedora's official repositories. The upstream-recommended `atim/starship` COPR had a Fedora 45 build, but the available package was 1.24.2 from 2025; upstream Starship 1.27.0 (2026-10-17) includes security fixes. That COPR was removed without installing its package. The current upstream x86_64 release was installed in `~/.local/bin` after matching its SHA-256 digest from the GitHub release API. JetBrainsMono Nerd Font 3.5.1 was similarly installed per-user from the official Nerd Fonts release archive after digest verification.
+
+## Fedora 45 system results
+
+- `fedora-overlay/` records the user config currently applied. It keeps Fedora's layered Sway config, Waybar, idle/lock integration and LXQt PolicyKit agent; it replaces the terminal with Kitty and launcher with Fuzzel.
+- Fedora only packages the Yaru base and `Yaru-dark` GTK themes, not Ubuntu Sway's `Yaru-prussiangreen-dark`. GTK uses Fedora's Yaru-dark with Papirus-Dark and Inter; the matching teal Kvantum theme assets are retained locally from the Ubuntu snapshot.
+- `cliphist.service` and `xsettingsd.service` are user services tied to `graphical-session.target`; Mako uses Fedora's packaged user service. The matching user unit files are under `fedora-overlay/.config/systemd/user/`.
+- Fedora's existing `tuned-ppd` is active and advertises `net.hadess.PowerProfiles`, which the Waybar power-profile module consumes.
+- Fedora starts with `/usr/bin/fish` as the user's login shell. Its Kitty `xterm-kitty` terminfo entry is installed, so the Kitty-aware Fish SSH helper remains usable.
