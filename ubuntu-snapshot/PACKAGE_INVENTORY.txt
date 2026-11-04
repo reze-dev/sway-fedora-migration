@@ -1,0 +1,39 @@
+ubuntu-sway-desktop (meta; do not port)
+ubuntu-sway-welcome (explicitly exclude)
+sway
+sway-systemd
+swaybg
+swayidle
+swaylock
+swayosd
+swayr
+swaykbdd
+waybar
+mako-notifier
+fuzzel
+kitty
+nwg-bar
+nwg-clipman
+nwg-displays
+nwg-drawer
+nwg-look
+nwg-wrapper
+cliphist
+grim
+grimshot
+slurp
+swappy
+wlsunset
+brightnessctl
+papirus-icon-theme
+fonts-inter
+fonts-hack
+playerctl
+pavucontrol
+thunar
+xfce-polkit
+pipewire
+wireplumber
+network-manager
+foot (purged; do not port)
+wofi (removed; replaced by Fuzzel)

@@ -1,0 +1,9 @@
+# Never commit personal shell state, credentials, or machine-specific output.
+**/fish_variables
+**/history.txt
+**/cookie
+**/visits.json
+**/logs/
+**/cache/
+*.swp
+**/.git/
