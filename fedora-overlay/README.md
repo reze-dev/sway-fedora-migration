@@ -10,7 +10,8 @@ This is the Fedora-native config currently applied on the Fedora Sway Spin. It k
 - Fedora's `tuned-ppd` remains the power-profile backend. Screenshot editing uses `grimshot` and Swappy; clipboard history uses cliphist.
 - A user-level layered override disables Fedora's default Print bindings so the Swappy screenshot bindings load without overwrite warnings.
 - Waybar's `network` and `bluetooth` modules sit after the battery module. Their duplicate NetworkManager and Blueman tray applets are hidden; the tray remains available for other apps.
-- The Sway Control Center opens with `Super+Shift+S` or by searching “Sway Control Center” in Fuzzel. One appearance panel synchronizes GTK, Qt/Kvantum, XSettings, Sway, and Flatpak theme, icon, cursor, font, dark-mode, and accent settings. Display, sound, network, and Bluetooth controls are in the same window.
+- The Sway Control Center opens with `Super+Shift+S` or by searching “Sway Control Center” in Fuzzel. One appearance panel synchronizes GTK, Qt/Kvantum, XSettings, Sway, and Flatpak theme, icon, cursor, font, dark-mode, and accent settings. It leaves Kitty's Rosé Pine theme untouched. Display, sound, network, and Bluetooth controls are in the same window.
+- SDDM uses the Ronin theme from the `ronin` branch of `mahaveergurjar/sddm`, adapted with the local Fedora Sway wallpaper, dynamic account greeting, and the SDDM Qt6 compatibility module. Run `sudo ./fedora-overlay/install-sddm-ronin.sh` to install or reapply it.
 - Fuzzel quick actions provide network, Bluetooth, audio, calendar, process and power menus. Fedora's existing LXQt PolicyKit agent, Waybar, idle/lock rules and Sway systemd integration remain in place.
 - Fish, Nushell, Neovim and Starship configs are included. Fish is the account's login shell.
 
@@ -18,7 +19,7 @@ Fedora's Yaru GTK3, GTK4, and icon theme packages provide `Yaru-prussiangreen-da
 
 ## Reapply
 
-Run `./fedora-overlay/apply-user-config.sh` from the repository root. It copies the user config and wallpaper/scripts, synchronizes GTK2/3/4, Qt, GNOME and XSettings theme preferences, restores any saved Sway Control Center choices, reloads user systemd unit metadata, enables the clipboard history, XSettings and Mako services, and reloads Sway when run inside the session. The appearance controls live in Sway Control Center. GNOME Tweaks and LXAppearance have been removed; Qt5ct and Qt6ct remain installed as hidden Qt theme backends, and wdisplays remains available for display layout.
+Run `./fedora-overlay/apply-user-config.sh` from the repository root. It copies the user config and wallpaper/scripts, synchronizes GTK2/3/4, Qt, GNOME and XSettings theme preferences, restores any saved Sway Control Center choices, reloads user systemd unit metadata, enables the clipboard history, XSettings and Mako services, and reloads Sway when run inside the session. The appearance controls live in Sway Control Center. GNOME Tweaks and LXAppearance have been removed; Qt5ct and Qt6ct remain installed as hidden Qt theme backends, and wdisplays remains available for display layout. Apply the SDDM greeter theme separately with `sudo ./fedora-overlay/install-sddm-ronin.sh`; it takes effect at the next SDDM start.
 
 `fedora45-packages.txt` records packages added for this overlay, the relevant packages already present in the Sway Spin, and intentionally omitted alternatives.
 
