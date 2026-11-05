@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Settings
+Comment=Configure displays, appearance, sound, network, and Bluetooth for Sway
+Exec=/home/asuna/.local/bin/sway-settings
+Icon=preferences-system
+Terminal=false
+Categories=Settings;DesktopSettings;

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+choice=$(printf '%s\n' \
+    'Display layout' \
+    'GTK appearance' \
+    'Qt 5 appearance' \
+    'Qt 6 appearance' \
+    'Sound' \
+    'Network' \
+    'Bluetooth' |
+    fuzzel --dmenu --prompt='Settings: ')
+
+case "$choice" in
+    'Display layout') exec wdisplays ;;
+    'GTK appearance') exec lxappearance ;;
+    'Qt 5 appearance') exec qt5ct ;;
+    'Qt 6 appearance') exec qt6ct ;;
+    'Sound') exec pavucontrol ;;
+    'Network') exec kitty --class floating_shell nmtui ;;
+    'Bluetooth') exec kitty --class floating_shell bluetoothctl ;;
+    *) exit 0 ;;
+esac

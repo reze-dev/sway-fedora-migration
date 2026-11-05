@@ -10,6 +10,7 @@ This is the Fedora-native config currently applied on the Fedora Sway Spin. It k
 - Fedora's `tuned-ppd` remains the power-profile backend. Screenshot editing uses `grimshot` and Swappy; clipboard history uses cliphist.
 - A user-level layered override disables Fedora's default Print bindings so the Swappy screenshot bindings load without overwrite warnings.
 - Waybar's `network` and `bluetooth` modules sit after the battery module. Their duplicate NetworkManager and Blueman tray applets are hidden; the tray remains available for other apps.
+- The Sway Settings launcher (`Super+Shift+S`) opens Fedora-native display, GTK, Qt, audio, network and Bluetooth settings. GNOME Control Center is hidden from the app menu because it exits outside GNOME/Unity; `wdisplays` and `lxappearance` provide the relevant Sway-friendly controls.
 - Fuzzel quick actions provide network, Bluetooth, audio, calendar, process and power menus. Fedora's existing LXQt PolicyKit agent, Waybar, idle/lock rules and Sway systemd integration remain in place.
 - Fish, Nushell, Neovim and Starship configs are included. Fish is the account's login shell.
 
@@ -17,7 +18,7 @@ The exact Ubuntu `Yaru-prussiangreen-dark` GTK theme and Bibata cursor were not 
 
 ## Reapply
 
-Run `./fedora-overlay/apply-user-config.sh` from the repository root. It copies the user config and wallpaper/scripts, reloads user systemd unit metadata, enables the clipboard history, XSettings and Mako services, sets GTK4 theme preferences when the GNOME interface schema is installed, and reloads Sway when run inside the session.
+Run `./fedora-overlay/apply-user-config.sh` from the repository root. It copies the user config and wallpaper/scripts, reloads user systemd unit metadata, enables the clipboard history, XSettings and Mako services, sets GTK4 theme preferences when the GNOME interface schema is installed, and reloads Sway when run inside the session. Fedora's `lxappearance` and `wdisplays` packages are needed for GTK and display settings.
 
 `fedora45-packages.txt` records packages added for this overlay, the relevant packages already present in the Sway Spin, and intentionally omitted alternatives.
 

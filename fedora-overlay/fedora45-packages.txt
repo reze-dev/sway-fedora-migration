@@ -18,6 +18,8 @@ swappy
 calcurse
 htop
 NetworkManager-tui
+lxappearance
+wdisplays
 
 # Already supplied by Fedora Sway on this install
 sway
