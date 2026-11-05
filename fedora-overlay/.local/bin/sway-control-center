@@ -512,13 +512,16 @@ def apply_settings(settings):
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     STATE_FILE.write_text(json.dumps(settings, indent=2) + "\n")
     run(["systemctl", "--user", "restart", "xsettingsd.service"], check=False)
-    if shutil_which("waybar"):
-        run(["pkill", "-USR2", "waybar"], check=False)
     sway_socket = os.environ.get("SWAYSOCK")
     if sway_socket:
         run(["swaymsg", "seat", "*", "xcursor_theme", cursor, str(cursor_size)], check=False)
         run(["dbus-update-activation-environment", "--systemd", f"XCURSOR_THEME={cursor}", f"XCURSOR_SIZE={cursor_size}"], check=False)
         run(["swaymsg", "reload"], check=False)
+    if shutil_which("waybar"):
+        if run(["pgrep", "-x", "waybar"], check=False).returncode == 0:
+            run(["pkill", "-USR2", "-x", "waybar"], check=False)
+        else:
+            run(["systemctl", "--user", "start", "waybar.service"], check=False)
     run(["systemctl", "--user", "restart", "mako.service"], check=False)
 
 
