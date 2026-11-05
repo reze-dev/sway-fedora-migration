@@ -11,7 +11,6 @@
         "idle_inhibitor",
         "custom/dnd",
         "sway/language",
-        "custom/clipboard",
         "cpu",
         "memory",
         "power-profiles-daemon",
@@ -35,12 +34,7 @@
         "on-click": "swaymsg input $(swaymsg -t get_inputs --raw | jq '[.[] | select(.type == \"keyboard\")][0] | .identifier') xkb_switch_layout next"
     },
 
-    "custom/clipboard": {
-        "format": "",
-        "interval": 5,
-        "on-click": "~/.local/bin/sway-clipboard-menu",
-        "exec": "printf '{\"tooltip\":\"%s items in CopyQ\"}' \"$(copyq count)\""
-    },
+
 
     "custom/menu": {
         "format": "",

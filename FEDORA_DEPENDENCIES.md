@@ -20,6 +20,7 @@ Initial online audit performed 2026-11-04 against Fedora Packages and COPR. This
 | Icons | `papirus-icon-theme`, `papirus-icon-theme-dark` | Official Fedora 45 packages. [Papirus](https://packages.fedoraproject.org/pkgs/papirus-icon-theme/papirus-icon-theme/) |
 | UI font | `rsms-inter-fonts` | Official Fedora 45 package (RPM name for Inter). [Inter](https://packages.fedoraproject.org/pkgs/rsms-inter-fonts/rsms-inter-fonts/) |
 | Terminal font | `jetbrains-mono-fonts` | Official Fedora 45 package. This is regular JetBrains Mono, not a verified patched Nerd Font. [JetBrains Mono](https://packages.fedoraproject.org/pkgs/jetbrains-mono-fonts/jetbrains-mono-fonts/) |
+| CopyQ Wayland activation paste | `ydotool` | Official Fedora package; the Wayland Support command uses it to send paste shortcuts. `fedora-overlay/install-copyq-wayland.sh` installs the system daemon with a mode-0600 socket owned by the desktop user. [Fedora package](https://packages.fedoraproject.org/pkgs/ydotool/ydotool/) |
 | Clipboard history | `copyq` | Official Fedora 45 package. CopyQ monitors clipboard changes natively on Sway/Wayland and stores text, images, and other formats. [Fedora package](https://packages.fedoraproject.org/pkgs/copyq/copyq/), [Wayland support](https://copyq.readthedocs.io/en/latest/known-issues.html) |
 | Night color | `wlsunset` | Official Fedora 45 package. Replace Ubuntu-specific toggle scripts. [wlsunset](https://packages.fedoraproject.org/pkgs/wlsunset/wlsunset/) |
 | Brightness | `brightnessctl` | Official Fedora 45 package. Keyboard-backlight paths/scripts still need to be adapted to the actual hardware. [brightnessctl](https://packages.fedoraproject.org/pkgs/brightnessctl/brightnessctl/) |
@@ -72,4 +73,4 @@ Additional system helpers use `notify-send` (Fedora `libnotify`), `inotifywait` 
 - Fedora's existing `tuned-ppd` is active and advertises `net.hadess.PowerProfiles`, which the Waybar power-profile module consumes.
 - Fedora starts with `/usr/bin/fish` as the user's login shell. Its Kitty `xterm-kitty` terminfo entry is installed, so the Kitty-aware Fish SSH helper remains usable.
 
-- On this host, CopyQ replaces the active cliphist watcher. The previous cliphist cache and disabled service remain on disk for rollback; CopyQ starts a fresh history.
+- On this host, CopyQ replaces the active cliphist watcher. The previous cliphist cache and disabled service remain on disk for rollback; CopyQ starts a fresh history. Its official Wayland Support command is imported; `ydotoold` provides activation pasting, and Kitty maps Shift+Insert to clipboard paste.

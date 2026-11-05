@@ -42,3 +42,5 @@ Historical check: Fedora Linux 45 was announced on 2026-11-03, but the official 
 - Installed official Fedora packages for the selected terminal, launcher, notification daemon, themes/icons/fonts, clipboard, shell/editor, Qt theming, screenshot edit, TUI helpers and NetworkManager TUI. Removed Foot and changed the account login shell to Fish.
 - Fedora 45 has no official Starship package. The available atim COPR build was outdated, so the COPR was removed; Starship 1.27.0 and JetBrainsMono Nerd Font 3.5.1 were installed per-user from upstream release assets after checking their published SHA-256 digests.
 - QT platform environment settings are recorded in `~/.config/sway/environment`; they take full effect on the next Sway login. Existing user windows were left open.
+
+- CopyQ now uses a custom dark Prussian Green theme with Inter and teal `#368582` selection, and its tray icon replaces the former custom Waybar clipboard glyph. The official CopyQ Wayland Support command is installed; `ydotoold` uses an asuna-only socket, and Kitty maps Shift+Insert to clipboard paste.

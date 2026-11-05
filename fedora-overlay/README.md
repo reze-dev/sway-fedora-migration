@@ -27,3 +27,5 @@ Run `./fedora-overlay/apply-user-config.sh` from the repository root. It copies 
 The script does not install packages or replace Fedora system files. On this Fedora install, its dependencies are already installed. The QT platform environment values in `~/.config/sway/environment` take full effect after the next Sway login.
 
 Starship 1.27.0 and JetBrainsMono Nerd Font 3.5.1 are upstream user-level installs, not bundled binaries. The Fedora 45 repo does not package Starship, and the available COPR build was outdated. The files in this overlay expect `starship` in `~/.local/bin` and the font family `JetBrainsMono Nerd Font`.
+
+- CopyQ uses the Prussian Green theme override in `~/.config/copyq/themes/PrussianGreen.ini`; its tray icon replaces the old custom Waybar clipboard glyph. The official Wayland Support command uses `ydotool` for activation pasting. Run `install-copyq-wayland.sh` once to configure the system daemon with a user-only socket.
