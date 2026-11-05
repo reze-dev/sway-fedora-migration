@@ -8,6 +8,7 @@ This is the Fedora-native config currently applied on the Fedora Sway Spin. It k
 - Waybar and Mako use the charcoal/teal palette, with Yaru-dark, Papirus-Dark and Inter for GTK apps.
 - The Ubuntu Remix wallpaper is installed as a user-owned background. Sway keeps Fedora's 144 Hz output mode and enables adaptive sync on `eDP-1`.
 - Fedora's `tuned-ppd` remains the power-profile backend. Screenshot editing uses `grimshot` and Swappy; clipboard history uses cliphist.
+- A user-level layered override disables Fedora's default Print bindings so the Swappy screenshot bindings load without overwrite warnings.
 - Fuzzel quick actions provide network, Bluetooth, audio, calendar, process and power menus. Fedora's existing LXQt PolicyKit agent, Waybar, idle/lock rules and Sway systemd integration remain in place.
 - Fish, Nushell, Neovim and Starship configs are included. Fish is the account's login shell.
 
