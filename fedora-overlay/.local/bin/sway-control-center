@@ -18,7 +18,7 @@ CONFIG = HOME / ".config"
 STATE_DIR = CONFIG / "sway-control-center"
 STATE_FILE = STATE_DIR / "settings.json"
 ACCENTS = {
-    "Prussian Green Dark": "#308280",
+    "Prussian Green Dark": "#368582",
     "green": "#3eb34f",
     "teal": "#317b79",
     "blue": "#3584e4",
@@ -26,6 +26,12 @@ ACCENTS = {
     "orange": "#e66100",
     "red": "#c01c28",
 }
+
+
+def accent_hex(name, dark):
+    if name == "Prussian Green Dark":
+        return "#368582" if dark else "#6db2af"
+    return ACCENTS.get(name, ACCENTS["green"])
 
 
 def run(args, check=True):
@@ -211,7 +217,7 @@ def replace_or_append(lines, key, value):
 
 
 def write_qt_palette(path, accent, dark):
-    accent = ACCENTS.get(accent, ACCENTS["green"])
+    accent = accent_hex(accent, dark)
     if dark:
         roles = ["#f0f0f0", "#333333", "#5a5a5a", "#464646", "#171717", "#3c3c3c", "#f0f0f0", "#ffffff", "#f0f0f0", "#2d2d2d", "#353535", "#171717", accent, "#ffffff", "#1397c3", accent, "#323232", "#2d2d2d", "#ffffff", "#a0a0a0", accent]
         disabled = ["#a0a0a0", "#333333", "#5a5a5a", "#464646", "#171717", "#3c3c3c", "#a0a0a0", "#ffffff", "#a0a0a0", "#252525", "#2d2d2d", "#171717", "#3c3c3c", "#a0a0a0", "#1397c3", accent, "#252525", "#2d2d2d", "#a0a0a0", "#a0a0a0", "#3c3c3c"]
@@ -233,7 +239,7 @@ def set_kitty_colors(path, accent, dark):
     path = Path(path)
     if not path.exists():
         return
-    accent = ACCENTS.get(accent, ACCENTS["green"])
+    accent = accent_hex(accent, dark)
     if dark:
         bg, panel, fg, muted = "#1b1b1b", "#2d2d2d", "#eff0f1", "#a0a0a0"
     else:
@@ -356,7 +362,7 @@ def set_gtk2_rc(theme, icons, cursor, cursor_size, font):
 
 
 def write_gtk2_theme(theme, accent, dark):
-    accent_color = ACCENTS.get(accent, ACCENTS["green"])
+    accent_color = accent_hex(accent, dark)
     if dark:
         bg, panel, base, fg, muted = "#2d2d2d", "#353535", "#171717", "#f0f0f0", "#a0a0a0"
     else:
@@ -446,15 +452,16 @@ def apply_settings(settings):
     sway_config = CONFIG / "sway/config"
     update_text(sway_config, r"^font\s+pango:.*$", f"font pango:{ui_font} {ui_size:g}")
     fuzzel = CONFIG / "fuzzel/fuzzel.ini"
-    set_desktop_palette(ACCENTS.get(accent, ACCENTS["green"]), dark, icons, ui_font, ui_size)
+    resolved_accent = accent_hex(accent, dark)
+    set_desktop_palette(resolved_accent, dark, icons, ui_font, ui_size)
     swaylock = CONFIG / "swaylock/config"
     update_line(swaylock, "font", ui_font)
     update_line(swaylock, "font-size", f"{ui_size:g}")
     update_line(swaylock, "color", "1b1b1b" if dark else "f6f6f6")
     update_line(swaylock, "inside-color", "2d2d2d" if dark else "ffffff")
     update_line(swaylock, "text-color", "eff0f1" if dark else "2d2d2d")
-    update_line(swaylock, "ring-color", ACCENTS.get(accent, ACCENTS["green"]).lstrip("#"))
-    update_line(swaylock, "ring-clear-color", ACCENTS.get(accent, ACCENTS["green"]).lstrip("#"))
+    update_line(swaylock, "ring-color", resolved_accent.lstrip("#"))
+    update_line(swaylock, "ring-clear-color", resolved_accent.lstrip("#"))
 
     kitty = CONFIG / "kitty/kitty.conf"
     update_text(kitty, r'^font_family\s+family="[^"]+"$', f'font_family      family="{mono_font}"')
