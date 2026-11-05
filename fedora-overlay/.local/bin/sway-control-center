@@ -274,7 +274,7 @@ def set_sway_palette(path, accent, dark):
     else:
         focused_inactive = "#eeeeee #eeeeee #5a5a5a #bdbdbd #eeeeee"
         unfocused = "#f6f6f6 #eeeeee #5a5a5a #bdbdbd #f6f6f6"
-    update_text(path, r"^client\.focused\s+.*$", f"client.focused #bdc3c7 {accent} #ffffff #ffffff {accent}")
+    update_text(path, r"^client\.focused\s+.*$", f"client.focused {accent} {accent} #ffffff #ffffff {accent}")
     update_text(path, r"^client\.focused_inactive\s+.*$", f"client.focused_inactive {focused_inactive}")
     update_text(path, r"^client\.unfocused\s+.*$", f"client.unfocused {unfocused}")
 
@@ -314,8 +314,25 @@ def set_desktop_palette(accent, dark, icons, ui_font, ui_size):
             content = re.sub(r"color:\s*[^;]+;", f"color: {waybar_fg};", content)
             content = re.sub(r"border-bottom:\s*[^;]+;", f"border-bottom: 1px solid {accent};", content)
             css = css[:block.start(1)] + content + css[block.end(1):]
-        css = css.replace("#317b79", accent).replace("#eff0f1", waybar_fg)
-        css = re.sub(r"rgba\(49, 123, 121, 0\.7\)", accent, css)
+        r, g, b = (int(accent[index:index + 2], 16) for index in (1, 3, 5))
+        hover_accent = f"rgba({r}, {g}, {b}, 0.35)"
+        for selector, prop, value in (
+            ("#workspaces button:hover", "background", hover_accent),
+            ("#workspaces button.focused", "background", accent),
+            ("#mode", "background", accent),
+            ("#clock", "background", accent),
+            ("#custom-menu", "color", accent),
+            ("#idle_inhibitor.activated", "background", accent),
+            ("label:focus", "background", accent),
+        ):
+            css, _ = re.subn(
+                rf"({re.escape(selector)}\s*\{{[^}}]*?\b{re.escape(prop)}\s*:\s*)[^;]+(;)",
+                rf"\g<1>{value}\2",
+                css,
+                count=1,
+                flags=re.S,
+            )
+        css = css.replace("#eff0f1", waybar_fg)
         waybar.write_text(css)
     set_sway_palette(CONFIG / "sway/config", accent, dark)
     set_kitty_colors(CONFIG / "kitty/current-theme.conf", accent, dark)
