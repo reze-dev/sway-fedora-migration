@@ -14,7 +14,7 @@ This is the Fedora-native config currently applied on the Fedora Sway Spin. It k
 - Fuzzel quick actions provide network, Bluetooth, audio, calendar, process and power menus. Fedora's existing LXQt PolicyKit agent, Waybar, idle/lock rules and Sway systemd integration remain in place.
 - Fish, Nushell, Neovim and Starship configs are included. Fish is the account's login shell.
 
-Fedora's Yaru GTK3, GTK4, and icon theme packages provide `Yaru-prussiangreen-dark`; a matching GTK3 Flatpak theme extension is installed from Flathub. The matching Kvantum theme is included locally. The Adwaita cursor remains selected.
+Fedora's Yaru GTK3, GTK4, and icon theme packages provide `Yaru-prussiangreen-dark`; a matching GTK3 Flatpak theme extension is installed from Flathub. The matching Kvantum theme is included locally. Bibata Modern Ice is selected for Sway, GTK, XSettings, Qt, and Flatpak apps.
 
 ## Reapply
 

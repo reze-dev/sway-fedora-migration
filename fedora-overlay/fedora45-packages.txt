@@ -23,6 +23,7 @@ NetworkManager-tui
 lxappearance
 wdisplays
 gtk2-engines
+bibata-cursor-themes
 
 # Installed from Flathub for GTK3 Flatpak applications:
 # org.gtk.Gtk3theme.Yaru-prussiangreen-dark

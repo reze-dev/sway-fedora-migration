@@ -18,7 +18,7 @@ cat >> "$HOME/.gtkrc-2.0" <<'GTKRC'
 gtk-theme-name="Yaru-prussiangreen-dark"
 gtk-icon-theme-name="Yaru-prussiangreen-dark"
 gtk-font-name="Inter 11"
-gtk-cursor-theme-name="Adwaita"
+gtk-cursor-theme-name="Bibata-Modern-Ice"
 gtk-cursor-theme-size=24
 gtk-xft-antialias=1
 gtk-xft-hinting=1
@@ -34,11 +34,18 @@ if command -v gsettings >/dev/null && gsettings list-schemas | grep -Fxq org.gno
     gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-prussiangreen-dark'
     gsettings set org.gnome.desktop.interface icon-theme 'Yaru-prussiangreen-dark'
     gsettings set org.gnome.desktop.interface font-name 'Inter 11'
-    gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+    gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Ice'
+    gsettings set org.gnome.desktop.interface cursor-size 24
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
     if gsettings list-keys org.gnome.desktop.interface | grep -Fxq accent-color; then
         gsettings set org.gnome.desktop.interface accent-color 'green'
     fi
+fi
+if command -v flatpak >/dev/null && [[ -r /usr/share/icons/Bibata-Modern-Ice/index.theme ]]; then
+    flatpak override --user \
+        --filesystem=/usr/share/icons/Bibata-Modern-Ice:ro \
+        --env=XCURSOR_THEME=Bibata-Modern-Ice \
+        --env=XCURSOR_SIZE=24
 fi
 systemctl --user daemon-reload
 if systemctl --user is-active --quiet graphical-session.target; then
