@@ -2,7 +2,7 @@
 set -euo pipefail
 choice=$(printf '%s\n' 'Clipboard history' 'Network settings' 'Bluetooth devices' 'Audio settings' 'Calendar' 'Process monitor' 'Power menu' | fuzzel --dmenu --prompt='Quick actions: ') || exit 0
 case "$choice" in
-  'Clipboard history') exec "$HOME/.local/bin/sway-clipboard-menu" ;;
+  'Clipboard history') exec copyq toggle ;;
   'Network settings') exec kitty --class floating_shell nmtui ;;
   'Bluetooth devices') exec kitty --class floating_shell bluetoothctl ;;
   'Audio settings') exec pavucontrol ;;

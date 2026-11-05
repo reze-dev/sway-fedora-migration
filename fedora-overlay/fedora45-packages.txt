@@ -2,7 +2,8 @@
 kitty
 fuzzel
 mako
-cliphist
+copyq
+# cliphist can remain installed on migrated systems to preserve its old history database.
 yaru-gtk3-theme
 yaru-gtk4-theme
 yaru-icon-theme

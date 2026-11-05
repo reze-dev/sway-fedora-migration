@@ -37,13 +37,9 @@
 
     "custom/clipboard": {
         "format": "",
-        "interval": "once",
-        "return-type": "json",
+        "interval": 5,
         "on-click": "~/.local/bin/sway-clipboard-menu",
-        "on-click-middle": "cliphist wipe; pkill -RTMIN+9 waybar",
-        "exec": "printf '{\"tooltip\":\"%s\"}' $(cliphist list | wc -l)' item(s) in the clipboard\r(Mid click to clear)'",
-        "exec-if": "[ -x \"$(command -v cliphist)\" ] && [ $(cliphist list | wc -l) -gt 0 ]",
-        "signal": 9
+        "exec": "printf '{\"tooltip\":\"%s items in CopyQ\"}' \"$(copyq count)\""
     },
 
     "custom/menu": {

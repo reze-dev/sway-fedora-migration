@@ -72,6 +72,9 @@ output * bg ~/.local/share/backgrounds/warty-final-ubuntusway.png fill
     # Start your launcher
     bindsym $mod+d exec $menu
 
+    # Open clipboard history
+    bindsym $mod+Shift+v exec copyq toggle
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.

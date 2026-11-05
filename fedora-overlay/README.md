@@ -7,7 +7,7 @@ This is the Fedora-native config currently applied on the Fedora Sway Spin. It k
 - Kitty is the default terminal; Foot was removed. Kitty uses the independent upstream Rosé Pine theme, which the Sway Control Center leaves untouched. Fuzzel is the launcher.
 - Waybar and Mako use the charcoal/teal palette. GTK apps use Yaru Prussian Green Dark, its matching Yaru icons, and Inter; GTK2 gets a matching dark palette shim. Qt5/6 use matching Kvantum and Qt color palettes.
 - The Ubuntu Remix wallpaper is installed as a user-owned background. Sway keeps Fedora's 144 Hz output mode and enables adaptive sync on `eDP-1`.
-- Fedora's `tuned-ppd` remains the power-profile backend. Screenshot editing uses `grimshot` and Swappy; clipboard history uses cliphist.
+- Fedora's `tuned-ppd` remains the power-profile backend. Screenshot editing uses `grimshot` and Swappy; clipboard history uses CopyQ (the previous cliphist database is retained on upgraded systems).
 - A user-level layered override disables Fedora's default Print bindings so the Swappy screenshot bindings load without overwrite warnings.
 - Waybar's `network` and `bluetooth` modules sit after the battery module. Their duplicate NetworkManager and Blueman tray applets are hidden; the tray remains available for other apps.
 - Waybar's info icon opens a searchable list of the active Sway keybindings.

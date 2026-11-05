@@ -52,9 +52,11 @@ if [[ ! -f "$HOME/.config/sway-control-center/settings.json" ]] && command -v fl
 fi
 systemctl --user daemon-reload
 if systemctl --user is-active --quiet graphical-session.target; then
-    systemctl --user enable --now cliphist.service xsettingsd.service mako.service
+    systemctl --user disable --now cliphist.service 2>/dev/null || true
+    systemctl --user enable --now copyq.service xsettingsd.service mako.service
 else
-    systemctl --user enable cliphist.service xsettingsd.service mako.service
+    systemctl --user disable cliphist.service 2>/dev/null || true
+    systemctl --user enable copyq.service xsettingsd.service mako.service
 fi
 if systemctl --user is-active --quiet xsettingsd.service; then
     systemctl --user restart xsettingsd.service
