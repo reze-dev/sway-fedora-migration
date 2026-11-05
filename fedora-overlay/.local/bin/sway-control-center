@@ -235,38 +235,6 @@ def write_qt_palette(path, accent, dark):
     Path(path).write_text(content)
 
 
-def set_kitty_colors(path, accent, dark):
-    path = Path(path)
-    if not path.exists():
-        return
-    accent = accent_hex(accent, dark)
-    if dark:
-        bg, panel, fg, muted = "#1b1b1b", "#2d2d2d", "#eff0f1", "#a0a0a0"
-    else:
-        bg, panel, fg, muted = "#f6f6f6", "#ffffff", "#2d2d2d", "#737373"
-    colors = {
-        "foreground": fg, "background": bg,
-        "selection_foreground": "#ffffff" if dark else "#ffffff",
-        "selection_background": accent,
-        "cursor": accent, "cursor_text_color": fg,
-        "url_color": accent,
-        "active_tab_foreground": fg, "active_tab_background": accent,
-        "inactive_tab_foreground": muted, "inactive_tab_background": panel,
-        "color0": "#171717", "color8": "#5a5a5a",
-        "color1": "#da4453", "color9": "#e86f7c",
-        "color2": accent, "color10": accent,
-        "color3": "#e6cd69", "color11": "#f0d982",
-        "color4": "#3584e4", "color12": "#75a9ef",
-        "color5": "#9141ac", "color13": "#ad70c4",
-        "color6": "#1397c3", "color14": "#55b6d8",
-        "color7": fg, "color15": "#ffffff",
-    }
-    lines = path.read_text().splitlines()
-    for key, value in colors.items():
-        lines = [re.sub(rf"^(\s*{re.escape(key)}\s+)\S+", rf"\g<1>{value}", line) for line in lines]
-    path.write_text("\n".join(lines) + "\n")
-
-
 def set_sway_palette(path, accent, dark):
     if dark:
         focused_inactive = "#1b1b1b #1b1b1b #bdc3c7 #41535b #1b1b1b"
@@ -335,7 +303,6 @@ def set_desktop_palette(accent, dark, icons, ui_font, ui_size):
         css = css.replace("#eff0f1", waybar_fg)
         waybar.write_text(css)
     set_sway_palette(CONFIG / "sway/config", accent, dark)
-    set_kitty_colors(CONFIG / "kitty/current-theme.conf", accent, dark)
 
 
 def set_xsettings(path, theme, icons, cursor, cursor_size, font):
