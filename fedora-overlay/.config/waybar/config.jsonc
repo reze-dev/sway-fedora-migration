@@ -198,7 +198,7 @@
     },
     "custom/help": {
         "format": "",
-        "on-click": "~/.local/bin/sway-quick-menu",
+        "on-click": "~/.local/bin/sway-keybindings",
         "tooltip": false
     },
     

@@ -260,10 +260,6 @@ def set_desktop_palette(accent, dark, icons, ui_font, ui_size):
     fuzzel = CONFIG / "fuzzel/fuzzel.ini"
     for key, value in (("background", fuzzel_bg), ("text", fuzzel_fg), ("match", accent.lstrip("#") + "ff"), ("selection", accent.lstrip("#") + "ff"), ("selection-text", "ffffffff"), ("border", accent.lstrip("#") + "ff"), ("icon-theme", icons), ("font", f"{ui_font}:size={ui_size:g}")):
         update_line(fuzzel, key, value)
-    update_line(fuzzel, "background-color", bg, "dmenu")
-    update_line(fuzzel, "text-color", fg, "dmenu")
-    update_line(fuzzel, "border-color", accent, "dmenu")
-
     mako = CONFIG / "mako/config"
     update_line(mako, "background-color", bg)
     update_line(mako, "text-color", fg)

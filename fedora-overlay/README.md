@@ -10,6 +10,7 @@ This is the Fedora-native config currently applied on the Fedora Sway Spin. It k
 - Fedora's `tuned-ppd` remains the power-profile backend. Screenshot editing uses `grimshot` and Swappy; clipboard history uses cliphist.
 - A user-level layered override disables Fedora's default Print bindings so the Swappy screenshot bindings load without overwrite warnings.
 - Waybar's `network` and `bluetooth` modules sit after the battery module. Their duplicate NetworkManager and Blueman tray applets are hidden; the tray remains available for other apps.
+- Waybar's info icon opens a searchable list of the active Sway keybindings.
 - The Sway Control Center opens with `Super+Shift+S` or by searching “Sway Control Center” in Fuzzel. One appearance panel synchronizes GTK, Qt/Kvantum, XSettings, Sway, and Flatpak theme, icon, cursor, font, dark-mode, and accent settings. It leaves Kitty's Rosé Pine theme untouched. Display, sound, network, and Bluetooth controls are in the same window.
 - SDDM uses the Ronin theme from the `ronin` branch of `mahaveergurjar/sddm`, with the matching `16.jpeg` wallpaper from the author's Hyprlock-Dots repository, a dynamic account greeting, and the SDDM Qt6 compatibility module. Run `sudo ./fedora-overlay/install-sddm-ronin.sh` to install or reapply it.
 - Fuzzel quick actions provide network, Bluetooth, audio, calendar, process and power menus. Fedora's existing LXQt PolicyKit agent, Waybar, idle/lock rules and Sway systemd integration remain in place.
