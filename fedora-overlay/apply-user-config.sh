@@ -3,23 +3,51 @@ set -euo pipefail
 repo_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 cp -a "$repo_dir/fedora-overlay/.config/." "$HOME/.config/"
 cp -a "$repo_dir/fedora-overlay/.local/." "$HOME/.local/"
+mkdir -p "$HOME/.themes"
+cp -a "$repo_dir/fedora-overlay/.themes/." "$HOME/.themes/"
+for qt_version in qt5ct qt6ct; do
+    qt_config="$HOME/.config/$qt_version/$qt_version.conf"
+    sed -i "s|^color_scheme_path=.*|color_scheme_path=$HOME/.config/$qt_version/colors/Yaru-PrussianGreenDark.conf|; s|^custom_palette=.*|custom_palette=true|" "$qt_config"
+done
+if [[ -f "$HOME/.gtkrc-2.0.mine" ]]; then
+    printf 'include "%s/.gtkrc-2.0.mine"\n' "$HOME" > "$HOME/.gtkrc-2.0"
+else
+    : > "$HOME/.gtkrc-2.0"
+fi
+cat >> "$HOME/.gtkrc-2.0" <<'GTKRC'
+gtk-theme-name="Yaru-prussiangreen-dark"
+gtk-icon-theme-name="Yaru-prussiangreen-dark"
+gtk-font-name="Inter 11"
+gtk-cursor-theme-name="Adwaita"
+gtk-cursor-theme-size=24
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle="hintslight"
+gtk-xft-rgba="rgb"
+GTKRC
 for unit in app-nm-applet@autostart.service app-blueman@autostart.service; do
     if systemctl --user is-active --quiet "$unit"; then
         systemctl --user stop "$unit"
     fi
 done
 if command -v gsettings >/dev/null && gsettings list-schemas | grep -Fxq org.gnome.desktop.interface; then
-    gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-dark'
-    gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+    gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-prussiangreen-dark'
+    gsettings set org.gnome.desktop.interface icon-theme 'Yaru-prussiangreen-dark'
     gsettings set org.gnome.desktop.interface font-name 'Inter 11'
     gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+    if gsettings list-keys org.gnome.desktop.interface | grep -Fxq accent-color; then
+        gsettings set org.gnome.desktop.interface accent-color 'green'
+    fi
 fi
 systemctl --user daemon-reload
 if systemctl --user is-active --quiet graphical-session.target; then
     systemctl --user enable --now cliphist.service xsettingsd.service mako.service
 else
     systemctl --user enable cliphist.service xsettingsd.service mako.service
+fi
+if systemctl --user is-active --quiet xsettingsd.service; then
+    systemctl --user restart xsettingsd.service
 fi
 if [[ -n "${SWAYSOCK:-}" ]]; then
     swaymsg reload

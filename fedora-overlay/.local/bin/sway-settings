@@ -14,7 +14,7 @@ choice=$(printf '%s\n' \
 case "$choice" in
     'Display layout') exec wdisplays ;;
     'GTK appearance') exec lxappearance ;;
-    'Qt 5 appearance') exec qt5ct ;;
+    'Qt 5 appearance') exec env QT_QPA_PLATFORMTHEME=qt5ct qt5ct ;;
     'Qt 6 appearance') exec qt6ct ;;
     'Sound') exec pavucontrol ;;
     'Network') exec kitty --class floating_shell nmtui ;;

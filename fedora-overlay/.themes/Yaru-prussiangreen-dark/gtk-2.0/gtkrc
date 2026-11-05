@@ -1,0 +1,31 @@
+style "yaru-prussiangreen-dark" {
+    fg[NORMAL] = "#f0f0f0"
+    fg[ACTIVE] = "#ffffff"
+    fg[PRELIGHT] = "#ffffff"
+    fg[SELECTED] = "#ffffff"
+    fg[INSENSITIVE] = "#a0a0a0"
+
+    bg[NORMAL] = "#2d2d2d"
+    bg[ACTIVE] = "#353535"
+    bg[PRELIGHT] = "#3c3c3c"
+    bg[SELECTED] = "#3eb34f"
+    bg[INSENSITIVE] = "#2d2d2d"
+
+    base[NORMAL] = "#171717"
+    base[ACTIVE] = "#2d2d2d"
+    base[PRELIGHT] = "#232323"
+    base[SELECTED] = "#3eb34f"
+    base[INSENSITIVE] = "#252525"
+
+    text[NORMAL] = "#f0f0f0"
+    text[ACTIVE] = "#ffffff"
+    text[PRELIGHT] = "#ffffff"
+    text[SELECTED] = "#ffffff"
+    text[INSENSITIVE] = "#a0a0a0"
+
+    engine "clearlooks" {
+        colorize_scrollbar = TRUE
+    }
+}
+
+class "*" style "yaru-prussiangreen-dark"

@@ -3,7 +3,9 @@ kitty
 fuzzel
 mako
 cliphist
-yaru-theme
+yaru-gtk3-theme
+yaru-gtk4-theme
+yaru-icon-theme
 papirus-icon-theme
 rsms-inter-fonts
 jetbrains-mono-fonts
@@ -20,6 +22,10 @@ htop
 NetworkManager-tui
 lxappearance
 wdisplays
+gtk2-engines
+
+# Installed from Flathub for GTK3 Flatpak applications:
+# org.gtk.Gtk3theme.Yaru-prussiangreen-dark
 
 # Already supplied by Fedora Sway on this install
 sway
