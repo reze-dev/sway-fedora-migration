@@ -47,6 +47,9 @@ bluez
 tuned
 tuned-ppd
 Thunar
+gtk4
+python3-gobject
+sddm
 
 # Removed as requested
 foot

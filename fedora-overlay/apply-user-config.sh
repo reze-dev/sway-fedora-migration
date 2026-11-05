@@ -41,7 +41,10 @@ if command -v gsettings >/dev/null && gsettings list-schemas | grep -Fxq org.gno
         gsettings set org.gnome.desktop.interface accent-color 'green'
     fi
 fi
-if command -v flatpak >/dev/null && [[ -r /usr/share/icons/Bibata-Modern-Ice/index.theme ]]; then
+if [[ -x "$HOME/.local/bin/sway-control-center" && -f "$HOME/.config/sway-control-center/settings.json" ]]; then
+    "$HOME/.local/bin/sway-control-center" --apply-state
+fi
+if [[ ! -f "$HOME/.config/sway-control-center/settings.json" ]] && command -v flatpak >/dev/null && [[ -r /usr/share/icons/Bibata-Modern-Ice/index.theme ]]; then
     flatpak override --user \
         --filesystem=/usr/share/icons/Bibata-Modern-Ice:ro \
         --env=XCURSOR_THEME=Bibata-Modern-Ice \
