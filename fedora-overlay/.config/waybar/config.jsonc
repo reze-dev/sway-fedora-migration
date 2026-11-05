@@ -16,8 +16,6 @@
         "memory",
         "power-profiles-daemon",
         "battery",
-        "network",
-        "bluetooth",
         "pulseaudio",
         "clock",
         "custom/power"
@@ -109,29 +107,6 @@
     "battery": {
         "format": "{icon} {capacity}%",
         "format-icons": ["", "", "", "", ""]
-    },
-    
-    "network": {
-       "format-wifi": " ({signalStrength}%)",
-       "format-ethernet": "",
-       "format-disconnected": "",
-       "tooltip-format": "{ifname} ({essid}): {ipaddr}",
-       "tooltip-format": "{icon} {ifname}: {ipaddr}",
-       "tooltip-format-ethernet": "{icon} {ifname}: {ipaddr}",
-       "tooltip-format-wifi": "{icon} {ifname} ({essid}): {ipaddr}",
-       "tooltip-format-disconnected": "{icon} disconnected",
-       "tooltip-format-disabled": "{icon} disabled",
-       "on-click": "kitty --class floating_shell nmtui connect",
-       "on-click-right": "kitty --class floating_shell nmtui edit"
-    },
-
-    "bluetooth": {
-        "format": "",
-        "format-disabled": "",
-        "format-no-controller": "",
-        "on-click": "kitty --class floating_shell bluetoothctl",
-        "on-click-right": "rfkill toggle bluetooth",
-        "tooltip-format": "{}"
     },
     
     "clock": {
