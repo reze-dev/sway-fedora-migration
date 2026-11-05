@@ -59,6 +59,8 @@ window#waybar {
 #cpu,
 #language,
 #memory,
+#network,
+#bluetooth,
 #pulseaudio,
 #tray,
 #idle_inhibitor {
@@ -75,6 +77,8 @@ window#waybar {
 #custom-dnd,
 #power-profiles-daemon,
 #battery,
+#network,
+#bluetooth,
 #pulseaudio,
 #idle_inhibitor {
     background: rgba(65, 83, 91, 0.58);
@@ -88,6 +92,8 @@ window#waybar {
 #battery.critical { color: #da4453; }
 #battery.warning.discharging { animation-name: blink-warning; animation-duration: 3s; animation-timing-function: linear; animation-iteration-count: infinite; animation-direction: alternate; }
 #battery.critical.discharging { animation-name: blink-critical; animation-duration: 2s; animation-timing-function: linear; animation-iteration-count: infinite; animation-direction: alternate; }
+#network.disconnected,
+#bluetooth.disabled,
 #pulseaudio.muted { color: #bdc3c7; background: rgba(27, 27, 27, 0.7); }
 #tray { padding: 0 8px; }
 #idle_inhibitor.activated { color: #ffffff; background: #317b79; }
