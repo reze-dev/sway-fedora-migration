@@ -18,7 +18,7 @@ CONFIG = HOME / ".config"
 STATE_DIR = CONFIG / "sway-control-center"
 STATE_FILE = STATE_DIR / "settings.json"
 ACCENTS = {
-    "Prussian Green Dark": "#3eb34f",
+    "Prussian Green Dark": "#308280",
     "green": "#3eb34f",
     "teal": "#317b79",
     "blue": "#3584e4",
@@ -429,7 +429,7 @@ def apply_settings(settings):
             if key in schema:
                 run(["gsettings", "set", "org.gnome.desktop.interface", key, value], check=False)
         if "accent-color" in schema:
-            gsettings_accent = "green" if accent == "Prussian Green Dark" else accent
+            gsettings_accent = "teal" if accent == "Prussian Green Dark" else accent
             run(["gsettings", "set", "org.gnome.desktop.interface", "accent-color", gsettings_accent], check=False)
 
     set_gtk_settings(CONFIG / "gtk-3.0/settings.ini", theme, icons, cursor, cursor_size, ui_font_value, dark)
@@ -586,7 +586,7 @@ class ControlCenter(Gtk.Application):
         add_row(6, "Dark appearance", self.dark)
 
         current_accent = read_gsetting("accent-color", "green")
-        if current_accent == "green" and current_theme == "Yaru-prussiangreen-dark":
+        if current_accent == "teal" and current_theme == "Yaru-prussiangreen-dark":
             current_accent = "Prussian Green Dark"
         self.accent = dropdown(ACCENTS, current_accent)
         add_row(7, "Accent color", self.accent)
