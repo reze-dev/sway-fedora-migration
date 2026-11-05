@@ -20,16 +20,18 @@ swappy
 calcurse
 htop
 NetworkManager-tui
-lxappearance
 wdisplays
 gtk2-engines
 bibata-cursor-themes
 
+# Installed from COPR to replace Fedora's Sway binary:
+# copr enable swayfx/swayfx
+swayfx
+
 # Installed from Flathub for GTK3 Flatpak applications:
 # org.gtk.Gtk3theme.Yaru-prussiangreen-dark
 
-# Already supplied by Fedora Sway on this install
-sway
+# Fedora Sway session/config integration retained with SwayFX
 sway-config-fedora
 sway-systemd
 waybar

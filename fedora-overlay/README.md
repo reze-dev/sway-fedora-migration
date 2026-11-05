@@ -1,10 +1,10 @@
 # Fedora 45 user overlay
 
-This is the Fedora-native config currently applied on the Fedora Sway Spin. It keeps Fedora's Sway base config and session integration, then replaces the user-facing appearance and actions with the Ubuntu setup's dark teal style.
+This is the Fedora-native config currently applied on the Fedora Sway Spin. It keeps Fedora's Sway config and session integration, runs SwayFX in place of Fedora's Sway binary, then applies the Ubuntu setup's dark teal style.
 
 ## Included behavior
 
-- Kitty is the default terminal; Foot was removed. Fuzzel is the launcher.
+- Kitty is the default terminal; Foot was removed. Kitty uses the independent upstream Rosé Pine theme, which the Sway Control Center leaves untouched. Fuzzel is the launcher.
 - Waybar and Mako use the charcoal/teal palette. GTK apps use Yaru Prussian Green Dark, its matching Yaru icons, and Inter; GTK2 gets a matching dark palette shim. Qt5/6 use matching Kvantum and Qt color palettes.
 - The Ubuntu Remix wallpaper is installed as a user-owned background. Sway keeps Fedora's 144 Hz output mode and enables adaptive sync on `eDP-1`.
 - Fedora's `tuned-ppd` remains the power-profile backend. Screenshot editing uses `grimshot` and Swappy; clipboard history uses cliphist.
@@ -18,7 +18,7 @@ Fedora's Yaru GTK3, GTK4, and icon theme packages provide `Yaru-prussiangreen-da
 
 ## Reapply
 
-Run `./fedora-overlay/apply-user-config.sh` from the repository root. It copies the user config and wallpaper/scripts, synchronizes GTK2/3/4, Qt, GNOME and XSettings theme preferences, restores any saved Sway Control Center choices, reloads user systemd unit metadata, enables the clipboard history, XSettings and Mako services, and reloads Sway when run inside the session. Fedora's `lxappearance` and `wdisplays` packages are needed for GTK and display settings; they are hidden as standalone launchers in favor of the Control Center.
+Run `./fedora-overlay/apply-user-config.sh` from the repository root. It copies the user config and wallpaper/scripts, synchronizes GTK2/3/4, Qt, GNOME and XSettings theme preferences, restores any saved Sway Control Center choices, reloads user systemd unit metadata, enables the clipboard history, XSettings and Mako services, and reloads Sway when run inside the session. The appearance controls live in Sway Control Center. GNOME Tweaks and LXAppearance have been removed; Qt5ct and Qt6ct remain installed as hidden Qt theme backends, and wdisplays remains available for display layout.
 
 `fedora45-packages.txt` records packages added for this overlay, the relevant packages already present in the Sway Spin, and intentionally omitted alternatives.
 
