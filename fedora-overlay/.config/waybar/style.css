@@ -20,7 +20,7 @@
 window#waybar {
     background: rgba(27, 27, 27, 0.96);
     color: #eff0f1;
-    border-bottom: 1px solid rgba(49, 123, 121, 0.7);
+    border-bottom: 1px solid #368582;
 }
 
 #workspaces button {
@@ -32,18 +32,18 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    background: rgba(49, 123, 121, 0.35);
+    background: rgba(54, 133, 130, 0.35);
     color: #ffffff;
 }
 
 #workspaces button.focused {
     color: #ffffff;
-    background: #317b79;
+    background: #368582;
 }
 
 #workspaces button.urgent { color: #da4453; }
 #window { margin-left: 10px; color: #bdc3c7; }
-#mode { color: #ffffff; background: #317b79; padding: 0 10px; margin: 5px 3px; }
+#mode { color: #ffffff; background: #368582; padding: 0 10px; margin: 5px 3px; }
 
 #clock,
 #custom-help,
@@ -82,9 +82,9 @@ window#waybar {
     background: rgba(65, 83, 91, 0.58);
 }
 
-#clock { color: #ffffff; background: #317b79; font-weight: 600; }
-#custom-menu { color: #83c1be; font-size: 15px; padding-left: 12px; padding-right: 12px; }
-#custom-power { color: #da4453; font-size: 14px; padding-left: 12px; padding-right: 12px; }
+#clock { color: #ffffff; background: #368582; font-weight: 600; }
+#custom-menu { color: #368582; font-size: 17px; padding-left: 12px; padding-right: 12px; }
+#custom-power { color: #da4453; font-size: 16px; padding-left: 12px; padding-right: 12px; }
 #custom-wf-recorder { color: #da4453; padding: 0 10px; }
 #battery.warning { color: #e6cd69; }
 #battery.critical { color: #da4453; }
@@ -94,5 +94,5 @@ window#waybar {
 #bluetooth.disabled,
 #pulseaudio.muted { color: #bdc3c7; background: rgba(27, 27, 27, 0.7); }
 #tray { padding: 0 8px; }
-#idle_inhibitor.activated { color: #ffffff; background: #317b79; }
-label:focus { background: #317b79; }
+#idle_inhibitor.activated { color: #ffffff; background: #368582; }
+label:focus { background: #368582; }
