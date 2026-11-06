@@ -27,6 +27,6 @@ Preserve the current desktop's look and useful Sway behavior as a portable user-
 - `~/.config/sway/config` includes `/usr/share/themes/yaru-sway/variables` and `/etc/sway/variables`; those paths do not describe Fedora's defaults.
 - Waybar actions no longer call Ubuntu scripts under `/usr/share/sway/scripts`; screen recording/weather controls were omitted, and help/power/clipboard actions use local Fedora-safe scripts.
 - Fedora's Sway idle, lock, brightness and media controls remain in place.
-- nwggrid provides the searchable graphical app drawer on the Waybar rocket and Super+D; Fuzzel remains for dmenu-style quick actions. Azote manages Sway wallpapers and saves the chosen background for future logins. CopyQ provides the dedicated clipboard history window in place of the Ubuntu nwg-clipman action.
+- nwggrid provides the searchable graphical app drawer on the Waybar rocket and Super+D; Fuzzel remains for dmenu-style quick actions. Sway Control Center manages wallpaper selection and scaling through Fedora’s swaybg backend and restores the chosen image at login. CopyQ provides the dedicated clipboard history window in place of the Ubuntu nwg-clipman action.
 - The Ubuntu Sway welcome app is explicitly out of scope.
 - Foot was intentionally removed; do not reinstall it.

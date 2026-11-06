@@ -2,7 +2,6 @@
 kitty
 fuzzel
 nwg-launchers
-azote
 mako
 copyq
 ydotool

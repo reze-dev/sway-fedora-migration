@@ -48,3 +48,5 @@ Historical check: Fedora Linux 45 was announced on 2026-11-03, but the official 
 - The Fedora 45 app drawer and wallpaper workflow were completed: official Fedora packages `nwg-launchers` and `azote` are installed. Waybar’s rocket and Super+D open the Prussian Green styled nwggrid; Super+Shift+W opens Azote. The current Warty wallpaper is preserved in `~/Pictures/Wallpapers` and restored by `~/.azotebg`.
 
 - Waybar now runs through Fedora’s `waybar.service`; a user Sway `config.d/90-bar.conf` override suppresses the packaged `swaybar_command waybar` stanza. This makes systemd the single process owner and prevents a second Sway-managed bar.
+
+- Azote was removed at the user’s request. The unified Sway Control Center now has a GTK image picker and scaling selector; it updates Sway’s `output * bg` setting for application and login restore. Super+Shift+W opens the control center. `awww` (formerly `swww`) was considered but is not in the enabled Fedora 45 repositories.

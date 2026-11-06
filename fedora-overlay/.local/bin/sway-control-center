@@ -17,6 +17,7 @@ HOME = Path.home()
 CONFIG = HOME / ".config"
 STATE_DIR = CONFIG / "sway-control-center"
 STATE_FILE = STATE_DIR / "settings.json"
+WALLPAPER_MODES = ("fill", "fit", "stretch", "center", "tile")
 ACCENTS = {
     "Prussian Green Dark": "#368582",
     "green": "#3eb34f",
@@ -36,6 +37,32 @@ def accent_hex(name, dark):
 
 def run(args, check=True):
     return subprocess.run(args, check=check, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+
+def set_sway_wallpaper(config_path, settings):
+    wallpaper = Path(settings.get("wallpaper", HOME / ".local/share/backgrounds/warty-final-ubuntusway.png")).expanduser()
+    mode = settings.get("wallpaper_mode", "fill")
+    if mode not in WALLPAPER_MODES:
+        mode = "fill"
+    if not wallpaper.is_file():
+        raise FileNotFoundError(f"Wallpaper image does not exist: {wallpaper}")
+    config_path = Path(config_path)
+    lines = config_path.read_text().splitlines() if config_path.exists() else []
+    wallpaper_line = f"output * bg {json.dumps(str(wallpaper))} {mode}"
+    updated = []
+    replaced = False
+    for line in lines:
+        if re.match(r"^\s*output\s+\*\s+bg\s+", line):
+            if not replaced:
+                updated.append(wallpaper_line)
+                replaced = True
+        else:
+            updated.append(line)
+    if not replaced:
+        output_heading = next((i for i, line in enumerate(updated) if line.strip() == "### Output configuration"), None)
+        insert_at = output_heading + 3 if output_heading is not None else len(updated)
+        updated.insert(insert_at, wallpaper_line)
+    config_path.write_text("\n".join(updated).rstrip() + "\n")
 
 
 def read_gsetting(key, default):
@@ -268,7 +295,7 @@ def set_desktop_palette(accent, dark, icons, ui_font, ui_size):
 
     waybar = CONFIG / "waybar/style.css"
     update_text(waybar, r"^\s*font-family:\s*.*;$", f'    font-family: "{ui_font}", "Font Awesome 7 Free", sans-serif;')
-    update_text(waybar, r"^\s*font-size:\s*\d+px;$", f"    font-size: {ui_size:g}px;")
+    update_text(waybar, r"^\s*font-size:\s*\d+px;$", f"    font-size: {ui_size + 1:g}px;")
     if waybar.exists():
         css = waybar.read_text()
         block = re.search(r"window#waybar\s*\{([^}]*)\}", css, re.S)
@@ -473,6 +500,7 @@ def apply_settings(settings):
         run(["flatpak", "override", "--user", f"--env=XCURSOR_THEME={cursor}", f"--env=XCURSOR_SIZE={cursor_size}"], check=False)
 
     STATE_DIR.mkdir(parents=True, exist_ok=True)
+    set_sway_wallpaper(CONFIG / "sway/config", settings)
     STATE_FILE.write_text(json.dumps(settings, indent=2) + "\n")
     run(["systemctl", "--user", "restart", "xsettingsd.service"], check=False)
     sway_socket = os.environ.get("SWAYSOCK")
@@ -506,7 +534,7 @@ class ControlCenter(Gtk.Application):
 
     def do_activate(self):
         window = Gtk.ApplicationWindow(application=self, title="Sway Control Center")
-        window.set_default_size(660, 720)
+        window.set_default_size(660, 800)
         window.set_resizable(True)
         outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
         outer.set_margin_top(22)
@@ -530,6 +558,11 @@ class ControlCenter(Gtk.Application):
         current_cursor = read_gsetting("cursor-theme", "Bibata-Modern-Ice")
         current_size = int(read_gsetting("cursor-size", "24"))
         qt_theme = current_kvantum_theme()
+        try:
+            saved_settings = json.loads(STATE_FILE.read_text())
+        except (OSError, json.JSONDecodeError):
+            saved_settings = {}
+        current_wallpaper = Path(saved_settings.get("wallpaper", HOME / ".local/share/backgrounds/warty-final-ubuntusway.png")).expanduser()
 
         grid = Gtk.Grid(column_spacing=14, row_spacing=12)
         grid.set_margin_top(12)
@@ -583,6 +616,21 @@ class ControlCenter(Gtk.Application):
         self.qt_theme.set_tooltip_text("Kvantum theme used by Qt5 and Qt6 applications")
         add_row(8, "Qt theme", self.qt_theme)
 
+        wallpaper_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        self.wallpaper_label = Gtk.Label(label=current_wallpaper.name if current_wallpaper.name else "Choose an image")
+        self.wallpaper_label.set_xalign(0)
+        self.wallpaper_label.set_hexpand(True)
+        self.wallpaper_label.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
+        self.wallpaper_label.set_tooltip_text(str(current_wallpaper))
+        wallpaper_row.append(self.wallpaper_label)
+        choose_wallpaper = Gtk.Button(label="Choose…")
+        choose_wallpaper.connect("clicked", self.choose_wallpaper)
+        wallpaper_row.append(choose_wallpaper)
+        add_row(9, "Wallpaper", wallpaper_row)
+        self.wallpaper_path = current_wallpaper
+        self.wallpaper_mode = dropdown(WALLPAPER_MODES, saved_settings.get("wallpaper_mode", "fill"))
+        add_row(10, "Wallpaper scaling", self.wallpaper_mode)
+
         divider = Gtk.Separator(orientation=Gtk.Orientation.HORIZONTAL)
         divider.set_margin_top(5)
         outer.append(divider)
@@ -632,12 +680,39 @@ class ControlCenter(Gtk.Application):
             "dark": self.dark.get_active(),
             "accent": self.accent.get_selected_item().get_string(),
             "qt_theme": self.qt_theme.get_selected_item().get_string(),
+            "wallpaper": str(self.wallpaper_path),
+            "wallpaper_mode": self.wallpaper_mode.get_selected_item().get_string(),
         }
         try:
             apply_settings(settings)
             self.status.set_text("Applied. Reopen any already-running app to refresh its theme and fonts.")
         except Exception as error:
             self.status.set_text(f"Could not apply all settings: {error}")
+
+    def choose_wallpaper(self, _button):
+        chooser = Gtk.FileChooserNative.new(
+            "Choose a wallpaper", self.present_window, Gtk.FileChooserAction.OPEN, "Select", "Cancel"
+        )
+        wallpaper_dir = HOME / "Pictures/Wallpapers"
+        if wallpaper_dir.is_dir():
+            chooser.set_current_folder(Gio.File.new_for_path(str(wallpaper_dir)))
+        image_filter = Gtk.FileFilter()
+        image_filter.set_name("Image files")
+        image_filter.add_mime_type("image/*")
+        chooser.add_filter(image_filter)
+        chooser.connect("response", self.wallpaper_chosen)
+        self.wallpaper_chooser = chooser
+        chooser.show()
+
+    def wallpaper_chosen(self, chooser, response):
+        if response == Gtk.ResponseType.ACCEPT:
+            selected = chooser.get_file()
+            if selected and selected.get_path():
+                self.wallpaper_path = Path(selected.get_path())
+                self.wallpaper_label.set_text(self.wallpaper_path.name)
+                self.wallpaper_label.set_tooltip_text(str(self.wallpaper_path))
+        chooser.destroy()
+        self.wallpaper_chooser = None
 
 
 def main():

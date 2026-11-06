@@ -24,8 +24,8 @@ set $menu fuzzel
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
-# Wallpaper selected and saved by Azote; the current Warty background is preserved.
-exec ~/.azotebg
+# Wallpaper image and scaling are managed in Sway Control Center.
+output * bg ~/.local/share/backgrounds/warty-final-ubuntusway.png fill
 #
 # Example configuration:
 #
@@ -76,8 +76,8 @@ exec ~/.azotebg
     # Open clipboard history
     bindsym $mod+Shift+v exec copyq toggle
 
-    # Open the wallpaper browser
-    bindsym $mod+Shift+w exec azote
+    # Open Sway Control Center for appearance and wallpaper settings
+    bindsym $mod+Shift+w exec ~/.local/bin/sway-control-center
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
