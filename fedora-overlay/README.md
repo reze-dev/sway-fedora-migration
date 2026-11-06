@@ -5,7 +5,7 @@ This is the Fedora-native config currently applied on the Fedora Sway Spin. It k
 ## Included behavior
 
 - Kitty is the default terminal; Foot was removed. Kitty uses the independent upstream Rosé Pine theme, which the Sway Control Center leaves untouched. The rocket button and Super+D open nwggrid, a searchable visual application grid; Fuzzel remains available for compact quick-action menus.
-- Waybar and Mako use the charcoal/teal palette. GTK apps use Yaru Prussian Green Dark, its matching Yaru icons, and Inter; GTK2 gets a matching dark palette shim. Qt5/6 use matching Kvantum and Qt color palettes.
+- Waybar runs as the Fedora systemd user service, independently of Sway’s bar command; a Sway config override disables compositor-managed bar launches to prevent duplicates. It starts once per graphical session. Waybar and Mako use the charcoal/teal palette. GTK apps use Yaru Prussian Green Dark, its matching Yaru icons, and Inter; GTK2 gets a matching dark palette shim. Qt5/6 use matching Kvantum and Qt color palettes.
 - The Ubuntu Remix wallpaper is installed as a user-owned background and restored through Azote’s `~/.azotebg` startup helper. Azote is available from the app grid or Super+Shift+W; its wallpaper folder is `~/Pictures/Wallpapers`. Sway keeps Fedora's 144 Hz output mode and enables adaptive sync on `eDP-1`.
 - Fedora's `tuned-ppd` remains the power-profile backend. Screenshot editing uses `grimshot` and Swappy; clipboard history uses CopyQ (the previous cliphist database is retained on upgraded systems).
 - A user-level layered override disables Fedora's default Print bindings so the Swappy screenshot bindings load without overwrite warnings.
@@ -20,7 +20,7 @@ Fedora's Yaru GTK3, GTK4, and icon theme packages provide `Yaru-prussiangreen-da
 
 ## Reapply
 
-Run `./fedora-overlay/apply-user-config.sh` from the repository root. It copies the user config and wallpaper/scripts, installs the Azote startup helper, synchronizes GTK2/3/4, Qt, GNOME and XSettings theme preferences, restores any saved Sway Control Center choices, reloads user systemd unit metadata, enables the clipboard history, XSettings and Mako services, and reloads Sway when run inside the session. The appearance controls live in Sway Control Center. GNOME Tweaks and LXAppearance have been removed; Qt5ct and Qt6ct remain installed as hidden Qt theme backends, and wdisplays remains available for display layout. Apply the SDDM greeter theme separately with `sudo ./fedora-overlay/install-sddm-ronin.sh`; it takes effect at the next SDDM start.
+Run `./fedora-overlay/apply-user-config.sh` from the repository root. It copies the user config and wallpaper/scripts, installs the Azote startup helper, synchronizes GTK2/3/4, Qt, GNOME and XSettings theme preferences, restores any saved Sway Control Center choices, reloads user systemd unit metadata, enables the clipboard history, XSettings, Mako and Waybar services, and reloads Sway when run inside the session. The appearance controls live in Sway Control Center. GNOME Tweaks and LXAppearance have been removed; Qt5ct and Qt6ct remain installed as hidden Qt theme backends, and wdisplays remains available for display layout. Apply the SDDM greeter theme separately with `sudo ./fedora-overlay/install-sddm-ronin.sh`; it takes effect at the next SDDM start.
 
 `fedora45-packages.txt` records packages added for this overlay, the relevant packages already present in the Sway Spin, and intentionally omitted alternatives.
 
