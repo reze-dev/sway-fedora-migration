@@ -1,6 +1,8 @@
 # Added from enabled Fedora 45 repositories for the user overlay
 kitty
 fuzzel
+nwg-launchers
+azote
 mako
 copyq
 ydotool

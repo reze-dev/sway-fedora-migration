@@ -38,7 +38,7 @@
 
     "custom/menu": {
         "format": "",
-        "on-click": "fuzzel",
+        "on-click": "nwggrid",
         "tooltip": false
     },
     

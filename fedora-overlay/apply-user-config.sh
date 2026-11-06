@@ -3,6 +3,29 @@ set -euo pipefail
 repo_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 cp -a "$repo_dir/fedora-overlay/.config/." "$HOME/.config/"
 cp -a "$repo_dir/fedora-overlay/.local/." "$HOME/.local/"
+install -m 755 "$repo_dir/fedora-overlay/.local/bin/azotebg" "$HOME/.azotebg"
+mkdir -p "$HOME/Pictures/Wallpapers"
+wallpaper="$HOME/.local/share/backgrounds/warty-final-ubuntusway.png"
+if [[ -f "$wallpaper" && ! -e "$HOME/Pictures/Wallpapers/warty-final-ubuntusway.png" && ! -L "$HOME/Pictures/Wallpapers/warty-final-ubuntusway.png" ]]; then
+    ln -s "$wallpaper" "$HOME/Pictures/Wallpapers/warty-final-ubuntusway.png"
+fi
+if python3 -c 'import azote' >/dev/null 2>&1; then
+    python3 - "$HOME" <<'PYAZOTE'
+import sys
+from pathlib import Path
+from azote import common
+from azote.tools import Settings
+home = Path(sys.argv[1])
+common.data_home = str(home / ".local/share/azote")
+common.sample_dir = str(home / "Pictures/Wallpapers")
+common.azote_config_home = str(home / ".config/azote")
+Path(common.data_home).mkdir(parents=True, exist_ok=True)
+Path(common.azote_config_home).mkdir(parents=True, exist_ok=True)
+settings = Settings()
+settings.src_path = common.sample_dir
+settings.save()
+PYAZOTE
+fi
 mkdir -p "$HOME/.themes"
 cp -a "$repo_dir/fedora-overlay/.themes/." "$HOME/.themes/"
 for qt_version in qt5ct qt6ct; do

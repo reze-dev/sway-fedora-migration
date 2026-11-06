@@ -44,3 +44,5 @@ Historical check: Fedora Linux 45 was announced on 2026-11-03, but the official 
 - QT platform environment settings are recorded in `~/.config/sway/environment`; they take full effect on the next Sway login. Existing user windows were left open.
 
 - CopyQ now uses a custom dark Prussian Green theme with Inter and teal `#368582` selection, and its tray icon replaces the former custom Waybar clipboard glyph. The official CopyQ Wayland Support command is installed; `ydotoold` uses an asuna-only socket, and Kitty maps Shift+Insert to clipboard paste.
+
+- The Fedora 45 app drawer and wallpaper workflow were completed: official Fedora packages `nwg-launchers` and `azote` are installed. Waybar’s rocket and Super+D open the Prussian Green styled nwggrid; Super+Shift+W opens Azote. The current Warty wallpaper is preserved in `~/Pictures/Wallpapers` and restored by `~/.azotebg`.

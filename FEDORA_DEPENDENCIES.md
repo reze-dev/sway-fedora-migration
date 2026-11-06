@@ -14,7 +14,9 @@ Initial online audit performed 2026-11-04 against Fedora Packages and COPR. This
 | File manager | `Thunar` | Official Fedora 45 package; check whether the Sway Spin already includes it. [Package](https://packages.fedoraproject.org/pkgs/Thunar/Thunar/) |
 | Idle and screen lock | `swayidle`, `swaylock` | Official Fedora 45 builds. [swayidle](https://packages.fedoraproject.org/pkgs/swayidle/swayidle/), [swaylock](https://packages.fedoraproject.org/pkgs/swaylock/swaylock/) |
 | Bar and notifications | `waybar`, `mako` | Official Fedora packages. [Waybar](https://packages.fedoraproject.org/pkgs/waybar/), [Mako](https://packages.fedoraproject.org/pkgs/mako/mako/) |
-| App launcher | `fuzzel` | Official Fedora 45 package; can replace the current nwg drawer action. [Fuzzel](https://packages.fedoraproject.org/pkgs/fuzzel/fuzzel/) |
+| App drawer | `nwg-launchers` | Official Fedora 45 package; `nwggrid` provides a searchable graphical application grid. [Fedora package](https://packages.fedoraproject.org/pkgs/nwg-launchers/nwg-launchers/) |
+| Compact launcher and menus | `fuzzel` | Official Fedora 45 package; retained for dmenu-style quick actions. [Fuzzel](https://packages.fedoraproject.org/pkgs/fuzzel/fuzzel/) |
+| Wallpaper manager | `azote` | Official Fedora 45 package; GTK wallpaper browser and `swaybg` frontend for Sway. [Fedora package](https://packages.fedoraproject.org/pkgs/azote/azote/) |
 | Terminal and SSH terminfo | `kitty` | Official package; Fedora provides Kitty terminfo and Fish integration. [Kitty](https://packages.fedoraproject.org/pkgs/kitty/kitty/) |
 | GTK theme | `yaru-theme` and GTK subpackages | Fedora 45 has Yaru GTK3/GTK4 and icon packages. The exact Ubuntu Remix variant `Yaru-prussiangreen-dark` is not confirmed. [Yaru](https://packages.fedoraproject.org/pkgs/yaru-theme/yaru-theme/) |
 | Icons | `papirus-icon-theme`, `papirus-icon-theme-dark` | Official Fedora 45 packages. [Papirus](https://packages.fedoraproject.org/pkgs/papirus-icon-theme/papirus-icon-theme/) |
@@ -44,9 +46,8 @@ Initial online audit performed 2026-11-04 against Fedora Packages and COPR. This
 
 - `autotiling`, `swayr`, `swaykbdd`, `bluetuith`, and `pulsemixer`: no suitable Fedora 45 official package or maintained Fedora 45 COPR was verified in this audit. Prefer Sway built-in layout and keyboard features, `bluetoothctl`, and `pavucontrol`/`wpctl`; omit the extras if no maintained package is found.
 - `fuzzel-emoji`: the Ubuntu system Sway mode references this command, but it is not installed on the current Ubuntu host. The Ubuntu package instead has a `wofi-emoji.desktop` launcher. Do not carry this binding over without a real Fedora command.
-- `nwg-drawer`: Fedora package page showed builds through Fedora 44, but not Fedora 45 in this audit. Fuzzel can be the app menu.
+- `nwg-drawer`: no Fedora 45 build was found; Fedora 45 `nwg-launchers` includes `nwggrid`, which supplies the visual app drawer.
 - `nwg-look`, `nwg-displays`, `nwg-bar`, `nwg-wrapper`, `nwg-clipman`: no Fedora 45 official package or suitable maintained Fedora 45 COPR was verified. Community artifacts surfaced for some names but were not established as usable. Prefer direct theme settings, native Sway output configuration, Fuzzel and small scripts.
-- `azote`: exact Fedora 45 package/COPR availability was not verified. The static wallpaper can be configured directly with Fedora Sway’s existing wallpaper backend.
 - `acpi`: current idle scripts use it to decide suspend behavior. Prefer Fedora's existing power services or rework the logic after inspecting the Spin and laptop hardware.
 - The current Kitty font is `JetBrainsMono Nerd Font`; the Fedora `jetbrains-mono-fonts` package does not establish that exact patched face. Check Kitty's symbol fallback first.
 

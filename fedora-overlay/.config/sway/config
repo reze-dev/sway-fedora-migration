@@ -18,13 +18,14 @@ set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu fuzzel
+set $menu nwggrid
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
-output * bg ~/.local/share/backgrounds/warty-final-ubuntusway.png fill
+# Wallpaper selected and saved by Azote; the current Warty background is preserved.
+exec ~/.azotebg
 #
 # Example configuration:
 #
@@ -74,6 +75,9 @@ output * bg ~/.local/share/backgrounds/warty-final-ubuntusway.png fill
 
     # Open clipboard history
     bindsym $mod+Shift+v exec copyq toggle
+
+    # Open the wallpaper browser
+    bindsym $mod+Shift+w exec azote
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -235,9 +239,9 @@ smart_borders on
 smart_gaps on
 gaps inner 6
 font pango:Inter 11
-client.focused          #bdc3c7 #317b79 #ffffff #ffffff #317b79
+client.focused #368582 #368582 #ffffff #ffffff #368582
 client.focused_inactive #1b1b1b #1b1b1b #bdc3c7 #41535b #1b1b1b
-client.unfocused        #1b1b1b #2f2f2f #bdc3c7 #ffffff #1b1b1b
+client.unfocused #1b1b1b #2f2f2f #bdc3c7 #ffffff #1b1b1b
 client.urgent           #da4453 #da4453 #2f2f2f #db7b55 #da4453
 
 # Fedora-native output; this panel supports 144 Hz and adaptive sync.

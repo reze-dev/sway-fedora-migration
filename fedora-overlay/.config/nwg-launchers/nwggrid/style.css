@@ -1,0 +1,40 @@
+button, label, image {
+    background: none;
+    border-style: none;
+    box-shadow: none;
+    color: #eff0f1;
+}
+
+button {
+    padding: 8px;
+    margin: 6px;
+    text-shadow: none;
+    border-radius: 10px;
+}
+
+button:hover, button:checked {
+    background-color: rgba(54, 133, 130, 0.32);
+}
+
+button:focus {
+    box-shadow: 0 0 0 2px #6db2af;
+}
+
+#searchbox {
+    background-color: rgba(27, 27, 27, 0.9);
+    border: 1px solid #368582;
+    border-radius: 8px;
+    color: #eff0f1;
+    margin: 14px 20px;
+    padding: 8px 12px;
+}
+
+#separator {
+    background-color: rgba(54, 133, 130, 0.6);
+    margin: 10px 280px;
+}
+
+#description {
+    color: #bdc3c7;
+    margin-bottom: 14px;
+}
