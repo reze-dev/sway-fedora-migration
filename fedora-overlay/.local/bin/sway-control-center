@@ -77,6 +77,39 @@ def read_gsetting(key, default):
         return default
 
 
+def brightness_devices():
+    """Return the backlight devices brightnessctl can drive.
+
+    brightnessctl lists LED devices (numlock, kana, ...) alongside backlights,
+    so the class is restricted to "backlight" to avoid offering those.
+    """
+    try:
+        result = run(["brightnessctl", "-c", "backlight", "-l"], check=False)
+    except OSError:
+        return []
+    devices = []
+    for line in result.stdout.splitlines():
+        line = line.strip()
+        if line.startswith("Device ") and "'" in line:
+            devices.append(line.split("'")[1])
+    return devices
+
+
+def read_brightness(device):
+    """Return the current brightness percentage of a device, or None."""
+    try:
+        value = run(["brightnessctl", "-d", device, "-P", "get"], check=False).stdout.strip()
+        return float(value)
+    except (OSError, ValueError):
+        return None
+
+
+def set_brightness(device, percent):
+    """Set the brightness of a device, clamped to the 1-100 range."""
+    percent = max(1, min(100, int(round(percent))))
+    run(["brightnessctl", "-d", device, "set", f"{percent}%"], check=False)
+
+
 def read_index_name(path):
     try:
         for line in (path / "index.theme").read_text(errors="replace").splitlines():
@@ -527,6 +560,103 @@ def launch_system_app(command):
     subprocess.Popen(command, start_new_session=True)
 
 
+class BrightnessBar(Gtk.Box):
+    """A backlight slider that is clickable and scrollable.
+
+    Gtk.Scale handles click-to-set on its own: clicking the trough jumps
+    the slider to that position. Scrolling is handled here instead of by
+    GtkRange's built-in controller, because that one moves the value by an
+    amount that depends on the scroll unit reported by the device, which
+    makes the step feel different between a wheel and a touchpad.
+
+    The controller runs in the CAPTURE phase so that it is seen before
+    GtkRange's own BUBBLE-phase controller; returning True stops the
+    event from reaching it, so the value is only moved once per notch.
+
+    The value is written to the backlight as it changes rather than only
+    on Apply, which is what a brightness control is expected to do.
+    """
+
+    SCROLL_STEP = 2
+
+    def __init__(self, device, on_status=None):
+        super().__init__(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        self.device = device
+        self.on_status = on_status
+        self._updating = False
+
+        current = read_brightness(device)
+        if current is None:
+            current = 50.0
+
+        self.adjustment = Gtk.Adjustment(
+            value=max(1, min(100, current)),
+            lower=1,
+            upper=100,
+            step_increment=1,
+            page_increment=self.SCROLL_STEP,
+        )
+
+        self.icon = Gtk.Image.new_from_icon_name("display-brightness-symbolic")
+        self.icon.set_valign(Gtk.Align.CENTER)
+        self.icon.set_tooltip_text("Backlight brightness")
+        self.append(self.icon)
+
+        self.scale = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=self.adjustment)
+        self.scale.set_hexpand(True)
+        self.scale.set_valign(Gtk.Align.CENTER)
+        self.scale.set_draw_value(False)
+        self.scale.set_size_request(260, -1)
+        self.scale.set_tooltip_text("Backlight brightness")
+        self.append(self.scale)
+
+        self.label = Gtk.Label(label=f"{self.adjustment.get_value():.0f}%")
+        self.label.set_width_chars(4)
+        self.label.set_xalign(1.0)
+        self.label.set_valign(Gtk.Align.CENTER)
+        self.append(self.label)
+
+        self.scale.connect("value-changed", self.on_value_changed)
+
+        scroll = Gtk.EventControllerScroll()
+        scroll.set_propagation_phase(Gtk.PropagationPhase.CAPTURE)
+        scroll.connect("scroll", self.on_scroll)
+        self.scale.add_controller(scroll)
+
+    def on_value_changed(self, _scale):
+        if self._updating:
+            return
+        value = self.adjustment.get_value()
+        self.label.set_text(f"{value:.0f}%")
+        set_brightness(self.device, value)
+        if self.on_status:
+            self.on_status(f"Backlight {value:.0f}%")
+
+    def on_scroll(self, _controller, dx, dy):
+        if dy == 0:
+            return False
+        # Scrolling up (dy < 0) raises the brightness.
+        delta = -dy * self.SCROLL_STEP
+        new_value = max(
+            self.adjustment.get_lower(),
+            min(self.adjustment.get_upper(), self.adjustment.get_value() + delta),
+        )
+        if new_value != self.adjustment.get_value():
+            self.adjustment.set_value(new_value)
+        # Stop here so GtkRange's own controller does not move it again.
+        return True
+
+    def refresh(self):
+        """Re-read the hardware value, e.g. after the panel was changed."""
+        current = read_brightness(self.device)
+        if current is None:
+            return
+        self._updating = True
+        self.adjustment.set_value(max(1, min(100, current)))
+        self.label.set_text(f"{self.adjustment.get_value():.0f}%")
+        self._updating = False
+
+
 class ControlCenter(Gtk.Application):
     def __init__(self):
         super().__init__(application_id="org.fedora.sway.ControlCenter", flags=Gio.ApplicationFlags.DEFAULT_FLAGS)
@@ -661,12 +791,28 @@ class ControlCenter(Gtk.Application):
         self.status.set_hexpand(True)
         self.status.set_wrap(True)
         footer.append(self.status)
+
+        self.brightness_bar = None
+        devices = brightness_devices()
+        if devices:
+            brightness_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
+            brightness_label = Gtk.Label(label="Brightness")
+            brightness_label.set_xalign(0)
+            brightness_box.append(brightness_label)
+            self.brightness_bar = BrightnessBar(devices[0], on_status=self.set_status)
+            brightness_box.append(self.brightness_bar)
+            outer.append(brightness_box)
         apply_button = Gtk.Button(label="Apply settings")
         apply_button.add_css_class("suggested-action")
         apply_button.connect("clicked", self.apply_clicked)
         footer.append(apply_button)
         self.present_window = window
         window.present()
+
+    def set_status(self, message):
+        """Show a transient status message in the footer."""
+        if getattr(self, "status", None) is not None:
+            self.status.set_text(message)
 
     def apply_clicked(self, _button):
         ui_desc = self.ui_font.get_font_desc()
