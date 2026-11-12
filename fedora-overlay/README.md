@@ -45,3 +45,5 @@ The ASUS TUF Gaming A15 FA506II is a hybrid laptop: the internal panel is wired 
 RPM Fusion's `99-nvidia-dracut.conf` keeps the NVIDIA modules out of the ramdisk so that kernel updates do not need a ramdisk rebuild. That is wrong once `nouveau` is blacklisted, because the proprietary driver has to claim the device early. `~/.local/bin/sway-nvidia-initramfs` rebuilds the ramdisk with `--add-drivers "nvidia nvidia-modeset nvidia-drm nvidia-uvm"`; run it after a kernel update.
 
 The panel stays on the iGPU, which is what actually drives it. `~/.local/bin/sway-prime-run` pushes a single command onto the dGPU through PRIME render offload, for example `sway-prime-run steam`.
+
+With the proprietary driver loaded, Sway shows a "Proprietary GPU drivers are not supported by sway" notice on startup, because it detects the `nvidia-drm` kernel module behind the DRM backend it opened. `~/.config/sway/environment` passes `--unsupported-gpu` to Sway through `SWAY_EXTRA_ARGS`, which suppresses that notice. The flag only disables the notice; it does not change which renderer or GPU is used, and the rendering path is unaffected.
