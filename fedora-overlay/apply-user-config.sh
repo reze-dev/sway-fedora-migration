@@ -58,10 +58,10 @@ fi
 systemctl --user daemon-reload
 if systemctl --user is-active --quiet graphical-session.target; then
     systemctl --user disable --now cliphist.service 2>/dev/null || true
-    systemctl --user enable --now copyq.service xsettingsd.service mako.service waybar.service
+    systemctl --user enable --now copyq.service xsettingsd.service mako.service waybar.service awww.service
 else
     systemctl --user disable cliphist.service 2>/dev/null || true
-    systemctl --user enable copyq.service xsettingsd.service mako.service waybar.service
+    systemctl --user enable copyq.service xsettingsd.service mako.service waybar.service awww.service
 fi
 if systemctl --user is-active --quiet xsettingsd.service; then
     systemctl --user restart xsettingsd.service

@@ -20,13 +20,13 @@ Preserve the current desktop's look and useful Sway behavior as a portable user-
 - Fedora GTK uses `Yaru-dark`, Papirus-Dark, Inter and Adwaita cursor. The teal Kvantum variant is included locally.
 - Waybar, Mako, Fuzzel, Kitty, Swappy and swaylock have user-level styling. Fedora's default brightness/volume OSD and lock/idle services remain active.
 - Kitty is the default terminal. The Sway variables include regular, working-directory and floating Kitty launches.
-- The actual Fedora output is `eDP-1` at 1920x1080 and 144 Hz; adaptive sync is enabled in the overlay.
+- The actual Fedora output is `eDP-1` at 1920x1080 and 144 Hz; adaptive sync (VRR) is disabled in the overlay because it causes a subtle full-screen flicker on cursor movement.
 
 ## Ubuntu-specific items replaced or intentionally omitted
 
 - `~/.config/sway/config` includes `/usr/share/themes/yaru-sway/variables` and `/etc/sway/variables`; those paths do not describe Fedora's defaults.
 - Waybar actions no longer call Ubuntu scripts under `/usr/share/sway/scripts`; screen recording/weather controls were omitted, and help/power/clipboard actions use local Fedora-safe scripts.
 - Fedora's Sway idle, lock, brightness and media controls remain in place.
-- nwggrid provides the searchable graphical app drawer on the Waybar rocket and Super+D; Fuzzel remains for dmenu-style quick actions. Sway Control Center manages wallpaper selection and scaling through Fedora’s swaybg backend and restores the chosen image at login. CopyQ provides the dedicated clipboard history window in place of the Ubuntu nwg-clipman action.
+- nwggrid provides the searchable graphical app drawer on the Waybar rocket and Super+D; Fuzzel remains for dmenu-style quick actions. Sway Control Center manages wallpaper selection and scaling through the `awww` daemon and restores the chosen image at login. CopyQ provides the dedicated clipboard history window in place of the Ubuntu nwg-clipman action.
 - The Ubuntu Sway welcome app is explicitly out of scope.
 - Foot was intentionally removed; do not reinstall it.

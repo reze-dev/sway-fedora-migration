@@ -39,30 +39,33 @@ def run(args, check=True):
     return subprocess.run(args, check=check, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
-def set_sway_wallpaper(config_path, settings):
+def strip_sway_wallpaper(config_path):
+    """Drop any "output * bg" line from the Sway config.
+
+    Sway spawns swaybg itself for that directive, so leaving it in place would
+    run swaybg next to awww and both would paint the background layer.
+    """
+    config_path = Path(config_path)
+    if not config_path.exists():
+        return
+    lines = config_path.read_text().splitlines()
+    updated = [line for line in lines if not re.match(r"^\s*output\s+\*\s+bg\s+", line)]
+    if updated != lines:
+        config_path.write_text("\n".join(updated).rstrip() + "\n")
+
+
+def apply_wallpaper(settings):
+    """Push the wallpaper to the awww daemon."""
     wallpaper = Path(settings.get("wallpaper", HOME / ".local/share/backgrounds/warty-final-ubuntusway.png")).expanduser()
     mode = settings.get("wallpaper_mode", "fill")
     if mode not in WALLPAPER_MODES:
         mode = "fill"
     if not wallpaper.is_file():
         raise FileNotFoundError(f"Wallpaper image does not exist: {wallpaper}")
-    config_path = Path(config_path)
-    lines = config_path.read_text().splitlines() if config_path.exists() else []
-    wallpaper_line = f"output * bg {json.dumps(str(wallpaper))} {mode}"
-    updated = []
-    replaced = False
-    for line in lines:
-        if re.match(r"^\s*output\s+\*\s+bg\s+", line):
-            if not replaced:
-                updated.append(wallpaper_line)
-                replaced = True
-        else:
-            updated.append(line)
-    if not replaced:
-        output_heading = next((i for i, line in enumerate(updated) if line.strip() == "### Output configuration"), None)
-        insert_at = output_heading + 3 if output_heading is not None else len(updated)
-        updated.insert(insert_at, wallpaper_line)
-    config_path.write_text("\n".join(updated).rstrip() + "\n")
+
+    resize = {"fill": "crop", "fit": "fit", "stretch": "stretch", "center": "no", "tile": "crop"}.get(mode, "crop")
+    awww_bin = str(HOME / ".local/bin/awww")
+    run([awww_bin, "img", "--resize", resize, "--transition-type", "simple", str(wallpaper)], check=False)
 
 
 def read_gsetting(key, default):
@@ -500,8 +503,9 @@ def apply_settings(settings):
         run(["flatpak", "override", "--user", f"--env=XCURSOR_THEME={cursor}", f"--env=XCURSOR_SIZE={cursor_size}"], check=False)
 
     STATE_DIR.mkdir(parents=True, exist_ok=True)
-    set_sway_wallpaper(CONFIG / "sway/config", settings)
+    strip_sway_wallpaper(CONFIG / "sway/config")
     STATE_FILE.write_text(json.dumps(settings, indent=2) + "\n")
+    apply_wallpaper(settings)
     run(["systemctl", "--user", "restart", "xsettingsd.service"], check=False)
     sway_socket = os.environ.get("SWAYSOCK")
     if sway_socket:

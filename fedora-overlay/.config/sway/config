@@ -22,10 +22,11 @@ set $menu fuzzel
 
 ### Output configuration
 #
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
-# Wallpaper image and scaling are managed in Sway Control Center.
-output * bg ~/.local/share/backgrounds/warty-final-ubuntusway.png fill
+# Wallpapers are painted by the awww daemon, not by Sway. Sway spawns swaybg
+# itself for every "output * bg" directive, so that line is intentionally
+# absent and "swaybg_command -" turns the built-in spawn off entirely.
+# The wallpaper image and scaling are managed in Sway Control Center.
+swaybg_command -
 #
 # Example configuration:
 #
@@ -244,14 +245,19 @@ client.focused_inactive #1b1b1b #1b1b1b #bdc3c7 #41535b #1b1b1b
 client.unfocused #1b1b1b #2f2f2f #bdc3c7 #ffffff #1b1b1b
 client.urgent           #da4453 #da4453 #2f2f2f #db7b55 #da4453
 
-# Fedora-native output; this panel supports 144 Hz and adaptive sync.
+# Fedora-native output; this panel supports 144 Hz.
+#
+# Adaptive sync (VRR) is disabled: with VRR on, moving the pointer forces a
+# repaint that changes the panel refresh timing, which shows up as a subtle
+# full-screen flicker on cursor movement.
 output eDP-1 mode 1920x1080@144Hz
 output eDP-1 scale 1
-output eDP-1 adaptive_sync on
+output eDP-1 adaptive_sync off
 
 # Fedora keeps its own session, power and lock integration. These start only
 # the user-level services added by this appearance overlay.
 # Screenshot edits use the Fedora-provided grimshot and swappy tools.
+exec ~/.local/bin/sway-set-wallpaper
 bindsym Print exec grimshot save output - | swappy -f -
 bindsym Alt+Print exec grimshot save active - | swappy -f -
 bindsym Ctrl+Print exec grimshot save area - | swappy -f -
