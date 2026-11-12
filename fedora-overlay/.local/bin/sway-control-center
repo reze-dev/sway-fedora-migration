@@ -64,8 +64,7 @@ def apply_wallpaper(settings):
         raise FileNotFoundError(f"Wallpaper image does not exist: {wallpaper}")
 
     resize = {"fill": "crop", "fit": "fit", "stretch": "stretch", "center": "no", "tile": "crop"}.get(mode, "crop")
-    awww_bin = str(HOME / ".local/bin/awww")
-    run([awww_bin, "img", "--resize", resize, "--transition-type", "simple", str(wallpaper)], check=False)
+    run(["/usr/bin/awww", "img", "--resize", resize, "--transition-type", "simple", str(wallpaper)], check=False)
 
 
 def read_gsetting(key, default):

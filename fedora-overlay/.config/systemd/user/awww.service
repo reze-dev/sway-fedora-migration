@@ -7,7 +7,7 @@ Requisite=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=%h/.local/bin/awww-daemon
+ExecStart=/usr/bin/awww-daemon
 ExecStartPost=%h/.local/bin/sway-set-wallpaper
 Restart=on-failure
 RestartSec=2

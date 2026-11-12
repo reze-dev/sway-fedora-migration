@@ -5,6 +5,8 @@ nwg-launchers
 mako
 copyq
 ydotool
+# Wallpaper daemon, replacing swaybg. Packaged by the Terra repository.
+awww
 # cliphist can remain installed on migrated systems to preserve its old history database.
 yaru-gtk3-theme
 yaru-gtk4-theme
@@ -39,7 +41,9 @@ swayfx
 sway-config-fedora
 sway-systemd
 waybar
-swaybg
+# swaybg is deliberately not installed: the awww daemon paints the wallpaper
+# instead. swaybg is a hard dependency of sway-config-fedora, so it is
+# excluded in /etc/dnf/dnf.conf rather than removed through dnf.
 swayidle
 swaylock
 grim

@@ -7,7 +7,7 @@
 set -euo pipefail
 
 state_file="${XDG_CONFIG_HOME:-$HOME/.config}/sway-control-center/settings.json"
-awww_bin="${AWWW_BIN:-$HOME/.local/bin/awww}"
+awww_bin="${AWWW_BIN:-/usr/bin/awww}"
 
 if [[ ! -f "$state_file" ]]; then
     echo "sway-set-wallpaper: no Sway Control Center state at $state_file" >&2
