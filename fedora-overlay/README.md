@@ -32,17 +32,11 @@ Starship 1.27.0 and JetBrainsMono Nerd Font 3.5.1 are upstream user-level instal
 
 The nwggrid styling is in `~/.config/nwg-launchers/nwggrid/style.css`; it follows the Prussian Green palette. Add images to `~/Pictures/Wallpapers`, open Sway Control Center with Super+Shift+W, choose an image and scaling mode, then Apply. Sway Control Center hands the image to the `awww` daemon and stores the choice for the next login.
 
-## Removing swaybg
+## swaybg stays installed but unused
 
-`swaybg` is not installed. It is a hard dependency of `sway-config-fedora`, which owns the SDDM session entry point (`/usr/bin/start-sway`, `sway.desktop`), the `layered-include` helper that the Sway config includes, and the `sway/config.d` fragments. A plain `dnf remove swaybg` therefore cascades into removing `sway-config-fedora`, `sway-systemd`, `sddm`, `sddm-wayland-sway` and `swayfx`, which would leave no way to log in graphically.
+The `awww` daemon paints the wallpaper, so `swaybg` is never used, but the package remains installed. It cannot be removed through dnf: it is a hard dependency of `sway-config-fedora`, which owns the SDDM session entry point (`/usr/bin/start-sway`, `sway.desktop`), the `layered-include` helper that the Sway config includes, and the `sway/config.d` fragments, so `dnf remove swaybg` cascades into removing `sway-config-fedora`, `sway-systemd`, `sddm`, `sddm-wayland-sway` and `swayfx`, leaving no way to log in graphically.
 
-The package is removed with `rpm -e --nodeps swaybg` instead, and `exclude=swaybg` is set in `/etc/dnf/dnf.conf` so that a later transaction does not pull it back in and undo the removal.
-
-That leaves `sway-config-fedora` with an unsatisfied requirement, which `dnf check` reports. The `swaybg-provider` shim resolves it: it is a package with no binary that provides the `swaybg` capability at the version that was removed, so the dependency is satisfied and `dnf check` stays clean. Build and install it with:
-
-```
-sudo ./fedora-overlay/install-swaybg-provider.sh
-```
+Leaving it installed keeps that dependency satisfied and `dnf check` clean. Sway never starts it: the `output * bg` directive is absent and `swaybg_command -` disables Sway's built-in spawn, so the only wallpaper process is `awww`.
 
 ## Discrete NVIDIA GPU
 
