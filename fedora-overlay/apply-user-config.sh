@@ -71,11 +71,15 @@ fi
 # and the sway config.d fragments, so a plain "dnf remove swaybg" would
 # cascade into removing the whole Sway session stack. Remove it without
 # touching the dependents and exclude it from future transactions instead.
-if rpm -q swaybg >/dev/null 2>&1; then
-    rpm -e --nodeps swaybg
-fi
-if ! grep -q '^exclude=.*swaybg' /etc/dnf/dnf.conf 2>/dev/null; then
-    printf '\n# swaybg was removed in favour of the awww daemon, which paints the\n# wallpaper on the background layer instead. swaybg is a hard dependency of\n# sway-config-fedora, which owns the SDDM session entry point (start-sway,\n# sway.desktop), the layered-include helper and the sway config.d fragments.\n# Pulling swaybg back in would therefore drag the whole Sway session stack\n# with it, so it is excluded here instead.\nexclude=swaybg\n' >> /etc/dnf/dnf.conf
+# These steps need root, so they are skipped here and are handled by
+# install-swaybg-provider.sh.
+if [[ ${EUID} -eq 0 ]]; then
+    if rpm -q swaybg >/dev/null 2>&1; then
+        rpm -e --nodeps swaybg
+    fi
+    if ! grep -q '^exclude=.*swaybg' /etc/dnf/dnf.conf 2>/dev/null; then
+        printf '\n# swaybg was removed in favour of the awww daemon, which paints the\n# wallpaper on the background layer instead. swaybg is a hard dependency of\n# sway-config-fedora, which owns the SDDM session entry point (start-sway,\n# sway.desktop), the layered-include helper and the sway config.d fragments.\n# Pulling swaybg back in would therefore drag the whole Sway session stack\n# with it, so it is excluded here instead.\nexclude=swaybg\n' >> /etc/dnf/dnf.conf
+    fi
 fi
 if [[ -n "${SWAYSOCK:-}" ]]; then
     swaymsg reload

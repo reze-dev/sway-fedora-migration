@@ -44,6 +44,8 @@ waybar
 # swaybg is deliberately not installed: the awww daemon paints the wallpaper
 # instead. swaybg is a hard dependency of sway-config-fedora, so it is
 # excluded in /etc/dnf/dnf.conf rather than removed through dnf.
+# The local swaybg-provider shim satisfies the requirement without shipping
+# the binary; build it with ./fedora-overlay/install-swaybg-provider.sh
 swayidle
 swaylock
 grim

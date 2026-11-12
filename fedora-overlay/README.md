@@ -36,7 +36,13 @@ The nwggrid styling is in `~/.config/nwg-launchers/nwggrid/style.css`; it follow
 
 `swaybg` is not installed. It is a hard dependency of `sway-config-fedora`, which owns the SDDM session entry point (`/usr/bin/start-sway`, `sway.desktop`), the `layered-include` helper that the Sway config includes, and the `sway/config.d` fragments. A plain `dnf remove swaybg` therefore cascades into removing `sway-config-fedora`, `sway-systemd`, `sddm`, `sddm-wayland-sway` and `swayfx`, which would leave no way to log in graphically.
 
-The package is removed with `rpm -e --nodeps swaybg` instead, and `exclude=swaybg` is set in `/etc/dnf/dnf.conf` so that a later transaction does not pull it back in and undo the removal. `dnf check` reports one expected problem: `sway-config-fedora` is missing its `swaybg` requirement.
+The package is removed with `rpm -e --nodeps swaybg` instead, and `exclude=swaybg` is set in `/etc/dnf/dnf.conf` so that a later transaction does not pull it back in and undo the removal.
+
+That leaves `sway-config-fedora` with an unsatisfied requirement, which `dnf check` reports. The `swaybg-provider` shim resolves it: it is a package with no binary that provides the `swaybg` capability at the version that was removed, so the dependency is satisfied and `dnf check` stays clean. Build and install it with:
+
+```
+sudo ./fedora-overlay/install-swaybg-provider.sh
+```
 
 ## Discrete NVIDIA GPU
 
