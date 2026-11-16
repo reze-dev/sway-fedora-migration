@@ -1,0 +1,6 @@
+tar: ./backup/home/config/copyq/.copyq_s: socket ignored
+tar: .: file changed as we read it
+
+real	0m1.064s
+user	0m3.137s
+sys	0m1.711s

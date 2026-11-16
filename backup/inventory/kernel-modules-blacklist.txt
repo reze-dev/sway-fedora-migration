@@ -1,4 +1,4 @@
-# captured 2026-11-17T02:28:10+05:30
+# captured 2026-11-17T02:32:15+05:30
 # command: bash -c grep -R . /etc/modprobe.d/ 2>/dev/null
 /etc/modprobe.d/nvidia-drm.conf:# Enable modesetting on the NVIDIA discrete GPU so Wayland compositors can
 /etc/modprobe.d/nvidia-drm.conf:# use it directly. Required for wlroots/Sway to drive the dGPU.

@@ -1,0 +1,3 @@
+PROCEDURES.md:549:(1882 packages). The user-facing ones that were installed on purpose:
+README.md:52:│   ├── rpm-packages-full.txt      all 1882 RPMs
+RESTORE.md:79:`inventory/rpm-packages-full.txt` (1882 packages) and

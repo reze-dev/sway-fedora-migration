@@ -1,4 +1,4 @@
-# captured 2026-11-17T02:28:10+05:30
+# captured 2026-11-17T02:32:15+05:30
 # command: lscpu
 Architecture:                            x86_64
 CPU op-mode(s):                          32-bit, 64-bit
@@ -16,7 +16,7 @@ Socket(s):                               1
 Stepping:                                1
 Microcode version:                       0x860010d
 Frequency boost:                         enabled
-CPU(s) scaling MHz:                      45%
+CPU(s) scaling MHz:                      49%
 CPU max MHz:                             4300.0000
 CPU min MHz:                             1400.0000
 BogoMIPS:                                5789.37

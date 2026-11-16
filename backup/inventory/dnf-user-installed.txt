@@ -1,4 +1,4 @@
-# captured 2026-11-17T02:28:08+05:30
+# captured 2026-11-17T02:32:13+05:30
 # command: dnf repoquery --userinstalled --qf %{NAME}\t%{VERSION}-%{RELEASE}\t%{REPONAME}\n
 ModemManager\t1.24.2-5.fc45\t
 NetworkManager-adsl\t1.58.1-3.fc45\t

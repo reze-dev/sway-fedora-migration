@@ -1,0 +1,3 @@
+bca1e5b Add a full backup of the Fedora 45 SwayFX workstation
+7b97b74 Add a brightness slider to the Sway Control Center
+dd27f76 Suppress the proprietary GPU notice with --unsupported-gpu

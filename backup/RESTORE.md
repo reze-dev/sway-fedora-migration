@@ -76,7 +76,7 @@ sudo dnf remove foot                                   # keep it out
 ```
 
 The exact package list of the captured system is in
-`inventory/rpm-packages-full.txt` (1882 packages) and
+`inventory/rpm-packages-full.txt` (1880 packages) and
 `inventory/dnf-history.txt` (every transaction, with its command line).
 
 Flatpak:

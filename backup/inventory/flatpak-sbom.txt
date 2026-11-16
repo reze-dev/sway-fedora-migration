@@ -1,4 +1,4 @@
-# captured 2026-11-17T02:28:08+05:30
+# captured 2026-11-17T02:32:13+05:30
 # command: flatpak list --app --columns=application --show-metadata
 error: Unknown option --show-metadata
 (command failed, exit 1)

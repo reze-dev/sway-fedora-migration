@@ -1,3 +1,4 @@
+        97  ./archive-checksums.txt
         26  ./capture-date.txt
        116  ./capture-meta.txt
    9436808  ./home/cargo/bin/rustup
@@ -1291,7 +1292,34 @@
        416  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e626b283001oqfJb2iv9yZweE.out
       1609  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e626e98f001Lkg2Og2CDyJbXy.out
       1962  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e626fce6001tDlVTuT5q7Faxn.out
-         0  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62719c1001OZj3Mp2xwlPPo1.out
+       594  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62719c1001OZj3Mp2xwlPPo1.out
+        65  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e627651f001CFDWQH31UQhBn1.out
+       927  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e627719b001J4z4IB50PN5leu.out
+       130  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e6278888001OaiKNaaEXOVOSP.out
+       302  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e627a004001yLW043p9hVk9N5.out
+       636  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e627acb30015Kc1kI5ZbXugh6.out
+       188  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e627c0d2001WQkxwbzIH2qM15.out
+       863  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e6281c0c001iUf9sszIecVruZ.out
+      2228  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e6281c0d001ampExlzhHLDkVz.out
+       134  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e6282ede001bVlYGOKD97ez9q.out
+        92  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e6284470001g8Mta2wk2gCnoo.out
+       129  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e628507f001TTpHKU53cDVP1y.out
+      1617  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62865e70016DKPkbwfRp9V3e.out
+       209  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e6287bf6001jNBI1B0lbG2ll6.out
+       136  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e6288d44001W4PVTMUVU5hrqq.out
+       521  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e628ba1f001zur6DxI1KnYKBt.out
+       556  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e628d0f2001cyCYlvCoN85g8c.out
+       435  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e629105f001tZMY2tXrLUquD5.out
+       805  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e6294492001U0uUyAFG13jiRQ.out
+        59  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62990e70016K1t2LAN9Ctx1i.out
+       226  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e6299c98001fddW58L3jTU2k7.out
+       226  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e629a8a5001Sc0fUa01F96f1C.out
+         0  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e629c146001DgnaqyqChQtW7V.out
+      9780  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e629cab9001UgTAcdqAsaj3pW.out
+       297  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e629d6e5001fMmuk0Inh0x8ZX.out
+       383  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e629faaf001uRJJa5u9OQ6rM6.out
+      4573  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62a33d2001xNAbS2j27mfzeW.out
+         0  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62ad749001SXeIQPF3XFgs1a.out
      88413  ./home/local/share/opencode/tool-output/tool_1cf6f5a53001oiTgxnoXjvLIsG
    1380769  ./home/local/share/opentui/tree-sitter/languages/tree-sitter-bash.wasm
     625918  ./home/local/share/opentui/tree-sitter/languages/tree-sitter-c.wasm
@@ -1517,6 +1545,10 @@
        811  ./home/npm/_logs/2026-11-16T20_53_49_282Z-debug-0.log
        770  ./home/npm/_logs/2026-11-16T20_54_58_400Z-debug-0.log
        811  ./home/npm/_logs/2026-11-16T20_57_28_753Z-debug-0.log
+       811  ./home/npm/_logs/2026-11-16T20_58_08_877Z-debug-0.log
+       811  ./home/npm/_logs/2026-11-16T21_00_01_266Z-debug-0.log
+       811  ./home/npm/_logs/2026-11-16T21_00_30_873Z-debug-0.log
+       811  ./home/npm/_logs/2026-11-16T21_01_17_671Z-debug-0.log
    2243972  ./home/Pictures/Wallpapers/Abyss Knight Amidst Gothic Ruins.png
    2462246  ./home/Pictures/Wallpapers/wallhaven-g7jgk3.jpg
   16724243  ./home/Pictures/Wallpapers/wallhaven-po5lq9.png
@@ -2074,7 +2106,7 @@
        272  ./inventory/sway-version-json.txt
        107  ./inventory/sway-version.txt
       3246  ./inventory/systemd-system-services.txt
-      1065  ./inventory/systemd-timers.txt
+      1105  ./inventory/systemd-timers.txt
        884  ./inventory/systemd-user-enabled.txt
       2453  ./inventory/systemd-user-running.txt
      13029  ./inventory/systemd-user-units.txt
@@ -2082,9 +2114,13 @@
        404  ./inventory/xsettingsd-conf.txt
          0  ./MANIFEST.txt
      22787  ./PROCEDURES.md
-      6370  ./README.md
+      7166  ./README.md
      12114  ./RESTORE.md
-     15860  ./scripts/capture-backup.sh
+      5569  ./ryoku-port/hypr/user.lua
+      4646  ./ryoku-port/niri/user.kdl
+      6092  ./ryoku-port/README.md
+     16390  ./scripts/capture-backup.sh
+       909  ./scripts/make-portable-archive.sh
       4206  ./scripts/restore-user-config.sh
       1782  ./scripts/verify-backup.sh
       4124  ./secrets/auth.json
@@ -2126,6 +2162,9 @@
        449  ./system/etc/systemd/system/nix-daemon.service
        345  ./system/etc/systemd/system/nix-daemon.socket
        124  ./system/etc/systemd/system/ydotool.service.d/override.conf
+      2995  ./system/usr/bin/start-sway
+      1930  ./system/usr/libexec/sway/layered-include
+      1727  ./system/usr/libexec/sway/volume-helper
     440924  ./system/usr/share/sddm/themes/03-sway-fedora/03-sway-fedora.jpg
        196  ./system/usr/share/sddm/themes/03-sway-fedora/angle-down.png
      22165  ./system/usr/share/sddm/themes/03-sway-fedora/LICENSE
@@ -2145,3 +2184,20 @@
    1263271  ./system/usr/share/sddm/themes/ronin/preview.png
        869  ./system/usr/share/sddm/themes/ronin/README.md
         91  ./system/usr/share/sddm/themes/ronin/theme.conf
+       599  ./system/usr/share/sway/config.d/50-rules-browser.conf
+       271  ./system/usr/share/sway/config.d/50-rules-pavucontrol.conf
+        92  ./system/usr/share/sway/config.d/50-rules-policykit-agent.conf
+       913  ./system/usr/share/sway/config.d/60-bindings-brightness.conf
+       524  ./system/usr/share/sway/config.d/60-bindings-media.conf
+       738  ./system/usr/share/sway/config.d/60-bindings-screenshot.conf
+       940  ./system/usr/share/sway/config.d/60-bindings-volume.conf
+       170  ./system/usr/share/sway/config.d/65-mode-passthrough.conf
+       245  ./system/usr/share/sway/config.d/90-bar.conf
+      1447  ./system/usr/share/sway/config.d/90-swayidle.conf
+       250  ./system/usr/share/sway/config.d/95-autostart-policykit-agent.conf
+       622  ./system/usr/share/sway/config.d/95-xdg-desktop-autostart.conf
+       225  ./system/usr/share/sway/config.d/95-xdg-user-dirs.conf
+       579  ./system/usr/share/sway/config.live.d/90-swayidle.conf
+       449  ./system/usr/share/sway/config.live.d/99-bg-installation-instructions.conf
+       337  ./system/usr/share/sway/config.live.d/99-system-keyboard-config.conf
+       160  ./system/usr/share/sway/config.live.d/99-xhost-allow-liveinst.conf

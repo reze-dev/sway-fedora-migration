@@ -1,0 +1,23 @@
+02:30:37 files: 2177
+02:30:37 size:  885M
+02:30:37 === capture done: 2026-11-17T02:30:37+05:30 ===
+== plain files ==
+OK: 2175 files match
+== archives ==
+OK   archives/fonts.tar.zst (127M)
+OK   archives/mozilla-extensions.tar.zst (4.0K)
+OK   archives/mozilla-firefox-profile.tar.zst (125M)
+OK   archives/nvim-plugins-and-mason.tar.zst (262M)
+OK   archives/tmux-plugins.tar.zst (33M)
+OK   archives/zen-browser-profile.tar.zst (103M)
+== summary ==
+files: 2177
+size:  885M
+captured: 2026-11-17T02:30:36+05:30
+BACKUP OK
+checksum:
+abb5dbe9dcae6593c916868591f70aa3d3dc43a9ee97d34a2675315ae14b8245  backup-full-2026-11-17.tar.zst
+-rw-r--r--. 1 asuna asuna 804M Nov 17 02:30 /home/asuna/backup-full-2026-11-17.tar.zst
+
+extract with:
+  tar --zstd -xf /home/asuna/backup-full-2026-11-17.tar.zst -C /target/directory

@@ -546,7 +546,7 @@ Flatpak (system installation, `flathub` remote):
 - `com.bitwig.BitwigStudio` — Bitwig Studio 6.1.7
 
 RPM: the full list is in `backup/inventory/rpm-packages-full.txt`
-(1882 packages). The user-facing ones that were installed on purpose:
+(1880 packages). The user-facing ones that were installed on purpose:
 
 awww, asusctl, bat, bibata-cursor-themes, blueman, brightnessctl, calcurse,
 cliphist, copyq, fd-find, fzf, gh, ghostscript (+ fontutils/printing tools),

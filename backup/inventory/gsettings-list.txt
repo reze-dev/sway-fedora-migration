@@ -1,4 +1,4 @@
-# captured 2026-11-17T02:28:09+05:30
+# captured 2026-11-17T02:32:15+05:30
 # command: bash -c gsettings list-recursively 2>&1 || true
 network.cycles.wdisplays auto-apply false
 network.cycles.wdisplays capture-screens true

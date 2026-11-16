@@ -85,6 +85,9 @@ rm -rf "$DEST/home/ssh" \
 find "$DEST/home" -type d -name '.git' -prune -print0 2>/dev/null \
     | while IFS= read -r -d '' d; do rm -rf "$d"; done
 
+# Runtime sockets (CopyQ's IPC socket) are not configuration.
+find "$DEST/home" -type s -delete 2>/dev/null
+
 log "=== capture start: $(date -Is) ==="
 log "repo: $REPO_ROOT"
 
@@ -211,6 +214,12 @@ grubby --info=ALL > "$DEST/system/boot/grubby-info.txt" 2>&1 || true
 # SDDM theme that was installed into the system tree
 [[ -d /usr/share/sddm/themes/ronin ]] && copy_tree /usr/share/sddm/themes/ronin "$DEST/system/usr/share/sddm/themes/ronin"
 [[ -d /usr/share/sddm/themes/03-sway-fedora ]] && copy_tree /usr/share/sddm/themes/03-sway-fedora "$DEST/system/usr/share/sddm/themes/03-sway-fedora"
+
+# The Sway package fragments: the default bindings and rules that the user
+# config shadows, plus the launcher and the layered-include helper.
+[[ -d /usr/share/sway ]] && copy_tree /usr/share/sway "$DEST/system/usr/share/sway" --exclude='live/'
+[[ -d /usr/libexec/sway ]] && copy_tree /usr/libexec/sway "$DEST/system/usr/libexec/sway"
+[[ -f /usr/bin/start-sway ]] && copy_tree /usr/bin/start-sway "$DEST/system/usr/bin"
 
 ################################################################################
 # 6. Inventory: packages, apps, services, session state

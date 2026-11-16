@@ -50,3 +50,21 @@ Historical check: Fedora Linux 45 was announced on 2026-11-03, but the official 
 - Waybar now runs through Fedora’s `waybar.service`; a user Sway `config.d/90-bar.conf` override suppresses the packaged `swaybar_command waybar` stanza. This makes systemd the single process owner and prevents a second Sway-managed bar.
 
 - Azote was removed at the user’s request. The unified Sway Control Center now has a GTK image picker and scaling selector; it updates Sway’s `output * bg` setting for application and login restore. Super+Shift+W opens the control center. `awww` (formerly `swww`) was considered but is not in the enabled Fedora 45 repositories.
+
+## Later changes on Fedora 45
+
+- The Terra repository was added and `awww` was installed from it, replacing the `swaybg` wallpaper process. `swaybg_command -` and the removal of the `output * bg` line guarantee a single wallpaper process; `~/.config/systemd/user/awww.service` and `~/.local/bin/sway-set-wallpaper` restore the Control Center’s choice at login.
+- The Sway binary was replaced by **SwayFX 0.6.1** from the swayfx COPR. `/usr/bin/sway`, `swaybar`, `swaymsg` and `swaynag` are all SwayFX builds, and the client palette uses the SwayFX five-colour syntax.
+- The SDDM greeter was switched to the **Ronin** theme, installed under `/usr/share/sddm/themes/ronin` and selected by `/etc/sddm.conf.d/99-ronin-theme.conf`.
+- The **NVIDIA proprietary driver** (RPM Fusion `akmod-nvidia`) replaced nouveau; nouveau is blacklisted and `nvidia_drm.modeset=1` is set. `~/.local/bin/sway-nvidia-initramfs` rebuilds the initramfs with the NVIDIA modules, because RPM Fusion’s dracut snippet keeps them out. `~/.config/sway/environment` passes `--unsupported-gpu` to suppress the “proprietary GPU not supported” notice. `~/.local/bin/sway-prime-run` runs a single program on the discrete GPU.
+- Adaptive sync was **disabled** on `eDP-1`: with VRR on, pointer movement changes the panel refresh timing and reads as a full-screen flicker.
+- A brightness slider was added to the Sway Control Center.
+- A custom **Dynamic Island** (Rust daemon `isled` + Quickshell UI) was added as `isled.service` and `quickshell.service`. Both units import `NIRI_SOCKET` and `HYPRLAND_INSTANCE_SIGNATURE`, because the adapter was written for Hyprland and niri as well. The Quickshell unit carries a Nix-on-Fedora `libEGL`/glvnd workaround. The `~/Projects/dynamic-island` source tree is no longer on the machine, so both units currently fail to start.
+
+## Ryoku preparation and the full backup
+
+- The user is installing **Ryoku** on this machine. Ryoku is a hand-built desktop (Arch, CachyOS, Void and Fedora editions; Hyprland, niri and Wayfire compositors) whose installer rewrites the desktop configuration in place, so the existing setup had to be captured first.
+- `backup/` holds the complete capture: the user tree, the system files the desktop depends on, an inventory of every installed app and package, tar.zst archives for the heavy binary trees, and the written record of every customisation in `backup/PROCEDURES.md`.
+- `backup/INVENTORY.md` maps every app to the path that holds its settings. `backup/RESTORE.md` covers restoring on Fedora and the translation of the Sway setup into Ryoku’s `user.lua` / `user.kdl` override files.
+- Credentials (SSH key, Codex and OpenCode credentials) are stored in `backup/secrets/` with mode 600 and are excluded from git, as are the archives and the heavy binary trees.
+- The Ryoku installer’s own backup and its `restore.sh` should be kept next to this repository, so the SwayFX desktop remains recoverable.

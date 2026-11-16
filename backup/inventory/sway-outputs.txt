@@ -1,4 +1,4 @@
-# captured 2026-11-17T02:28:10+05:30
+# captured 2026-11-17T02:32:16+05:30
 # command: swaymsg -t get_outputs
 [
   {

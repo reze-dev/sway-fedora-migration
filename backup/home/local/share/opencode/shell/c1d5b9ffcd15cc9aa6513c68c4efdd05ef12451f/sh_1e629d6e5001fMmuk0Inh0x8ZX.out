@@ -1,0 +1,12 @@
+/usr/bin/bash: line 1: cd: /home/asuna/sway-fedora-migration/backup/home/../../system: No such file or directory
+backup
+CONVERSATION_NOTES.md
+FEDORA_DEPENDENCIES.md
+fedora-overlay
+MIGRATION_PLAN.md
+personal-configs
+README.md
+SYSTEM_AUDIT.md
+ubuntu-snapshot
+ubuntu-system-snapshot
+=== bindings ===

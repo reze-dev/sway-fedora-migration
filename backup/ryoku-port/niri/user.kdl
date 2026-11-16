@@ -1,0 +1,117 @@
+# Ryoku / niri: personal overrides
+#
+# Drop-in for ~/.config/niri/user.kdl. Ryoku writes settings.kdl and
+# rebinds.kdl from the Hub; user.kdl is the last include and therefore wins
+# over both. niri has no unbind: every chord must appear exactly once, so
+# check the shipped rebinds.kdl before adding a chord that Ryoku already
+# uses.
+#
+# Translated from the Sway/SwayFX setup that this backup captured. The Sway
+# source of every binding is named in the comment next to it.
+#
+# NOT TESTED on Ryoku: this is a starting point, not a verified config.
+# Action names follow current niri; check them with
+#   niri msg action --help
+# against the version Ryoku ships.
+
+# ---------------------------------------------------------------- terminals --
+# Sway: bindsym $mod+t exec $term
+bind Super+T { spawn "kitty"; }
+# Sway: bindsym $mod+Shift+Return exec kitty --directory "$HOME"
+bind Super+Shift+Return { spawn "kitty --directory $HOME"; }
+
+# ----------------------------------------------------------------- windows --
+# Sway: bindsym $mod+q kill
+bind Super+Q { close-window; }
+# Sway: bindsym $mod+f fullscreen
+bind Super+F { toggle-fullscreen; }
+# Sway: bindsym $mod+Shift+space floating toggle
+bind Super+Shift+Space { toggle-window-floating; }
+# Sway: bindsym $mod+space focus mode_toggle
+bind Super+Space { toggle-overview; }
+# Sway: bindsym $mod+b splith / bindsym $mod+v splitv
+bind Super+B { split-left; }
+bind Super+V { split-down; }
+# Sway: bindsym $mod+a focus parent
+bind Super+A { focus-column-left; }
+# Sway: bindsym $mod+r mode "resize"
+bind Super+R { set-column-width "+10%"; }
+
+# focus and movement: Sway uses $mod+arrow for both, Shift for moving
+bind Super+Left  { focus-left; }
+bind Super+Right { focus-right; }
+bind Super+Up    { focus-up; }
+bind Super+Down  { focus-down; }
+bind Super+Shift+Left  { move-window-left; }
+bind Super+Shift+Right { move-window-right; }
+bind Super+Shift+Up    { move-window-up; }
+bind Super+Shift+Down  { move-window-down; }
+
+# Sway: scratchpad (move scratchpad / scratchpad show)
+bind Super+Minus { toggle-overview; }
+bind Super+Shift+Minus { move-window-to-workspace "special:minimised"; }
+
+# ------------------------------------------------------------- workspaces --
+# Sway: bindsym $mod+1..0 workspace number N, Shift+N move container to N
+bind Super+1 { focus-workspace 1; }
+bind Super+2 { focus-workspace 2; }
+bind Super+3 { focus-workspace 3; }
+bind Super+4 { focus-workspace 4; }
+bind Super+5 { focus-workspace 5; }
+bind Super+6 { focus-workspace 6; }
+bind Super+7 { focus-workspace 7; }
+bind Super+8 { focus-workspace 8; }
+bind Super+9 { focus-workspace 9; }
+bind Super+0 { focus-workspace 10; }
+bind Super+Shift+1 { move-window-to-workspace 1; }
+bind Super+Shift+2 { move-window-to-workspace 2; }
+bind Super+Shift+3 { move-window-to-workspace 3; }
+bind Super+Shift+4 { move-window-to-workspace 4; }
+bind Super+Shift+5 { move-window-to-workspace 5; }
+bind Super+Shift+6 { move-window-to-workspace 6; }
+bind Super+Shift+7 { move-window-to-workspace 7; }
+bind Super+Shift+8 { move-window-to-workspace 8; }
+bind Super+Shift+9 { move-window-to-workspace 9; }
+bind Super+Shift+0 { move-window-to-workspace 10; }
+
+# ------------------------------------------------------------- screenshots --
+# Sway: bindsym Print / Alt+Print / Ctrl+Print -> grimshot | swappy
+bind Print { spawn "grimshot save output - | swappy -f -"; }
+bind Alt+Print { spawn "grimshot save active - | swappy -f -"; }
+bind Ctrl+Print { spawn "grimshot save area - | swappy -f -"; }
+
+# ----------------------------------------------------------------- session --
+# Sway: bindsym $mod+Shift+c reload / $mod+Shift+e exit
+bind Super+Shift+C { spawn "niri msg action load-config-file"; }
+bind Super+Shift+E { quit; }
+# Sway: bindsym $mod+Shift+x -> sway-power-menu
+# Ryoku owns the session controls.
+bind Super+Shift+X { spawn "ryoku-shell power"; }
+
+# The Ryoku launcher, the Hub and the clipboard are Ryoku's own. The Sway
+# chords that opened Fuzzel, nwggrid, CopyQ and the Sway Control Center are
+# Super (launcher), Super+Comma (Hub) and Super+K (Keys) there.
+
+# ------------------------------------------------------------ window rules --
+# Sway: for_window [class="floating_shell"] floating enable
+# and the floating rules from ~/.config/sway/config.d/70-settings.conf
+window-rule {
+    match class "^floating_shell$"
+    open-floating true
+}
+window-rule {
+    match class "^lxqt-policykit-agent$"
+    open-floating true
+}
+window-rule {
+    match class "^wdisplays$"
+    open-floating true
+}
+window-rule {
+    match class "^qt5ct$"
+    open-floating true
+}
+window-rule {
+    match class "^qt6ct$"
+    open-floating true
+}

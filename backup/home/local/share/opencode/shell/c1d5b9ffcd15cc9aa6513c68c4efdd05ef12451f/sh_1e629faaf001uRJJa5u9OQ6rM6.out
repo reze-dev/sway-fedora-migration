@@ -1,0 +1,13 @@
+02:31:24 files: 2205
+02:31:24 size:  886M
+02:31:24 === capture done: 2026-11-17T02:31:24+05:30 ===
+=== vendor bindings ===
+bindsym XF86MonBrightnessDown exec \
+bindsym XF86MonBrightnessUp exec \
+bindsym --locked {
+bindsym {
+bindsym {
+bindsym --locked {
+bindsym $mod+Pause mode default
+bindsym $mod+Pause mode "passthrough"
+#     bindsym $mod+Shift+Escape  exec loginctl lock-session

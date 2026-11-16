@@ -1,0 +1,8 @@
+packing /home/asuna/sway-fedora-migration -> /home/asuna/backup-full-2026-11-17.tar.zst
+tar: ./backup/home/config/copyq/.copyq_s: socket ignored
+checksum:
+e4c1d71762846e27d3f3bd6027ce3c264305fb6236ffc195514acb2391bf6347  backup-full-2026-11-17.tar.zst
+-rw-r--r--. 1 asuna asuna 804M Nov 17 02:30 /home/asuna/backup-full-2026-11-17.tar.zst
+
+extract with:
+  tar --zstd -xf /home/asuna/backup-full-2026-11-17.tar.zst -C /target/directory

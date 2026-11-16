@@ -1,0 +1,17 @@
+syntax OK
+== plain files ==
+./README.md: FAILED
+sha256sum: WARNING: 1 computed checksum did NOT match
+FAILED: some files do not match
+== archives ==
+OK   archives/fonts.tar.zst (127M)
+OK   archives/mozilla-extensions.tar.zst (4.0K)
+OK   archives/mozilla-firefox-profile.tar.zst (125M)
+OK   archives/nvim-plugins-and-mason.tar.zst (262M)
+OK   archives/tmux-plugins.tar.zst (33M)
+OK   archives/zen-browser-profile.tar.zst (103M)
+== summary ==
+files: 2157
+size:  885M
+captured: 2026-11-17T02:28:14+05:30
+BACKUP HAS PROBLEMS

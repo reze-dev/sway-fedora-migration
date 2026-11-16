@@ -1,0 +1,14 @@
+-rw-r--r-- asuna/asuna 842644166 2026-11-17 02:29 ./backup-full-2026-11-17.tar.zst
+-rw-r--r-- asuna/asuna 273952234 2026-11-17 02:28 ./backup/archives/nvim-plugins-and-mason.tar.zst
+-rw-r--r-- asuna/asuna 132843034 2026-11-17 02:28 ./backup/archives/fonts.tar.zst
+-rw-r--r-- asuna/asuna 130400352 2026-11-17 02:28 ./backup/archives/mozilla-firefox-profile.tar.zst
+-rw-r--r-- asuna/asuna 107848864 2026-11-17 02:28 ./backup/archives/zen-browser-profile.tar.zst
+-rw-r--r-- asuna/asuna  33613707 2026-11-17 02:28 ./backup/archives/tmux-plugins.tar.zst
+-rw-r--r-- asuna/asuna  25764247 2026-11-16 15:28 ./backup/home/var-app/app.zen_browser.zen/.zen/z3ccipiu.Default (release)/storage/default/moz-extension+++0d35d414-cf13-43ed-952f-2c23c8ba7566^userContextId=4294967295/idb/3647222921wleabcEoxlt-eengsairo.files/96
+-rwx------ asuna/asuna  21965296 2026-11-05 13:39 ./backup/home/var-app/app.zen_browser.zen/.zen/z3ccipiu.Default (release)/gmp-widevinecdm/4.10.3112.0/libwidevinecdm.so
+-rw-r--r-- asuna/asuna  18350080 2026-11-17 00:32 ./backup/home/var-app/app.zen_browser.zen/.zen/z3ccipiu.Default (release)/storage/permanent/chrome/idb/3870112724rsegmnoittet-es.sqlite
+-rw-r--r-- asuna/asuna  16724243 2026-11-16 03:54 ./backup/home/Pictures/Wallpapers/wallhaven-po5lq9.png
+-rw-r--r-- asuna/asuna  12621982 2026-11-16 15:28 ./backup/home/var-app/app.zen_browser.zen/.zen/z3ccipiu.Default (release)/storage/default/moz-extension+++0d35d414-cf13-43ed-952f-2c23c8ba7566/idb/1671402671ueBglaorcokt0SCeahc.files/71
+-rwxr-xr-x asuna/asuna   9436808 2026-11-05 23:29 ./backup/home/cargo/bin/rustup
+=== total entries ===
+3460

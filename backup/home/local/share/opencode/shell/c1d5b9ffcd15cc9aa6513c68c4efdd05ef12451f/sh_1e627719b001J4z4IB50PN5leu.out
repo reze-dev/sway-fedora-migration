@@ -1,0 +1,14 @@
+ .../system/usr/share/sddm/themes/ronin/preview.png |   Bin 0 -> 1263271 bytes
+ .../system/usr/share/sddm/themes/ronin/theme.conf  |     4 +
+ 885 files changed, 84055 insertions(+)
+=== biggest staged ===
+9436808 backup/home/cargo/bin/rustup
+5273081 backup/system/usr/share/sddm/themes/ronin/background.png
+5273081 backup/home/local/share/backgrounds/warty-final-ubuntusway.png
+2571596 backup/system/usr/share/sddm/themes/ronin/fonts/JetBrainsMonoNerdFont-Regular.ttf
+1380769 backup/home/local/share/opentui/tree-sitter/languages/tree-sitter-bash.wasm
+1263271 backup/system/usr/share/sddm/themes/ronin/preview.png
+1111756 backup/home/local/share/opentui/tree-sitter/languages/tree-sitter-rust.wasm
+798108 backup/system/usr/share/sddm/themes/ronin/background.jpeg
+625918 backup/home/local/share/opentui/tree-sitter/languages/tree-sitter-c.wasm
+457796 backup/home/local/share/opentui/tree-sitter/languages/tree-sitter-python.wasm

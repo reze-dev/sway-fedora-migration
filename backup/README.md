@@ -12,6 +12,7 @@ Host: ASUS TUF Gaming A15 FA506II — Fedora 45 (Sway) x86_64, SwayFX 0.6.1.
 | `PROCEDURES.md` | **the written record**: every customisation, the command used to make it, and why |
 | `INVENTORY.md` | every app and tool in use, with the path that holds its settings |
 | `RESTORE.md` | restore on Fedora, and the port plan for Ryoku (Hyprland / niri) |
+| `ryoku-port/` | the keybindings translated into `hypr/user.lua` and `niri/user.kdl` |
 
 ---
 
@@ -49,7 +50,7 @@ backup/
 │   └── usr/share/sddm/themes/ronin/   the installed greeter theme
 │
 ├── inventory/             the "what is installed" record
-│   ├── rpm-packages-full.txt      all 1882 RPMs
+│   ├── rpm-packages-full.txt      all 1880 RPMs
 │   ├── dnf-user-installed.txt      what was installed on purpose
 │   ├── dnf-history.txt            every transaction with its command line
 │   ├── flatpak-apps.txt, flatpak-sbom.txt, flatpak-overrides.txt
@@ -66,6 +67,11 @@ backup/
 │   ├── mozilla-firefox-profile.tar.zst
 │   ├── mozilla-extensions.tar.zst
 │   └── zen-browser-profile.tar.zst
+│
+├── ryoku-port/            the Sway keybindings translated for Ryoku
+│   ├── hypr/user.lua          ~/.config/hypr/user.lua
+│   ├── niri/user.kdl          ~/.config/niri/user.kdl
+│   └── README.md             the translation table and what was left out
 │
 ├── secrets/               credentials — mode 600, excluded from git
 │   ├── ssh/                      private key + known_hosts
@@ -89,7 +95,7 @@ backup/
 
 ```
 == plain files ==
-OK: 2753 files match
+OK: 2175 files match
 == archives ==
 OK   archives/fonts.tar.zst (127M)
 ...
@@ -102,6 +108,19 @@ Exit code 0 means the backup is intact. The same check by hand:
 cd backup
 sha256sum -c checksums.sha256
 ```
+
+### Single-file portable copy
+
+The whole repository was also packed into one file, so the backup can be moved
+to another machine or an external disk in one go:
+
+```bash
+/home/asuna/backup-full-2026-11-17.tar.zst        # 804 MB
+sha256sum -c backup/archive-checksums.txt          # recorded checksum
+tar --zstd -xf backup-full-2026-11-17.tar.zst -C /path/to/target
+```
+
+`./scripts/make-portable-archive.sh` recreates it.
 
 ---
 

@@ -1,4 +1,4 @@
-# captured 2026-11-17T02:28:07+05:30
+# captured 2026-11-17T02:32:13+05:30
 # command: dnf repolist --enabled
 repo id                                           repo name
 copr:copr.fedorainfracloud.org:peterwu:rendezvous Copr repo for rendezvous owned by peterwu

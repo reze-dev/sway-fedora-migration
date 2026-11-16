@@ -1,0 +1,37 @@
+34:        "on-click": "swaymsg input $(swaymsg -t get_inputs --raw | jq '[.[] | select(.type == \"keyboard\")][0] | .identifier') xkb_switch_layout next"
+41:        "on-click": "nwggrid",
+80:       "on-click": "pavucontrol",
+81:       "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+82:       "on-click-right": "pavucontrol",
+113:       "on-click": "kitty --class floating_shell nmtui connect",
+114:       "on-click-right": "kitty --class floating_shell nmtui edit"
+121:        "on-click": "kitty --class floating_shell bluetoothctl",
+122:        "on-click-right": "rfkill toggle bluetooth",
+131:        "on-click": "kitty --class floating_shell calcurse"
+141:    "on-click": "kitty --class floating_shell htop"
+151:    "on-click": "kitty --class floating_shell htop"
+164:        "exec": "playerctl metadata --format '{\"alt\": \"{{status}}\", \"tooltip\": \"{{playerName}}:  {{markup_escape(title)}} - {{markup_escape(artist)}}\" }'",
+165:        "on-click": "playerctl play-pause; pkill -RTMIN+5 waybar",
+166:        "on-click-right": "playerctl next; pkill -RTMIN+5 waybar",
+174:        "on-click": "~/.local/bin/sway-power-menu"
+185:        "on-click": "makoctl mode | grep 'do-not-disturb' && makoctl mode -r do-not-disturb || makoctl mode -a do-not-disturb; pkill -RTMIN+11 waybar",
+186:        "exec": "printf '{\"alt\":\"%s\",\"tooltip\":\"Notification mode: %s\"}' $(makoctl mode | grep -q 'do-not-disturb' && echo dnd || echo default) $(makoctl mode | tail -1)",
+191:        "on-click": "~/.local/bin/sway-keybindings",
+=== strip_sway_wallpaper ===
+def strip_sway_wallpaper(config_path):
+    """Drop any "output * bg" line from the Sway config.
+
+    Sway spawns swaybg itself for that directive, so leaving it in place would
+    run swaybg next to awww and both would paint the background layer.
+    """
+    config_path = Path(config_path)
+    if not config_path.exists():
+        return
+    lines = config_path.read_text().splitlines()
+    updated = [line for line in lines if not re.match(r"^\s*output\s+\*\s+bg\s+", line)]
+    if updated != lines:
+        config_path.write_text("\n".join(updated).rstrip() + "\n")
+
+
+def apply_wallpaper(settings):
+    """Push the wallpaper to the awww daemon."""

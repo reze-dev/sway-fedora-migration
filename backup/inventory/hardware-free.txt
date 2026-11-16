@@ -1,5 +1,5 @@
-# captured 2026-11-17T02:28:10+05:30
+# captured 2026-11-17T02:32:15+05:30
 # command: free -h
                total        used        free      shared  buff/cache   available
-Mem:            15Gi       1.9Gi       8.5Gi        51Mi       4.9Gi        13Gi
+Mem:            15Gi       1.9Gi       7.7Gi        51Mi       5.8Gi        13Gi
 Swap:           23Gi          0B        23Gi
