@@ -1,0 +1,27 @@
+=== a fresh clone ===
+  configure.py
+  Dockerfile
+  Dockerfile.firefox
+  firefox-entrypoint.sh
+  justfile
+  LICENSE
+  podman-compose.test.yml
+  podman-compose.yml
+  README.md
+  test
+  verify.sh
+  vpn_entrypoint.sh
+
+=== branch and identity ===
+  branch: main
+  0552805 reze-dev <nsofbl@gmail.com>  Stop the corporate network reaching into the pods
+  91085dd reze-dev <nsofbl@gmail.com>  Credit the projects this is built on
+  c60d4d7 reze-dev <nsofbl@gmail.com>  Know the name the corporate resource is reached by
+
+=== the script runs on a bare checkout ===
+The configuration is not complete:
+  - VPN_USERNAME is not set
+  - VPN_AUTHGROUP is not set
+  - VPN_GATEWAY is not set
+
+Fill the empty values in .env, then run ./configure.py again to check it.

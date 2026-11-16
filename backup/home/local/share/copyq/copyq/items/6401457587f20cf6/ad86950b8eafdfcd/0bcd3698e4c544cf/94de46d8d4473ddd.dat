@@ -1,0 +1,25 @@
+λ podman-compose run vpn                                                                                                                           ~/Projects/warpgate  16:36
+Forwarding TCP 443 -> 10.250.18.140:443...
+Starting OpenConnect...
+POST https://vpn.osdc.gov.in/
+Connected to 164.100.141.21:443
+SSL negotiation with vpn.osdc.gov.in
+Connected to HTTPS on vpn.osdc.gov.in with ciphersuite (TLS1.2)-(ECDHE-SECP256R1)-(RSA-SHA512)-(AES-256-GCM)
+XML POST enabled
+Please enter your username and password.
+POST https://vpn.osdc.gov.in/
+XML POST enabled
+Please enter your username and password.
+POST https://vpn.osdc.gov.in/
+Got CONNECT response: HTTP/1.1 200 OK
+CSTP connected. DPD 30, Keepalive 20
+Established DTLS connection (using GnuTLS). Ciphersuite (DTLS0.9)-(DHE-CUSTOM)-(AES-256-CBC)-(SHA1).
+Configured as 10.150.72.51, with SSL connected and DTLS connected
+Session authentication will expire at Thu, 26 Nov 2026 11:06:33 UTC
+mknod: /dev/net/tun: File exists
+Failed to open tun device: Permission denied
+Set up tun device failed
+Send BYE packet: Set up tun device failed
+Unrecoverable I/O error; exiting.
+OpenConnect exited with status 1; retrying in 10 seconds.
+^C⏎                                                                                                                                                                           󱎫 14s λ podman-compose run vpn                               

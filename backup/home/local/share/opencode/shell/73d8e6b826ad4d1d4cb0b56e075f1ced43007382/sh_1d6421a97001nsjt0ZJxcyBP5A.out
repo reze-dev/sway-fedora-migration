@@ -1,0 +1,31 @@
+No .env yet, starting from the example.
+  VPN_CLIENT (VPN client to use: openconnect for a corporate gateway, openvpn for an OpenVPN server) [openconnect]: 
+  VPN_USERNAME (Corporate VPN username): 
+  VPN_AUTHGROUP (Corporate VPN authentication group): 
+  VPN_GATEWAY (Corporate VPN gateway URL, for example https://vpn.example.com/): 
+  OCP_BASTION_IP (Address of the corporate resource reached through the tunnel): 
+  The corporate VPN password: 
+  again: 
+
+Writing .env
+Secrets
+  The corporate VPN password is not set yet.
+  written to /home/asuna/Projects/warpgate/secrets/vpn_password
+  The browser's VNC password was not set, so one was generated: mRu0rjXMBEY5ip44IA4h
+  The browser's view-only VNC password was not set, so one was generated: 8FrZ2wvE29Uzlswy5Uur
+  The warpgate admin password was not set, so one was generated: LMl88S2QcW9lKnG1oUPd
+Warpgate
+  the image runs as uid 1000
+  applying the admin password to the database...
+  the admin password was applied to the database.
+  data/warpgate.yaml now points at 127.0.0.1:8443
+
+Done. The stack is configured.
+
+  bastion web    https://127.0.0.1:8443
+  bastion ssh    ssh -p 2222 <user>@127.0.0.1
+  browser vnc    127.0.0.1:6901
+  admin password in /home/asuna/Projects/warpgate/secrets/admin_password
+
+Start it with:
+  podman-compose up -d

@@ -1,0 +1,28 @@
+asuna:x:1000:1000:Asuna:/home/asuna:/usr/bin/fish
+=== flatpak runtimes+overrides ===
+# captured 2026-11-17T02:24:58+05:30
+# command: flatpak override --user --show
+[Context]
+filesystems=/usr/share/icons/Bibata-Modern-Ice:ro;/usr/share/icons/Yaru-prussiangreen-dark:ro;
+
+[Environment]
+XCURSOR_SIZE=24
+XCURSOR_THEME=Bibata-Modern-Ice
+=== runtimes ===
+# captured 2026-11-17T02:24:58+05:30
+# command: flatpak list --runtime --columns=application,version,branch
+org.fedoraproject.Platform.CL.default		f45
+org.fedoraproject.Platform.GL.default		f45
+org.fedoraproject.Platform.Locale		f45
+org.fedoraproject.Platform.VAAPI.nvidia		f45
+org.freedesktop.Platform	freedesktop-sdk-25.08.19	25.08
+org.freedesktop.Platform.Compat.i386		25.08
+org.freedesktop.Platform.GL.default	26.2.5	25.08
+org.freedesktop.Platform.GL.default	26.2.5	25.08-extra
+org.freedesktop.Platform.GL.nvidia-620-70-06		1.4
+org.freedesktop.Platform.GL32.default	26.2.5	25.08
+org.freedesktop.Platform.GL32.nvidia-620-70-06		1.4
+org.freedesktop.Platform.VAAPI.nvidia		25.08
+org.freedesktop.Platform.codecs-extra		25.08-extra
+org.gtk.Gtk3theme.Yaru-prussiangreen-dark		3.22
+org.kde.Platform		6.10

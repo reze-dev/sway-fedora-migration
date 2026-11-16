@@ -1,0 +1,67 @@
+services:
+  vpn:
+    image: localhost/warpgate-vpn:latest
+    container_name: warpgate-vpn
+    build:
+      context: .
+      dockerfile: Dockerfile
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    # The tun device is owned by root on the host, so a rootless container
+    # cannot open it unless SELinux lets it. spc_t is the "super privileged
+    # container" type, which is what a VPN container needs.
+    security_opt:
+      - label=type:spc_t
+    # Without keep-id the container's root is an unmapped subuid and the
+    # TUNSETIFF ioctl is rejected with EPERM.
+    userns: keep-id
+    ports:
+      - "127.0.0.1:2222:2222"
+      - "127.0.0.1:8888:8888"
+      - "127.0.0.1:443:8888"
+      - "127.0.0.1:6901:6901"
+    environment:
+      VPN_USERNAME: fincifms15
+      VPN_AUTHGROUP: Anyconnect-OSDC
+      VPN_GATEWAY: https://vpn.osdc.gov.in/
+      OCP_BASTION_IP: "10.250.18.140"
+    volumes:
+      - ./secrets/vpn_password:/run/secrets/vpn_password:ro,Z
+    restart: unless-stopped
+
+  warpgate:
+    image: ghcr.io/warp-tech/warpgate:latest
+    container_name: warpgate
+    # Sharing the vpn container's network namespace is what keeps the
+    # corporate VPN inside the pods: warpgate and firefox reach the corporate
+    # network through the tunnel, while the host keeps its own internet.
+    network_mode: "service:vpn"
+    depends_on:
+      - vpn
+    volumes:
+      - ./data:/data:Z
+    restart: unless-stopped
+
+  firefox:
+    image: localhost/warpgate-firefox:latest
+    container_name: warpgate-firefox
+    build:
+      context: .
+      dockerfile: Dockerfile.firefox
+    network_mode: "service:vpn"
+    # The Kasm image resolves its own hostname at startup and exits if that
+    # fails, so it needs an explicit one.
+    hostname: warpgate-firefox
+    depends_on:
+      - vpn
+    command: ["--wait"]
+    environment:
+      VNC_PW: "testpass123"
+      LAUNCH_URL: ""
+    shm_size: 512m
+    # The Kasm image sets the VNC password with a tool that needs a
+    # terminal, so the container has to be started with one.
+    tty: true
+    restart: unless-stopped

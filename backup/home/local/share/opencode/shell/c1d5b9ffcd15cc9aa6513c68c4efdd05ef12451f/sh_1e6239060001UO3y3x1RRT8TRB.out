@@ -1,0 +1,11 @@
+total 28
+drwxr-xr-x. 7 asuna asuna 4096 Nov  5 13:38 .
+drwxr-xr-x. 4 asuna asuna 4096 Nov 15 09:25 ..
+drwxr-xr-x. 4 asuna asuna 4096 Nov  5 13:40 config
+drwxr-xr-x. 4 asuna asuna 4096 Nov 12 22:56 data
+drwxr-xr-x. 2 asuna asuna 4096 Nov 14 19:55 .ld.so
+drwxr-xr-x. 3 asuna asuna 4096 Nov  5 13:38 .local
+drwxr-xr-x. 5 asuna asuna 4096 Nov  5 13:38 .zen
+163M	.zen
+56K	.ld.so
+8.0K	.local

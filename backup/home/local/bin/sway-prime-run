@@ -1,0 +1,23 @@
+# Run a command with the discrete NVIDIA GPU via PRIME render offload.
+#
+# The ASUS TUF A15 FA506II is a hybrid laptop: the internal panel is wired to
+# the AMD Renoir iGPU, while the NVIDIA GTX 1650 Ti is a discrete GPU that is
+# normally idle. With the proprietary driver installed, apps can be pushed onto
+# the dGPU for CUDA, accelerated rendering or games, while the compositor keeps
+# using the iGPU that actually drives the panel.
+#
+# Usage: sway-prime-run <command> [args...]
+#   sway-prime-run steam
+#   sway-prime-run blender
+set -euo pipefail
+
+if [[ $# -eq 0 ]]; then
+    echo "usage: sway-prime-run <command> [args...]" >&2
+    exit 2
+fi
+
+export __NV_PRIME_RENDER_OFFLOAD=1
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export __EGL_VENDOR_LIBRARY_FILES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json
+
+exec "$@"

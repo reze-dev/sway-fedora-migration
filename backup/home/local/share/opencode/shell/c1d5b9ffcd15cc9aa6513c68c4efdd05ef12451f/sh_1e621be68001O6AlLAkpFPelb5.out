@@ -1,0 +1,9 @@
+total 24
+drwxr-xr-x.  6 asuna asuna 4096 Nov 16 21:46 .
+drwx------. 27 asuna asuna 4096 Nov 15 09:25 ..
+drwxr-xr-x.  2 asuna asuna 4096 Nov 16 21:47 Budgeting-app
+drwxr-xr-x.  6 asuna asuna 4096 Nov 16 18:46 Nethergate
+drwxr-xr-x.  2 asuna asuna 4096 Nov  8 08:14 transformer-in-go
+drwxrwxr-x.  3 asuna asuna 4096 Nov 16 13:06 warpgate
+=== dynamic-island ===
+ls: cannot access '/home/asuna/Projects/dynamic-island/': No such file or directory

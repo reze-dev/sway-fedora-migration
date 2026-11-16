@@ -1,0 +1,8 @@
+=== secrets file present and correctly protected ===
+  secrets/vpn_password size=0 perms=600
+=== container sees it read-only, and it is NOT in the env ===
+  file readable: yes
+  size in container: 0
+  password in env? 0
+0 matches
+  entrypoint reads it: 1 reference(s)

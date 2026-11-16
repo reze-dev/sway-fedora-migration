@@ -1,0 +1,18 @@
+  The corporate VPN password is already set, leaving it alone.
+  The browser's VNC password is already set, leaving it alone.
+  The browser's view-only VNC password is already set, leaving it alone.
+  The warpgate admin password is already set, leaving it alone.
+Warpgate
+  the image runs as uid 1000
+  preparing warpgate's state, this takes a moment...
+  data/warpgate.yaml now points at 127.0.0.1:8443
+
+Done. The stack is configured.
+
+  bastion web    https://127.0.0.1:8443
+  bastion ssh    ssh -p 2222 <user>@127.0.0.1
+  browser vnc    127.0.0.1:6901
+  admin password in /home/asuna/Projects/warpgate/secrets/admin_password
+
+Start it with:
+  podman-compose up -d

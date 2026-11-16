@@ -1,0 +1,25 @@
+46M	/home/asuna/.local/share/opencode/opencode.db
+8.9M	/home/asuna/.local/share/opencode/snapshot
+4.0M	/home/asuna/.local/share/opencode/opencode.db-wal
+3.9M	/home/asuna/.local/share/opencode/log
+812K	/home/asuna/.local/share/opencode/shell
+92K	/home/asuna/.local/share/opencode/tool-output
+32K	/home/asuna/.local/share/opencode/opencode.db-shm
+4.0K	/home/asuna/.local/share/opencode/repos
+=== config/opencode ===
+total 16
+drwxr-xr-x.  2 asuna asuna 4096 Nov  7 23:17 .
+drwxr-xr-x. 46 asuna asuna 4096 Nov 14 22:46 ..
+-rw-------.  1 asuna asuna  262 Nov  7 23:17 cli.json
+-rw-------.  1 asuna asuna   64 Nov  7 19:35 service.json
+=== state ===
+1.1M	/home/asuna/.local/state/dnf5.log.4
+1.1M	/home/asuna/.local/state/dnf5.log.2
+1.0M	/home/asuna/.local/state/dnf5.log.3
+1.0M	/home/asuna/.local/state/dnf5.log.1
+372K	/home/asuna/.local/state/nvim
+300K	/home/asuna/.local/state/copyq
+164K	/home/asuna/.local/state/dnf5.log
+108K	/home/asuna/.local/state/clipboard-migration-backup-20261105
+76K	/home/asuna/.local/state/opencode
+24K	/home/asuna/.local/state/isled

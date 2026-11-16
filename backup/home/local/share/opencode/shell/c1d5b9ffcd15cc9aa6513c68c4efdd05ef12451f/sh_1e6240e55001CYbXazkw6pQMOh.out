@@ -1,0 +1,22 @@
+02:24:45 === capture start: 2026-11-17T02:24:45+05:30 ===
+02:24:45 repo: /home/asuna/sway-fedora-migration
+02:24:45 --- home dotfiles ---
+02:24:45 copy: /home/asuna/.tmux -> /home/asuna/sway-fedora-migration/backup/home/dotfiles/.tmux
+02:24:45 copy: /home/asuna/.themes -> /home/asuna/sway-fedora-migration/backup/home/dotfiles/.themes
+02:24:45 copy: /home/asuna/.config/kdeglobals -> /home/asuna/sway-fedora-migration/backup/home/dotfiles/.config_kdeglobals
+02:24:45 copy: /home/asuna/.local/share/zoxide -> /home/asuna/sway-fedora-migration/backup/home/dotfiles/.local_share_zoxide
+02:24:45 dotfiles copied: 83 files
+02:24:45 --- ~/.config ---
+02:24:45 copy: /home/asuna/.config -> /home/asuna/sway-fedora-migration/backup/home/config
+02:24:45 --- ~/.local ---
+02:24:45 copy: /home/asuna/.local/bin -> /home/asuna/sway-fedora-migration/backup/home/local/bin
+02:24:45 copy: /home/asuna/.local/share -> /home/asuna/sway-fedora-migration/backup/home/local/share
+02:24:45 copy: /home/asuna/.local/state -> /home/asuna/sway-fedora-migration/backup/home/local/state
+02:24:45 --- toolchains and app data ---
+02:24:45 copy: /home/asuna/.cargo -> /home/asuna/sway-fedora-migration/backup/home/cargo
+02:24:45 copy: /home/asuna/.rustup -> /home/asuna/sway-fedora-migration/backup/home/rustup
+02:24:45 copy: /home/asuna/.var/app -> /home/asuna/sway-fedora-migration/backup/home/var-app
+02:24:45 copy: /home/asuna/.npm -> /home/asuna/sway-fedora-migration/backup/home/npm
+02:24:45 copy: /home/asuna/.codex -> /home/asuna/sway-fedora-migration/backup/home/codex
+02:24:45 copy: /home/asuna/.opencode -> /home/asuna/sway-fedora-migration/backup/home/opencode
+./backup/scripts/capture-backup.sh: line 159: INV: unbound variable

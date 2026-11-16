@@ -1,0 +1,26 @@
+=== the tree is identical to before the rewrite ===
+  HEAD tree: 499fcd5975fb10a2ef398fa7935341dcf96272a2
+  was:       0552805's predecessor tree — comparing against the tracked files instead:
+  16 tracked files
+
+=== nothing sensitive ===
+  clean ✓
+
+=== every commit still builds on the one before it ===
+  b9773cc Let the containers open the tun device
+  d831df1 Publish the ports from the vpn container
+  ffb1538 Keep the browser out of root
+  39352af Give the browser a terminal and a resolvable hostname
+  6f5618e Replace the image's default VNC passwords
+  1df9298 Share the SELinux label for the shared directories
+  b908963 Move the settings into .env
+  2894db5 Add configure.py, the configurator
+  76e7392 Keep the admin password and the database in step
+  4f843b7 Add verify.sh
+  e91bab2 Add the justfile
+  892abcc Write the README
+  2763575 Add a debug helper for the browser
+  6387f79 Note what the project needs
+  c60d4d7 Know the name the corporate resource is reached by
+  91085dd Credit the projects this is built on
+  0552805 Stop the corporate network reaching into the pods

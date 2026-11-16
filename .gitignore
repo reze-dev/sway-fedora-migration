@@ -7,3 +7,12 @@
 **/cache/
 *.swp
 **/.git/
+
+# Backup: credentials must never enter version control.
+backup/secrets/
+
+# Backup: heavy binary trees are kept as tar.zst archives instead.
+backup/archives/
+backup/home/var-app/app.zen_browser.zen/.zen/
+backup/home/config/tmux/plugins/
+backup/home/Pictures/

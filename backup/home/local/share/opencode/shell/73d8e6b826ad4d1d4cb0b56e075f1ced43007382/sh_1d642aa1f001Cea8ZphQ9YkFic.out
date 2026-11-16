@@ -1,0 +1,18 @@
+/tmp/opencode/interactive/:
+total 4
+drwxr-xr-x. 3 asuna asuna   80 Nov 14 00:23 .
+drwxr-xr-x. 6 asuna asuna  300 Nov 14 00:22 ..
+-rw-------. 1 asuna asuna 2049 Nov 14 00:22 env.bak
+drwx------. 2 asuna asuna  140 Nov 14 00:22 secrets.bak
+
+/tmp/opencode/secrets-backup/:
+total 16
+drwx------. 2 asuna asuna 120 Nov 14 00:11 .
+drwxr-xr-x. 6 asuna asuna 300 Nov 14 00:22 ..
+-rw-------. 1 asuna asuna  20 Nov 13 23:22 admin_password
+-rw-------. 1 asuna asuna  20 Nov 13 23:22 vnc_password
+-rw-------. 1 asuna asuna  20 Nov 13 23:28 vnc_viewonly_password
+-rw-------. 1 asuna asuna  11 Nov 13 11:34 vpn_password
+=== current vpn_password ===
+-rw-------. 1 asuna asuna 8 Nov 14 00:23 secrets/vpn_password
+  sha256: 773d8f92f07dec1e

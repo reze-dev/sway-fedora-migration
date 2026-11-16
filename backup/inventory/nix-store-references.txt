@@ -1,0 +1,23 @@
+# captured 2026-11-17T02:28:09+05:30
+# command: bash -c ls -1 /nix/store 2>/dev/null | grep -Ev '\.(drv|patch)$' | wc -l; ls -1 /nix/store | grep -E 'quickshell|mesa-|libglvnd' | head -50
+1913
+0j970cskfc55bcrh2hpinsy77xhwxfd8-mesa-gl-headers-25.1.0.drv
+2dwz5vldnafrs1cdgg5jxzz1hxa1a5ap-mesa-26.2.5.drv
+49f4pv0hp9x8d6ajfpw78bgw2xaqavw4-mesa-libgbm-26.1.3.drv
+4kdn1m7dd3xzb6dhidnr8i9wzij90p6y-mesa-libclc-22.1.8.3.drv
+5zjsqdacgkfk1vif63cil60y023b3vnp-quickshell-0.3.2
+65n78fdf4ng3p05ad59r8fb47rfcd93g-mesa-gl-headers-25.1.0.drv
+683zsqbwjf29i4j2wyqy8y84fafaqx1m-mesa-libclc-tools.drv
+9cjfrgynhpi74aifd2r7rpv0fhp3vpmv-quickshell-0.3.2.drv
+b1l7xgbsd30sxxyg4ky013j2y4m4xrww-mesa-libgbm-26.1.3
+cq7ys4m2kifagisfwrqd0dhc7jr62hn9-quickshell-0.3.2.drv
+d83yhip3i4c2v3j6ngpv4fzh4hdyw1dv-mesa-libgbm-26.1.3.drv
+g19gl3dwklz1630xlbhr1wj4hw25dy1z-mesa-rust-package-cache.drv
+jg8f97fhfmkpccrm3lsxlavkivpjbs72-mesa-26.2.5
+jkznihpqhvir51b7239imj36wm2hdizw-libglvnd-1.7.0.drv
+knm96d081dl0mhbbdbmi2gwqj2sn0jbh-mesa-libgbm-26.1.3
+mj9klbkhzal0vc1aazsajrydkimhc0h2-libglvnd-1.7.0
+p4fqvcdsgq2rds0f1k3gwqp7k50vfz8r-quickshell-0.3.2
+pdcwbw6z36grx39dfhb4y0g9p00i2ajf-libglvnd-1.7.0-dev
+sphsvdx6x9kdabh50ma53cvwyhczxgsq-libglvnd-1.7.0.drv
+wwfxbskbriy9w5cyabx4z2sdak6n6jvs-libglvnd-1.7.0

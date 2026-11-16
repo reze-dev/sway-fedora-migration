@@ -1,0 +1,54 @@
+total 557456
+drwxr-xr-x. 2 asuna asuna      4096 Nov 17 02:23 .
+drwxr-xr-x. 7 asuna asuna      4096 Nov 17 02:23 ..
+-rw-r--r--. 1 asuna asuna 132843034 Nov 17 02:23 fonts.tar.zst
+-rw-r--r--. 1 asuna asuna       161 Nov 17 02:23 mozilla-extensions.tar.zst
+-rw-r--r--. 1 asuna asuna 130400352 Nov 17 02:23 mozilla-firefox-profile.tar.zst
+-rw-r--r--. 1 asuna asuna 273952234 Nov 17 02:23 nvim-plugins-and-mason.tar.zst
+-rw-r--r--. 1 asuna asuna  33613707 Nov 17 02:23 tmux-plugins.tar.zst
+=== top-level ===
+701M	home
+11M	system
+432K	inventory
+545M	archives
+=== home tree ===
+home
+home/cargo
+home/cargo/bin
+home/codex
+home/codex/app-server-control
+home/codex/app-server-daemon
+home/codex/plugins
+home/codex/shell_snapshots
+home/codex/skills
+home/codex/thread-writer-locks
+home/codex/tui-thread-reference-capabilities
+home/config
+home/config/autostart
+home/config/calcurse
+home/config/copyq
+home/config/dconf
+home/config/enchant
+home/config/epiphany
+home/config/fish
+home/config/fuzzel
+home/config/gh
+home/config/go
+home/config/goa-1.0
+home/config/gtk-2.0
+home/config/gtk-3.0
+home/config/gtk-4.0
+home/config/htop
+home/config/ibus
+home/config/kitty
+home/config/Kvantum
+home/config/lxqt
+home/config/lxsession
+home/config/lxsession-default-apps
+home/config/mako
+home/config/mozilla
+home/config/nautilus
+home/config/nushell
+home/config/nvim
+home/config/nwg-launchers
+home/config/opencode

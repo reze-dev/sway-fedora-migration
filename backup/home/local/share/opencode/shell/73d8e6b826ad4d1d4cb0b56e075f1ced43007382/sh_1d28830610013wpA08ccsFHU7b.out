@@ -1,0 +1,5 @@
+=== host -> warpgate SSH (2222) ===
+=== firefox stability ===
+  status=running restarts=0
+=== firefox running? ===
+firefox

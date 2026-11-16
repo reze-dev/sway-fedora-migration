@@ -1,0 +1,11 @@
+=== 1. TUNNEL ===
+tun0             UNKNOWN        10.8.0.2/24 fe80::3b45:7baf:c059:7318/64 
+=== 2. NETNS SHARED BY ALL PODS ===
+  warpgate-vpn-test net:[4026533238]
+  warpgate-warpgate-test net:[4026533238]
+  warpgate-firefox-test net:[4026533238]
+=== 3. HOST ISOLATION ===
+  host has no tun ✓
+  VPN routes on host: 0
+=== 4. HOST INTERNET ===
+  http=200

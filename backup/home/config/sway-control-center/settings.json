@@ -1,0 +1,15 @@
+{
+  "theme": "Yaru-prussiangreen-dark",
+  "icons": "Yaru-prussiangreen-dark",
+  "cursor": "Bibata-Modern-Ice",
+  "cursor_size": 24,
+  "ui_font": "Inter",
+  "ui_size": 11.0,
+  "mono_font": "JetBrainsMono Nerd Font",
+  "mono_size": 14.0,
+  "dark": true,
+  "accent": "Prussian Green Dark",
+  "qt_theme": "KvYaru-PrussianGreenDark",
+  "wallpaper": "/home/asuna/Pictures/Wallpapers/Abyss Knight Amidst Gothic Ruins.png",
+  "wallpaper_mode": "fill"
+}

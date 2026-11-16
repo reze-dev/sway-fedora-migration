@@ -1,0 +1,178 @@
+#!/usr/bin/python3
+import json
+import os
+import re
+import shlex
+import subprocess
+import sys
+from pathlib import Path
+
+
+def active_config():
+    try:
+        result = subprocess.run(
+            ["swaymsg", "-t", "get_config"],
+            check=True,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+        )
+        return json.loads(result.stdout)["config"]
+    except (OSError, subprocess.CalledProcessError, json.JSONDecodeError, KeyError):
+        config = Path.home() / ".config/sway/config"
+        return config.read_text(errors="replace") if config.exists() else ""
+
+
+def parse_bindings(config):
+    variables = {}
+    for line in config.splitlines():
+        match = re.match(r"^\s*set\s+\$(\S+)\s+(.+?)\s*$", line)
+        if match:
+            variables[match.group(1)] = match.group(2).strip('"\'')
+
+    bindings = []
+    mode = "default"
+    for line in config.splitlines():
+        mode_match = re.match(r'^\s*mode\s+["\']([^"\']+)["\']\s*\{', line)
+        if mode_match:
+            mode = mode_match.group(1)
+            continue
+        if line.strip() == "}":
+            mode = "default"
+            continue
+        match = re.match(r"^\s*bind(?:sym|code)\s+(.+?)\s*$", line)
+        if not match:
+            continue
+        try:
+            tokens = shlex.split(match.group(1), comments=True)
+        except ValueError:
+            continue
+        while tokens and tokens[0].startswith("--"):
+            tokens.pop(0)
+        if len(tokens) < 2:
+            continue
+        chord = tokens[0]
+        action = " ".join(tokens[1:])
+        for name, value in sorted(variables.items(), key=lambda item: -len(item[0])):
+            chord = chord.replace(f"${name}", value)
+            action = action.replace(f"${name}", value)
+        bindings.append((mode, chord, action))
+    return bindings
+
+
+def pretty_key(chord):
+    replacements = {
+        "Mod4": "Super",
+        "Mod1": "Alt",
+        "Control": "Ctrl",
+        "Return": "Enter",
+        "space": "Space",
+        "minus": "-",
+        "Print": "PrintScreen",
+    }
+    for original, display in replacements.items():
+        chord = chord.replace(original, display)
+    return chord
+
+
+def describe(action):
+    action = action.strip()
+    if action.startswith("exec "):
+        command = action[5:]
+        if "sway-control-center" in command:
+            return "Open Sway Control Center"
+        if "sway-power-menu" in command:
+            return "Open power menu"
+        if "grimshot save output" in command:
+            return "Screenshot: select output"
+        if "grimshot save active" in command:
+            return "Screenshot: active window"
+        if "grimshot save area" in command:
+            return "Screenshot: select area"
+        if "swaymsg exit" in command:
+            return "Exit Sway"
+        if "kitty" in command:
+            return "Open Kitty terminal"
+        if "fuzzel" in command:
+            return "Open app launcher"
+        if "swaynag" in command:
+            return "Confirm exit from Sway"
+        return command
+
+    if action == "kill":
+        return "Close focused window"
+    if action == "reload":
+        return "Reload Sway configuration"
+    if action.startswith("focus "):
+        return "Focus " + action.removeprefix("focus ").replace("mode_toggle", "next area")
+    if action.startswith("move container to workspace number "):
+        return "Move window to workspace " + action.rsplit(" ", 1)[1]
+    if action.startswith("workspace number "):
+        return "Switch to workspace " + action.rsplit(" ", 1)[1]
+    if action.startswith("move "):
+        return "Move window " + action.removeprefix("move ")
+    if action == "splith":
+        return "Split horizontally"
+    if action == "splitv":
+        return "Split vertically"
+    if action.startswith("layout "):
+        return "Layout: " + action.removeprefix("layout ").replace("toggle split", "toggle split direction")
+    if action == "fullscreen":
+        return "Toggle fullscreen"
+    if action == "floating toggle":
+        return "Toggle floating window"
+    if action.startswith("scratchpad "):
+        return "Scratchpad: " + action.removeprefix("scratchpad ")
+    if action.startswith("resize "):
+        return "Resize: " + action.removeprefix("resize ")
+    if action.startswith("mode "):
+        return "Enter " + action.removeprefix("mode ").strip('"') + " mode"
+    return action
+
+
+def rows(config):
+    output = []
+    seen = set()
+    for mode, chord, action in parse_bindings(config):
+        label = pretty_key(chord)
+        description = describe(action)
+        if mode != "default":
+            description = f"{mode.title()} mode · {description}"
+        row = f"{label}   —   {description}"
+        if row not in seen:
+            output.append(row)
+            seen.add(row)
+    return output
+
+
+def main():
+    entries = rows(active_config())
+    if not entries:
+        print("No Sway keybindings could be read.", file=sys.stderr)
+        return 1
+    if "--list" in sys.argv:
+        print("\n".join(entries))
+        return 0
+    if not any(Path(directory, "fuzzel").is_file() for directory in os.environ.get("PATH", "").split(os.pathsep)):
+        print("\n".join(entries))
+        return 0
+    subprocess.run(
+        [
+            "fuzzel",
+            "--dmenu",
+            "--no-sort",
+            "--lines=20",
+            "--width=82",
+            "--prompt=Keybindings: ",
+            "--placeholder=Filter shortcuts",
+        ],
+        input="\n".join(entries) + "\n",
+        text=True,
+        stdout=subprocess.DEVNULL,
+        check=False,
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

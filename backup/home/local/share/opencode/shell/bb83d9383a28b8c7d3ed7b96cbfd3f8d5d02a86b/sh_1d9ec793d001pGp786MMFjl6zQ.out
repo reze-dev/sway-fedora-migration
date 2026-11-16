@@ -1,0 +1,13 @@
+exit=0
+name:	reze-dev/Nethergate
+description:	Run a corporate VPN entirely inside containers, with a warpgate bastion and a browser alongside it. The host keeps its own internet connection.
+--
+# Warpgate bastion and container browser
+
+A local bastion for the corporate VPN, plus a containerised browser that runs
+inside that VPN. The point of the layout is that **the VPN lives only inside the
+pods**: the containers reach the corporate network through the tunnel, while the
+host keeps its own internet connection. You can browse the internet and the
+corporate intranet at the same time.
+
+## How it works

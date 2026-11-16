@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Sway Control Center
+Comment=Configure appearance, displays, sound, network, and Bluetooth for Sway
+Exec=/home/asuna/.local/bin/sway-control-center
+Icon=preferences-system
+Terminal=false
+Categories=Settings;DesktopSettings;

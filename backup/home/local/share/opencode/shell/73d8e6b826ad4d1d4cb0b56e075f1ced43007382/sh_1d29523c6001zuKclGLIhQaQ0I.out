@@ -1,0 +1,10 @@
+7b97b74 Add a brightness slider to the Sway Control Center
+dd27f76 Suppress the proprietary GPU notice with --unsupported-gpu
+658a2a1 Keep swaybg installed but unused
+=== status ===
+=== brightness bar committed ===
+658a2a1 Keep swaybg installed but unused
+ fedora-overlay/README.md                           | 12 ++----
+ fedora-overlay/apply-user-config.sh                | 15 --------
+ fedora-overlay/fedora45-packages.txt               | 10 ++---
+ fedora-overlay/install-swaybg-provider.sh          | 42 ---------------------

@@ -1,0 +1,17 @@
+=== login log ===
+
+! First copy your one-time code: D6F9-32A3
+Open this URL to continue in your web browser: https://github.com/login/device
+✓ Authentication complete.
+- gh config set -h github.com git_protocol ssh
+✓ Configured git protocol
+! Authentication credentials saved in plain text
+✓ Logged in as reze-dev
+
+=== auth status ===
+github.com
+  ✓ Logged in to github.com account reze-dev (/home/asuna/.config/gh/hosts.yml)
+  - Active account: true
+  - Git operations protocol: ssh
+  - Token: gho_************************************
+  - Token scopes: 'gist', 'read:org', 'repo'

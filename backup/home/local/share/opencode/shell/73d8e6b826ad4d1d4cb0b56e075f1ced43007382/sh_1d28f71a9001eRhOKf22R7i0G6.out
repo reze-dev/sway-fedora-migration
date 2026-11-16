@@ -1,0 +1,6 @@
+=== 9. FIREFOX RUNNING + STABLE ===
+  status=running restarts=0
+firefox
+  firefox uid: kasm-user
+=== 10. WAIT 30s AND RECHECK ===
+  status=running restarts=0

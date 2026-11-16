@@ -1,0 +1,140 @@
+#!/usr/bin/env bash
+# Apply the wallpaper saved by Sway Control Center using the awww daemon.
+#
+# Sway's own "output * bg" directive spawns swaybg, so the Sway config no
+# longer carries a wallpaper line. This script is the single place that turns
+# the Sway Control Center state into an actual wallpaper.
+set -euo pipefail
+
+state_file="${XDG_CONFIG_HOME:-$HOME/.config}/sway-control-center/settings.json"
+awww_bin="${AWWW_BIN:-/usr/bin/awww}"
+
+if [[ ! -f "$state_file" ]]; then
+    echo "sway-set-wallpaper: no Sway Control Center state at $state_file" >&2
+    exit 0
+fi
+
+read -r wallpaper mode < <(python3 - "$state_file" <<'PY'
+import json
+import sys
+
+with open(sys.argv[1], encoding="utf-8") as handle:
+    settings = json.load(handle)
+
+wallpaper = settings.get("wallpaper", "")
+mode = settings.get("wallpaper_mode", "fill")
+print(wallpaper, mode)
+PY
+)
+
+if [[ -z "$wallpaper" ]]; then
+    echo "sway-set-wallpaper: no wallpaper configured" >&2
+    exit 0
+fi
+
+if [[ ! -f "$wallpaper" ]]; then
+    echo "sway-set-wallpaper: wallpaper not found: $wallpaper" >&2
+    exit 0
+fi
+
+# Map the Sway Control Center scaling modes onto awww's resize strategies.
+case "$mode" in
+    fill)    resize=crop ;;
+    fit)     resize=fit ;;
+    stretch) resize=stretch ;;
+    center)  resize=no ;;
+    tile)    resize=crop ;;
+    *)       resize=crop ;;
+esac
+
+# Wait for the awww daemon to become reachable, then hand over the image.
+for _ in $(seq 1 60); do
+    if "$awww_bin" query >/dev/null 2>&1; then
+        break
+    fi
+    sleep 0.5
+done
+
+if ! "$awww_bin" query >/dev/null 2>&1; then
+    echo "sway-set-wallpaper: awww daemon is not reachable" >&2
+    exit 0
+fi
+
+"$awww_bin" img --resize "$resize" --transition-type simple "$wallpaper"
+#!/usr/bin/env bash
+set -euo pipefail
+choice=$(printf '%s\n' 'Clipboard history' 'Network settings' 'Bluetooth devices' 'Audio settings' 'Calendar' 'Process monitor' 'Power menu' | fuzzel --dmenu --prompt='Quick actions: ') || exit 0
+case "$choice" in
+  'Clipboard history') exec copyq toggle ;;
+  'Network settings') exec kitty --class floating_shell nmtui ;;
+  'Bluetooth devices') exec kitty --class floating_shell bluetoothctl ;;
+  'Audio settings') exec pavucontrol ;;
+  'Calendar') exec kitty --class floating_shell calcurse ;;
+  'Process monitor') exec kitty --class floating_shell htop ;;
+  'Power menu') exec "$HOME/.local/bin/sway-power-menu" ;;
+esac
+#!/usr/bin/env bash
+set -euo pipefail
+choice=$(printf '%s\n' 'Lock' 'Suspend' 'Log out' 'Reboot' 'Power off' | fuzzel --dmenu --prompt='Power: ') || exit 0
+case "$choice" in
+  Lock) swaylock -f ;;
+  Suspend) systemctl suspend ;;
+  'Log out') swaymsg exit ;;
+  Reboot) systemctl reboot ;;
+  'Power off') systemctl poweroff ;;
+esac
+#!/usr/bin/env bash
+exec "$HOME/.local/bin/sway-control-center" "$@"
+#!/usr/bin/env bash
+exec copyq toggle
+# Run a command with the discrete NVIDIA GPU via PRIME render offload.
+#
+# The ASUS TUF A15 FA506II is a hybrid laptop: the internal panel is wired to
+# the AMD Renoir iGPU, while the NVIDIA GTX 1650 Ti is a discrete GPU that is
+# normally idle. With the proprietary driver installed, apps can be pushed onto
+# the dGPU for CUDA, accelerated rendering or games, while the compositor keeps
+# using the iGPU that actually drives the panel.
+#
+# Usage: sway-prime-run <command> [args...]
+#   sway-prime-run steam
+#   sway-prime-run blender
+set -euo pipefail
+
+if [[ $# -eq 0 ]]; then
+    echo "usage: sway-prime-run <command> [args...]" >&2
+    exit 2
+fi
+
+export __NV_PRIME_RENDER_OFFLOAD=1
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export __EGL_VENDOR_LIBRARY_FILES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json
+
+exec "$@"
+#!/usr/bin/env bash
+# Rebuild the initramfs so that the NVIDIA proprietary modules are included.
+#
+# RPM Fusion ships /usr/lib/dracut/dracut.conf.d/99-nvidia-dracut.conf, which
+# omits the NVIDIA modules from the ramdisk so that kernel updates do not
+# require a ramdisk rebuild. That is fine while nouveau stays in charge of
+# the display, but here nouveau is blacklisted and the proprietary driver is
+# the only driver for the discrete GPU, so the modules must be present early
+# enough for the device to be claimed.
+#
+# The dracut configuration file does not reliably override the shipped
+# omit_drivers setting, so the modules are requested on the command line.
+set -euo pipefail
+
+kernels=()
+while read -r -d '' dir; do
+    ver="${dir#/lib/modules/}"
+    kernels+=("$ver")
+done < <(find /lib/modules -maxdepth 1 -mindepth 1 -type d -print0)
+
+for kver in "${kernels[@]}"; do
+    if [[ ! -d "/lib/modules/$kver/extra/nvidia" ]]; then
+        echo "skipping $kver: no NVIDIA module built" >&2
+        continue
+    fi
+    echo "rebuilding initramfs for $kver"
+    dracut --force --kver "$kver" --add-drivers "nvidia nvidia-modeset nvidia-drm nvidia-uvm"
+done

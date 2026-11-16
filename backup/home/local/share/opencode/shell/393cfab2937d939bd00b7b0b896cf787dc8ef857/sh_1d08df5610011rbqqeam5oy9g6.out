@@ -1,0 +1,3 @@
+=== current user env file (no flag) ===
+would exec: /usr/bin/sway 
+SWAY_UNSUPPORTED_GPU env would be: [unset]

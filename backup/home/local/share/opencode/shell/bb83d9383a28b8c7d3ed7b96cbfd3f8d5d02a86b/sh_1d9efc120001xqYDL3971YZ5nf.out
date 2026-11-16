@@ -1,0 +1,17 @@
+=== in sync ===
+## main...origin/main
+  local:  5f10746959b164efd85f798ffddd1eac3e4e4b06
+  remote: 5f10746959b164efd85f798ffddd1eac3e4e4b06
+
+=== the history ===
+5f10746 Lead the README with what the project is
+1c84d69 Make the credentials before the settings are checked
+7a6957c Say what is wrong when the credentials are not there yet
+61c7c8b Stop the corporate network reaching into the pods
+  ... 21 commits in total
+
+=== the stack ===
+  [32mok[0m    no database errors                   0
+
+[32m[1m checks passed[0m
+

@@ -1,0 +1,149 @@
+User input required in non-interactive mode
+Failed to complete authentication
+OpenConnect exited with status 1
+VPN failed. Stopping to avoid repeated authentication failures.
+New connections on tun0 are dropped, replies to ours are allowed.
+Forwarding TCP 443 -> 10.250.18.140:443...
+Starting OpenConnect...
+POST https://vpn.osdc.gov.in/
+Connected to 164.100.141.21:443
+SSL negotiation with vpn.osdc.gov.in
+Connected to HTTPS on vpn.osdc.gov.in with ciphersuite (TLS1.2)-(ECDHE-SECP256R1)-(RSA-SHA512)-(AES-256-GCM)
+XML POST enabled
+POST https://vpn.osdc.gov.in/
+Please enter your username and password.
+XML POST enabled
+POST https://vpn.osdc.gov.in/
+Please enter your username and password.
+Login failed.
+Please enter your username and password.
+Password:
+***
+User input required in non-interactive mode
+Failed to complete authentication
+OpenConnect exited with status 1
+VPN failed. Stopping to avoid repeated authentication failures.
+New connections on tun0 are dropped, replies to ours are allowed.
+Forwarding TCP 443 -> 10.250.18.140:443...
+Starting OpenConnect...
+POST https://vpn.osdc.gov.in/
+Connected to 164.100.141.21:443
+SSL negotiation with vpn.osdc.gov.in
+Connected to HTTPS on vpn.osdc.gov.in with ciphersuite (TLS1.2)-(ECDHE-SECP256R1)-(RSA-SHA512)-(AES-256-GCM)
+XML POST enabled
+POST https://vpn.osdc.gov.in/
+Please enter your username and password.
+XML POST enabled
+POST https://vpn.osdc.gov.in/
+Please enter your username and password.
+Login failed.
+Please enter your username and password.
+Password:
+***
+User input required in non-interactive mode
+Failed to complete authentication
+OpenConnect exited with status 1
+VPN failed. Stopping to avoid repeated authentication failures.
+New connections on tun0 are dropped, replies to ours are allowed.
+Forwarding TCP 443 -> 10.250.18.140:443...
+Starting OpenConnect...
+POST https://vpn.osdc.gov.in/
+Connected to 164.100.141.21:443
+SSL negotiation with vpn.osdc.gov.in
+Connected to HTTPS on vpn.osdc.gov.in with ciphersuite (TLS1.2)-(ECDHE-SECP256R1)-(RSA-SHA512)-(AES-256-GCM)
+XML POST enabled
+POST https://vpn.osdc.gov.in/
+Please enter your username and password.
+XML POST enabled
+Please enter your username and password.
+POST https://vpn.osdc.gov.in/
+Login failed.
+Please enter your username and password.
+Password:
+***
+User input required in non-interactive mode
+Failed to complete authentication
+OpenConnect exited with status 1
+VPN failed. Stopping to avoid repeated authentication failures.
+New connections on tun0 are dropped, replies to ours are allowed.
+Forwarding TCP 443 -> 10.250.18.140:443...
+Starting OpenConnect...
+POST https://vpn.osdc.gov.in/
+Connected to 164.100.141.21:443
+SSL negotiation with vpn.osdc.gov.in
+Connected to HTTPS on vpn.osdc.gov.in with ciphersuite (TLS1.2)-(ECDHE-SECP256R1)-(RSA-SHA512)-(AES-256-GCM)
+XML POST enabled
+Please enter your username and password.
+POST https://vpn.osdc.gov.in/
+XML POST enabled
+POST https://vpn.osdc.gov.in/
+Please enter your username and password.
+Login failed.
+Please enter your username and password.
+Password:
+***
+User input required in non-interactive mode
+Failed to complete authentication
+OpenConnect exited with status 1
+VPN failed. Stopping to avoid repeated authentication failures.
+New connections on tun0 are dropped, replies to ours are allowed.
+Forwarding TCP 443 -> 10.250.18.140:443...
+Starting OpenConnect...
+POST https://vpn.osdc.gov.in/
+Connected to 164.100.141.21:443
+SSL negotiation with vpn.osdc.gov.in
+Connected to HTTPS on vpn.osdc.gov.in with ciphersuite (TLS1.2)-(ECDHE-SECP256R1)-(RSA-SHA512)-(AES-256-GCM)
+XML POST enabled
+POST https://vpn.osdc.gov.in/
+Please enter your username and password.
+XML POST enabled
+Please enter your username and password.
+POST https://vpn.osdc.gov.in/
+Login failed.
+Please enter your username and password.
+Password:
+***
+User input required in non-interactive mode
+Failed to complete authentication
+OpenConnect exited with status 1
+VPN failed. Stopping to avoid repeated authentication failures.
+New connections on tun0 are dropped, replies to ours are allowed.
+Forwarding TCP 443 -> 10.250.18.140:443...
+Starting OpenConnect...
+POST https://vpn.osdc.gov.in/
+λ just down                                                                                                                           …/Nethergate  main !   v3.15.2  18:53
+warpgate-firefox
+warpgate
+warpgate-vpn
+warpgate-firefox
+warpgate
+warpgate-vpn
+4eced920c8a6e81ac7c431b51d72f75283372a8b6f23e3fabf41e6eacf59b359
+nethergate_default
+λ nvim secrets/vpn_password                                                                                                           …/Nethergate  main !   v3.15.2  18:54
+󱎫 6s λ nvim                                                                                                                           …/Nethergate  main !   v3.15.2  18:54
+󱎫 1m28s λ podman logs f8326cb0df60                                                                                                    …/Nethergate  main !   v3.15.2  18:56
+Error: no container with name or ID "f8326cb0df60" found: no such container
+λ podman ps                                                                                                                           …/Nethergate  main !   v3.15.2  18:56
+CONTAINER ID  IMAGE                                                             COMMAND     CREATED            STATUS            PORTS       NAMES
+84ae0f9ea227  991636db0e04b9d2be130dd06c47ff56d073642f3bdab35227590f0f7f78a39a              About an hour ago  Up About an hour              dazzling_kirch
+λ just up                                                                                                                             …/Nethergate  main !   v3.15.2  18:56
+bbbeaac1e9e0a2d1d4396b078c50f240cec6f49370f3a6f7507fa77b557f6b52
+d1946036307c936defbeb73805ef6b9839c148e6068bb49fe5a58da60badcb78
+4af093cb468796bbded2576ef0998f833cf1068d0d3081350acbdaf0585fea41
+6fbec4d59c972050f1bcba77360f18f9ccd8e134fca2f7290eb7b5c074aa77fd
+22198b22fa9c4060088ebf4bae5e967974270a3dce17f231181b66386bdedf09
+warpgate-vpn
+warpgate
+Error: unable to start container "22198b22fa9c4060088ebf4bae5e967974270a3dce17f231181b66386bdedf09": crun: open `/proc/56518/ns/net`: No such file or directory: OCI runtime attempted to invoke a command that was not found
+error: recipe `up` failed on line 48 with exit code 125
+λ podman kill -a                                                                                                                      …/Nethergate  main !   v3.15.2  18:56
+84ae0f9ea227b915811d099c32cc32665aa3978b68c8bab5d5d7a40437541d59
+4af093cb468796bbded2576ef0998f833cf1068d0d3081350acbdaf0585fea41
+6fbec4d59c972050f1bcba77360f18f9ccd8e134fca2f7290eb7b5c074aa77fd
+λ podman rm -a                                                                                                                        …/Nethergate  main !   v3.15.2  18:56
+6fbec4d59c972050f1bcba77360f18f9ccd8e134fca2f7290eb7b5c074aa77fd
+4af093cb468796bbded2576ef0998f833cf1068d0d3081350acbdaf0585fea41
+22198b22fa9c4060088ebf4bae5e967974270a3dce17f231181b66386bdedf09
+84ae0f9ea227b915811d099c32cc32665aa3978b68c8bab5d5d7a40437541d59
+λ                                             

@@ -1,0 +1,49 @@
+=== interactive run, from nothing ===
+No .env yet, starting from the example.
+  VPN_CLIENT (VPN client to use: openconnect for a corporate gateway, openvpn for an OpenVPN server) [openconnect]: 
+  VPN_USERNAME (Corporate VPN username): 
+  VPN_AUTHGROUP (Corporate VPN authentication group): 
+  VPN_GATEWAY (Corporate VPN gateway URL, for example https://vpn.example.com/): 
+  OCP_BASTION_IP (Address of the corporate resource reached through the tunnel): 
+  WARPGATE_EXTERNAL_HOST (Bare hostname warpgate is reached on, no scheme and no port) [127.0.0.1]: /usr/lib64/python3.15/getpass.py:150: GetPassWarning: Can not control echo on the terminal.
+  passwd = fallback_getpass(prompt, stream)
+Warning: Password input may be echoed.
+  The corporate VPN password: 
+Warning: Password input may be echoed.
+  again: 
+  The two entries do not match.
+Warning: Password input may be echoed.
+  The corporate VPN password: 
+Warning: Password input may be echoed.
+  again: 
+  The two entries do not match.
+Warning: Password input may be echoed.
+  The corporate VPN password: 
+Writing .env
+Secrets
+  The corporate VPN password is not set yet.
+Traceback (most recent call last):
+  File "/usr/lib64/python3.15/getpass.py", line 112, in unix_getpass
+    old = termios.tcgetattr(fd)     # a copy to save
+termios.error: (25, 'Inappropriate ioctl for device')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/asuna/Projects/warpgate/./configure.py", line 914, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/asuna/Projects/warpgate/./configure.py", line 831, in main
+    ensure_secret(VPN_SECRET, "The corporate VPN password", generate=False)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asuna/Projects/warpgate/./configure.py", line 416, in ensure_secret
+    value = ask(f"  {description}: ", confirm=True)
+  File "/home/asuna/Projects/warpgate/./configure.py", line 385, in ask
+    value = getpass.getpass(prompt)
+  File "/usr/lib64/python3.15/getpass.py", line 150, in unix_getpass
+    passwd = fallback_getpass(prompt, stream)
+  File "/usr/lib64/python3.15/getpass.py", line 194, in fallback_getpass
+    return _raw_input(prompt, stream, echo_char=echo_char)
+  File "/usr/lib64/python3.15/getpass.py", line 236, in _raw_input
+    raise EOFError
+EOFError

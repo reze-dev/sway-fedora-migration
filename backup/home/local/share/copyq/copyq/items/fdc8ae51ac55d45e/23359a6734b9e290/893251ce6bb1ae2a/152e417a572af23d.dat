@@ -1,0 +1,89 @@
+# Warpgate bastion and container browser.
+#
+# Every setting comes from .env next to this file, which ./configure.py
+# writes. The values below are read from there, so nothing corporate is
+# written down here.
+#
+# The warpgate and firefox containers join the vpn container's network
+# namespace, which is what keeps the corporate VPN inside the pods: they
+# reach the corporate network through the tunnel, while the host keeps its
+# own internet connection.
+services:
+  vpn:
+    image: localhost/warpgate-vpn:latest
+    container_name: warpgate-vpn
+    build:
+      context: .
+      dockerfile: Dockerfile
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    # The tun device is owned by root on the host, so a rootless container
+    # cannot open it unless SELinux lets it. spc_t is the "super privileged
+    # container" type, which is what a VPN container needs.
+    security_opt:
+      - label=type:spc_t
+    # Without keep-id the container's root is an unmapped subuid and the
+    # TUNSETIFF ioctl is rejected with EPERM.
+    userns: keep-id
+    # The warpgate and firefox containers share this container's network
+    # namespace, so the published ports have to be declared here.
+    ports:
+      - "127.0.0.1:${PUBLISH_SSH_PORT:-2222}:${WARPGATE_SSH_PORT:-2222}"
+      - "127.0.0.1:${PUBLISH_HTTP_PORT:-8888}:${WARPGATE_HTTP_PORT:-8888}"
+      - "127.0.0.1:${PUBLISH_HTTPS_PORT:-443}:${WARPGATE_HTTP_PORT:-8888}"
+      - "127.0.0.1:${PUBLISH_VNC_PORT:-6901}:6901"
+    environment:
+      VPN_CLIENT: "${VPN_CLIENT:-openconnect}"
+      VPN_USERNAME: "${VPN_USERNAME:?VPN_USERNAME is not set, run ./configure.py}"
+      VPN_AUTHGROUP: "${VPN_AUTHGROUP:?VPN_AUTHGROUP is not set, run ./configure.py}"
+      VPN_GATEWAY: "${VPN_GATEWAY:?VPN_GATEWAY is not set, run ./configure.py}"
+      VPN_CONFIG: "${VPN_CONFIG:-}"
+      OCP_BASTION_IP: "${OCP_BASTION_IP:-}"
+      OCP_BASTION_PORT: "${OCP_BASTION_PORT:-443}"
+    volumes:
+      - ./secrets/vpn_password:/run/secrets/vpn_password:ro,z
+    restart: unless-stopped
+
+  warpgate:
+    image: ghcr.io/warp-tech/warpgate:latest
+    container_name: warpgate
+    network_mode: "service:vpn"
+    depends_on:
+      - vpn
+    volumes:
+      # :z and not :Z. The label has to be shared, because configure.py also
+      # mounts this directory when it prepares warpgate's state. A private
+      # label would be reassigned by whichever container mounts it last, and
+      # the others would lose access to the database.
+      - ./data:/data:z
+    restart: unless-stopped
+
+  firefox:
+    image: localhost/warpgate-firefox:latest
+    container_name: warpgate-firefox
+    build:
+      context: .
+      dockerfile: Dockerfile.firefox
+    network_mode: "service:vpn"
+    # The Kasm image resolves its own hostname at startup and exits if that
+    # fails, so it needs an explicit one.
+    hostname: "${BROWSER_HOSTNAME:-warpgate-firefox}"
+    depends_on:
+      - vpn
+    command: ["--wait"]
+    environment:
+      # The image bakes in a default VNC password. It is set here to
+      # nothing on purpose, so the secret files below are used instead.
+      VNC_PW: "${VNC_PW:-}"
+      VNC_VIEW_ONLY_PW: "${VNC_VIEW_ONLY_PW:-}"
+      LAUNCH_URL: ""
+    volumes:
+      - ./secrets/vnc_password:/run/secrets/vnc_password:ro,z
+      - ./secrets/vnc_viewonly_password:/run/secrets/vnc_viewonly_password:ro,z
+    shm_size: 512m
+    # The Kasm image sets the VNC password with a tool that needs a
+    # terminal, so the container has to be started with one.
+    tty: true
+    restart: unless-stopped

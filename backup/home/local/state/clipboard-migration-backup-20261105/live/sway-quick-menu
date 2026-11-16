@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+choice=$(printf '%s\n' 'Clipboard history' 'Network settings' 'Bluetooth devices' 'Audio settings' 'Calendar' 'Process monitor' 'Power menu' | fuzzel --dmenu --prompt='Quick actions: ') || exit 0
+case "$choice" in
+  'Clipboard history') exec "$HOME/.local/bin/sway-clipboard-menu" ;;
+  'Network settings') exec kitty --class floating_shell nmtui ;;
+  'Bluetooth devices') exec kitty --class floating_shell bluetoothctl ;;
+  'Audio settings') exec pavucontrol ;;
+  'Calendar') exec kitty --class floating_shell calcurse ;;
+  'Process monitor') exec kitty --class floating_shell htop ;;
+  'Power menu') exec "$HOME/.local/bin/sway-power-menu" ;;
+esac

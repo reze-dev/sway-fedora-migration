@@ -1,0 +1,21 @@
+sh-5.3# openconnect --protocol=anyconnect --server=https://vpn.osdc.gov.in/ --user=fincifms15 --authgroup=Anyconnect-OSDC --passwd-on-stdin --non-inter < pass
+POST https://vpn.osdc.gov.in/
+Connected to 164.100.141.21:443
+SSL negotiation with vpn.osdc.gov.in
+Connected to HTTPS on vpn.osdc.gov.in with ciphersuite (TLS1.2)-(ECDHE-SECP256R1)-(RSA-SHA512)-(AES-256-GCM)
+XML POST enabled
+Please enter your username and password.
+POST https://vpn.osdc.gov.in/
+XML POST enabled
+Please enter your username and password.
+POST https://vpn.osdc.gov.in/
+Got CONNECT response: HTTP/1.1 200 OK
+CSTP connected. DPD 30, Keepalive 20
+Established DTLS connection (using GnuTLS). Ciphersuite (DTLS0.9)-(DHE-CUSTOM)-(AES-256-CBC)-(SHA1).
+Configured as 10.150.72.153, with SSL connected and DTLS connected
+Session authentication will expire at Mon, 30 Nov 2026 12:32:36 UTC
+Failed to bind local tun device (TUNSETIFF): Inappropriate ioctl for device
+Set up tun device failed
+Send BYE packet: Set up tun device failed
+Unrecoverable I/O error; exiting.
+sh-5.3# 

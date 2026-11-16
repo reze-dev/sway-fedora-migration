@@ -1,0 +1,2 @@
+[2m2026-11-06T11:54:20.346860Z[0m [31mERROR[0m [2mrmcp::transport::streamable_http_client[0m[2m:[0m fail to delete session: Client error: HTTP request failed: http/request failed: error sending request for url (http://127.0.0.1:40839/mcp) [3msession_id[0m[2m=[0m"4d8df1bf-4046-45f6-9c9f-965a5949ab50"
+[2m2026-11-06T12:23:43.137925Z[0m [31mERROR[0m [2mcodex_models_manager::manager[0m[2m:[0m failed to refresh available models: request timed out

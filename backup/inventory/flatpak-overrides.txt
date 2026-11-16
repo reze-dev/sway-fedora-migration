@@ -1,0 +1,8 @@
+# captured 2026-11-17T02:28:08+05:30
+# command: flatpak override --user --show
+[Context]
+filesystems=/usr/share/icons/Bibata-Modern-Ice:ro;/usr/share/icons/Yaru-prussiangreen-dark:ro;
+
+[Environment]
+XCURSOR_SIZE=24
+XCURSOR_THEME=Bibata-Modern-Ice

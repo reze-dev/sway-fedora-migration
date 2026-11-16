@@ -1,0 +1,5 @@
+# captured 2026-11-17T02:28:08+05:30
+# command: npm ls -g --depth=0
+/usr/local/lib
+└── (empty)
+

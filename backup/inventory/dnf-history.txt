@@ -1,0 +1,53 @@
+# captured 2026-11-17T02:28:08+05:30
+# command: dnf history list
+ID Command line                            Date and time       Action(s) Altered
+50 dnf -y upgrade                          2026-11-16 10:36:22 U              62
+49 dnf -y upgrade                          2026-11-14 17:54:28 U             110
+48 dnf install -y gh                       2026-11-14 11:56:34 I               1
+47 dnf -y in just                          2026-11-14 08:14:59 I               1
+46 dnf -y install --nogpgcheck --disablere 2026-11-12 13:41:47 U               2
+45 dnf install -y swaybg                   2026-11-12 13:41:02 I               1
+44 dnf upgrade -y                          2026-11-12 13:39:17 I, U          243
+43 dnf install -y /tmp/tmp.o856ih0g1s/RPMS 2026-11-12 12:59:32 I               1
+42 dnf install -y /tmp/opencode/rpmbuild/R 2026-11-12 12:58:06 I               1
+41 dnf install -y --repo terra awww awww-b 2026-11-12 12:39:39 I               4
+40 dnf -y install --nogpgcheck --disablere 2026-11-12 11:51:24 I               1
+39 dnf install -y --setopt=install_weak_de 2026-11-12 11:50:25 I              66
+38 dnf install -y kernel-devel-matched ker 2026-11-12 11:42:15 I              15
+37 dnf install -y https://download1.rpmfus 2026-11-12 11:36:25 I               2
+36 dnf install -y wayland-devel wayland-pr 2026-11-12 11:12:31 I               4
+35 dnf in -y podman podman-compose         2026-11-12 07:42:35 I              42
+34 dnf install -y material-icons-fonts     2026-11-09 04:20:46 I               1
+33 dnf rm -y asusctl-rog-gui               2026-11-06 11:53:53 E               1
+32 dnf install asusctl-rog-gui             2026-11-06 11:38:34 I               1
+31 dnf install asusctl                     2026-11-06 11:36:55 I               1
+30 dnf install --nogpgcheck --repofrompath 2026-11-06 11:36:46 I               2
+29 dnf remove -y azote                     2026-11-06 10:11:04 E               3
+28 dnf install -y azote nwg-launchers      2026-11-06 08:25:58 I               4
+27 dnf in -y rustup golang zig gcc clang c 2026-11-05 16:52:53 I              90
+26 dnf in -y ripgrep fzf zoxide fd bat     2026-11-05 15:39:47 I               8
+25 dnf upgrade -y                          2026-11-05 15:35:12 I, O, U       491
+24 dnf install -y ydotool                  2026-11-05 13:16:09 I               1
+23 dnf remove -y ydotool                   2026-11-05 13:09:03 E               1
+22 dnf install -y copyq ydotool            2026-11-05 13:03:24 I               7
+21 dnf install -y qt6-qt5compat            2026-11-05 11:31:42 I               2
+20 dnf swap -y --setopt=protected_packages 2026-11-05 11:03:35 E, I            3
+19 dnf remove -y gnome-tweaks lxappearance 2026-11-05 11:03:31 E              15
+18 dnf in -y openconnect                   2026-11-05 10:41:55 I               5
+17 dnf in -y bibata-cursor-themes          2026-11-05 08:22:43 I               1
+16 dnf install -y gtk2-engines             2026-11-05 08:17:59 I               1
+15 dnf install -y yaru-gtk3-theme yaru-gtk 2026-11-05 08:11:26 I               3
+14 dnf5daemon-server                       2026-11-05 08:00:11 E              95
+13 dnf rm -y firefox                       2026-11-05 07:31:42 E              12
+12 dnf5daemon-server                       2026-11-05 07:30:11 I               5
+11 dnf in -y gnome-software                2026-11-05 07:27:47 I               9
+10 dnf in -y gnome-tweaks                  2026-11-05 07:13:36 I               1
+ 9 dnf install -y lxappearance wdisplays   2026-11-05 07:12:24 I               7
+ 8 dnf rm Thunar                           2026-11-05 07:08:19 E              12
+ 7 dnf in nautilus                         2026-11-05 07:07:59 I              10
+ 6 /usr/bin/dnf5 remove --assumeyes xfce-p 2026-11-04 17:06:18 E               1
+ 5 dnf5 remove --assumeyes foot            2026-11-04 16:57:44 E               1
+ 4 dnf5 install --assumeyes NetworkManager 2026-11-04 16:57:43 I               2
+ 3 /usr/bin/dnf5 install --assumeyes kitty 2026-11-04 16:54:26 I, U          181
+ 2 dnf5 --config /kiwi_dnf5.config -y --di 2026-10-28 20:29:31 I            1264
+ 1 dnf5 --config /builddir/result/image/bu 2026-10-28 20:26:34 I             284

@@ -1,0 +1,6 @@
+=== state wiped, running the script from scratch ===
+
+The configuration is not complete:
+  - WARPGATE_EXTERNAL_PORT has to be a port number between 1 and 65535, not 'MyAuthGroup'
+
+Fill the empty values in .env, then run ./configure.py again to check it.

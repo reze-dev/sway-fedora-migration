@@ -1,0 +1,120 @@
+=== awww.service ===
+[Unit]
+Description=An Answer to your Wayland Wallpaper Woes
+Documentation=man:awww-daemon(1)
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/awww-daemon
+ExecStartPost=%h/.local/bin/sway-set-wallpaper
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target
+=== cliphist.service ===
+[Unit]
+Description=Clipboard history watcher
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/wl-paste --watch /usr/bin/cliphist store
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
+=== copyq.service ===
+[Unit]
+Description=CopyQ clipboard manager
+PartOf=graphical-session.target
+After=graphical-session.target
+
+
+[Service]
+Environment=YDOTOOL_SOCKET=/run/ydotoold.sock
+Environment=QT_QPA_PLATFORM=wayland
+Environment=QT_QPA_PLATFORMTHEME=qt6ct
+ExecStart=/usr/bin/copyq
+ExecStartPost=/usr/bin/copyq eval "loadTheme('%h/.config/copyq/themes/PrussianGreen.ini'); iconColor('#368582')"
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target
+=== isled.service ===
+[Unit]
+Description=Dynamic Island Shell session daemon
+After=graphical-session-pre.target
+Wants=graphical-session-pre.target
+
+[Service]
+Type=simple
+ExecStart=/home/asuna/Projects/dynamic-island/core/target/debug/isled
+Restart=on-failure
+RestartSec=2
+
+RuntimeDirectory=isled
+
+# The compositor adapter and the notification bus both read these. They are
+# already in the systemd user manager, so ImportEnvironment is enough; if the
+# compositor reports Unknown this is the first thing to check.
+ImportEnvironment=WAYLAND_DISPLAY XDG_RUNTIME_DIR XDG_SESSION_TYPE NIRI_SOCKET HYPRLAND_INSTANCE_SIGNATURE DBUS_SESSION_BUS_ADDRESS
+
+[Install]
+WantedBy=graphical-session.target
+=== quickshell.service ===
+[Unit]
+Description=Dynamic Island Shell UI
+Requires=isled.service
+After=isled.service
+
+[Service]
+Type=simple
+ExecStart=/nix/store/p4fqvcdsgq2rds0f1k3gwqp7k50vfz8r-quickshell-0.3.2/bin/quickshell -p /home/asuna/Projects/dynamic-island/ui
+Restart=on-failure
+RestartSec=2
+
+Environment=QT_QPA_PLATFORM=wayland
+Environment=EGL_PLATFORM=wayland
+
+# Fedora-with-Nix quirk: the Nix-packaged quickshell ships its own libEGL
+# but no Mesa vendor stack, so bare launches fail with
+# "EGL not available" / "Failed to initialize graphics backend for OpenGL".
+# `just install-units` appends LD_LIBRARY_PATH + __GLVND_LIBRARY_PATH lines
+# pointing glvnd at the Nix Mesa build for those machines.
+
+# The compositor adapter and the notification bus both read these. They are
+# already in the systemd user manager, so ImportEnvironment is enough; if the
+# compositor reports Unknown this is the first thing to check.
+ImportEnvironment=WAYLAND_DISPLAY XDG_RUNTIME_DIR XDG_SESSION_TYPE NIRI_SOCKET HYPRLAND_INSTANCE_SIGNATURE DBUS_SESSION_BUS_ADDRESS
+
+Environment=LD_LIBRARY_PATH=/nix/store/jg8f97fhfmkpccrm3lsxlavkivpjbs72-mesa-26.2.5/lib:/nix/store/wwfxbskbriy9w5cyabx4z2sdak6n6jvs-libglvnd-1.7.0/lib
+Environment=__GLVND_LIBRARY_PATH=/nix/store/jg8f97fhfmkpccrm3lsxlavkivpjbs72-mesa-26.2.5/lib/libEGL_mesa.so
+Environment=__GLX_VENDOR_LIBRARY_NAME=mesa
+[Install]
+WantedBy=graphical-session.target
+=== xsettingsd.service ===
+[Unit]
+Description=XSettings daemon for GTK applications
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/xsettingsd --config=%h/.config/xsettingsd/xsettingsd.conf
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
+=== graphical-session.target.wants ===
+total 8
+drwxr-xr-x. 2 asuna asuna 4096 Nov 12 17:04 .
+drwxr-xr-x. 3 asuna asuna 4096 Nov 12 17:05 ..
+lrwxrwxrwx. 1 asuna asuna   45 Nov 12 17:04 awww.service -> /home/asuna/.config/systemd/user/awww.service
+lrwxrwxrwx. 1 asuna asuna   46 Nov  5 18:38 copyq.service -> /home/asuna/.config/systemd/user/copyq.service
+lrwxrwxrwx. 1 asuna asuna   34 Nov  4 22:39 mako.service -> /usr/lib/systemd/user/mako.service
+lrwxrwxrwx. 1 asuna asuna   36 Nov  6 15:29 waybar.service -> /usr/lib/systemd/user/waybar.service
+lrwxrwxrwx. 1 asuna asuna   51 Nov  4 22:39 xsettingsd.service -> /home/asuna/.config/systemd/user/xsettingsd.service

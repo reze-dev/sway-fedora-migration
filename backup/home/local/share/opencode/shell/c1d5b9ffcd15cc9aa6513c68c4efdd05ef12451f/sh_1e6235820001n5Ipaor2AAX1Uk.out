@@ -1,0 +1,50 @@
+        26  ./capture-date.txt
+      4642  ./capture.log
+       116  ./capture-meta.txt
+    430423  ./checksums.sha256
+   9436808  ./home/cargo/bin/rustup
+       300  ./home/cargo/env
+       185  ./home/cargo/env.fish
+        48  ./home/cargo/env.nu
+    110592  ./home/cargo/.global-cache
+         0  ./home/cargo/.package-cache
+         0  ./home/cargo/.package-cache-mutate
+         0  ./home/codex/app-server-control/app-server-startup.lock
+         0  ./home/codex/app-server-daemon/daemon.lock
+       430  ./home/codex/app-server-daemon/daemon.pid
+         0  ./home/codex/app-server-daemon/daemon.pid.lock
+       465  ./home/codex/app-server-daemon/daemon.stderr.log
+       588  ./home/codex/app-server-daemon/daemon.stderr.log.previous
+       146  ./home/codex/app-server-daemon/daemon-updater.pid
+         0  ./home/codex/app-server-daemon/daemon-updater.pid.lock
+       407  ./home/codex/app-server-daemon/daemon-updater.stderr.log
+      2493  ./home/codex/app-server-daemon/daemon-updater.stderr.log.previous
+      4124  ./home/codex/auth.json
+         0  ./home/codex/auth.lock
+       117  ./home/codex/config.toml
+        36  ./home/codex/installation_id
+    177470  ./home/codex/models_cache.json
+         3  ./home/codex/.sandbox_migration
+       266  ./home/codex/session_index.jsonl
+         0  ./home/codex/session_index.jsonl.lock
+      7760  ./home/codex/shell_snapshots/01a1a59f-5d94-7fc0-8cbe-c2b30f5fe839.1793869744003828967.sh
+      7870  ./home/codex/shell_snapshots/01a1a59f-5d94-7fc0-8cbe-c2b30f5fe839.1793877652481818217.sh
+      7868  ./home/codex/shell_snapshots/01a1a59f-5d94-7fc0-8cbe-c2b30f5fe839.1793885840143788809.sh
+      7891  ./home/codex/shell_snapshots/01a1a59f-5d94-7fc0-8cbe-c2b30f5fe839.1793953178945327662.sh
+      8042  ./home/codex/shell_snapshots/01a1a59f-5d94-7fc0-8cbe-c2b30f5fe839.1793953454195011787.sh
+      7892  ./home/codex/shell_snapshots/01a1b0af-8409-7122-b63d-7c0322111811.1793966284207813077.sh
+        17  ./home/codex/skills/.system/.codex-system-skills.marker
+       275  ./home/codex/skills/.system/imagegen/agents/openai.yaml
+      1711  ./home/codex/skills/.system/imagegen/assets/imagegen.png
+      2889  ./home/codex/skills/.system/imagegen/assets/imagegen-small.svg
+     10776  ./home/codex/skills/.system/imagegen/LICENSE.txt
+...
+=== checksums head ===
+c7ce56134b69016b2318954671bda9b33149d4f9eee338ef35407fdb417f4f59  ./capture-date.txt
+58f9f00ae3d9e708db77c7ca18b3d9df6a1dadcfbcfdd54f092c613e9901bb23  ./capture.log
+0d3ae37086f9c681137e64cb80804c0d8df7f898c218f3bc3a1a3c0a27d00618  ./capture-meta.txt
+ade021a709e1eb4becb1bd3da52dbb99cf96e51d685c121f67051570a02220fb  ./checksums.sha256
+33e34f3cdfc05fa2f8e1063eea893d2fac4653d47ffb62008dba0632e8f00f66  ./home/cargo/bin/rustup
+  2903 checksums.sha256
+  2898 MANIFEST.txt
+  5801 total

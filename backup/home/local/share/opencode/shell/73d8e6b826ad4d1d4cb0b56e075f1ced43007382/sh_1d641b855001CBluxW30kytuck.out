@@ -1,0 +1,9 @@
+=== interactive run ===
+No .env yet, starting from the example.
+  VPN_CLIENT (VPN client to use: openconnect for a corporate gateway, openvpn for an OpenVPN server) [openconnect]:   OCP_BASTION_IP (Address of the corporate resource reached through the tunnel):   WARPGATE_EXTERNAL_HOST (Bare hostname warpgate is reached on, no scheme and no port) [127.0.0.1]: 
+The configuration is not complete:
+  - VPN_CLIENT has to be openconnect or openvpn, not 'myuser'
+  - OCP_BASTION_IP has to be an IPv4 address, not 'MyAuthGroup'
+  - WARPGATE_EXTERNAL_HOST has to be a bare hostname without a scheme or a port, not 'https://vpn.example.com/'
+
+Fill the empty values in .env, then run ./configure.py again to check it.

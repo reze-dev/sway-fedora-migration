@@ -1,0 +1,6 @@
+[detached HEAD 1c84d69] Make the credentials before the settings are checked
+ 1 file changed, 21 insertions(+), 18 deletions(-)
+Successfully rebased and updated refs/heads/main.
+
+=== authors now ===
+reze-dev <25588579+reze-dev@users.noreply.github.com>

@@ -1,0 +1,65 @@
+02:28:04 === capture start: 2026-11-17T02:28:04+05:30 ===
+02:28:04 repo: /home/asuna/sway-fedora-migration
+02:28:04 --- home dotfiles ---
+02:28:04 copy: /home/asuna/.tmux -> /home/asuna/sway-fedora-migration/backup/home/dotfiles/.tmux
+02:28:04 copy: /home/asuna/.themes -> /home/asuna/sway-fedora-migration/backup/home/dotfiles/.themes
+02:28:04 copy: /home/asuna/.config/kdeglobals -> /home/asuna/sway-fedora-migration/backup/home/dotfiles/.config_kdeglobals
+02:28:04 copy: /home/asuna/.local/share/zoxide -> /home/asuna/sway-fedora-migration/backup/home/dotfiles/.local_share_zoxide
+02:28:04 dotfiles copied: 55 files
+02:28:04 --- ~/.config ---
+02:28:04 copy: /home/asuna/.config -> /home/asuna/sway-fedora-migration/backup/home/config
+02:28:05 --- ~/.local ---
+02:28:05 copy: /home/asuna/.local/bin -> /home/asuna/sway-fedora-migration/backup/home/local/bin
+02:28:05 copy: /home/asuna/.local/share -> /home/asuna/sway-fedora-migration/backup/home/local/share
+02:28:05 copy: /home/asuna/.local/state -> /home/asuna/sway-fedora-migration/backup/home/local/state
+02:28:05 --- toolchains and app data ---
+02:28:05 copy: /home/asuna/.cargo -> /home/asuna/sway-fedora-migration/backup/home/cargo
+02:28:05 copy: /home/asuna/.rustup -> /home/asuna/sway-fedora-migration/backup/home/rustup
+02:28:05 copy: /home/asuna/.var/app -> /home/asuna/sway-fedora-migration/backup/home/var-app
+02:28:05 copy: /home/asuna/.npm -> /home/asuna/sway-fedora-migration/backup/home/npm
+02:28:05 copy: /home/asuna/.codex -> /home/asuna/sway-fedora-migration/backup/home/codex
+02:28:05 copy: /home/asuna/.opencode -> /home/asuna/sway-fedora-migration/backup/home/opencode
+02:28:05 copy: /home/asuna/Pictures -> /home/asuna/sway-fedora-migration/backup/home/Pictures
+02:28:05 copy: /home/asuna/Documents -> /home/asuna/sway-fedora-migration/backup/home/Documents
+02:28:05 --- system files ---
+02:28:05 copy: /etc/sway -> /home/asuna/sway-fedora-migration/backup/system/etc/sway
+02:28:05 skip (missing): /etc/environment.d
+02:28:05 skip (missing): /etc/xdg/xdg-desktop-portal-wlr
+02:28:05 skip (missing): /etc/xdg/swayr
+02:28:05 skip (missing): /etc/xdg/xdg-ubuntusway
+02:28:05 copy: /etc/systemd/user -> /home/asuna/sway-fedora-migration/backup/system/etc/systemd/user
+02:28:05 copy: /etc/systemd/system -> /home/asuna/sway-fedora-migration/backup/system/etc/systemd/system
+02:28:05 copy: /etc/modprobe.d -> /home/asuna/sway-fedora-migration/backup/system/etc/modprobe.d
+02:28:06 copy: /etc/dracut.conf.d -> /home/asuna/sway-fedora-migration/backup/system/etc/dracut.conf.d
+02:28:06 copy: /etc/sysctl.d -> /home/asuna/sway-fedora-migration/backup/system/etc/sysctl.d
+02:28:06 copy: /etc/sddm.conf.d -> /home/asuna/sway-fedora-migration/backup/system/etc/sddm.conf.d
+02:28:06 copy: /etc/sddm.conf -> /home/asuna/sway-fedora-migration/backup/system/etc/sddm.conf
+02:28:06 copy: /etc/default/grub -> /home/asuna/sway-fedora-migration/backup/system/etc/default/grub
+02:28:06 copy: /etc/fstab -> /home/asuna/sway-fedora-migration/backup/system/etc/fstab
+02:28:06 copy: /etc/os-release -> /home/asuna/sway-fedora-migration/backup/system/etc/os-release
+02:28:06 copy: /etc/hostname -> /home/asuna/sway-fedora-migration/backup/system/etc/hostname
+02:28:06 copy: /etc/os-release -> /home/asuna/sway-fedora-migration/backup/system/etc/os-release
+02:28:06 copy: /etc/environment -> /home/asuna/sway-fedora-migration/backup/system/etc/environment
+02:28:06 copy: /etc/pam.d/sddm -> /home/asuna/sway-fedora-migration/backup/system/etc/pam.d/sddm
+02:28:06 copy: /etc/udev/rules.d -> /home/asuna/sway-fedora-migration/backup/system/etc/udev/rules.d
+02:28:06 copy: /etc/flatpak -> /home/asuna/sway-fedora-migration/backup/system/etc/flatpak
+02:28:06 copy: /usr/share/sddm/themes/ronin -> /home/asuna/sway-fedora-migration/backup/system/usr/share/sddm/themes/ronin
+02:28:06 copy: /usr/share/sddm/themes/03-sway-fedora -> /home/asuna/sway-fedora-migration/backup/system/usr/share/sddm/themes/03-sway-fedora
+02:28:06 --- inventory ---
+02:28:10 --- archives ---
+02:28:10 archive: fonts
+tar: Removing leading `/' from member names
+02:28:11 archive: nvim-plugins-and-mason
+tar: Removing leading `/' from member names
+02:28:13 archive: tmux-plugins
+tar: Removing leading `/' from member names
+02:28:13 archive: mozilla-firefox-profile
+tar: Removing leading `/' from member names
+02:28:14 archive: mozilla-extensions
+tar: Removing leading `/' from member names
+02:28:14 archive: zen-browser-profile
+tar: Removing leading `/' from member names
+02:28:14 --- manifest ---
+02:28:15 files: 2155
+02:28:15 size:  885M
+02:28:15 === capture done: 2026-11-17T02:28:15+05:30 ===

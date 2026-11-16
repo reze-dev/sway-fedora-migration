@@ -1,0 +1,19 @@
++ SWAY_EXTRA_ARGS=
++ SWAY_COMMAND=/usr/bin/sway
++ '[' -f /etc/sway/environment ']'
++ set -o allexport
++ . /etc/sway/environment
+++ _JAVA_AWT_WM_NONREPARENTING=1
++ set +o allexport
++ '[' -f /home/asuna/.config/sway/environment ']'
++ set -o allexport
++ . /home/asuna/.config/sway/environment
+++ QT_QPA_PLATFORM='wayland;xcb'
+++ QT_QPA_PLATFORMTHEME=qt6ct
+++ XCURSOR_THEME=Bibata-Modern-Ice
+++ XCURSOR_SIZE=24
+++ _JAVA_AWT_WM_NONREPARENTING=1
++ set +o allexport
++ _SWAY_EXTRA_ARGS=
++ unset SWAY_EXTRA_ARGS
++ echo 'would exec:  '

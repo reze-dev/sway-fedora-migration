@@ -1,0 +1,4 @@
+658a2a1 Keep swaybg installed but unused
+0c40767 Satisfy the swaybg dependency with a provides-only shim
+6d879dc Install awww from Terra and remove swaybg
+7415efc Replace swaybg with awww and switch to the NVIDIA proprietary driver

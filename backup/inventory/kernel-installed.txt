@@ -1,0 +1,23 @@
+# captured 2026-11-17T02:28:10+05:30
+# command: bash -c rpm -qa 'kernel*' | sort
+kernel-7.2.11-300.fc45.x86_64
+kernel-7.2.15-300.fc45.x86_64
+kernel-7.3.3-300.fc45.x86_64
+kernel-core-7.2.11-300.fc45.x86_64
+kernel-core-7.2.15-300.fc45.x86_64
+kernel-core-7.3.3-300.fc45.x86_64
+kernel-devel-7.3.3-300.fc45.x86_64
+kernel-devel-matched-7.3.3-300.fc45.x86_64
+kernel-headers-7.3.3-300.fc45.x86_64
+kernel-modules-7.2.11-300.fc45.x86_64
+kernel-modules-7.2.15-300.fc45.x86_64
+kernel-modules-7.3.3-300.fc45.x86_64
+kernel-modules-core-7.2.11-300.fc45.x86_64
+kernel-modules-core-7.2.15-300.fc45.x86_64
+kernel-modules-core-7.3.3-300.fc45.x86_64
+kernel-modules-extra-7.2.11-300.fc45.x86_64
+kernel-modules-extra-7.2.15-300.fc45.x86_64
+kernel-modules-extra-7.3.3-300.fc45.x86_64
+kernel-srpm-macros-1.0-30.fc45.noarch
+kernel-tools-7.3.3-300.fc45.x86_64
+kernel-tools-libs-7.3.3-300.fc45.x86_64

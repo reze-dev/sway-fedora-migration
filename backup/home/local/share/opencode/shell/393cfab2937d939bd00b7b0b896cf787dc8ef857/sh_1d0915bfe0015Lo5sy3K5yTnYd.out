@@ -1,0 +1,3 @@
+dd27f76 Suppress the proprietary GPU notice with --unsupported-gpu
+658a2a1 Keep swaybg installed but unused
+0c40767 Satisfy the swaybg dependency with a provides-only shim

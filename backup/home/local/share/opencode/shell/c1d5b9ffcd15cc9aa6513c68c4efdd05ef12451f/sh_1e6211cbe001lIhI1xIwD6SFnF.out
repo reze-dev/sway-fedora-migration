@@ -1,0 +1,21 @@
+251M	.config
+4.9G	.local
+16K	.themes
+289M	.cargo
+1.6G	.rustup
+1.2G	.var
+20K	.ssh
+7.5G	.BitwigStudio
+32K	Bitwig Studio
+2.3G	.codex
+240M	.opencode
+656K	.tmux
+54M	.npm
+159M	go
+2.5M	Projects
+4.0K	Documents
+23M	Pictures
+--- df ---
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p6  196G   55G  131G  30% /
+tmpfs           7.6G   29M  7.5G   1% /tmp

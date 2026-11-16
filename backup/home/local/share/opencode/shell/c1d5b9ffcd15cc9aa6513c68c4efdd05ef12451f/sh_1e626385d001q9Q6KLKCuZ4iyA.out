@@ -1,0 +1,45 @@
+syntax OK
+== plain files ==
+./capture-date.txt: FAILED
+./capture.log: FAILED
+./home/config/tmux/plugins/tmux-battery/.git/index: FAILED
+./home/config/tmux/plugins/tmux-continuum/.git/index: FAILED
+./home/config/tmux/plugins/tmux-cpu/.git/index: FAILED
+./home/config/tmux/plugins/tmux-online-status/.git/index: FAILED
+./home/config/tmux/plugins/tmux-powerkit/.git/index: FAILED
+./home/config/tmux/plugins/tmux-powerkit/.git/modules/tests/test_helper/bats-assert/index: FAILED
+./home/config/tmux/plugins/tmux-powerkit/.git/modules/tests/test_helper/bats-support/index: FAILED
+./home/config/tmux/plugins/tmux-powerkit/.git/modules/wiki/index: FAILED
+./home/config/tmux/plugins/tmux-resurrect/.git/index: FAILED
+./home/config/tmux/plugins/tmux-resurrect/.git/modules/lib/tmux-test/index: FAILED
+./home/config/tmux/plugins/tmux-yank/.git/index: FAILED
+./home/config/tmux/plugins/vim-tmux-navigator/.git/index: FAILED
+./home/dotfiles/.tmux/plugins/tpm/.git/index: FAILED
+./home/local/share/tuf-control/.git/index: FAILED
+sha256sum: fonts.tar.zst: No such file or directory
+fonts.tar.zst: FAILED open or read
+sha256sum: mozilla-extensions.tar.zst: No such file or directory
+mozilla-extensions.tar.zst: FAILED open or read
+sha256sum: mozilla-firefox-profile.tar.zst: No such file or directory
+mozilla-firefox-profile.tar.zst: FAILED open or read
+sha256sum: nvim-plugins-and-mason.tar.zst: No such file or directory
+nvim-plugins-and-mason.tar.zst: FAILED open or read
+sha256sum: tmux-plugins.tar.zst: No such file or directory
+tmux-plugins.tar.zst: FAILED open or read
+sha256sum: zen-browser-profile.tar.zst: No such file or directory
+zen-browser-profile.tar.zst: FAILED open or read
+sha256sum: WARNING: 6 listed files could not be read
+sha256sum: WARNING: 16 computed checksums did NOT match
+FAILED: some files do not match
+== archives ==
+FAIL archives/fonts.tar.zst
+FAIL archives/mozilla-extensions.tar.zst
+FAIL archives/mozilla-firefox-profile.tar.zst
+FAIL archives/nvim-plugins-and-mason.tar.zst
+FAIL archives/tmux-plugins.tar.zst
+FAIL archives/zen-browser-profile.tar.zst
+== summary ==
+files: 2738
+size:  913M
+captured: 2026-11-17T02:25:04+05:30
+BACKUP HAS PROBLEMS

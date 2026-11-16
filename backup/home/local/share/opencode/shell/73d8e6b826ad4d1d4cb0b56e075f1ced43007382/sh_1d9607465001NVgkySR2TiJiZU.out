@@ -1,0 +1,50 @@
+=== what the clone now has ===
+  -rwxr-xr-x.  1 asuna  asuna  36251 Nov 14 14:55 configure.py
+  drwxr-xr-x.  3 525287 525287   120 Nov 14 14:55 data
+  -rw-r--r--.  1 asuna  asuna    524 Nov 14 14:55 Dockerfile
+  -rw-r--r--.  1 asuna  asuna   1599 Nov 14 14:55 Dockerfile.firefox
+  -rw-------.  1 asuna  asuna   2126 Nov 14 14:55 .env
+  -rw-r--r--.  1 asuna  asuna   1524 Nov 14 14:55 .env.example
+  -rwxr-xr-x.  1 asuna  asuna   2503 Nov 14 14:55 firefox-entrypoint.sh
+  drwxr-xr-x.  7 asuna  asuna    240 Nov 14 14:55 .git
+  -rw-r--r--.  1 asuna  asuna    165 Nov 14 14:55 .gitignore
+  -rw-r--r--.  1 asuna  asuna   4564 Nov 14 14:55 justfile
+  -rw-r--r--.  1 asuna  asuna   1062 Nov 14 14:55 LICENSE
+  -rw-r--r--.  1 asuna  asuna   4707 Nov 14 14:55 podman-compose.test.yml
+  -rw-r--r--.  1 asuna  asuna   3556 Nov 14 14:55 podman-compose.yml
+  -rw-r--r--.  1 asuna  asuna  23117 Nov 14 14:55 README.md
+  drwx------.  2 asuna  asuna    140 Nov 14 14:55 secrets
+  drwxr-xr-x.  2 asuna  asuna    120 Nov 14 14:55 test
+  -rwxr-xr-x.  1 asuna  asuna   5845 Nov 14 14:55 verify.sh
+  -rw-r--r--.  1 asuna  asuna   4436 Nov 14 14:55 vpn_entrypoint.sh
+
+  -rw-------. 1 asuna asuna  16 Nov 14 14:55 admin_password
+  -rw-------. 1 asuna asuna  65 Nov 14 14:55 admin_password.applied
+  -rw-------. 1 asuna asuna  20 Nov 14 14:55 vnc_password
+  -rw-------. 1 asuna asuna  20 Nov 14 14:55 vnc_viewonly_password
+  -rw-------. 1 asuna asuna   6 Nov 14 14:55 vpn_password
+
+=== step 4: the test harness works from the clone ===
+warpgate-ovpn-server
+Error: no container with name or ID "warpgate-vpn-test" found: no such container
+
+  [31mFAIL[0m  container warpgate-vpn-test          missing (wanted running)
+  [31mFAIL[0m  container warpgate-warpgate-test     missing (wanted running)
+  [31mFAIL[0m  container warpgate-firefox-test      missing (wanted running)
+  [31mFAIL[0m  vpn tunnel                            (wanted tun0)
+  [31mFAIL[0m  shared network namespace             none (wanted one namespace)
+  [31mFAIL[0m  corporate resource via the tunnel    no answer (wanted 200)
+  [32mok[0m    host has no tunnel                   0
+  [32mok[0m    host has no vpn routes               0
+  [32mok[0m    host still has internet              200
+  [31mFAIL[0m  browser runs as kasm-user            not running (wanted kasm-user)
+  [31mFAIL[0m  browser is not restarting            ? (wanted 0)
+  [31mFAIL[0m  vnc password is not the image default missing (wanted set)
+  [32mok[0m    web bastion answers                  401
+  [31mFAIL[0m  admin can log in                     401 (wanted 201)
+  [32mok[0m    ssh bastion answers                  test@127.0.0.1: Permission denied (publickey,password,keyboard-interactive).
+  [32mok[0m    vnc port                             open
+  [32mok[0m    no database errors                   0
+
+[31m[1m of 10 checks failed[0m
+

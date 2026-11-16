@@ -1,0 +1,20 @@
+{
+  "notes": [
+    "The IDs in this file are randomly generated UUIDs.",
+    "Determinate Systems uses these IDs to know how many people use our software and how to focus our limited resources for research and development.",
+    "The data here contains no personally identifiable information.",
+    "You can delete this file at any time to create new IDs.",
+    "",
+    "See our privacy policy: https://determinate.systems/policies/privacy",
+    "See our docs on telemetry: https://dtr.mn/telemetry"
+  ],
+  "body": {
+    "anonymous_distinct_id": "01a1bc70-3b7f-707c-997d-859a00b28a8b",
+    "distinct_id": null,
+    "device_id": "DIDS-DEV-01a1bc70-3b7f-707c-997d-859b5112ac99",
+    "groups": {},
+    "checkin": {
+      "options": {}
+    }
+  }
+}

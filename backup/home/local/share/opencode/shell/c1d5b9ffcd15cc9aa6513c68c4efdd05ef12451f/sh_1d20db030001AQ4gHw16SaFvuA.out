@@ -1,0 +1,5 @@
+=== policy modules available ===
+contexts
+container-selinux-2.251.0-1.fc45.noarch
+selinux-policy-45.24-1.fc45.noarch
+selinux-policy-targeted-45.24-1.fc45.noarch

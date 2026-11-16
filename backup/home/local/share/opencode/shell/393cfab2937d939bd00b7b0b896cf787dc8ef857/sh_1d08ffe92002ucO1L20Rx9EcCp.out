@@ -1,0 +1,4 @@
+    PID    PPID CMD
+   1654    1535 swaynag --type error --message Proprietary GPU drivers are not supported by sway. Do not report issues. --detailed-message
+=== swaynag cmdline ===
+swaynag --type error --message Proprietary GPU drivers are not supported by sway. Do not report issues. --detailed-message 

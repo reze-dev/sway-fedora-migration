@@ -1,0 +1,25 @@
+cp: cannot overwrite directory './secrets/vnc_password' with non-directory '/home/asuna/Projects/warpgate/secrets/vnc_password'
+cp: cannot overwrite directory './secrets/vnc_viewonly_password' with non-directory '/home/asuna/Projects/warpgate/secrets/vnc_viewonly_password'
+warpgate-warpgate-test
+warpgate-firefox-test
+
+  [32mok[0m    container warpgate-vpn-test          running
+  [31mFAIL[0m  container warpgate-warpgate-test     stopped (wanted running)
+  [31mFAIL[0m  container warpgate-firefox-test      stopped (wanted running)
+  [32mok[0m    vpn tunnel                           tun0             UNKNOWN        10.8.0.2/24 fe80::fa93:cde2:fee1:428b/64 
+  [31mFAIL[0m  shared network namespace              net:[4026532859] (wanted one namespace)
+  [31mFAIL[0m  corporate resource via the tunnel    no answer (wanted 200)
+  [32mok[0m    host has no tunnel                   0
+  [32mok[0m    host has no vpn routes               0
+  [32mok[0m    host still has internet              200
+  [31mFAIL[0m  browser runs as kasm-user            not running (wanted kasm-user)
+  [32mok[0m    browser is not restarting            390
+  [31mFAIL[0m  vnc password is not the image default missing (wanted set)
+  [31mFAIL[0m  web bastion answers                  000 (wanted 401)
+  [31mFAIL[0m  admin can log in                     000 (wanted 201)
+  [31mFAIL[0m  ssh bastion answers                  Connection reset by 127.0.0.1 port 2222 (wanted Permission denied)
+  [32mok[0m    vnc port                             open
+  [32mok[0m    no database errors                   0
+
+[31m[1m of 9 checks failed[0m
+

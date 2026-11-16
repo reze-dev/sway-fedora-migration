@@ -1,0 +1,49 @@
+            - name: IFMS_BASE_URL
+              value: https://sitifms.odisha.gov.in
+            - name: IFMS_BOD_PENDING_DATA_URI
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/bill-save/fetch-bod-pending-data
+            - name: IFMS_FORWARD_TO_TREASURY
+              value: https://sitifms.odisha.gov.in/api/ebill-coordinator-service/bill-common/forwardToTreasury
+            - name: AUTH_URI
+              value: https://sitifms.odisha.gov.in/securepass/oauth/token
+            - name: IFMS_ADVICE_FORWARD_PENDING_DATA_URI
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/advice-list/get-approved-advice-ids
+            - name: IFMS_FORWARD_TO_CEPC
+              value: https://sitifms.odisha.gov.in/api/ebill-coordinator-service/treasury/advice/forward-to-cepc
+            - name: IFMS_ADVICE_FORWARD_PENDING_EBILL_DATA_URI
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/advice-list/get-approved-advice-ids
+            - name: IFMS_ADVICE_FORWARD_PENDING_PL_DATA_URI
+              value: https://sitifms.odisha.gov.in/api/pl-service/api-advice/get-approved-advice-ids
+            - name: CEPC_FILE_GEN_RETRIEVE_URI
+              value: https://sitifms.odisha.gov.in/api/cepc-service/cepc-file-generate/token-benfCount
+            - name: CEPC_FILE_GEN_PROCESSING_URI
+              value: https://sitifms.odisha.gov.in/api/cepc-service/cepc-file-generate/generate-EP-File
+            - name: CEPC_GET_PAY_MODULE_URI
+              value: https://sitifms.odisha.gov.in/api/cepc-service/cepc-file-generate/getPayModuledata
+            - name: CEPC_FILE_GEN_MAX_ALLOWED_BENF_COUNT
+              value: "50000"
+            # HRMS config
+            - name: IFMS_VALIDATE_JSON_SCHEMA_URI
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/api/hrms/validate-Json-Schema
+            - name: IFMS_ACK_JSON_SCHEMA_URI
+              value: https://sitifms.odisha.gov.in/api/ebill-coordinator-service/hrms/save
+            - name: IFMS_GET_JSON_SCHEMA_URI
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/api/hrms/outbound-integration-genJson
+            - name: IFMS_GET_STS_OBJ_URI
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/api/hrms/generate-Outbound-After-BOD
+            - name: ifms.get.xmljson.uri
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/api/hrms/convert-bill-xml
+            # BULK DIS config
+            - name: ifms.bulk.dis.validate.json.schema.uri
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/bulk-disbursement/epb-validate-file
+            - name: ifms.ack.bulk.dis.xml.schema.uri
+              value: https://sitifms.odisha.gov.in/api/ebill-coordinator-service/sanction/commonSaveForBulkDisbursement
+            - name: ifms.ack.bulk.dis.bill.gen.uri
+              value: https://sitifms.odisha.gov.in/api/ebill-coordinator-service/bulk-disb/saveAndGenerateAckXml
+            - name: ifms.ack.bulk.dis.status.update.uri
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/bulk-disbursement/outbound-integration-bulkdis
+            - name: ifms.ack.bulk.dis.sts.obj.status.update.uri
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/bulk-disbursement/after-outbound-integration-bulkdis
+            - name: HRMS_CERTIFICATE_VERIFICATION
+              value: "N"
+ 

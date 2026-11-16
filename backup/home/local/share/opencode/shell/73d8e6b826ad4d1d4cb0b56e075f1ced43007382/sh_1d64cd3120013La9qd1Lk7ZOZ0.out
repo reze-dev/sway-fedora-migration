@@ -1,0 +1,33 @@
+=== final file list ===
+-rwxr-xr-x. 1 asuna  asuna  35490 Nov 14 00:24 configure.py
+drwxr-xr-x. 3 525287 525287  4096 Nov 14 00:24 data
+-rw-r--r--. 1 asuna  asuna    505 Nov 13 05:25 Dockerfile
+-rw-r--r--. 1 asuna  asuna   1599 Nov 13 06:51 Dockerfile.firefox
+-rw-------. 1 asuna  asuna   2032 Nov 14 00:24 .env
+-rw-r--r--. 1 asuna  asuna   1421 Nov 14 00:24 .env.example
+-rwxr-xr-x. 1 asuna  asuna   1966 Nov 13 23:28 firefox-entrypoint.sh
+-rw-r--r--. 1 asuna  asuna    163 Nov 13 23:31 .gitignore
+-rw-r--r--. 1 asuna  asuna   4046 Nov 14 00:20 podman-compose.test.yml
+-rw-r--r--. 1 asuna  asuna   3536 Nov 14 00:20 podman-compose.yml
+-rw-r--r--. 1 asuna  asuna  14453 Nov 14 00:26 README.md
+drwx------. 2 asuna  asuna   4096 Nov 14 00:24 secrets
+drwxr-xr-x. 2 asuna  asuna   4096 Nov 13 05:26 test
+-rw-r--r--. 1 asuna  asuna   2924 Nov 14 00:12 vpn_entrypoint.sh
+
+=== secrets ===
+-rw-------. 1 asuna asuna   20 Nov 14 00:23 admin_password
+-rw-------. 1 asuna asuna   65 Nov 14 00:24 admin_password.applied
+-rw-------. 1 asuna asuna   20 Nov 14 00:23 vnc_password
+-rw-------. 1 asuna asuna   20 Nov 14 00:23 vnc_viewonly_password
+-rw-------. 1 asuna asuna   11 Nov 13 11:34 vpn_password
+
+=== gitignore ===
+# The settings and the credentials never go into version control.
+.env
+.env.local
+secrets/
+data/
+
+# Python leftovers from running configure.py.
+__pycache__/
+*.pyc

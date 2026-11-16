@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Rebuild the initramfs so that the NVIDIA proprietary modules are included.
+#
+# RPM Fusion ships /usr/lib/dracut/dracut.conf.d/99-nvidia-dracut.conf, which
+# omits the NVIDIA modules from the ramdisk so that kernel updates do not
+# require a ramdisk rebuild. That is fine while nouveau stays in charge of
+# the display, but here nouveau is blacklisted and the proprietary driver is
+# the only driver for the discrete GPU, so the modules must be present early
+# enough for the device to be claimed.
+#
+# The dracut configuration file does not reliably override the shipped
+# omit_drivers setting, so the modules are requested on the command line.
+set -euo pipefail
+
+kernels=()
+while read -r -d '' dir; do
+    ver="${dir#/lib/modules/}"
+    kernels+=("$ver")
+done < <(find /lib/modules -maxdepth 1 -mindepth 1 -type d -print0)
+
+for kver in "${kernels[@]}"; do
+    if [[ ! -d "/lib/modules/$kver/extra/nvidia" ]]; then
+        echo "skipping $kver: no NVIDIA module built" >&2
+        continue
+    fi
+    echo "rebuilding initramfs for $kver"
+    dracut --force --kver "$kver" --add-drivers "nvidia nvidia-modeset nvidia-drm nvidia-uvm"
+done

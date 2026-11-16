@@ -1,0 +1,10 @@
+# captured 2026-11-17T02:28:10+05:30
+# command: lsusb
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 001 Device 002: ID 0a05:7211 Unknown Manufacturer hub
+Bus 001 Device 003: ID 32c2:0018 HS6209 2.4G Wireless Receiver
+Bus 001 Device 004: ID 046d:c534 Logitech, Inc. Nano Receiver
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 003 Device 002: ID 13d3:3548 IMC Networks Bluetooth Radio
+Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub

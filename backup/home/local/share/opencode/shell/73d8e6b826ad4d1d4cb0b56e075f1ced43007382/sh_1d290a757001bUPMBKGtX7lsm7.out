@@ -1,0 +1,12 @@
+POST https://vpn.osdc.gov.in/
+Connected to 164.100.141.21:443
+SSL negotiation with vpn.osdc.gov.in
+Connected to HTTPS on vpn.osdc.gov.in with ciphersuite (TLS1.2)-(ECDHE-SECP256R1)-(RSA-SHA512)-(AES-256-GCM)
+XML POST enabled
+Please enter your username and password.
+POST https://vpn.osdc.gov.in/
+XML POST enabled
+Please enter your username and password.
+Username:***
+User input required in non-interactive mode
+Failed to complete authentication

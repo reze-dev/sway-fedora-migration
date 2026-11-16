@@ -1,0 +1,20 @@
+# captured 2026-11-17T02:28:09+05:30
+# command: bash -c systemctl --user list-unit-files --state=enabled
+UNIT FILE                      STATE   PRESET
+awww.service                   enabled disabled
+copyq.service                  enabled disabled
+dbus-broker.service            enabled enabled
+mako.service                   enabled disabled
+obex.service                   enabled enabled
+systemd-tmpfiles-setup.service enabled enabled
+waybar.service                 enabled disabled
+wireplumber.service            enabled enabled
+xdg-user-dirs.service          enabled enabled
+xsettingsd.service             enabled disabled
+dbus.socket                    enabled enabled
+pipewire-pulse.socket          enabled enabled
+pipewire.socket                enabled enabled
+grub-boot-success.timer        enabled enabled
+systemd-tmpfiles-clean.timer   enabled enabled
+
+15 unit files listed.

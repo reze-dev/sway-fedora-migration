@@ -1,0 +1,24 @@
+=== the .env the interactive run produced ===
+VPN_CLIENT=openconnect
+VPN_USERNAME=myuser
+VPN_AUTHGROUP=MyAuthGroup
+VPN_GATEWAY=https://vpn.example.com/
+VPN_CONFIG=
+OCP_BASTION_IP=10.99.99.99
+OCP_BASTION_PORT=443
+WARPGATE_EXTERNAL_HOST=127.0.0.1
+WARPGATE_EXTERNAL_PORT=
+WARPGATE_HTTP_PORT=8888
+WARPGATE_SSH_PORT=2222
+PUBLISH_SSH_PORT=2222
+PUBLISH_HTTP_PORT=8888
+PUBLISH_HTTPS_PORT=8443
+PUBLISH_VNC_PORT=6901
+BROWSER_HOSTNAME=warpgate-firefox
+
+=== secrets ===
+-rw-------. 1 asuna asuna   20 Nov 14 00:23 admin_password
+-rw-------. 1 asuna asuna   65 Nov 14 00:23 admin_password.applied
+-rw-------. 1 asuna asuna   20 Nov 14 00:23 vnc_password
+-rw-------. 1 asuna asuna   20 Nov 14 00:23 vnc_viewonly_password
+-rw-------. 1 asuna asuna    8 Nov 14 00:23 vpn_password

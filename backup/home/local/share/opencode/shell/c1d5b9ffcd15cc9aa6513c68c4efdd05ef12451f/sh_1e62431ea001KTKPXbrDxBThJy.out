@@ -1,0 +1,25 @@
+02:24:55 copy: /etc/sddm.conf.d -> /home/asuna/sway-fedora-migration/backup/system/etc/sddm.conf.d
+02:24:55 copy: /etc/sddm.conf -> /home/asuna/sway-fedora-migration/backup/system/etc/sddm.conf
+02:24:55 copy: /etc/default/grub -> /home/asuna/sway-fedora-migration/backup/system/etc/default/grub
+02:24:55 copy: /etc/fstab -> /home/asuna/sway-fedora-migration/backup/system/etc/fstab
+02:24:55 copy: /etc/os-release -> /home/asuna/sway-fedora-migration/backup/system/etc/os-release
+02:24:55 copy: /etc/hostname -> /home/asuna/sway-fedora-migration/backup/system/etc/hostname
+02:24:55 copy: /etc/os-release -> /home/asuna/sway-fedora-migration/backup/system/etc/os-release
+02:24:55 copy: /etc/environment -> /home/asuna/sway-fedora-migration/backup/system/etc/environment
+02:24:55 copy: /etc/pam.d/sddm -> /home/asuna/sway-fedora-migration/backup/system/etc/pam.d/sddm
+02:24:55 copy: /etc/udev/rules.d -> /home/asuna/sway-fedora-migration/backup/system/etc/udev/rules.d
+02:24:55 copy: /etc/flatpak -> /home/asuna/sway-fedora-migration/backup/system/etc/flatpak
+02:24:56 copy: /usr/share/sddm/themes/ronin -> /home/asuna/sway-fedora-migration/backup/system/usr/share/sddm/themes/ronin
+02:24:56 copy: /usr/share/sddm/themes/03-sway-fedora -> /home/asuna/sway-fedora-migration/backup/system/usr/share/sddm/themes/03-sway-fedora
+02:24:56 --- inventory ---
+02:25:00 --- archives ---
+02:25:00 archive: fonts
+02:25:01 archive: nvim-plugins-and-mason
+02:25:02 archive: tmux-plugins
+02:25:03 archive: mozilla-firefox-profile
+02:25:03 archive: mozilla-extensions
+02:25:03 archive: zen-browser-profile
+02:25:04 --- manifest ---
+02:25:04 files: 2733
+02:25:04 size:  913M
+02:25:04 === capture done: 2026-11-17T02:25:04+05:30 ===

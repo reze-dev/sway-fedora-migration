@@ -1,0 +1,14 @@
+origin	git@github.com:reze-dev/Nethergate.git (fetch)
+origin	git@github.com:reze-dev/Nethergate.git (push)
+
+=== ssh keys ===
+  drwx------.  2 asuna asuna 4096 Nov 14 14:29 .
+  drwx------. 25 asuna asuna 4096 Nov 14 14:32 ..
+  -rw-------.  1 asuna asuna  411 Nov 14 14:29 id_ed25519
+  -rw-r--r--.  1 asuna asuna   98 Nov 14 14:29 id_ed25519.pub
+  -rw-------.  1 asuna asuna  935 Nov 13 07:03 known_hosts
+  -rw-r--r--.  1 asuna asuna   95 Nov  5 12:23 known_hosts.old
+
+=== can we reach github over ssh? ===
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+Hi reze-dev! You've successfully authenticated, but GitHub does not provide shell access.

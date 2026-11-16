@@ -1,0 +1,5 @@
+ M fedora-overlay/.config/sway/environment
+ M fedora-overlay/README.md
+ fedora-overlay/.config/sway/environment | 6 ++++++
+ fedora-overlay/README.md                | 2 ++
+ 2 files changed, 8 insertions(+)

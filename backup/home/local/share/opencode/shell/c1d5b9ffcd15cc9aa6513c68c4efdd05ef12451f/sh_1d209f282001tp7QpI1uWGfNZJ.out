@@ -1,0 +1,5 @@
+=== container sees the node but as ????? - permissions hidden ===
+stat: cannot statx '/dev/net/tun': Permission denied
+uid=0(root) gid=0(root) groups=0(root)
+=== does privileged help? ===
+OPEN_FAILED

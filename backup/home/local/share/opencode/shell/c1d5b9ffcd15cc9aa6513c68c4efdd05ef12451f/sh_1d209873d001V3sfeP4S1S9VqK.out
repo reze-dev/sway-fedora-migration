@@ -1,0 +1,4 @@
+rootless=true graph=overlay
+=== as asuna, can we open tun? ===
+cat: /dev/net/tun: Permission denied
+OPEN_FAILED

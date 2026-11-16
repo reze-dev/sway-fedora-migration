@@ -1,0 +1,7 @@
+=== PRODUCTION STACK, real corporate gateway ===
+1. tunnel:      tun0             UNKNOWN        10.150.72.72/32 fe80::c6b9:8137:edf0:c971/64 
+2. corporate:   200
+3. web bastion: 401
+4. admin login: 201
+5. firefox:     firefox         kasm-user  restarts=0
+6. host:        tun=0  vpn-routes=0  internet=200  to-corporate=000

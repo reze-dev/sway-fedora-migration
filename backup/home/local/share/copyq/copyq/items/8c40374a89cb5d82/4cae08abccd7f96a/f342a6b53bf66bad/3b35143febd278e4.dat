@@ -1,0 +1,98 @@
+          # SFTP config
+            - name: HRMS_SFTP_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: hrms-config
+                  key: sftp.host
+            - name: HRMS_SFTP_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: hrms-secret
+                  key: sftp.username
+            - name: HRMS_SFTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: hrms-secret
+                  key: sftp.password
+            - name: HRMS_SFTP_DIR
+              valueFrom:
+                configMapKeyRef:
+                  name: hrms-config
+                  key: sftp.dir
+            - name: sftp.include
+              valueFrom:
+                configMapKeyRef:
+                  name: hrms-config
+                  key: sftp.include
+            - name: HRMS_XML_SFTP_DIR
+              valueFrom:
+                configMapKeyRef:
+                  name: hrms-config
+                  key: sftp.xml.dir
+            - name: hrms.sftp.host
+              valueFrom:
+                configMapKeyRef:
+                  name: hrms-config
+                  key: sftp.host
+            - name: BULK_DIS_SFTP_DIR
+              valueFrom:
+                configMapKeyRef:
+                  name: bulkdis-config
+                  key: bulkdis.base.dir
+            # Database
+            - name: DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: DB_URL
+            - name: MQ_IP
+              valueFrom:
+                configMapKeyRef:
+                  name: amq-config
+                  key: MQ_IP
+            - name: MQ_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: amq-config
+                  key: MQ_PORT
+            - name: DATAGRID_IP
+              valueFrom:
+                secretKeyRef:
+                  name: datagrid-secret
+                  key: DATAGRID_HOST
+            - name: DATAGRID_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: datagrid-secret
+                  key: DATAGRID_PORT
+            # From Secret
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: oifms-esb-db-secret
+                  key: DB_PASSWORD
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: oifms-esb-db-secret
+                  key: DB_USERNAME
+            - name: MQ_USER
+              valueFrom:
+                secretKeyRef:
+                  name: sit-amq-broker-credentials-secret
+                  key: AMQ_USER
+            - name: MQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sit-amq-broker-credentials-secret
+                  key: AMQ_PASSWORD
+            - name: DATAGRID_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: datagrid-secret
+                  key: DATAGRID_USERNAME
+            - name: DATAGRID_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: datagrid-secret
+                  key: DATAGRID_PWD

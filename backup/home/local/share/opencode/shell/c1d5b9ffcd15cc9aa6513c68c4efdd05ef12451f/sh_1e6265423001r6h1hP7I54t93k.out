@@ -1,0 +1,23 @@
+127:    --exclude='cache/' --exclude='Cache/' --exclude='GPUCache/' \
+128:    --exclude='Code Cache/' --exclude='CachedData/' --exclude='cache2/' \
+129:    --exclude='blob_storage/' --exclude='Crash Reports/' --exclude='*.log' \
+130:    --exclude='mozilla/firefox/' --exclude='opencode/cli.json' \
+131:    --exclude='opencode/service.json'
+139:    --exclude='mise' --exclude='starship' --exclude='__pycache__'
+141:    --exclude='containers/' --exclude='nvim/' --exclude='fonts/' \
+142:    --exclude='opencode/opencode.db*' --exclude='opencode/snapshot/' \
+143:    --exclude='opencode/log/' --exclude='gvfs-metadata/'
+145:    --exclude='dnf5.log*'
+151:copy_tree "$HOME_DIR/.cargo" "$DEST/home/cargo" --exclude='registry/' --exclude='git/'
+152:copy_tree "$HOME_DIR/.rustup" "$DEST/home/rustup" --exclude='toolchains/' --exclude='downloads/'
+153:copy_tree "$HOME_DIR/.var/app" "$DEST/home/var-app" --exclude='cache/'
+154:copy_tree "$HOME_DIR/.npm" "$DEST/home/npm" --exclude='_cacache/'
+156:    --exclude='*.sqlite*' --exclude='logs_*/' --exclude='sessions/' --exclude='history.jsonl' \
+157:    --exclude='packages/' --exclude='cache/' --exclude='tmp/' --exclude='.tmp/' \
+158:    --exclude='auth.json' --exclude='models_cache.json'
+159:copy_tree "$HOME_DIR/.opencode" "$DEST/home/opencode" --exclude='bin/'
+292:( cd "$DEST" && find . -type f -not -path './archives/*' -not -name 'checksums.sha256' -print0 \
+293:    | sort -z | xargs -0 sha256sum > checksums.sha256 )
+296:    sha256sum "$f" >> ../checksums.sha256
+298:date -Is > "$DEST/capture-date.txt"
+301:    "$(sway --version 2>&1 | head -1)" > "$DEST/capture-meta.txt"

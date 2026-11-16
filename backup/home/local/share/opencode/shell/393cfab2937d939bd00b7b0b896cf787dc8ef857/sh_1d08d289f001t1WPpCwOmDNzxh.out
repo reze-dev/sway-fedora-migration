@@ -1,0 +1,3 @@
+cmd=[/usr/bin/sway]
+--- without allexport ---
+cmd=[/usr/bin/sway]

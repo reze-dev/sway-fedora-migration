@@ -1,0 +1,54 @@
+sh-5.3# openconnect \
+  --protocol=anyconnect \
+  --user="$VPN_USERNAME" \
+  --authgroup="$VPN_AUTHGROUP" \
+  --interface=tun0 \
+  --passwd-on-stdin \
+  --verbose \
+  "$VPN_GATEWAY" < /run/secrets/vpn_password
+POST https://vpn.osdc.gov.in/
+Attempting to connect to server 164.100.141.21:443
+Connected to 164.100.141.21:443
+SSL negotiation with vpn.osdc.gov.in
+Connected to HTTPS on vpn.osdc.gov.in with ciphersuite (TLS1.2)-(ECDHE-SECP256R1)-(RSA-SHA512)-(AES-256-GCM)
+Got HTTP response: HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Cache-Control: no-cache
+Pragma: no-cache
+Connection: Keep-Alive
+Date: Mon, 16 Nov 2026 09:38:59 GMT
+X-Frame-Options: SAMEORIGIN
+X-Aggregate-Auth: 1
+HTTP body chunked (-2)
+XML POST enabled
+Please enter your username and password.
+POST https://vpn.osdc.gov.in/
+Got HTTP response: HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Cache-Control: no-cache
+Pragma: no-cache
+Connection: Keep-Alive
+Date: Mon, 16 Nov 2026 09:38:59 GMT
+X-Frame-Options: SAMEORIGIN
+X-Aggregate-Auth: 1
+HTTP body chunked (-2)
+XML POST enabled
+Please enter your username and password.
+POST https://vpn.osdc.gov.in/
+Got HTTP response: HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Cache-Control: no-cache
+Pragma: no-cache
+Connection: Keep-Alive
+Date: Mon, 16 Nov 2026 09:38:59 GMT
+X-Frame-Options: SAMEORIGIN
+X-Aggregate-Auth: 1
+HTTP body chunked (-2)
+Login failed.
+Please enter your username and password.
+Password:
+fgets (stdin): Inappropriate ioctl for device
+sh-5.3# 

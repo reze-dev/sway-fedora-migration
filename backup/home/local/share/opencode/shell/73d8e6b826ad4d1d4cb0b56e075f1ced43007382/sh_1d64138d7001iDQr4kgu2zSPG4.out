@@ -1,0 +1,12 @@
+=== configure.py ===
+Warpgate
+  the image runs as uid 1000
+  applying the admin password to the database...
+  the admin password was applied to the database.
+  data/warpgate.yaml now points at 127.0.0.1:8443
+
+Done. The stack is configured.
+
+  bastion web    https://127.0.0.1:8443
+=== the login with the new password now ===
+  http=201

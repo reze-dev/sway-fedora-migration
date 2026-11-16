@@ -1,0 +1,2 @@
+827:    if not args.no_secrets:
+877:    if not args.no_secrets:

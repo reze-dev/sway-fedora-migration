@@ -1,0 +1,32 @@
+=== mise ===
+/home/asuna/.local/bin/mise
+
+=== nix ===
+total 77728
+drwxr-xr-x.    4 root root       4096 Nov  9 00:04 .
+dr-xr-xr-x.   20 root root       4096 Nov 14 20:22 ..
+-rwxr-xr-x.    1 root root   78449072 Nov  9 00:04 nix-installer
+-rw-r--r--.    1 root root      66671 Nov  9 00:04 receipt.json
+
+=== rustup toolchains ===
+stable-x86_64-unknown-linux-gnu (active, default)
+
+=== cargo bins ===
+cargo
+cargo-clippy
+cargo-fmt
+cargo-miri
+clippy-driver
+rls
+rust-analyzer
+rustc
+rustdoc
+rustfmt
+rust-gdb
+rust-gdbgui
+rust-lldb
+rustup
+
+=== go ===
+go version go1.27.4-X:nodwarf5 linux/amd64
+pkg

@@ -1,0 +1,23 @@
+total 12
+drwxr-xr-x.  2 asuna asuna 4096 Nov  6 17:08 .
+drwxr-xr-x. 46 asuna asuna 4096 Nov 14 22:46 ..
+-rw-r--r--.  1 asuna asuna  432 Nov  6 17:08 rog-control-center.cfg
+=== nautilus/Thunar ===
+/home/asuna/.config/nautilus:
+
+/home/asuna/.config/Thunar:
+accels.scm
+uca.xml
+=== backgrounds ===
+total 5160
+drwxr-xr-x.  2 asuna asuna    4096 Nov  4 22:32 .
+drwxr-xr-x. 20 asuna asuna    4096 Nov 16 12:09 ..
+-rw-r--r--.  1 asuna asuna 5273081 Apr  2  2026 warty-final-ubuntusway.png
+=== Pictures ===
+/home/asuna/Pictures
+/home/asuna/Pictures/Wallpapers
+/home/asuna/Pictures/Wallpapers/wallhaven-g7jgk3.jpg
+/home/asuna/Pictures/Wallpapers/wallhaven-po5lq9.png
+/home/asuna/Pictures/Wallpapers/warty-final-ubuntusway.png
+/home/asuna/Pictures/Wallpapers/wallhaven-w539dr.jpg
+/home/asuna/Pictures/Wallpapers/Abyss Knight Amidst Gothic Ruins.png

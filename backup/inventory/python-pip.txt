@@ -1,0 +1,4 @@
+# captured 2026-11-17T02:28:09+05:30
+# command: bash -c python3 -m pip list 2>&1 || echo 'pip not installed'
+/usr/bin/python3: No module named pip
+pip not installed

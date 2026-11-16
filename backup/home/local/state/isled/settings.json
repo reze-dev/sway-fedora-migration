@@ -1,0 +1,14 @@
+{
+  "wallpaper_dir": "/home/asuna/Pictures/Wallpapers",
+  "wallpaper_loop": true,
+  "wallpaper_loop_secs": 60,
+  "notes_dir": "/home/asuna/Documents/isle-notes",
+  "calendar_dir": "/home/asuna/.local/share/calendars",
+  "theme": "midnight",
+  "auto_context": true,
+  "cache_max_bytes": 209715200,
+  "cache_prune": true,
+  "morph_duration_ms": 500,
+  "reduced_motion": false,
+  "high_contrast": false
+}

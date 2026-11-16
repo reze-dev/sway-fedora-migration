@@ -1,0 +1,60 @@
+02:23:11 --- ~/.config ---
+02:23:11 copy: /home/asuna/.config -> /home/asuna/sway-fedora-migration/backup/home/config
+02:23:11 copy: /home/asuna/.config/mozilla/firefox -> /home/asuna/sway-fedora-migration/backup/home/config/mozilla/firefox
+02:23:12 --- ~/.local ---
+02:23:12 copy: /home/asuna/.local/bin -> /home/asuna/sway-fedora-migration/backup/home/local/bin
+02:23:12 copy: /home/asuna/.local/share -> /home/asuna/sway-fedora-migration/backup/home/local/share
+02:23:12 copy: /home/asuna/.local/state -> /home/asuna/sway-fedora-migration/backup/home/local/state
+02:23:12 --- toolchains and app data ---
+02:23:12 copy: /home/asuna/.cargo -> /home/asuna/sway-fedora-migration/backup/home/cargo
+02:23:12 copy: /home/asuna/.rustup -> /home/asuna/sway-fedora-migration/backup/home/rustup
+02:23:12 copy: /home/asuna/.ssh -> /home/asuna/sway-fedora-migration/backup/home/ssh
+02:23:12 copy: /home/asuna/.var/app -> /home/asuna/sway-fedora-migration/backup/home/var-app
+02:23:13 copy: /home/asuna/.npm -> /home/asuna/sway-fedora-migration/backup/home/npm
+02:23:13 copy: /home/asuna/.codex -> /home/asuna/sway-fedora-migration/backup/home/codex
+02:23:13 copy: /home/asuna/.opencode -> /home/asuna/sway-fedora-migration/backup/home/opencode
+02:23:13 copy: /home/asuna/Pictures -> /home/asuna/sway-fedora-migration/backup/home/Pictures
+02:23:13 copy: /home/asuna/Documents -> /home/asuna/sway-fedora-migration/backup/home/Documents
+02:23:13 --- system files ---
+02:23:13 copy: /etc/sway -> /home/asuna/sway-fedora-migration/backup/system/etc/sway
+02:23:13 skip (missing): /etc/environment.d
+02:23:13 skip (missing): /etc/xdg/xdg-desktop-portal-wlr
+02:23:13 skip (missing): /etc/xdg/swayr
+02:23:13 skip (missing): /etc/xdg/xdg-ubuntusway
+02:23:13 copy: /etc/systemd/user -> /home/asuna/sway-fedora-migration/backup/system/etc/systemd/user
+02:23:14 copy: /etc/systemd/system -> /home/asuna/sway-fedora-migration/backup/system/etc/systemd/system
+02:23:14 copy: /etc/modprobe.d -> /home/asuna/sway-fedora-migration/backup/system/etc/modprobe.d
+02:23:14 copy: /etc/dracut.conf.d -> /home/asuna/sway-fedora-migration/backup/system/etc/dracut.conf.d
+02:23:14 copy: /etc/sysctl.d -> /home/asuna/sway-fedora-migration/backup/system/etc/sysctl.d
+02:23:14 copy: /etc/sddm.conf.d -> /home/asuna/sway-fedora-migration/backup/system/etc/sddm.conf.d
+02:23:14 copy: /etc/sddm.conf -> /home/asuna/sway-fedora-migration/backup/system/etc/sddm.conf
+02:23:14   warn: rsync reported errors for /etc/sddm.conf (see /home/asuna/sway-fedora-migration/backup/capture.log)
+02:23:14 copy: /etc/default/grub -> /home/asuna/sway-fedora-migration/backup/system/etc/default/grub
+02:23:14   warn: rsync reported errors for /etc/default/grub (see /home/asuna/sway-fedora-migration/backup/capture.log)
+02:23:14 copy: /etc/fstab -> /home/asuna/sway-fedora-migration/backup/system/etc/fstab
+02:23:14   warn: rsync reported errors for /etc/fstab (see /home/asuna/sway-fedora-migration/backup/capture.log)
+02:23:14 copy: /etc/os-release -> /home/asuna/sway-fedora-migration/backup/system/etc/os-release
+02:23:14   warn: rsync reported errors for /etc/os-release (see /home/asuna/sway-fedora-migration/backup/capture.log)
+02:23:14 copy: /etc/hostname -> /home/asuna/sway-fedora-migration/backup/system/etc/hostname
+02:23:15   warn: rsync reported errors for /etc/hostname (see /home/asuna/sway-fedora-migration/backup/capture.log)
+02:23:15 copy: /etc/os-release -> /home/asuna/sway-fedora-migration/backup/system/etc/os-release
+02:23:15   warn: rsync reported errors for /etc/os-release (see /home/asuna/sway-fedora-migration/backup/capture.log)
+02:23:15 copy: /etc/environment -> /home/asuna/sway-fedora-migration/backup/system/etc/environment
+02:23:15   warn: rsync reported errors for /etc/environment (see /home/asuna/sway-fedora-migration/backup/capture.log)
+02:23:15 copy: /etc/pam.d/sddm -> /home/asuna/sway-fedora-migration/backup/system/etc/pam.d/sddm
+02:23:15   warn: rsync reported errors for /etc/pam.d/sddm (see /home/asuna/sway-fedora-migration/backup/capture.log)
+02:23:15 copy: /etc/udev/rules.d -> /home/asuna/sway-fedora-migration/backup/system/etc/udev/rules.d
+02:23:15 copy: /etc/flatpak -> /home/asuna/sway-fedora-migration/backup/system/etc/flatpak
+02:23:15 copy: /usr/share/sddm/themes/ronin -> /home/asuna/sway-fedora-migration/backup/system/usr/share/sddm/themes/ronin
+02:23:15 copy: /usr/share/sddm/themes/03-sway-fedora -> /home/asuna/sway-fedora-migration/backup/system/usr/share/sddm/themes/03-sway-fedora
+02:23:15 --- inventory ---
+02:23:21 --- archives ---
+02:23:21 archive: fonts
+02:23:22 archive: nvim-plugins-and-mason
+02:23:29 archive: tmux-plugins
+02:23:29 archive: mozilla-firefox-profile
+02:23:29 archive: mozilla-extensions
+02:23:29 --- manifest ---
+02:23:30 files: 2894
+02:23:31 size:  1.3G
+02:23:31 === capture done: 2026-11-17T02:23:31+05:30 ===

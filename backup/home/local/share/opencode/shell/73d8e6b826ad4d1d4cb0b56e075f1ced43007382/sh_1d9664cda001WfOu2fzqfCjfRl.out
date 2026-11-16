@@ -1,0 +1,10 @@
+136307e Make the credentials before the settings are checked
+0ae2d0e Say what is wrong when the credentials are not there yet
+0552805 Stop the corporate network reaching into the pods
+
+the bastion is on https://127.0.0.1:8443 and the browser on 127.0.0.1:6901
+  [32mok[0m    vnc port                             open
+  [32mok[0m    no database errors                   0
+
+[32m[1m checks passed[0m
+

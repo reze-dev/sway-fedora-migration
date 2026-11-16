@@ -1,0 +1,31 @@
+/home/asuna/.cache/isled
+/home/asuna/.local/state/isled
+=== projects ===
+/home/asuna/Projects/Nethergate:
+total 148
+drwxr-xr-x. 6 asuna  asuna   4096 Nov 16 18:46 .
+drwxr-xr-x. 6 asuna  asuna   4096 Nov 16 21:46 ..
+-rwxr-xr-x. 1 asuna  asuna  36426 Nov 16 15:30 configure.py
+drwxr-xr-x. 3 525287 525287  4096 Nov 16 13:13 data
+-rw-r--r--. 1 asuna  asuna    524 Nov 16 18:05 Dockerfile
+-rw-r--r--. 1 asuna  asuna   1599 Nov 16 13:07 Dockerfile.firefox
+-rw-------. 1 asuna  asuna   2187 Nov 16 18:46 .env
+-rw-r--r--. 1 asuna  asuna   1524 Nov 16 18:46 .env.example
+-rwxr-xr-x. 1 asuna  asuna   2503 Nov 16 13:07 firefox-entrypoint.sh
+drwxr-xr-x. 7 asuna  asuna   4096 Nov 16 18:05 .git
+-rw-r--r--. 1 asuna  asuna    165 Nov 16 13:07 .gitignore
+-rw-r--r--. 1 asuna  asuna   4564 Nov 16 13:07 justfile
+-rw-r--r--. 1 asuna  asuna   1062 Nov 16 13:07 LICENSE
+-rw-r--r--. 1 asuna  asuna   4707 Nov 16 13:07 podman-compose.test.yml
+-rw-r--r--. 1 asuna  asuna   3556 Nov 16 13:07 podman-compose.yml
+-rw-r--r--. 1 asuna  asuna  23455 Nov 16 13:07 README.md
+drwx------. 2 asuna  asuna   4096 Nov 16 18:06 secrets
+drwxr-xr-x. 2 asuna  asuna   4096 Nov 16 13:07 test
+-rwxr-xr-x. 1 asuna  asuna   5845 Nov 16 13:07 verify.sh
+-rw-r--r--. 1 asuna  asuna   4608 Nov 16 18:12 vpn_entrypoint.sh
+
+/home/asuna/Projects/warpgate:
+total 12
+drwxrwxr-x. 3 asuna  asuna  4096 Nov 16 13:06 .
+drwxr-xr-x. 6 asuna  asuna  4096 Nov 16 21:46 ..
+drwxr-xr-x. 3 525287 525287 4096 Nov 14 00:24 data

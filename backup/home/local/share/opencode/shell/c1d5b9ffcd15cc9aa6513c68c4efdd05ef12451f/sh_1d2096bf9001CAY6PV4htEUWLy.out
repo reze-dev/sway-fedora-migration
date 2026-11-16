@@ -1,0 +1,10 @@
+=== am I really root? ===
+uid=1000(asuna) gid=1000(asuna) groups=1000(asuna),10(wheel) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+=== SELinux ===
+Enforcing
+=== is the tun node properly formed? ===
+/dev/net/tun a:c8 character special file
+total 0
+drwxr-xr-x.  2 root root      60 Nov 12 23:40 .
+drwxr-xr-x. 19 root root    4440 Nov 12 23:41 ..
+crw-rw-rw-.  1 root root 10, 200 Nov 13 04:42 tun

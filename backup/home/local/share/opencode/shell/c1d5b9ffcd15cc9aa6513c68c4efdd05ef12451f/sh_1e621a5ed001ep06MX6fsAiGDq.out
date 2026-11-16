@@ -1,0 +1,20 @@
+which: no borg in (/home/asuna/.local/bin:/home/asuna/.local/share/mise/shims:/home/asuna/.opencode/bin:/home/asuna/.cargo/bin:/home/asuna/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin)
+which: no restic in (/home/asuna/.local/bin:/home/asuna/.local/share/mise/shims:/home/asuna/.opencode/bin:/home/asuna/.cargo/bin:/home/asuna/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin)
+/usr/bin/zstd
+/usr/bin/tar
+/usr/bin/gpg
+/usr/bin/rsync
+/usr/bin/sha256sum
+=== .local/bin ===
+170M	/home/asuna/.local/bin/mise
+13M	/home/asuna/.local/bin/starship
+56K	/home/asuna/.local/bin/__pycache__
+40K	/home/asuna/.local/bin/sway-control-center
+8.0K	/home/asuna/.local/bin/sway-keybindings
+4.0K	/home/asuna/.local/bin/sway-set-wallpaper
+4.0K	/home/asuna/.local/bin/sway-settings
+4.0K	/home/asuna/.local/bin/sway-quick-menu
+4.0K	/home/asuna/.local/bin/sway-prime-run
+4.0K	/home/asuna/.local/bin/sway-power-menu
+=== fonts ===
+233M	/home/asuna/.local/share/fonts/NerdFonts

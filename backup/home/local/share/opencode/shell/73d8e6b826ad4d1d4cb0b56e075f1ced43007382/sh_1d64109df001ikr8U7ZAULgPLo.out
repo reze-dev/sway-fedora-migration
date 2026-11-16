@@ -1,0 +1,10 @@
+=== the new password is NOT in the database yet ===
+  login with the new password: http=401
+=== configure.py should notice and apply it ===
+Warpgate
+  the image runs as uid 1000
+  the admin password in the database is unknown, so it was not
+  changed. Set it with: podman exec warpgate recover-access admin
+  data/warpgate.yaml now points at 127.0.0.1:8443
+
+Done. The stack is configured.

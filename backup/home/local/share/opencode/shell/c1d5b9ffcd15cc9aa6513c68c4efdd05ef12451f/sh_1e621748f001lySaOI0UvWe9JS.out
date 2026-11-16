@@ -1,0 +1,16 @@
+1.2G	.var/app/app.zen_browser.zen
+6.0M	.var/app/com.bitwig.BitwigStudio
+44K	.local/share/flatpak/repo
+12K	.local/share/flatpak/db
+8.0K	.local/share/flatpak/overrides
+=== nvim plugins ===
+lazy
+mason
+snacks
+treesitter
+undo
+148M	/home/asuna/.local/share/nvim/lazy
+777M	/home/asuna/.local/share/nvim/mason
+12K	/home/asuna/.local/share/nvim/snacks
+32M	/home/asuna/.local/share/nvim/treesitter
+136K	/home/asuna/.local/share/nvim/undo

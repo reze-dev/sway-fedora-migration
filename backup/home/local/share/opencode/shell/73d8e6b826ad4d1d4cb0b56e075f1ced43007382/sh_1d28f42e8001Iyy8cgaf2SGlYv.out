@@ -1,0 +1,9 @@
+=== 5. CORPORATE RESOURCE VIA TUNNEL (browser pod) ===
+CORPORATE-RESOURCE-REACHED
+  exit=0
+=== 6. WARPGATE HTTP BASTION (host) ===
+  http=401
+=== 7. WARPGATE SSH BASTION (host) ===
+test@127.0.0.1: Permission denied (publickey,password,keyboard-interactive).
+=== 8. VNC (host) ===
+  vnc port open ✓

@@ -1,0 +1,22 @@
+=== a bare clone ===
+  configure.py
+  Dockerfile
+  Dockerfile.firefox
+  firefox-entrypoint.sh
+  justfile
+  LICENSE
+  podman-compose.test.yml
+  podman-compose.yml
+  README.md
+  test
+  verify.sh
+  vpn_entrypoint.sh
+
+=== just up refuses, with a clear reason ===
+The credentials are missing, or one of them is a directory.
+That happens when the stack is started before ./configure.py has made them.
+Run 'just configure' first.
+error: recipe `check-secrets` failed on line 60 with exit code 1
+
+=== after configure.py, the secrets exist ===
+  ls: cannot access 'secrets/': No such file or directory

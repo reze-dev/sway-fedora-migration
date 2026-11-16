@@ -1,0 +1,11 @@
+QT_QPA_PLATFORM="wayland;xcb"
+QT_QPA_PLATFORMTHEME=qt6ct
+XCURSOR_THEME=Bibata-Modern-Ice
+XCURSOR_SIZE=24
+_JAVA_AWT_WM_NONREPARENTING=1
+
+# The NVIDIA proprietary driver is in use, so Sway shows a "Proprietary GPU
+# drivers are not supported by sway" notice on startup. This flag suppresses
+# that notice only; it does not change which renderer or GPU is used.
+# /usr/bin/start-sway passes SWAY_EXTRA_ARGS to the sway executable.
+SWAY_EXTRA_ARGS="$SWAY_EXTRA_ARGS --unsupported-gpu"

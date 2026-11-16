@@ -1,0 +1,64 @@
+Please enter your username and password.
+Password:
+***
+User input required in non-interactive mode
+Failed to complete authentication
+Please enter your username and password.
+Please enter your username and password.
+Login failed.
+Please enter your username and password.
+Password:
+***
+User input required in non-interactive mode
+Failed to complete authentication
+Please enter your username and password.
+Please enter your username and password.
+Login failed.
+Please enter your username and password.
+Password:
+***
+User input required in non-interactive mode
+Failed to complete authentication
+Please enter your username and password.
+Please enter your username and password.
+Login failed.
+Please enter your username and password.
+Password:
+***
+User input required in non-interactive mode
+Failed to complete authentication
+Please enter your username and password.
+Please enter your username and password.
+Login failed.
+Please enter your username and password.
+Password:
+***
+User input required in non-interactive mode
+Failed to complete authentication
+Please enter your username and password.
+Please enter your username and password.
+Login failed.
+Please enter your username and password.
+Password:
+***
+User input required in non-interactive mode
+Failed to complete authentication
+Please enter your username and password.
+Please enter your username and password.
+Login failed.
+Please enter your username and password.
+Password:
+***
+User input required in non-interactive mode
+Failed to complete authentication
+Starting OpenConnect...
+POST https://vpn.osdc.gov.in/
+Connected to 164.100.141.21:443
+SSL negotiation with vpn.osdc.gov.in
+Connected to HTTPS on vpn.osdc.gov.in with ciphersuite (TLS1.2)-(ECDHE-SECP256R1)-(RSA-SHA512)-(AES-256-GCM)
+XML POST enabled
+POST https://vpn.osdc.gov.in/
+XML POST enabled
+POST https://vpn.osdc.gov.in/
+OpenConnect exited with status 1; retrying in 10 seconds.
+λ p

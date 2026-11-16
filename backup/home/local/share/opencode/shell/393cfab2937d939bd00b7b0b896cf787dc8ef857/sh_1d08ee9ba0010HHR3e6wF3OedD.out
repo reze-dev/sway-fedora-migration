@@ -1,0 +1,2 @@
+/tmp/opencode/sway-1.12/include/util.h:52:bool parse_boolean(const char *boolean, bool current);
+/tmp/opencode/sway-1.12/common/util.c:40:bool parse_boolean(const char *boolean, bool current) {

@@ -1,0 +1,4 @@
+host=fedora
+os=Fedora Linux 45 (Sway)
+kernel=7.3.3-300.fc45.x86_64
+sway=swayfx version 0.6.1 (based on sway 1.12.0)

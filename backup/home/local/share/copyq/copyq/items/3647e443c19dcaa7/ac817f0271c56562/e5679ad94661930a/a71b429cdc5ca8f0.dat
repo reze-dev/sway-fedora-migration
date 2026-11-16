@@ -1,0 +1,48 @@
+λ podman image inspect ghcr.io/warp-tech/warpgate:latest \                                                                                         ~/Projects/warpgate  14:18
+        --format 'Image user: {{.Config.User}}'
+Image user: warpgate
+λ id warpgate                                                                                                                                      ~/Projects/warpgate  14:19
+id: ‘warpgate’: no such user
+λ useradd warpgate                                                                                                                                 ~/Projects/warpgate  14:19
+useradd: Permission denied.
+useradd: cannot lock /etc/passwd; try again later.
+λ sudo useradd warpgate                                                                                                                            ~/Projects/warpgate  14:20
+λ sudo su - warpgate                                                                                                                               ~/Projects/warpgate  14:20
+warpgate@fedora:~$ chsh -s /usr/sbin/nologin
+Changing shell for warpgate.
+Password: 
+chsh: Authentication failure
+warpgate@fedora:~$ exit
+logout
+󱎫 33s λ sudo passwd warpgate                                                                                                                       ~/Projects/warpgate  14:21
+New password: 
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password: 
+Sorry, passwords do not match.
+passwd: Authentication token manipulation error
+passwd: password unchanged
+󱎫 7s λ sudo passwd warpgate                                                                                                                        ~/Projects/warpgate  14:22
+New password: 
+BAD PASSWORD: The password fails the dictionary check - it is based on a dictionary word
+Retype new password: 
+passwd: password updated successfully
+󱎫 8s λ sudo su - warpgate                                                                                                                          ~/Projects/warpgate  14:22
+warpgate@fedora:~$ chsh -s /usr/sbin/nologin
+Changing shell for warpgate.
+Password: 
+chsh: "/usr/sbin/nologin" is not listed in /etc/shells.
+Use chsh -l to see list.
+warpgate@fedora:~$ chsh -s /usr/bin/nologin
+Changing shell for warpgate.
+Password: 
+chsh: Authentication failure
+warpgate@fedora:~$ chsh -s /usr/bin/nologin
+Changing shell for warpgate.
+Password: 
+chsh: "/usr/bin/nologin" is not listed in /etc/shells.
+Use chsh -l to see list.
+warpgate@fedora:~$ ls /etc/shells
+/etc/shells
+warpgate@fedora:~$ ls /etc/shells/
+ls: cannot access '/etc/shells/': Not a directory
+warpgate@fedora:~$ 

@@ -1,0 +1,9 @@
+# captured 2026-11-17T02:28:09+05:30
+# command: bash -c podman images --format '{{.Repository}}:{{.Tag}} {{.Size}}' 2>&1 || true
+localhost/warpgate-firefox:latest 3.03 GB
+<none>:<none> 3.03 GB
+localhost/warpgate-vpn:latest 349 MB
+<none>:<none> 349 MB
+registry.fedoraproject.org/fedora:latest 199 MB
+ghcr.io/warp-tech/warpgate:latest 138 MB
+docker.io/kasmweb/firefox:1.18.0 3.03 GB

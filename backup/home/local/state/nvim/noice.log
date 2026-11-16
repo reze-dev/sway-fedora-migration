@@ -1,0 +1,15 @@
+
+
+Monday 16 November 2026 06:56:03 PM
+[string "vim/_core/editor"]:353: nvim_exec2(), line 1: Vim(quit):E16: Invalid range: '<,'>q!
+
+stack traceback:
+	[C]: in function 'pcall'
+	...local/share/nvim/lazy/noice.nvim/lua/noice/util/call.lua:144: in function <...local/share/nvim/lazy/noice.nvim/lua/noice/util/call.lua:143>
+	[C]: in function 'nvim_exec2'
+	[string "vim/_core/editor"]:353: in function 'cmd'
+	.../share/nvim/lazy/noice.nvim/lua/noice/message/router.lua:74: in function <.../share/nvim/lazy/noice.nvim/lua/noice/message/router.lua:73>
+	[C]: in function 'xpcall'
+	...local/share/nvim/lazy/noice.nvim/lua/noice/util/call.lua:149: in function 'try'
+	.../share/nvim/lazy/noice.nvim/lua/noice/message/router.lua:89: in function 'redirect'
+	/home/asuna/.config/nvim/lua/plugins/ui.lua:124: in function </home/asuna/.config/nvim/lua/plugins/ui.lua:123>

@@ -1,0 +1,25 @@
+=== 1. TUNNEL ===
+tun0             UNKNOWN        10.8.0.2/24 fe80::51b6:182b:30be:d809/64 
+=== 2. SHARED NETNS ===
+  warpgate-vpn-test net:[4026533168]
+  warpgate-warpgate-test net:[4026533168]
+  warpgate-firefox-test net:[4026533168]
+=== 3. CORPORATE RESOURCE VIA TUNNEL ===
+CORPORATE-RESOURCE-REACHED
+=== 4. HOST ISOLATION ===
+  host tun: 0  VPN routes: 0
+=== 5. HOST INTERNET ===
+  http=200
+=== 6. FIREFOX ===
+  status=running restarts=0
+firefox         kasm-user
+=== 7. BASTION ===
+  http=401
+=== 8. ADMIN LOGIN ===
+  http=201
+=== 9. SSH ===
+test@127.0.0.1: Permission denied (publickey,password,keyboard-interactive).
+=== 10. VNC ===
+  vnc port open
+=== 11. NO DB ERRORS ===
+  database errors: 0

@@ -1,0 +1,7 @@
+=== check kernel lockdown / device access ===
+[none] integrity confidentiality
+=== apparmor userns restrict ===
+=== tun module ===
+tun                    81920  0
+=== check if /dev/net/tun accessible directly by user ===
+USER OPEN OK

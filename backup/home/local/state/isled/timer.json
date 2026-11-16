@@ -1,0 +1,10 @@
+{
+  "phase": "idle",
+  "running": false,
+  "elapsed_ms": 0,
+  "work_minutes": 25,
+  "short_break_minutes": 5,
+  "long_break_minutes": 15,
+  "rounds_completed": 0,
+  "changed_at_unix": 1794196829
+}

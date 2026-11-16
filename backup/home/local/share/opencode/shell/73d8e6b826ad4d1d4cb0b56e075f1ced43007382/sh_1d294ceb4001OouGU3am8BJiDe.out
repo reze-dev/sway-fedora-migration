@@ -1,0 +1,5 @@
+remaining warpgate containers:
+  none
+images kept for production:
+  localhost/warpgate-firefox:latest
+  localhost/warpgate-vpn:latest

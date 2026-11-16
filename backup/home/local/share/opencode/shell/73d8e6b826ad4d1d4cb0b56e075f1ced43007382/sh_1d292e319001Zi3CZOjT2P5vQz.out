@@ -1,0 +1,16 @@
+=== Dockerfile ===
+=== Dockerfile.firefox ===
+=== vpn_entrypoint.sh ===
+=== firefox-entrypoint.sh ===
+=== podman-compose.yml ===
+=== test/Dockerfile.ovpn-server ===
+=== test/entrypoint.sh ===
+=== test/server.conf ===
+=== test/client.conf ===
+
+=== syntax checks ===
+  vpn_entrypoint.sh OK
+  firefox-entrypoint.sh OK
+  test/entrypoint.sh OK
+  podman-compose.yml OK
+  podman-compose.test.yml OK

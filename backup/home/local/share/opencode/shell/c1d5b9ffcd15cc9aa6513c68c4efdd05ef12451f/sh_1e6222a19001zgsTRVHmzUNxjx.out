@@ -1,0 +1,8 @@
+7.3G	/nix/store
+=== nix profile ===
+=== nix registry/channels ===
+total 12
+drwxr-xr-x.  3 root root 4096 Nov  9 00:04 .
+drwxr-xr-x. 10 root root 4096 Nov  9 00:04 ..
+lrwxrwxrwx.  1 root root   43 Nov  9 00:04 default -> /nix/var/nix/profiles/per-user/root/profile
+drwxr-xr-x.  3 root root 4096 Nov  9 00:04 per-user

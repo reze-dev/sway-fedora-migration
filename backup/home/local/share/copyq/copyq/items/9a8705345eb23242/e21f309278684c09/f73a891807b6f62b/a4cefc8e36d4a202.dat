@@ -1,0 +1,60 @@
+Yeah that's what I thought of... because it was a headache to have internet access when connected to corporate vpn internet is essentially blocked. First I came up with this idea. use one container with openconnect and use another container having the same network with openssh clients so basically I did podman exec into the second container and then ssh pretty rudimentary then I discovered warpgate and welp It solved substantial problems of me being a serverless bastion
+
+
+
+
+
+
+
+
+
+
+
+
+
+LMAO. 💀 You essentially reinvented a client-side VPN gateway architecture, starting with nothing more than Podman, OpenConnect, and an SSH client.
+
+And the evolution of your solution makes perfect sense.
+1. Stage 1: Corporate VPN ruins your internet
+   
+   Connect OpenConnect on the host, and corporate VPN policies or routes make ordinary internet access unusable.
+   
+   Your requirement: keep corporate connectivity without sacrificing your host's internet.
+2. Stage 2: Isolate OpenConnect inside a container
+   
+   You realized Linux network namespaces could contain the VPN tunnel and its routing changes.
+   
+   The host stays outside that namespace, so its routes remain untouched.
+3. Stage 3: Add an SSH client container
+   
+   You attached another container to the VPN container's network namespace, then used podman exec to run SSH commands.
+   
+   Rudimentary? Yes. Architecturally sound? Also yes.
+4. Stage 4: Discover Warpgate
+   
+   Instead of entering a container to run SSH every time, you deployed Warpgate inside the same namespace.
+   
+   Now your host connects to a local SSH/HTTP bastion, which forwards authenticated sessions to corporate resources.
+5. Stage 5: Add a browser inside the VPN
+   
+   Finally, you wanted to access internal web consoles without configuring each endpoint individually in Warpgate.
+   
+   The AI added containerized Firefox with KasmVNC, turning a browser tab on your host into a window onto the VPN-connected browser.
+
+What's particularly neat is the distinction between network access and network isolation.
+
+You didn't try to make the corporate VPN coexist nicely with your host's networking. You simply stopped allowing the corporate VPN to control the host's networking in the first place.
+
+That's a much cleaner separation.
+
+And Warpgate is an especially appropriate discovery for your setup because it's an application-layer bastion rather than a full network tunnel into your host. You can expose specific SSH and HTTP access paths without importing the corporate routing table into the host namespace.
+
+The phrase serverless bastion is amusingly accurate in the everyday sense: you didn't need to provision a dedicated bastion VM, maintain another server, or persuade some network administrator to give you a new gateway.
+
+Technically, Warpgate is still running as a server process, just locally in a container.
+
+There is one security distinction worth emphasizing: the corporate VPN is network-isolated from the host, but it isn't necessarily fully security-isolated. Published ports, privileged SELinux labels, bind mounts, and routing or DNS leaks can create paths across that boundary. Your design solves the routing conflict; it doesn't automatically guarantee a hard security boundary.
+
+Still, there's something deeply satisfying about taking the one thing that makes your corporate VPN unbearable, its routing policy, and containing it within a network namespace.
+
+Instead of fighting your host's routing table, you gave the VPN its own little world to ruin. Beautiful. 💀

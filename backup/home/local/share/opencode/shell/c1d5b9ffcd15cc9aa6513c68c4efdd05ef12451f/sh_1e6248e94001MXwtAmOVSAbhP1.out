@@ -1,0 +1,81 @@
+#!/usr/bin/python3
+import configparser
+import json
+import os
+import re
+import shlex
+import subprocess
+import sys
+from pathlib import Path
+
+import gi
+
+gi.require_version("Gtk", "4.0")
+from gi.repository import Gio, Gtk, Pango
+
+HOME = Path.home()
+CONFIG = HOME / ".config"
+STATE_DIR = CONFIG / "sway-control-center"
+STATE_FILE = STATE_DIR / "settings.json"
+WALLPAPER_MODES = ("fill", "fit", "stretch", "center", "tile")
+ACCENTS = {
+    "Prussian Green Dark": "#368582",
+    "green": "#3eb34f",
+    "teal": "#317b79",
+    "blue": "#3584e4",
+    "purple": "#9141ac",
+    "orange": "#e66100",
+    "red": "#c01c28",
+}
+
+
+def accent_hex(name, dark):
+    if name == "Prussian Green Dark":
+        return "#368582" if dark else "#6db2af"
+    return ACCENTS.get(name, ACCENTS["green"])
+
+
+def run(args, check=True):
+    return subprocess.run(args, check=check, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+...
+32:def accent_hex(name, dark):
+38:def run(args, check=True):
+42:def strip_sway_wallpaper(config_path):
+57:def apply_wallpaper(settings):
+70:def read_gsetting(key, default):
+72:        value = run(["gsettings", "get", "org.gnome.desktop.interface", key]).stdout.strip()
+80:def brightness_devices():
+98:def read_brightness(device):
+107:def set_brightness(device, percent):
+113:def read_index_name(path):
+123:def themed_directories(roots, marker, need_cursors=False):
+143:def kvantum_themes():
+153:def current_kvantum_theme():
+164:def current_font_desc():
+172:def current_mono_desc():
+189:def update_line(path, key, value, section=None):
+212:def set_gtk_settings(path, theme, icons, cursor, cursor_size, font, dark):
+233:def qt_font_string(existing, family, size, mono=False):
+245:def set_qt_config(path, version, theme, icons, accent, dark, ui_font, ui_size, mono_font, mono_size):
+267:def replace_or_append(lines, key, value):
+281:def write_qt_palette(path, accent, dark):
+290:    def qt_colors(colors):
+300:def set_sway_palette(path, accent, dark):
+312:def set_desktop_palette(accent, dark, icons, ui_font, ui_size):
+366:def set_xsettings(path, theme, icons, cursor, cursor_size, font):
+386:def set_gtk2_rc(theme, icons, cursor, cursor_size, font):
+406:def write_gtk2_theme(theme, accent, dark):
+441:def update_text(path, pattern, replacement, append=None):
+452:def icon_directory(name):
+460:def apply_settings(settings):
+474:    if run(["gsettings", "list-schemas"], check=False).returncode == 0:
+475:        schema = run(["gsettings", "list-keys", "org.gnome.desktop.interface"], check=False).stdout.splitlines()
+478:                run(["gsettings", "set", "org.gnome.desktop.interface", key, value], check=False)
+480:            gsettings_accent = "teal" if accent == "Prussian Green Dark" else accent
+481:            run(["gsettings", "set", "org.gnome.desktop.interface", "accent-color", gsettings_accent], check=False)
+544:        run(["swaymsg", "seat", "*", "xcursor_theme", cursor, str(cursor_size)], check=False)
+546:        run(["swaymsg", "reload"], check=False)
+555:def shutil_which(binary):
+559:def launch_system_app(command):
+582:    def __init__(self, device, on_status=None):

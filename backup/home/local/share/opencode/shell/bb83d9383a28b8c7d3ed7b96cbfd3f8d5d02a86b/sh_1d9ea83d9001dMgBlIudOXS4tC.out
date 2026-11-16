@@ -1,0 +1,7 @@
+[3/3] Installing gh-0:2.97.0-1.fc45.x86 100% |  69.8 MiB/s |  39.7 MiB |  00m01s
+Warning: Pending offline transaction has been invalidated.
+To reschedule, run: dnf5daemon-server
+Complete!
+---
+gh version 2.97.0 (2026-07-31)
+https://github.com/cli/cli/releases/tag/v2.97.0

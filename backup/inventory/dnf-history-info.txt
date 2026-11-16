@@ -1,0 +1,77 @@
+# captured 2026-11-17T02:28:08+05:30
+# command: dnf history info last
+Transaction ID : 50
+Begin time     : 2026-11-16 10:36:22
+Begin rpmdb    : db5b89ebbf23ecf150e5d40078103a1a0b9d31c938cfef9aef1779da59d7ea38
+End time       : 2026-11-16 10:36:34
+End rpmdb      : 18bcccf491a8cbdbe15583574ef9694be0000840d10b1382b4dcac3b009ac37e
+User           : 1000 Asuna <asuna>
+Status         : Ok
+Releasever     : 45
+Description    : dnf -y upgrade
+Comment        : 
+Packages altered:
+  Action   Package                                        Reason          Repository
+  Upgrade  breeze-icon-theme-0:6.32.0-1.fc45.noarch       Dependency      updates
+  Upgrade  kf6-breeze-icons-0:6.32.0-1.fc45.x86_64        Dependency      updates
+  Upgrade  cmake-filesystem-0:4.3.0-7.fc45.x86_64         Dependency      updates
+  Upgrade  cmake-srpm-macros-0:4.3.0-7.fc45.noarch        Dependency      updates
+  Upgrade  dbus-1:1.16.4-2.fc45.x86_64                    Group           updates
+  Upgrade  dbus-common-1:1.16.4-2.fc45.noarch             Dependency      updates
+  Upgrade  dbus-daemon-1:1.16.4-2.fc45.x86_64             Dependency      updates
+  Upgrade  dbus-x11-1:1.16.4-2.fc45.x86_64                Dependency      updates
+  Upgrade  dbus-libs-1:1.16.4-2.fc45.x86_64               Dependency      updates
+  Upgrade  dbus-tools-1:1.16.4-2.fc45.x86_64              Dependency      updates
+  Upgrade  ibus-gtk2-0:1.5.35-2.fc45.x86_64               Dependency      updates
+  Upgrade  ibus-libs-0:1.5.35-2.fc45.x86_64               Dependency      updates
+  Upgrade  ibus-gtk3-0:1.5.35-2.fc45.x86_64               Dependency      updates
+  Upgrade  kf6-filesystem-0:6.32.0-1.fc45.x86_64          Dependency      updates
+  Upgrade  kf6-karchive-0:6.32.0-1.fc45.x86_64            Dependency      updates
+  Upgrade  kf6-kcolorscheme-0:6.32.0-1.fc45.x86_64        Dependency      updates
+  Upgrade  kf6-kconfig-0:6.32.0-1.fc45.x86_64             Dependency      updates
+  Upgrade  kf6-kguiaddons-0:6.32.0-1.fc45.x86_64          Dependency      updates
+  Upgrade  kf6-ki18n-0:6.32.0-1.fc45.x86_64               Dependency      updates
+  Upgrade  kf6-kiconthemes-0:6.32.0-1.fc45.x86_64         Dependency      updates
+  Upgrade  kf6-kimageformats-0:6.32.0-1.fc45.x86_64       Dependency      updates
+  Upgrade  kf6-knotifications-0:6.32.0-1.fc45.x86_64      Dependency      updates
+  Upgrade  kf6-kstatusnotifieritem-0:6.32.0-1.fc45.x86_64 Dependency      updates
+  Upgrade  kf6-kwidgetsaddons-0:6.32.0-1.fc45.x86_64      Dependency      updates
+  Upgrade  kf6-kwindowsystem-0:6.32.0-1.fc45.x86_64       Dependency      updates
+  Upgrade  plasma-breeze-common-0:6.8.3-1.fc45.noarch     Dependency      updates
+  Upgrade  rofi-0:2.1.0-1.fc45.x86_64                     Weak Dependency updates
+  Upgrade  rofi-themes-0:2.1.0-1.fc45.noarch              Dependency      updates
+  Upgrade  rustup-0:1.29.0-10.fc45.x86_64                 User            updates
+  Upgrade  tpm2-tss-0:4.2.2-1.fc45.x86_64                 Dependency      updates
+  Upgrade  tpm2-tss-fapi-0:4.2.2-1.fc45.x86_64            Dependency      updates
+  Replaced breeze-icon-theme-0:6.31.0-1.fc45.noarch       Dependency      @System
+  Replaced cmake-filesystem-0:4.3.0-5.fc45.x86_64         Dependency      @System
+  Replaced cmake-srpm-macros-0:4.3.0-5.fc45.noarch        Dependency      @System
+  Replaced dbus-1:1.16.2-6.fc45.x86_64                    Group           @System
+  Replaced dbus-common-1:1.16.2-6.fc45.noarch             Dependency      @System
+  Replaced dbus-daemon-1:1.16.2-6.fc45.x86_64             Dependency      @System
+  Replaced dbus-libs-1:1.16.2-6.fc45.x86_64               Dependency      @System
+  Replaced dbus-tools-1:1.16.2-6.fc45.x86_64              Dependency      @System
+  Replaced dbus-x11-1:1.16.2-6.fc45.x86_64                Dependency      @System
+  Replaced ibus-gtk2-0:1.5.35-1.fc45.x86_64               Dependency      @System
+  Replaced ibus-gtk3-0:1.5.35-1.fc45.x86_64               Dependency      @System
+  Replaced ibus-libs-0:1.5.35-1.fc45.x86_64               Dependency      @System
+  Replaced kf6-breeze-icons-0:6.31.0-1.fc45.x86_64        Dependency      @System
+  Replaced kf6-filesystem-0:6.31.0-1.fc45.x86_64          Dependency      @System
+  Replaced kf6-karchive-0:6.31.0-1.fc45.x86_64            Dependency      @System
+  Replaced kf6-kcolorscheme-0:6.31.0-1.fc45.x86_64        Dependency      @System
+  Replaced kf6-kconfig-0:6.31.0-1.fc45.x86_64             Dependency      @System
+  Replaced kf6-kguiaddons-0:6.31.0-1.fc45.x86_64          Dependency      @System
+  Replaced kf6-ki18n-0:6.31.0-1.fc45.x86_64               Dependency      @System
+  Replaced kf6-kiconthemes-0:6.31.0-1.fc45.x86_64         Dependency      @System
+  Replaced kf6-kimageformats-0:6.31.0-1.fc45.x86_64       Dependency      @System
+  Replaced kf6-knotifications-0:6.31.0-1.fc45.x86_64      Dependency      @System
+  Replaced kf6-kstatusnotifieritem-0:6.31.0-1.fc45.x86_64 Dependency      @System
+  Replaced kf6-kwidgetsaddons-0:6.31.0-1.fc45.x86_64      Dependency      @System
+  Replaced kf6-kwindowsystem-0:6.31.0-1.fc45.x86_64       Dependency      @System
+  Replaced plasma-breeze-common-0:6.8.2-1.fc45.noarch     Dependency      @System
+  Replaced rofi-0:2.0.0-3.fc45.x86_64                     Weak Dependency @System
+  Replaced rofi-themes-0:2.0.0-3.fc45.noarch              Dependency      @System
+  Replaced rustup-0:1.29.0-9.fc45.x86_64                  User            @System
+  Replaced tpm2-tss-0:4.2.1-1.fc45.x86_64                 Dependency      @System
+  Replaced tpm2-tss-fapi-0:4.2.1-1.fc45.x86_64            Dependency      @System
+

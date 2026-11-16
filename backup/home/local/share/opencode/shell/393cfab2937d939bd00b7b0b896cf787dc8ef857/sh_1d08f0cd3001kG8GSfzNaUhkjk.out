@@ -1,0 +1,3 @@
+would exec: /usr/bin/sway 
+SWAY_UNSUPPORTED_GPU env would be: [true]
+=== does sway read the user env file itself? ===

@@ -1,0 +1,26 @@
+total 56
+drwxrwxr-x. 5 asuna  asuna  4096 Nov 13 07:07 .
+drwxr-xr-x. 5 asuna  asuna  4096 Nov 12 13:05 ..
+drwxr-xr-x. 3 525287 525287 4096 Nov 12 14:42 data
+-rw-r--r--. 1 asuna  asuna   505 Nov 13 05:25 Dockerfile
+-rw-r--r--. 1 asuna  asuna  1599 Nov 13 06:51 Dockerfile.firefox
+-rwxr-xr-x. 1 asuna  asuna  1247 Nov 13 06:51 firefox-entrypoint.sh
+-rw-r--r--. 1 asuna  asuna  3370 Nov 13 07:00 podman-compose.test.yml
+-rw-r--r--. 1 asuna  asuna  2099 Nov 13 07:06 podman-compose.yml
+-rw-r--r--. 1 asuna  asuna  9050 Nov 13 07:07 README.md
+drwxrwxr-x. 2 asuna  asuna  4096 Nov  4 01:33 secrets
+drwxr-xr-x. 2 asuna  asuna  4096 Nov 13 05:26 test
+-rw-r--r--. 1 asuna  asuna  2113 Nov 13 05:25 vpn_entrypoint.sh
+=== test/ ===
+total 24
+drwxr-xr-x. 2 asuna asuna 4096 Nov 13 05:26 .
+drwxrwxr-x. 5 asuna asuna 4096 Nov 13 07:07 ..
+-rw-r--r--. 1 asuna asuna  261 Nov 13 05:58 client.conf
+-rw-r--r--. 1 asuna asuna  509 Nov 13 06:02 Dockerfile.ovpn-server
+-rw-r--r--. 1 asuna asuna 2798 Nov 13 06:02 entrypoint.sh
+-rw-r--r--. 1 asuna asuna  446 Nov 13 05:53 server.conf
+=== images built ===
+localhost/warpgate-firefox:latest 3.03 GB
+localhost/ovpn-test-server:latest 337 MB
+localhost/warpgate-vpn:latest 346 MB
+ghcr.io/warp-tech/warpgate:latest 138 MB

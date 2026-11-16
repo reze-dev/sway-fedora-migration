@@ -1,0 +1,880 @@
+#!/usr/bin/python3
+import configparser
+import json
+import os
+import re
+import shlex
+import subprocess
+import sys
+from pathlib import Path
+
+import gi
+
+gi.require_version("Gtk", "4.0")
+from gi.repository import Gio, Gtk, Pango
+
+HOME = Path.home()
+CONFIG = HOME / ".config"
+STATE_DIR = CONFIG / "sway-control-center"
+STATE_FILE = STATE_DIR / "settings.json"
+WALLPAPER_MODES = ("fill", "fit", "stretch", "center", "tile")
+ACCENTS = {
+    "Prussian Green Dark": "#368582",
+    "green": "#3eb34f",
+    "teal": "#317b79",
+    "blue": "#3584e4",
+    "purple": "#9141ac",
+    "orange": "#e66100",
+    "red": "#c01c28",
+}
+
+
+def accent_hex(name, dark):
+    if name == "Prussian Green Dark":
+        return "#368582" if dark else "#6db2af"
+    return ACCENTS.get(name, ACCENTS["green"])
+
+
+def run(args, check=True):
+    return subprocess.run(args, check=check, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+
+def strip_sway_wallpaper(config_path):
+    """Drop any "output * bg" line from the Sway config.
+
+    Sway spawns swaybg itself for that directive, so leaving it in place would
+    run swaybg next to awww and both would paint the background layer.
+    """
+    config_path = Path(config_path)
+    if not config_path.exists():
+        return
+    lines = config_path.read_text().splitlines()
+    updated = [line for line in lines if not re.match(r"^\s*output\s+\*\s+bg\s+", line)]
+    if updated != lines:
+        config_path.write_text("\n".join(updated).rstrip() + "\n")
+
+
+def apply_wallpaper(settings):
+    """Push the wallpaper to the awww daemon."""
+    wallpaper = Path(settings.get("wallpaper", HOME / ".local/share/backgrounds/warty-final-ubuntusway.png")).expanduser()
+    mode = settings.get("wallpaper_mode", "fill")
+    if mode not in WALLPAPER_MODES:
+        mode = "fill"
+    if not wallpaper.is_file():
+        raise FileNotFoundError(f"Wallpaper image does not exist: {wallpaper}")
+
+    resize = {"fill": "crop", "fit": "fit", "stretch": "stretch", "center": "no", "tile": "crop"}.get(mode, "crop")
+    run(["/usr/bin/awww", "img", "--resize", resize, "--transition-type", "simple", str(wallpaper)], check=False)
+
+
+def read_gsetting(key, default):
+    try:
+        value = run(["gsettings", "get", "org.gnome.desktop.interface", key]).stdout.strip()
+        if value.startswith("'") and value.endswith("'"):
+            return value[1:-1].replace("\\'", "'")
+        return value
+    except (OSError, subprocess.CalledProcessError):
+        return default
+
+
+def brightness_devices():
+    """Return the backlight devices brightnessctl can drive.
+
+    brightnessctl lists LED devices (numlock, kana, ...) alongside backlights,
+    so the class is restricted to "backlight" to avoid offering those.
+    """
+    try:
+        result = run(["brightnessctl", "-c", "backlight", "-l"], check=False)
+    except OSError:
+        return []
+    devices = []
+    for line in result.stdout.splitlines():
+        line = line.strip()
+        if line.startswith("Device ") and "'" in line:
+            devices.append(line.split("'")[1])
+    return devices
+
+
+def read_brightness(device):
+    """Return the current brightness percentage of a device, or None."""
+    try:
+        value = run(["brightnessctl", "-d", device, "-P", "get"], check=False).stdout.strip()
+        return float(value)
+    except (OSError, ValueError):
+        return None
+
+
+def set_brightness(device, percent):
+    """Set the brightness of a device, clamped to the 1-100 range."""
+    percent = max(1, min(100, int(round(percent))))
+    run(["brightnessctl", "-d", device, "set", f"{percent}%"], check=False)
+
+
+def read_index_name(path):
+    try:
+        for line in (path / "index.theme").read_text(errors="replace").splitlines():
+            if line.startswith("Name="):
+                return line.split("=", 1)[1].strip()
+    except OSError:
+        pass
+    return path.name
+
+
+def themed_directories(roots, marker, need_cursors=False):
+    found = {}
+    for root in roots:
+        if not root.is_dir():
+            continue
+        try:
+            children = root.iterdir()
+        except OSError:
+            continue
+        for child in children:
+            if not child.is_dir() or child.name in ("default", "hicolor"):
+                continue
+            if marker and not (child / marker).exists():
+                continue
+            if need_cursors and not (child / "cursors").is_dir():
+                continue
+            found.setdefault(read_index_name(child), child)
+    return dict(sorted(found.items(), key=lambda item: item[0].casefold()))
+
+
+def kvantum_themes():
+    themes = {}
+    for root in (CONFIG / "Kvantum", Path("/usr/share/Kvantum")):
+        if not root.is_dir():
+            continue
+        for config in root.glob("*/*.kvconfig"):
+            themes.setdefault(config.stem, config.parent)
+    return dict(sorted(themes.items(), key=lambda item: item[0].casefold()))
+
+
+def current_kvantum_theme():
+    config = CONFIG / "Kvantum/kvantum.kvconfig"
+    try:
+        for line in config.read_text().splitlines():
+            if line.startswith("theme="):
+                return line.split("=", 1)[1].strip()
+    except OSError:
+        pass
+    return "KvYaru-PrussianGreenDark"
+
+
+def current_font_desc():
+    value = read_gsetting("font-name", "Inter 11")
+    try:
+        return Pango.FontDescription.from_string(value)
+    except Exception:
+        return Pango.FontDescription.from_string("Inter 11")
+
+
+def current_mono_desc():
+    kitty = CONFIG / "kitty/kitty.conf"
+    family = "JetBrainsMono Nerd Font"
+    size = 14
+    try:
+        text = kitty.read_text()
+        match = re.search(r'^font_family\s+family="([^"]+)"', text, re.M)
+        if match:
+            family = match.group(1)
+        match = re.search(r'^\s*font_size\s+([\d.]+)', text, re.M)
+        if match:
+            size = float(match.group(1))
+    except OSError:
+        pass
+    return Pango.FontDescription.from_string(f"{family} {size:g}")
+
+
+def update_line(path, key, value, section=None):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    lines = path.read_text().splitlines() if path.exists() else []
+    result = []
+    active_section = None
+    changed = False
+    for line in lines:
+        match = re.match(r"\s*\[([^]]+)\]\s*$", line)
+        if match:
+            active_section = match.group(1)
+        if (section is None or active_section == section) and re.match(rf"\s*{re.escape(key)}\s*=", line):
+            result.append(f"{key}={value}")
+            changed = True
+        else:
+            result.append(line)
+    if not changed:
+        if section is not None and f"[{section}]" not in result:
+            result.extend([f"[{section}]"])
+        result.append(f"{key}={value}")
+    path.write_text("\n".join(result).rstrip() + "\n")
+
+
+def set_gtk_settings(path, theme, icons, cursor, cursor_size, font, dark):
+    parser = configparser.ConfigParser()
+    parser.read(path)
+    if not parser.has_section("Settings"):
+        parser.add_section("Settings")
+    values = {
+        "gtk-theme-name": theme,
+        "gtk-icon-theme-name": icons,
+        "gtk-cursor-theme-name": cursor,
+        "gtk-cursor-theme-size": str(cursor_size),
+        "gtk-font-name": font,
+        "gtk-application-prefer-dark-theme": "1" if dark else "0",
+    }
+    for key, value in values.items():
+        parser.set("Settings", key, value)
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w") as stream:
+        parser.write(stream, space_around_delimiters=False)
+
+
+def qt_font_string(existing, family, size, mono=False):
+    value = existing.strip().strip('"')
+    if value.startswith("@Variant("):
+        value = "JetBrains Mono,12,-1,5,50,0,0,0,0,0" if mono else "Inter,11,-1,5,50,0,0,0,0,0"
+    fields = value.split(",")
+    if len(fields) < 3:
+        fields = [family, str(size), "-1", "5", "50", "0", "0", "0", "0", "0"]
+    fields[0] = family
+    fields[1] = f"{size:g}"
+    return '"' + ",".join(fields) + '"'
+
+
+def set_qt_config(path, version, theme, icons, accent, dark, ui_font, ui_size, mono_font, mono_size):
+    path = Path(path)
+    lines = path.read_text().splitlines() if path.exists() else []
+    color_dir = path.parent / "colors"
+    color_dir.mkdir(parents=True, exist_ok=True)
+    scheme = color_dir / "SwayControlCenter.conf"
+    write_qt_palette(scheme, accent, dark)
+    values = {
+        "color_scheme_path": str(scheme),
+        "custom_palette": "true",
+        "icon_theme": icons,
+        "style": "kvantum",
+    }
+    quoted_values = {
+        "general": qt_font_string(next((x.split("=", 1)[1] for x in lines if x.startswith("general=")), ""), ui_font, ui_size),
+        "fixed": qt_font_string(next((x.split("=", 1)[1] for x in lines if x.startswith("fixed=")), ""), mono_font, mono_size, True),
+    }
+    for key, value in {**values, **quoted_values}.items():
+        lines = replace_or_append(lines, key, value)
+    path.write_text("\n".join(lines).rstrip() + "\n")
+
+
+def replace_or_append(lines, key, value):
+    output = []
+    found = False
+    for line in lines:
+        if line.startswith(f"{key}="):
+            output.append(f"{key}={value}")
+            found = True
+        else:
+            output.append(line)
+    if not found:
+        output.append(f"{key}={value}")
+    return output
+
+
+def write_qt_palette(path, accent, dark):
+    accent = accent_hex(accent, dark)
+    if dark:
+        roles = ["#f0f0f0", "#333333", "#5a5a5a", "#464646", "#171717", "#3c3c3c", "#f0f0f0", "#ffffff", "#f0f0f0", "#2d2d2d", "#353535", "#171717", accent, "#ffffff", "#1397c3", accent, "#323232", "#2d2d2d", "#ffffff", "#a0a0a0", accent]
+        disabled = ["#a0a0a0", "#333333", "#5a5a5a", "#464646", "#171717", "#3c3c3c", "#a0a0a0", "#ffffff", "#a0a0a0", "#252525", "#2d2d2d", "#171717", "#3c3c3c", "#a0a0a0", "#1397c3", accent, "#252525", "#2d2d2d", "#a0a0a0", "#a0a0a0", "#3c3c3c"]
+    else:
+        roles = ["#2d2d2d", "#eeeeee", "#ffffff", "#f6f6f6", "#6c6c6c", "#c4c4c4", "#2d2d2d", "#ffffff", "#2d2d2d", "#ffffff", "#f6f6f6", "#a0a0a0", accent, "#ffffff", "#1397c3", accent, "#f0f0f0", "#ffffff", "#2d2d2d", "#808080", accent]
+        disabled = ["#808080", "#eeeeee", "#ffffff", "#f6f6f6", "#6c6c6c", "#c4c4c4", "#808080", "#ffffff", "#808080", "#f7f7f7", "#eeeeee", "#a0a0a0", "#b0b0b0", "#808080", "#1397c3", accent, "#f0f0f0", "#ffffff", "#808080", "#808080", "#b0b0b0"]
+
+    def qt_colors(colors):
+        return ", ".join("#" + ("80" if index == 19 else "ff") + color.lstrip("#") for index, color in enumerate(colors))
+
+    content = "[ColorScheme]\n"
+    content += f"active_colors={qt_colors(roles)}\n"
+    content += f"disabled_colors={qt_colors(disabled)}\n"
+    content += f"inactive_colors={qt_colors(roles)}\n"
+    Path(path).write_text(content)
+
+
+def set_sway_palette(path, accent, dark):
+    if dark:
+        focused_inactive = "#1b1b1b #1b1b1b #bdc3c7 #41535b #1b1b1b"
+        unfocused = "#1b1b1b #2f2f2f #bdc3c7 #ffffff #1b1b1b"
+    else:
+        focused_inactive = "#eeeeee #eeeeee #5a5a5a #bdbdbd #eeeeee"
+        unfocused = "#f6f6f6 #eeeeee #5a5a5a #bdbdbd #f6f6f6"
+    update_text(path, r"^client\.focused\s+.*$", f"client.focused {accent} {accent} #ffffff #ffffff {accent}")
+    update_text(path, r"^client\.focused_inactive\s+.*$", f"client.focused_inactive {focused_inactive}")
+    update_text(path, r"^client\.unfocused\s+.*$", f"client.unfocused {unfocused}")
+
+
+def set_desktop_palette(accent, dark, icons, ui_font, ui_size):
+    if dark:
+        bg, fg = "#1b1b1b", "#eff0f1"
+        fuzzel_bg, fuzzel_fg = "1b1b1bee", "eff0f1ff"
+        waybar_bg, waybar_fg = "rgba(27, 27, 27, 0.96)", "#eff0f1"
+    else:
+        bg, fg = "#f6f6f6", "#2d2d2d"
+        fuzzel_bg, fuzzel_fg = "f6f6f6ee", "2d2d2dff"
+        waybar_bg, waybar_fg = "rgba(246, 246, 246, 0.96)", "#2d2d2d"
+
+    fuzzel = CONFIG / "fuzzel/fuzzel.ini"
+    for key, value in (("background", fuzzel_bg), ("text", fuzzel_fg), ("match", accent.lstrip("#") + "ff"), ("selection", accent.lstrip("#") + "ff"), ("selection-text", "ffffffff"), ("border", accent.lstrip("#") + "ff"), ("icon-theme", icons), ("font", f"{ui_font}:size={ui_size:g}")):
+        update_line(fuzzel, key, value)
+    mako = CONFIG / "mako/config"
+    update_line(mako, "background-color", bg)
+    update_line(mako, "text-color", fg)
+    update_line(mako, "border-color", accent)
+    update_line(mako, "font", f"{ui_font} {ui_size:g}")
+
+    waybar = CONFIG / "waybar/style.css"
+    update_text(waybar, r"^\s*font-family:\s*.*;$", f'    font-family: "{ui_font}", "Font Awesome 7 Free", sans-serif;')
+    update_text(waybar, r"^\s*font-size:\s*\d+px;$", f"    font-size: {ui_size + 1:g}px;")
+    if waybar.exists():
+        css = waybar.read_text()
+        block = re.search(r"window#waybar\s*\{([^}]*)\}", css, re.S)
+        if block:
+            content = block.group(1)
+            content = re.sub(r"background:\s*[^;]+;", f"background: {waybar_bg};", content)
+            content = re.sub(r"color:\s*[^;]+;", f"color: {waybar_fg};", content)
+            content = re.sub(r"border-bottom:\s*[^;]+;", f"border-bottom: 1px solid {accent};", content)
+            css = css[:block.start(1)] + content + css[block.end(1):]
+        r, g, b = (int(accent[index:index + 2], 16) for index in (1, 3, 5))
+        hover_accent = f"rgba({r}, {g}, {b}, 0.35)"
+        for selector, prop, value in (
+            ("#workspaces button:hover", "background", hover_accent),
+            ("#workspaces button.focused", "background", accent),
+            ("#mode", "background", accent),
+            ("#clock", "background", accent),
+            ("#custom-menu", "color", accent),
+            ("#idle_inhibitor.activated", "background", accent),
+            ("label:focus", "background", accent),
+        ):
+            css, _ = re.subn(
+                rf"({re.escape(selector)}\s*\{{[^}}]*?\b{re.escape(prop)}\s*:\s*)[^;]+(;)",
+                rf"\g<1>{value}\2",
+                css,
+                count=1,
+                flags=re.S,
+            )
+        css = css.replace("#eff0f1", waybar_fg)
+        waybar.write_text(css)
+    set_sway_palette(CONFIG / "sway/config", accent, dark)
+
+
+def set_xsettings(path, theme, icons, cursor, cursor_size, font):
+    values = {
+        "Net/ThemeName": f'"{theme}"',
+        "Net/IconThemeName": f'"{icons}"',
+        "Gtk/CursorThemeName": f'"{cursor}"',
+        "Gtk/CursorThemeSize": str(cursor_size),
+        "Gtk/FontName": f'"{font}"',
+    }
+    path = Path(path)
+    lines = path.read_text().splitlines() if path.exists() else []
+    for key, value in values.items():
+        pattern = re.compile(rf"^\s*{re.escape(key)}\s+")
+        if any(pattern.match(line) for line in lines):
+            lines = [f"{key} {value}" if pattern.match(line) else line for line in lines]
+        else:
+            lines.append(f"{key} {value}")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(lines).rstrip() + "\n")
+
+
+def set_gtk2_rc(theme, icons, cursor, cursor_size, font):
+    path = HOME / ".gtkrc-2.0"
+    lines = []
+    mine = HOME / ".gtkrc-2.0.mine"
+    if mine.exists():
+        lines.append(f'include "{mine}"')
+    lines.extend([
+        f'gtk-theme-name="{theme}"',
+        f'gtk-icon-theme-name="{icons}"',
+        f'gtk-cursor-theme-name="{cursor}"',
+        f"gtk-cursor-theme-size={cursor_size}",
+        f'gtk-font-name="{font}"',
+        'gtk-xft-antialias=1',
+        'gtk-xft-hinting=1',
+        'gtk-xft-hintstyle="hintslight"',
+        'gtk-xft-rgba="rgb"',
+    ])
+    path.write_text("\n".join(lines) + "\n")
+
+
+def write_gtk2_theme(theme, accent, dark):
+    accent_color = accent_hex(accent, dark)
+    if dark:
+        bg, panel, base, fg, muted = "#2d2d2d", "#353535", "#171717", "#f0f0f0", "#a0a0a0"
+    else:
+        bg, panel, base, fg, muted = "#eeeeee", "#f6f6f6", "#ffffff", "#2d2d2d", "#737373"
+    gtk2 = HOME / ".themes" / theme / "gtk-2.0"
+    gtk2.mkdir(parents=True, exist_ok=True)
+    gtk2.joinpath("gtkrc").write_text(f'''style "sway-control-center" {{
+    fg[NORMAL] = "{fg}"
+    fg[ACTIVE] = "{fg}"
+    fg[PRELIGHT] = "{fg}"
+    fg[SELECTED] = "#ffffff"
+    fg[INSENSITIVE] = "{muted}"
+    bg[NORMAL] = "{bg}"
+    bg[ACTIVE] = "{panel}"
+    bg[PRELIGHT] = "{panel}"
+    bg[SELECTED] = "{accent_color}"
+    bg[INSENSITIVE] = "{bg}"
+    base[NORMAL] = "{base}"
+    base[ACTIVE] = "{bg}"
+    base[PRELIGHT] = "{panel}"
+    base[SELECTED] = "{accent_color}"
+    base[INSENSITIVE] = "{panel}"
+    text[NORMAL] = "{fg}"
+    text[ACTIVE] = "{fg}"
+    text[PRELIGHT] = "{fg}"
+    text[SELECTED] = "#ffffff"
+    text[INSENSITIVE] = "{muted}"
+    engine "clearlooks" {{ colorize_scrollbar = TRUE }}
+}}
+class "*" style "sway-control-center"
+''')
+
+
+def update_text(path, pattern, replacement, append=None):
+    path = Path(path)
+    if not path.exists():
+        return
+    text = path.read_text()
+    updated, count = re.subn(pattern, replacement, text, count=1, flags=re.M)
+    if count == 0 and append:
+        updated = text.rstrip() + "\n" + append + "\n"
+    path.write_text(updated)
+
+
+def icon_directory(name):
+    for root in (HOME / ".local/share/icons", HOME / ".icons", Path("/usr/share/icons")):
+        candidate = root / name
+        if candidate.is_dir():
+            return candidate
+    return None
+
+
+def apply_settings(settings):
+    theme = settings["theme"]
+    icons = settings["icons"]
+    cursor = settings["cursor"]
+    cursor_size = int(settings["cursor_size"])
+    ui_font = settings["ui_font"]
+    ui_size = float(settings["ui_size"])
+    mono_font = settings["mono_font"]
+    mono_size = float(settings["mono_size"])
+    dark = bool(settings["dark"])
+    accent = settings["accent"]
+    qt_theme = settings["qt_theme"]
+    ui_font_value = f"{ui_font} {ui_size:g}"
+
+    if run(["gsettings", "list-schemas"], check=False).returncode == 0:
+        schema = run(["gsettings", "list-keys", "org.gnome.desktop.interface"], check=False).stdout.splitlines()
+        for key, value in (("gtk-theme", theme), ("icon-theme", icons), ("cursor-theme", cursor), ("cursor-size", str(cursor_size)), ("font-name", ui_font_value), ("color-scheme", "prefer-dark" if dark else "default")):
+            if key in schema:
+                run(["gsettings", "set", "org.gnome.desktop.interface", key, value], check=False)
+        if "accent-color" in schema:
+            gsettings_accent = "teal" if accent == "Prussian Green Dark" else accent
+            run(["gsettings", "set", "org.gnome.desktop.interface", "accent-color", gsettings_accent], check=False)
+
+    set_gtk_settings(CONFIG / "gtk-3.0/settings.ini", theme, icons, cursor, cursor_size, ui_font_value, dark)
+    set_gtk_settings(CONFIG / "gtk-4.0/settings.ini", theme, icons, cursor, cursor_size, ui_font_value, dark)
+    write_gtk2_theme(theme, accent, dark)
+    set_gtk2_rc(theme, icons, cursor, cursor_size, ui_font_value)
+    set_xsettings(CONFIG / "xsettingsd/xsettingsd.conf", theme, icons, cursor, cursor_size, ui_font_value)
+
+    for version in ("qt5ct", "qt6ct"):
+        set_qt_config(CONFIG / version / f"{version}.conf", version, qt_theme, icons, accent, dark, ui_font, ui_size, mono_font, mono_size)
+    kvantum = CONFIG / "Kvantum/kvantum.kvconfig"
+    update_line(kvantum, "theme", qt_theme, "General")
+
+    sway_config = CONFIG / "sway/config"
+    update_text(sway_config, r"^font\s+pango:.*$", f"font pango:{ui_font} {ui_size:g}")
+    fuzzel = CONFIG / "fuzzel/fuzzel.ini"
+    resolved_accent = accent_hex(accent, dark)
+    set_desktop_palette(resolved_accent, dark, icons, ui_font, ui_size)
+    swaylock = CONFIG / "swaylock/config"
+    update_line(swaylock, "font", ui_font)
+    update_line(swaylock, "font-size", f"{ui_size:g}")
+    update_line(swaylock, "color", "1b1b1b" if dark else "f6f6f6")
+    update_line(swaylock, "inside-color", "2d2d2d" if dark else "ffffff")
+    update_line(swaylock, "text-color", "eff0f1" if dark else "2d2d2d")
+    update_line(swaylock, "ring-color", resolved_accent.lstrip("#"))
+    update_line(swaylock, "ring-clear-color", resolved_accent.lstrip("#"))
+
+    kitty = CONFIG / "kitty/kitty.conf"
+    update_text(kitty, r'^font_family\s+family="[^"]+"$', f'font_family      family="{mono_font}"')
+    update_text(kitty, r'^\s*font_size\s+[\d.]+$', f"font_size {mono_size:g}")
+
+    sway_environment = CONFIG / "sway/environment"
+    update_line(sway_environment, "XCURSOR_THEME", cursor)
+    update_line(sway_environment, "XCURSOR_SIZE", str(cursor_size))
+    settings_file = CONFIG / "sway/config.d/70-settings.conf"
+    update_text(settings_file, r'^seat \* xcursor_theme .*$', f"seat * xcursor_theme {cursor} {cursor_size}", f"seat * xcursor_theme {cursor} {cursor_size}")
+    update_text(settings_file, r'^exec_always .*dbus-update-activation-environment.*$', f"exec_always env XCURSOR_THEME={shlex.quote(cursor)} XCURSOR_SIZE={cursor_size} dbus-update-activation-environment --systemd XCURSOR_THEME XCURSOR_SIZE", f"exec_always env XCURSOR_THEME={shlex.quote(cursor)} XCURSOR_SIZE={cursor_size} dbus-update-activation-environment --systemd XCURSOR_THEME XCURSOR_SIZE")
+
+    previous = {}
+    try:
+        previous = json.loads(STATE_FILE.read_text())
+    except (OSError, json.JSONDecodeError):
+        pass
+    if shutil_which("flatpak"):
+        old_cursor = previous.get("cursor", "Bibata-Modern-Ice")
+        old_icon = previous.get("icons", "Yaru-prussiangreen-dark")
+        for old in (old_cursor, old_icon):
+            directory = icon_directory(old)
+            if directory:
+                run(["flatpak", "override", "--user", f"--nofilesystem={directory}"], check=False)
+        for name in (cursor, icons):
+            directory = icon_directory(name)
+            if directory:
+                run(["flatpak", "override", "--user", f"--filesystem={directory}:ro"], check=False)
+        run(["flatpak", "override", "--user", f"--env=XCURSOR_THEME={cursor}", f"--env=XCURSOR_SIZE={cursor_size}"], check=False)
+
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    strip_sway_wallpaper(CONFIG / "sway/config")
+    STATE_FILE.write_text(json.dumps(settings, indent=2) + "\n")
+    apply_wallpaper(settings)
+    run(["systemctl", "--user", "restart", "xsettingsd.service"], check=False)
+    sway_socket = os.environ.get("SWAYSOCK")
+    if sway_socket:
+        run(["swaymsg", "seat", "*", "xcursor_theme", cursor, str(cursor_size)], check=False)
+        run(["dbus-update-activation-environment", "--systemd", f"XCURSOR_THEME={cursor}", f"XCURSOR_SIZE={cursor_size}"], check=False)
+        run(["swaymsg", "reload"], check=False)
+    if shutil_which("waybar"):
+        if run(["pgrep", "-x", "waybar"], check=False).returncode == 0:
+            run(["pkill", "-USR2", "-x", "waybar"], check=False)
+        else:
+            run(["systemctl", "--user", "start", "waybar.service"], check=False)
+    run(["systemctl", "--user", "restart", "mako.service"], check=False)
+
+
+def shutil_which(binary):
+    return any((Path(directory) / binary).exists() for directory in os.environ.get("PATH", "").split(os.pathsep))
+
+
+def launch_system_app(command):
+    subprocess.Popen(command, start_new_session=True)
+
+
+class BrightnessBar(Gtk.Box):
+    """A backlight slider that is clickable and scrollable.
+
+    Gtk.Scale handles click-to-set on its own: clicking the trough jumps
+    the slider to that position. Scrolling is handled here instead of by
+    GtkRange's built-in controller, because that one moves the value by an
+    amount that depends on the scroll unit reported by the device, which
+    makes the step feel different between a wheel and a touchpad.
+
+    The controller runs in the CAPTURE phase so that it is seen before
+    GtkRange's own BUBBLE-phase controller; returning True stops the
+    event from reaching it, so the value is only moved once per notch.
+
+    The value is written to the backlight as it changes rather than only
+    on Apply, which is what a brightness control is expected to do.
+    """
+
+    SCROLL_STEP = 2
+
+    def __init__(self, device, on_status=None):
+        super().__init__(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        self.device = device
+        self.on_status = on_status
+        self._updating = False
+
+        current = read_brightness(device)
+        if current is None:
+            current = 50.0
+
+        self.adjustment = Gtk.Adjustment(
+            value=max(1, min(100, current)),
+            lower=1,
+            upper=100,
+            step_increment=1,
+            page_increment=self.SCROLL_STEP,
+        )
+
+        self.icon = Gtk.Image.new_from_icon_name("display-brightness-symbolic")
+        self.icon.set_valign(Gtk.Align.CENTER)
+        self.icon.set_tooltip_text("Backlight brightness")
+        self.append(self.icon)
+
+        self.scale = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=self.adjustment)
+        self.scale.set_hexpand(True)
+        self.scale.set_valign(Gtk.Align.CENTER)
+        self.scale.set_draw_value(False)
+        self.scale.set_size_request(260, -1)
+        self.scale.set_tooltip_text("Backlight brightness")
+        self.append(self.scale)
+
+        self.label = Gtk.Label(label=f"{self.adjustment.get_value():.0f}%")
+        self.label.set_width_chars(4)
+        self.label.set_xalign(1.0)
+        self.label.set_valign(Gtk.Align.CENTER)
+        self.append(self.label)
+
+        self.scale.connect("value-changed", self.on_value_changed)
+
+        scroll = Gtk.EventControllerScroll()
+        scroll.set_propagation_phase(Gtk.PropagationPhase.CAPTURE)
+        scroll.connect("scroll", self.on_scroll)
+        self.scale.add_controller(scroll)
+
+    def on_value_changed(self, _scale):
+        if self._updating:
+            return
+        value = self.adjustment.get_value()
+        self.label.set_text(f"{value:.0f}%")
+        set_brightness(self.device, value)
+        if self.on_status:
+            self.on_status(f"Backlight {value:.0f}%")
+
+    def on_scroll(self, _controller, dx, dy):
+        if dy == 0:
+            return False
+        # Scrolling up (dy < 0) raises the brightness.
+        delta = -dy * self.SCROLL_STEP
+        new_value = max(
+            self.adjustment.get_lower(),
+            min(self.adjustment.get_upper(), self.adjustment.get_value() + delta),
+        )
+        if new_value != self.adjustment.get_value():
+            self.adjustment.set_value(new_value)
+        # Stop here so GtkRange's own controller does not move it again.
+        return True
+
+    def refresh(self):
+        """Re-read the hardware value, e.g. after the panel was changed."""
+        current = read_brightness(self.device)
+        if current is None:
+            return
+        self._updating = True
+        self.adjustment.set_value(max(1, min(100, current)))
+        self.label.set_text(f"{self.adjustment.get_value():.0f}%")
+        self._updating = False
+
+
+class ControlCenter(Gtk.Application):
+    def __init__(self):
+        super().__init__(application_id="org.fedora.sway.ControlCenter", flags=Gio.ApplicationFlags.DEFAULT_FLAGS)
+        self.themes = themed_directories((Path("/usr/share/themes"), HOME / ".themes", HOME / ".local/share/themes"), "gtk-3.0/gtk.css")
+        self.icons = themed_directories((HOME / ".local/share/icons", HOME / ".icons", Path("/usr/share/icons")), "index.theme")
+        self.cursors = themed_directories((HOME / ".local/share/icons", HOME / ".icons", Path("/usr/share/icons")), "index.theme", True)
+        self.qt_themes = kvantum_themes()
+
+    def do_activate(self):
+        window = Gtk.ApplicationWindow(application=self, title="Sway Control Center")
+        window.set_default_size(660, 800)
+        window.set_resizable(True)
+        outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
+        outer.set_margin_top(22)
+        outer.set_margin_bottom(18)
+        outer.set_margin_start(24)
+        outer.set_margin_end(24)
+        window.set_child(outer)
+
+        title = Gtk.Label(label="Sway Control Center")
+        title.add_css_class("title-1")
+        title.set_xalign(0)
+        outer.append(title)
+        subtitle = Gtk.Label(label="Choose one visual setup. Apply synchronizes it across GTK, Qt, Sway, and Flatpak apps.")
+        subtitle.set_xalign(0)
+        subtitle.set_wrap(True)
+        subtitle.add_css_class("dim-label")
+        outer.append(subtitle)
+
+        current_theme = read_gsetting("gtk-theme", "Yaru-prussiangreen-dark")
+        current_icons = read_gsetting("icon-theme", "Yaru-prussiangreen-dark")
+        current_cursor = read_gsetting("cursor-theme", "Bibata-Modern-Ice")
+        current_size = int(read_gsetting("cursor-size", "24"))
+        qt_theme = current_kvantum_theme()
+        try:
+            saved_settings = json.loads(STATE_FILE.read_text())
+        except (OSError, json.JSONDecodeError):
+            saved_settings = {}
+        current_wallpaper = Path(saved_settings.get("wallpaper", HOME / ".local/share/backgrounds/warty-final-ubuntusway.png")).expanduser()
+
+        grid = Gtk.Grid(column_spacing=14, row_spacing=12)
+        grid.set_margin_top(12)
+        outer.append(grid)
+
+        def dropdown(values, selected):
+            names = list(values) or [selected]
+            widget = Gtk.DropDown.new_from_strings(names)
+            if selected in names:
+                widget.set_selected(names.index(selected))
+            return widget
+
+        def add_row(row, label, widget):
+            heading = Gtk.Label(label=label)
+            heading.set_xalign(0)
+            grid.attach(heading, 0, row, 1, 1)
+            grid.attach(widget, 1, row, 1, 1)
+
+        self.theme = dropdown(self.themes, current_theme)
+        self.icons = dropdown(self.icons, current_icons)
+        self.cursor = dropdown(self.cursors, current_cursor)
+        self.qt_theme = dropdown(self.qt_themes, qt_theme)
+        add_row(0, "GTK theme", self.theme)
+        add_row(1, "Icon theme", self.icons)
+        add_row(2, "Cursor theme", self.cursor)
+
+        self.cursor_size = Gtk.SpinButton.new_with_range(16, 48, 1)
+        self.cursor_size.set_value(current_size)
+        add_row(3, "Cursor size", self.cursor_size)
+
+        self.ui_font = Gtk.FontDialogButton.new(Gtk.FontDialog.new())
+        self.ui_font.set_dialog(Gtk.FontDialog.new())
+        self.ui_font.set_font_desc(current_font_desc())
+        add_row(4, "Interface font", self.ui_font)
+
+        self.mono_font = Gtk.FontDialogButton.new(Gtk.FontDialog.new())
+        self.mono_font.set_dialog(Gtk.FontDialog.new())
+        self.mono_font.set_font_desc(current_mono_desc())
+        add_row(5, "Monospace font", self.mono_font)
+
+        self.dark = Gtk.Switch()
+        self.dark.set_active(read_gsetting("color-scheme", "prefer-dark") == "prefer-dark")
+        self.dark.set_halign(Gtk.Align.START)
+        add_row(6, "Dark appearance", self.dark)
+
+        current_accent = read_gsetting("accent-color", "green")
+        if current_accent == "teal" and current_theme == "Yaru-prussiangreen-dark":
+            current_accent = "Prussian Green Dark"
+        self.accent = dropdown(ACCENTS, current_accent)
+        add_row(7, "Accent color", self.accent)
+        self.qt_theme.set_tooltip_text("Kvantum theme used by Qt5 and Qt6 applications")
+        add_row(8, "Qt theme", self.qt_theme)
+
+        wallpaper_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        self.wallpaper_label = Gtk.Label(label=current_wallpaper.name if current_wallpaper.name else "Choose an image")
+        self.wallpaper_label.set_xalign(0)
+        self.wallpaper_label.set_hexpand(True)
+        self.wallpaper_label.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
+        self.wallpaper_label.set_tooltip_text(str(current_wallpaper))
+        wallpaper_row.append(self.wallpaper_label)
+        choose_wallpaper = Gtk.Button(label="Choose…")
+        choose_wallpaper.connect("clicked", self.choose_wallpaper)
+        wallpaper_row.append(choose_wallpaper)
+        add_row(9, "Wallpaper", wallpaper_row)
+        self.wallpaper_path = current_wallpaper
+        self.wallpaper_mode = dropdown(WALLPAPER_MODES, saved_settings.get("wallpaper_mode", "fill"))
+        add_row(10, "Wallpaper scaling", self.wallpaper_mode)
+
+        divider = Gtk.Separator(orientation=Gtk.Orientation.HORIZONTAL)
+        divider.set_margin_top(5)
+        outer.append(divider)
+        tools_title = Gtk.Label(label="Other settings")
+        tools_title.add_css_class("heading")
+        tools_title.set_xalign(0)
+        outer.append(tools_title)
+        tools = Gtk.Box(spacing=8)
+        outer.append(tools)
+        for label, command in (
+            ("Displays", ["wdisplays"]),
+            ("Sound", ["pavucontrol"]),
+            ("Network", ["kitty", "--class", "floating_shell", "nmtui"]),
+            ("Bluetooth", ["kitty", "--class", "floating_shell", "bluetoothctl"]),
+        ):
+            button = Gtk.Button(label=label)
+            button.connect("clicked", lambda _button, cmd=command: launch_system_app(cmd))
+            tools.append(button)
+
+        footer = Gtk.Box(spacing=10)
+        footer.set_margin_top(4)
+        outer.append(footer)
+        self.status = Gtk.Label(label="Changes are applied to your user session.")
+        self.status.set_xalign(0)
+        self.status.set_hexpand(True)
+        self.status.set_wrap(True)
+        footer.append(self.status)
+
+        self.brightness_bar = None
+        devices = brightness_devices()
+        if devices:
+            brightness_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
+            brightness_label = Gtk.Label(label="Brightness")
+            brightness_label.set_xalign(0)
+            brightness_box.append(brightness_label)
+            self.brightness_bar = BrightnessBar(devices[0], on_status=self.set_status)
+            brightness_box.append(self.brightness_bar)
+            outer.append(brightness_box)
+        apply_button = Gtk.Button(label="Apply settings")
+        apply_button.add_css_class("suggested-action")
+        apply_button.connect("clicked", self.apply_clicked)
+        footer.append(apply_button)
+        self.present_window = window
+        window.present()
+
+    def set_status(self, message):
+        """Show a transient status message in the footer."""
+        if getattr(self, "status", None) is not None:
+            self.status.set_text(message)
+
+    def apply_clicked(self, _button):
+        ui_desc = self.ui_font.get_font_desc()
+        mono_desc = self.mono_font.get_font_desc()
+        settings = {
+            "theme": self.theme.get_selected_item().get_string(),
+            "icons": self.icons.get_selected_item().get_string(),
+            "cursor": self.cursor.get_selected_item().get_string(),
+            "cursor_size": int(self.cursor_size.get_value()),
+            "ui_font": ui_desc.get_family() or "Inter",
+            "ui_size": round(ui_desc.get_size() / Pango.SCALE, 1),
+            "mono_font": mono_desc.get_family() or "JetBrains Mono",
+            "mono_size": round(mono_desc.get_size() / Pango.SCALE, 1),
+            "dark": self.dark.get_active(),
+            "accent": self.accent.get_selected_item().get_string(),
+            "qt_theme": self.qt_theme.get_selected_item().get_string(),
+            "wallpaper": str(self.wallpaper_path),
+            "wallpaper_mode": self.wallpaper_mode.get_selected_item().get_string(),
+        }
+        try:
+            apply_settings(settings)
+            self.status.set_text("Applied. Reopen any already-running app to refresh its theme and fonts.")
+        except Exception as error:
+            self.status.set_text(f"Could not apply all settings: {error}")
+
+    def choose_wallpaper(self, _button):
+        chooser = Gtk.FileChooserNative.new(
+            "Choose a wallpaper", self.present_window, Gtk.FileChooserAction.OPEN, "Select", "Cancel"
+        )
+        wallpaper_dir = HOME / "Pictures/Wallpapers"
+        if wallpaper_dir.is_dir():
+            chooser.set_current_folder(Gio.File.new_for_path(str(wallpaper_dir)))
+        image_filter = Gtk.FileFilter()
+        image_filter.set_name("Image files")
+        image_filter.add_mime_type("image/*")
+        chooser.add_filter(image_filter)
+        chooser.connect("response", self.wallpaper_chosen)
+        self.wallpaper_chooser = chooser
+        chooser.show()
+
+    def wallpaper_chosen(self, chooser, response):
+        if response == Gtk.ResponseType.ACCEPT:
+            selected = chooser.get_file()
+            if selected and selected.get_path():
+                self.wallpaper_path = Path(selected.get_path())
+                self.wallpaper_label.set_text(self.wallpaper_path.name)
+                self.wallpaper_label.set_tooltip_text(str(self.wallpaper_path))
+        chooser.destroy()
+        self.wallpaper_chooser = None
+
+
+def main():
+    if "--apply-state" in sys.argv:
+        try:
+            apply_settings(json.loads(STATE_FILE.read_text()))
+            return 0
+        except (OSError, json.JSONDecodeError) as error:
+            print(f"Sway Control Center: {error}", file=sys.stderr)
+            return 1
+    app = ControlCenter()
+    return app.run(sys.argv)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

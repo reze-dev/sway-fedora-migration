@@ -1,0 +1,34 @@
+rm: cannot remove '/tmp/opencode/clone3/data/tls.key.pem': Permission denied
+rm: cannot remove '/tmp/opencode/clone3/data/tls.certificate.pem': Permission denied
+rm: cannot remove '/tmp/opencode/clone3/data/warpgate.yaml': Permission denied
+rm: cannot remove '/tmp/opencode/clone3/data/db': Permission denied
+=== final state ===
+* main 136307e Make the credentials before the settings are checked
+
+=== identity ===
+  global: reze-dev <nsofbl@gmail.com>
+  local:  reze-dev <nsofbl@gmail.com>
+  authors: reze-dev <nsofbl@gmail.com>
+
+=== commits ===
+  20 commits
+
+=== tracked files ===
+  .gitignore
+  Dockerfile
+  Dockerfile.firefox
+  LICENSE
+  README.md
+  configure.py
+  firefox-entrypoint.sh
+  justfile
+  podman-compose.test.yml
+  podman-compose.yml
+  test/Dockerfile.ovpn-server
+  test/client.conf
+  test/entrypoint.sh
+  test/server.conf
+  verify.sh
+  vpn_entrypoint.sh
+
+  (working tree clean if nothing above)

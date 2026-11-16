@@ -1,0 +1,1 @@
+after /etc/sway/environment: cmd=[] args=[]

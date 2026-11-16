@@ -1,0 +1,3 @@
+{"timestampMs":1793965948580,"processPid":5054,"stage":"installer_fetch","outcome":"succeeded","elapsedMs":403,"failure":null}
+{"timestampMs":1793965948930,"processPid":5054,"stage":"installer_run","outcome":"succeeded","elapsedMs":349,"failure":null}
+{"timestampMs":1793965948930,"processPid":5054,"event":"package_selected","details":{"release":"0.167.0-x86_64-unknown-linux-musl","trigger":"scheduled"}}

@@ -1,0 +1,19 @@
+λ podman image inspect ghcr.io/warp-tech/warpgate:latest \                                                                                         ~/Projects/warpgate  14:37
+        --format 'User={{.Config.User}} Entrypoint={{json .Config.Entrypoint}} Cmd={{json .Config.Cmd}}'
+User=warpgate Entrypoint=["/usr/local/bin/warpgate"] Cmd=["run"]
+λ chmod 1000:1000 /data                                                                                                                            ~/Projects/warpgate  14:38
+chmod: invalid mode: ‘1000:1000’
+Try 'chmod --help' for more information.
+λ sudo chown 1000:1000 /data                                                                                                                       ~/Projects/warpgate  14:38
+[sudo] password for asuna: 
+chown: cannot access '/data': No such file or directory
+󱎫 2s λ sudo chown 1000:1000 data                                                                                                                   ~/Projects/warpgate  14:38
+\\⏎                                                                                                                                                                           λ podman-compose run warpgate setup                                                                                                                ~/Projects/warpgate  14:39
+warpgate-vpn
+09:09:15  INFO Welcome to Warpgate v0.30.4
+09:09:15  INFO Let's do some basic setup first.
+09:09:15  INFO The new config will be written in /data/warpgate.yaml.
+✔ Do you want to record user sessions? · yes
+✔ Set a password for the Warpgate admin user · ********
+09:09:23 ERROR Fatal error error=Permission denied (os error 13)
+󱎫 8s λ       

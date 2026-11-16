@@ -1,0 +1,3 @@
+error: Failed dependencies:
+	swaybg is needed by (installed) sway-config-fedora-0.4.3-4.fc45.noarch
+=== dnf check now ===

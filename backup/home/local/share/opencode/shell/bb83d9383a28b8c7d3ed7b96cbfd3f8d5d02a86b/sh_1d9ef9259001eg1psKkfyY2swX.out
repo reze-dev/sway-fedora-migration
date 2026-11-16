@@ -1,0 +1,13 @@
+  local blob sha:  bc084b75dab32a0bcbfbbfcefc38e41af5da867a
+  local HEAD:       5f10746959b164efd85f798ffddd1eac3e4e4b06
+  remote main:      5f10746959b164efd85f798ffddd1eac3e4e4b06
+
+=== the README in the pushed commit ===
+# Nethergate
+
+A [warpgate](https://warp-tech.github.io/warpgate/) bastion and a
+containerised browser, with the corporate VPN confined to the pods.
+
+**The host keeps its own internet connection**, so you can browse the internet
+and the corporate intranet at the same time. The containers reach the corporate
+network through the tunnel, and the host's routing table is never touched.

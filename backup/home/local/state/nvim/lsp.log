@@ -1,0 +1,71 @@
+[START][2026-11-05 13:52:34] LSP logging initiated
+[START][2026-11-05 21:25:12] LSP logging initiated
+[START][2026-11-05 22:46:59] LSP logging initiated
+[START][2026-11-06 18:26:23] LSP logging initiated
+[START][2026-11-06 18:26:48] LSP logging initiated
+[START][2026-11-06 18:27:19] LSP logging initiated
+[START][2026-11-13 04:09:39] LSP logging initiated
+[WARN][2026-11-13 04:09:40] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server yamlls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-13 11:34:01] LSP logging initiated
+[START][2026-11-13 13:19:29] LSP logging initiated
+[START][2026-11-13 13:34:38] LSP logging initiated
+[WARN][2026-11-13 13:34:39] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server yamlls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-13 13:53:46] LSP logging initiated
+[START][2026-11-13 17:09:30] LSP logging initiated
+[START][2026-11-13 17:09:43] LSP logging initiated
+[WARN][2026-11-13 17:09:44] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server yamlls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-13 19:34:17] LSP logging initiated
+[START][2026-11-13 19:34:48] LSP logging initiated
+[START][2026-11-13 19:35:59] LSP logging initiated
+[START][2026-11-13 19:36:08] LSP logging initiated
+[WARN][2026-11-13 19:36:08] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server dockerls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-13 19:37:36] LSP logging initiated
+[START][2026-11-13 19:37:51] LSP logging initiated
+[WARN][2026-11-13 19:37:52] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server yamlls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-13 19:39:53] LSP logging initiated
+[WARN][2026-11-13 19:39:53] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server yamlls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-16 12:10:27] LSP logging initiated
+[START][2026-11-16 12:19:06] LSP logging initiated
+[START][2026-11-16 12:28:16] LSP logging initiated
+[START][2026-11-16 13:12:45] LSP logging initiated
+[START][2026-11-16 13:16:12] LSP logging initiated
+[START][2026-11-16 13:16:41] LSP logging initiated
+[WARN][2026-11-16 13:16:41] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server yamlls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-16 13:30:55] LSP logging initiated
+[START][2026-11-16 13:34:14] LSP logging initiated
+[START][2026-11-16 13:36:07] LSP logging initiated
+[ERROR][2026-11-16 13:38:37] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"LSP[basedpyright]"	"Cannot find request with id 642 whilst attempting to cancel"
+[START][2026-11-16 13:54:20] LSP logging initiated
+[START][2026-11-16 13:55:24] LSP logging initiated
+[WARN][2026-11-16 13:55:24] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server dockerls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-16 14:00:52] LSP logging initiated
+[WARN][2026-11-16 14:00:52] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server yamlls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-16 15:17:32] LSP logging initiated
+[START][2026-11-16 15:32:11] LSP logging initiated
+[WARN][2026-11-16 15:32:11] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server dockerls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-16 15:32:49] LSP logging initiated
+[WARN][2026-11-16 15:32:49] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server dockerls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-16 15:34:12] LSP logging initiated
+[WARN][2026-11-16 15:34:12] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server dockerls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-16 15:35:15] LSP logging initiated
+[WARN][2026-11-16 15:35:15] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server dockerls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-16 15:38:21] LSP logging initiated
+[WARN][2026-11-16 15:38:22] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server dockerls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-16 15:39:27] LSP logging initiated
+[WARN][2026-11-16 15:39:27] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server dockerls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-16 15:43:23] LSP logging initiated
+[WARN][2026-11-16 15:43:23] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server dockerls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-16 15:44:31] LSP logging initiated
+[WARN][2026-11-16 15:44:31] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server dockerls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-16 15:45:25] LSP logging initiated
+[WARN][2026-11-16 15:45:25] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server dockerls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-16 15:47:26] LSP logging initiated
+[WARN][2026-11-16 15:47:26] /usr/share/nvim/runtime/lua/vim/lsp/log.lua:150	"The language server dockerls triggers a registerCapability handler for workspace/didChangeConfiguration despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[START][2026-11-16 15:56:57] LSP logging initiated
+[START][2026-11-16 18:06:17] LSP logging initiated
+[START][2026-11-16 18:06:35] LSP logging initiated
+[START][2026-11-16 18:12:24] LSP logging initiated
+[START][2026-11-16 18:46:26] LSP logging initiated
+[START][2026-11-16 18:54:33] LSP logging initiated
+[START][2026-11-16 18:56:06] LSP logging initiated
+[START][2026-11-16 21:49:07] LSP logging initiated

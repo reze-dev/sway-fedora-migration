@@ -1,0 +1,25 @@
+/home/asuna/.config/autostart/:
+total 16
+drwxr-xr-x.  2 asuna asuna 4096 Nov  5 12:43 .
+drwxr-xr-x. 46 asuna asuna 4096 Nov 14 22:46 ..
+-rw-r--r--.  1 asuna asuna   65 Nov  5 10:35 blueman.desktop
+-rw-r--r--.  1 asuna asuna   72 Nov  5 10:35 nm-applet.desktop
+
+/home/asuna/.local/bin/:
+total 186192
+drwxr-xr-x. 3 asuna asuna      4096 Nov 13 01:35 .
+drwxr-xr-x. 5 asuna asuna      4096 Nov  4 22:32 ..
+lrwxrwxrwx. 1 asuna asuna        56 Nov 13 01:35 codex -> /home/asuna/.codex/packages/standalone/current/bin/codex
+-rwxr-xr-x. 1 asuna asuna 177900448 Nov  7 21:37 mise
+drwxr-xr-x. 2 asuna asuna      4096 Nov  6 15:46 __pycache__
+-rwxr-xr-x. 1 asuna asuna  12667544 Nov  4 22:26 starship
+-rwxr-xr-x. 1 asuna asuna        38 Nov  5 18:38 sway-clipboard-menu
+-rwxr-xr-x. 1 asuna asuna     36983 Nov 13 04:41 sway-control-center
+-rwxr-xr-x. 1 asuna asuna      5704 Nov  5 17:55 sway-keybindings
+-rwxr-xr-x. 1 asuna asuna      1159 Nov 12 17:35 sway-nvidia-initramfs
+-rwxr-xr-x. 1 asuna asuna       330 Nov  4 22:32 sway-power-menu
+-rwxr-xr-x. 1 asuna asuna       816 Nov 12 17:35 sway-prime-run
+-rwxr-xr-x. 1 asuna asuna       661 Nov  5 18:38 sway-quick-menu
+-rwxr-xr-x. 1 asuna asuna        69 Nov  5 14:20 sway-settings
+-rwxr-xr-x. 1 asuna asuna      1727 Nov 12 18:19 sway-set-wallpaper
+lrwxrwxrwx. 1 asuna asuna        48 Nov  6 17:13 tuf-control -> /home/asuna/.local/share/tuf-control/tuf-control

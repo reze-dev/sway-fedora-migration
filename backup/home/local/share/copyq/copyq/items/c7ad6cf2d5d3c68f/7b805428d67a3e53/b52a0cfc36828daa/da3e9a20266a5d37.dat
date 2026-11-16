@@ -1,0 +1,199 @@
+[root@service-node ~]# cd /data/deployement/
+[root@service-node deployement]# vim esbapi-deployment.yaml
+[root@service-node deployement]# cat esbapi-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: esb-api
+  namespace: sit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: esb-api
+  template:
+    metadata:
+      labels:
+        app: esb-api
+    spec:
+      containers:
+        - name: esb-api-container
+          image: sitifms.odisha.gov.in/sit/oifms-esb-apiod-origin-oifms_esb_sit:2.0.36
+          ports:
+            - containerPort: 9393
+          volumeMounts:
+            - name: esbapilog
+              mountPath: /OIFMS/dev/common-group/oifmsesb
+            - name: truststore-volume
+              mountPath: /java
+              readOnly: true
+          env:
+            - name: IFMS_BASE_URL
+              value: https://sitifms.odisha.gov.in
+            - name: IFMS_BOD_PENDING_DATA_URI
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/bill-save/fetch-bod-pending-data
+            - name: IFMS_FORWARD_TO_TREASURY
+              value: https://sitifms.odisha.gov.in/api/ebill-coordinator-service/bill-common/forwardToTreasury
+            - name: AUTH_URI
+              value: https://sitifms.odisha.gov.in/securepass/oauth/token
+            - name: IFMS_ADVICE_FORWARD_PENDING_DATA_URI
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/advice-list/get-approved-advice-ids
+            - name: IFMS_FORWARD_TO_CEPC
+              value: https://sitifms.odisha.gov.in/api/ebill-coordinator-service/treasury/advice/forward-to-cepc
+            - name: IFMS_ADVICE_FORWARD_PENDING_EBILL_DATA_URI
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/advice-list/get-approved-advice-ids
+            - name: IFMS_ADVICE_FORWARD_PENDING_PL_DATA_URI
+              value: https://sitifms.odisha.gov.in/api/pl-service/api-advice/get-approved-advice-ids
+            - name: CEPC_FILE_GEN_RETRIEVE_URI
+              value: https://sitifms.odisha.gov.in/api/cepc-service/cepc-file-generate/token-benfCount
+            - name: CEPC_FILE_GEN_PROCESSING_URI
+              value: https://sitifms.odisha.gov.in/api/cepc-service/cepc-file-generate/generate-EP-File
+            - name: CEPC_GET_PAY_MODULE_URI
+              value: https://sitifms.odisha.gov.in/api/cepc-service/cepc-file-generate/getPayModuledata
+            - name: CEPC_FILE_GEN_MAX_ALLOWED_BENF_COUNT
+              value: "50000"
+            # HRMS config
+            - name: IFMS_VALIDATE_JSON_SCHEMA_URI
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/api/hrms/validate-Json-Schema
+            - name: IFMS_ACK_JSON_SCHEMA_URI
+              value: https://sitifms.odisha.gov.in/api/ebill-coordinator-service/hrms/save
+            - name: IFMS_GET_JSON_SCHEMA_URI
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/api/hrms/outbound-integration-genJson
+            - name: IFMS_GET_STS_OBJ_URI
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/api/hrms/generate-Outbound-After-BOD
+            - name: ifms.get.xmljson.uri
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/api/hrms/convert-bill-xml
+            # BULK DIS config
+            - name: ifms.bulk.dis.validate.json.schema.uri
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/bulk-disbursement/epb-validate-file
+            - name: ifms.ack.bulk.dis.xml.schema.uri
+              value: https://sitifms.odisha.gov.in/api/ebill-coordinator-service/sanction/commonSaveForBulkDisbursement
+            - name: ifms.ack.bulk.dis.bill.gen.uri
+              value: https://sitifms.odisha.gov.in/api/ebill-coordinator-service/bulk-disb/saveAndGenerateAckXml
+            - name: ifms.ack.bulk.dis.status.update.uri
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/bulk-disbursement/outbound-integration-bulkdis
+            - name: ifms.ack.bulk.dis.sts.obj.status.update.uri
+              value: https://sitifms.odisha.gov.in/api/ebilling-service/bulk-disbursement/after-outbound-integration-bulkdis
+            - name: HRMS_CERTIFICATE_VERIFICATION
+              value: "N"
+            # SFTP config
+            - name: HRMS_SFTP_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: hrms-config
+                  key: sftp.host
+            - name: HRMS_SFTP_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: hrms-secret
+                  key: sftp.username
+            - name: HRMS_SFTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: hrms-secret
+                  key: sftp.password
+            - name: HRMS_SFTP_DIR
+              valueFrom:
+                configMapKeyRef:
+                  name: hrms-config
+                  key: sftp.dir
+            - name: sftp.include
+              valueFrom:
+                configMapKeyRef:
+                  name: hrms-config
+                  key: sftp.include
+            - name: HRMS_XML_SFTP_DIR
+              valueFrom:
+                configMapKeyRef:
+                  name: hrms-config
+                  key: sftp.xml.dir
+            - name: hrms.sftp.host
+              valueFrom:
+                configMapKeyRef:
+                  name: hrms-config
+                  key: sftp.host
+            - name: BULK_DIS_SFTP_DIR
+              valueFrom:
+                configMapKeyRef:
+                  name: bulkdis-config
+                  key: bulkdis.base.dir
+            # Database
+            - name: DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: DB_URL
+            - name: MQ_IP
+              valueFrom:
+                configMapKeyRef:
+                  name: amq-config
+                  key: MQ_IP
+            - name: MQ_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: amq-config
+                  key: MQ_PORT
+            - name: DATAGRID_IP
+              valueFrom:
+                secretKeyRef:
+                  name: datagrid-secret
+                  key: DATAGRID_HOST
+            - name: DATAGRID_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: datagrid-secret
+                  key: DATAGRID_PORT
+            # From Secret
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: oifms-esb-db-secret
+                  key: DB_PASSWORD
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: oifms-esb-db-secret
+                  key: DB_USERNAME
+            - name: MQ_USER
+              valueFrom:
+                secretKeyRef:
+                  name: sit-amq-broker-credentials-secret
+                  key: AMQ_USER
+            - name: MQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sit-amq-broker-credentials-secret
+                  key: AMQ_PASSWORD
+            - name: DATAGRID_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: datagrid-secret
+                  key: DATAGRID_USERNAME
+            - name: DATAGRID_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: datagrid-secret
+                  key: DATAGRID_PWD
+            - name: JWK_SET_URI
+              value: https://sitifms.odisha.gov.in/securepass/oauth/jwks
+            - name: KEYSTORE_PATH
+              value: "/java/truststore.p12"
+            - name: DATAGRID_SSL_ENABLED
+              value: "true"
+            - name: KEYSTORE_PASSWORD
+              value: "Welcome@123"
+            - name: ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: ENVIRONMENT
+      volumes:
+        - name: esbapilog
+          persistentVolumeClaim:
+            claimName: esbapi-pvc
+        - name: truststore-volume
+          persistentVolumeClaim:
+            claimName: nfs-pvc-truststore
+      imagePullSecrets:
+        - name: nexus-secret
+[

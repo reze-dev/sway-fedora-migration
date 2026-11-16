@@ -1,0 +1,2 @@
+=== find it ===
+/tmp/opencode/sway-1.12/sway/main.c:292:		allow_unsupported_gpu = parse_boolean(unsupported_gpu_env, false);

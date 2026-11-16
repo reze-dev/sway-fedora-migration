@@ -1,0 +1,105 @@
+0 verbose cli /usr/bin/node-22 /usr/bin/npm
+1 info using npm@10.9.8
+2 info using node@v22.23.1
+3 silly config load:file:/usr/lib/node_modules_22/npm/npmrc
+4 silly config load:file:/home/asuna/.local/share/nvim/mason/staging/docker-compose-language-service/.npmrc
+5 silly config load:file:/home/asuna/.npmrc
+6 silly config load:file:/etc/npmrc
+7 verbose title npm install @microsoft/compose-language-service@1.0.0
+8 verbose argv "install" "@microsoft/compose-language-service@1.0.0"
+9 verbose logfile logs-max:10 dir:/home/asuna/.npm/_logs/2026-11-05T08_19_50_279Z-
+10 verbose logfile /home/asuna/.npm/_logs/2026-11-05T08_19_50_279Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 silly logfile done cleaning log files
+14 silly idealTree buildDeps
+15 silly fetch manifest @microsoft/compose-language-service@1.0.0
+16 silly packumentCache full:https://registry.npmjs.org/@microsoft%2fcompose-language-service cache-miss
+17 http fetch GET 200 https://registry.npmjs.org/@microsoft%2fcompose-language-service 913ms (cache miss)
+18 silly packumentCache full:https://registry.npmjs.org/@microsoft%2fcompose-language-service set size:undefined disposed:false
+19 silly placeDep ROOT @microsoft/compose-language-service@1.0.0 OK for: @mason/docker-compose-language-service@1.0.0 want: 1.0.0
+20 silly fetch manifest vscode-languageserver@^10.1.0
+21 silly packumentCache full:https://registry.npmjs.org/vscode-languageserver cache-miss
+22 silly fetch manifest vscode-languageserver-protocol@^3.18.2
+23 silly packumentCache full:https://registry.npmjs.org/vscode-languageserver-protocol cache-miss
+24 silly fetch manifest vscode-languageserver-textdocument@^1.0.12
+25 silly packumentCache full:https://registry.npmjs.org/vscode-languageserver-textdocument cache-miss
+26 silly fetch manifest yaml@^2.8.2
+27 silly packumentCache full:https://registry.npmjs.org/yaml cache-miss
+28 http cache https://registry.npmjs.org/vscode-languageserver 13ms (cache hit)
+29 silly packumentCache full:https://registry.npmjs.org/vscode-languageserver set size:739444 disposed:false
+30 http cache https://registry.npmjs.org/vscode-languageserver-textdocument 26ms (cache hit)
+31 silly packumentCache full:https://registry.npmjs.org/vscode-languageserver-textdocument set size:79498 disposed:false
+32 http cache https://registry.npmjs.org/vscode-languageserver-protocol 29ms (cache hit)
+33 silly packumentCache full:https://registry.npmjs.org/vscode-languageserver-protocol set size:523560 disposed:false
+34 http cache https://registry.npmjs.org/yaml 32ms (cache hit)
+35 silly packumentCache full:https://registry.npmjs.org/yaml set size:386415 disposed:false
+36 silly placeDep node_modules/@microsoft/compose-language-service vscode-languageserver@10.1.2 OK for: @microsoft/compose-language-service@1.0.0 want: ^10.1.0
+37 silly placeDep node_modules/@microsoft/compose-language-service vscode-languageserver-protocol@3.18.5 OK for: @microsoft/compose-language-service@1.0.0 want: ^3.18.2
+38 silly placeDep node_modules/@microsoft/compose-language-service vscode-languageserver-textdocument@1.0.16 OK for: @microsoft/compose-language-service@1.0.0 want: ^1.0.12
+39 silly placeDep node_modules/@microsoft/compose-language-service yaml@2.9.1 OK for: @microsoft/compose-language-service@1.0.0 want: ^2.8.2
+40 silly fetch manifest vscode-languageserver-protocol@3.18.4
+41 silly packumentCache full:https://registry.npmjs.org/vscode-languageserver-protocol cache-hit
+42 silly fetch manifest vscode-jsonrpc@10.0.0
+43 silly packumentCache full:https://registry.npmjs.org/vscode-jsonrpc cache-miss
+44 silly fetch manifest vscode-languageserver-types@3.18.5
+45 silly packumentCache full:https://registry.npmjs.org/vscode-languageserver-types cache-miss
+46 http cache https://registry.npmjs.org/vscode-languageserver-types 5ms (cache hit)
+47 silly packumentCache full:https://registry.npmjs.org/vscode-languageserver-types set size:324434 disposed:false
+48 http cache https://registry.npmjs.org/vscode-jsonrpc 9ms (cache hit)
+49 silly packumentCache full:https://registry.npmjs.org/vscode-jsonrpc set size:407905 disposed:false
+50 silly placeDep node_modules/@microsoft/compose-language-service/node_modules/vscode-languageserver vscode-languageserver-protocol@3.18.4 OK for: vscode-languageserver@10.1.2 want: 3.18.4
+51 silly fetch manifest vscode-jsonrpc@9.0.3
+52 silly packumentCache full:https://registry.npmjs.org/vscode-jsonrpc cache-hit
+53 silly fetch manifest vscode-languageserver-types@3.18.4
+54 silly packumentCache full:https://registry.npmjs.org/vscode-languageserver-types cache-hit
+55 silly placeDep node_modules/@microsoft/compose-language-service vscode-jsonrpc@10.0.0 OK for: vscode-languageserver-protocol@3.18.5 want: 10.0.0
+56 silly placeDep node_modules/@microsoft/compose-language-service vscode-languageserver-types@3.18.5 OK for: vscode-languageserver-protocol@3.18.5 want: 3.18.5
+57 silly placeDep node_modules/@microsoft/compose-language-service/node_modules/vscode-languageserver vscode-jsonrpc@9.0.3 OK for: vscode-languageserver-protocol@3.18.4 want: 9.0.3
+58 silly placeDep node_modules/@microsoft/compose-language-service/node_modules/vscode-languageserver vscode-languageserver-types@3.18.4 OK for: vscode-languageserver-protocol@3.18.4 want: 3.18.4
+59 silly reify moves {}
+60 silly audit bulk request {
+60 silly audit   '@microsoft/compose-language-service': [ '1.0.0' ],
+60 silly audit   'vscode-languageserver': [ '10.1.2' ],
+60 silly audit   'vscode-languageserver-protocol': [ '3.18.5', '3.18.4' ],
+60 silly audit   'vscode-languageserver-textdocument': [ '1.0.16' ],
+60 silly audit   yaml: [ '2.9.1' ],
+60 silly audit   'vscode-jsonrpc': [ '10.0.0', '9.0.3' ],
+60 silly audit   'vscode-languageserver-types': [ '3.18.5', '3.18.4' ]
+60 silly audit }
+61 http cache @microsoft/compose-language-service@https://registry.npmjs.org/@microsoft/compose-language-service/-/compose-language-service-1.0.0.tgz 0ms (cache hit)
+62 http cache vscode-languageserver-types@https://registry.npmjs.org/vscode-languageserver-types/-/vscode-languageserver-types-3.18.5.tgz 0ms (cache hit)
+63 http cache yaml@https://registry.npmjs.org/yaml/-/yaml-2.9.1.tgz 0ms (cache hit)
+64 http cache vscode-languageserver-protocol@https://registry.npmjs.org/vscode-languageserver-protocol/-/vscode-languageserver-protocol-3.18.5.tgz 0ms (cache hit)
+65 http cache vscode-languageserver-textdocument@https://registry.npmjs.org/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.16.tgz 0ms (cache hit)
+66 http cache vscode-languageserver-types@https://registry.npmjs.org/vscode-languageserver-types/-/vscode-languageserver-types-3.18.4.tgz 0ms (cache hit)
+67 http cache vscode-languageserver@https://registry.npmjs.org/vscode-languageserver/-/vscode-languageserver-10.1.2.tgz 0ms (cache hit)
+68 http cache vscode-languageserver-protocol@https://registry.npmjs.org/vscode-languageserver-protocol/-/vscode-languageserver-protocol-3.18.4.tgz 0ms (cache hit)
+69 http cache vscode-jsonrpc@https://registry.npmjs.org/vscode-jsonrpc/-/vscode-jsonrpc-9.0.3.tgz 0ms (cache hit)
+70 http cache vscode-jsonrpc@https://registry.npmjs.org/vscode-jsonrpc/-/vscode-jsonrpc-10.0.0.tgz 0ms (cache hit)
+71 silly tarball no local data for @microsoft/compose-language-service@https://registry.npmjs.org/@microsoft/compose-language-service/-/compose-language-service-1.0.0.tgz. Extracting by manifest.
+72 silly tarball no local data for yaml@https://registry.npmjs.org/yaml/-/yaml-2.9.1.tgz. Extracting by manifest.
+73 silly tarball no local data for vscode-languageserver-protocol@https://registry.npmjs.org/vscode-languageserver-protocol/-/vscode-languageserver-protocol-3.18.5.tgz. Extracting by manifest.
+74 silly tarball no local data for vscode-jsonrpc@https://registry.npmjs.org/vscode-jsonrpc/-/vscode-jsonrpc-10.0.0.tgz. Extracting by manifest.
+75 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 285ms
+76 silly audit report {}
+77 http fetch GET 200 https://registry.npmjs.org/vscode-languageserver-protocol/-/vscode-languageserver-protocol-3.18.5.tgz 341ms (cache miss)
+78 http fetch GET 200 https://registry.npmjs.org/vscode-jsonrpc/-/vscode-jsonrpc-10.0.0.tgz 420ms (cache miss)
+79 http fetch GET 200 https://registry.npmjs.org/yaml/-/yaml-2.9.1.tgz 452ms (cache miss)
+80 http fetch GET 200 https://registry.npmjs.org/@microsoft/compose-language-service/-/compose-language-service-1.0.0.tgz 626ms (cache miss)
+81 silly ADD node_modules/@microsoft/compose-language-service
+82 silly ADD node_modules/@microsoft/compose-language-service/node_modules/vscode-languageserver-types
+83 silly ADD node_modules/@microsoft/compose-language-service/node_modules/vscode-jsonrpc
+84 silly ADD node_modules/@microsoft/compose-language-service/node_modules/yaml
+85 silly ADD node_modules/@microsoft/compose-language-service/node_modules/vscode-languageserver-textdocument
+86 silly ADD node_modules/@microsoft/compose-language-service/node_modules/vscode-languageserver-protocol
+87 silly ADD node_modules/@microsoft/compose-language-service/node_modules/vscode-languageserver
+88 silly ADD node_modules/@microsoft/compose-language-service/node_modules/vscode-languageserver/node_modules/vscode-languageserver-types
+89 silly ADD node_modules/@microsoft/compose-language-service/node_modules/vscode-languageserver/node_modules/vscode-jsonrpc
+90 silly ADD node_modules/@microsoft/compose-language-service/node_modules/vscode-languageserver/node_modules/vscode-languageserver-protocol
+91 verbose cwd /home/asuna/.local/share/nvim/mason/staging/docker-compose-language-service
+92 verbose os Linux 7.2.11-300.fc45.x86_64
+93 verbose node v22.23.1
+94 verbose npm  v10.9.8
+95 verbose exit 0
+96 info ok

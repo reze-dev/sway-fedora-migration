@@ -1,0 +1,74 @@
+[Theme]
+Current=ronin
+=== kitty theme ===
+## name: Rosé Pine
+## author: mvllow
+## license: MIT
+## upstream: https://github.com/rose-pine/kitty/blob/main/dist/rose-pine.conf
+## blurb: All natural pine, faux fur and a bit of soho vibes for the classy minimalist
+
+foreground               #e0def4
+background               #191724
+selection_foreground     #e0def4
+selection_background     #403d52
+
+cursor                   #524f67
+cursor_text_color        #e0def4
+
+url_color                #c4a7e7
+
+active_tab_foreground    #e0def4
+active_tab_background    #26233a
+inactive_tab_foreground  #6e6a86
+inactive_tab_background  #191724
+=== nvim plugins ===
+base46
+blink.cmp
+bufferline.nvim
+clangd_extensions.nvim
+conform.nvim
+flash.nvim
+friendly-snippets
+gitsigns.nvim
+go.nvim
+guihua.lua
+hardtime.nvim
+harpoon
+indent-blankline.nvim
+lazy.nvim
+lualine.nvim
+mason-lspconfig.nvim
+mason.nvim
+mason-tool-installer.nvim
+mini.ai
+mini.surround
+neotest
+neotest-golang
+neotest-gtest
+noice.nvim
+nui.nvim
+nvim-autopairs
+nvim-colorizer.lua
+nvim-dap
+nvim-dap-python
+nvim-dap-view
+nvim-dap-virtual-text
+nvim-lint
+nvim-lspconfig
+nvim-nio
+nvim-notify
+nvim-treesitter
+nvim-treesitter-textobjects
+nvim-web-devicons
+oil.nvim
+persistence.nvim
+plenary.nvim
+precognition.nvim
+rustaceanvim
+snacks.nvim
+todo-comments.nvim
+trouble.nvim
+vim-be-better
+vim-illuminate
+vim-tmux-navigator
+which-key.nvim

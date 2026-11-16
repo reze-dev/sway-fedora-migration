@@ -1,0 +1,12 @@
+=== dnf check ===
+  exit=0
+=== shim provides swaybg ===
+swaybg-provider-1-1.fc45.noarch
+/usr/share/doc/swaybg-provider/README.md
+=== swaybg binary absent ===
+ls: cannot access '/usr/bin/swaybg': No such file or directory
+=== session stack intact ===
+swayfx-0.6-1.fc45.x86_64 sway-config-fedora-0.4.3-4.fc45.noarch sddm-0.21.0-16.fc45.x86_64 sddm-wayland-sway-0.4.3-4.fc45.noarch sway-systemd-0.4.1-5.fc45.noarch 
+=== awww ===
+active
+: eDP-1: 1920x1080, scale: 1, currently displaying: image: /home/asuna/Pictures/Wallpapers/wallhaven-g7jgk3.jpg

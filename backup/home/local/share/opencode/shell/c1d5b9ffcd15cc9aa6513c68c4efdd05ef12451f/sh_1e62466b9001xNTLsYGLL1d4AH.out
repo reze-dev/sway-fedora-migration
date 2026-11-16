@@ -1,0 +1,49 @@
+=== flatpak-apps.txt ===
+# captured 2026-11-17T02:24:58+05:30
+# command: flatpak list --app --columns=application,name,version,branch,origin,installation
+app.zen_browser.zen	Zen	1.24.2b	stable	flathub	system
+com.bitwig.BitwigStudio	Bitwig Studio	6.1.7	stable	flathub	system
+=== sway-version.txt ===
+# captured 2026-11-17T02:25:00+05:30
+# command: sway --version
+swayfx version 0.6.1 (based on sway 1.12.0)
+=== flatpak-remotes.txt ===
+# captured 2026-11-17T02:24:58+05:30
+# command: flatpak remotes --show-details
+fedora	Fedora Flatpaks	oci+https://registry.fedoraproject.org	-	-	-	1	system,oci	-	-	-	-
+flathub	Flathub	https://dl.flathub.org/repo/	-	-	-	1	system	Central repository of Flatpak applications	Central repository of Flatpak applications	https://flathub.org/	https://dl.flathub.org/repo/logo.svg
+=== dnf-repos.txt ===
+# captured 2026-11-17T02:24:57+05:30
+# command: dnf repolist --enabled
+repo id                                           repo name
+copr:copr.fedorainfracloud.org:peterwu:rendezvous Copr repo for rendezvous owned by peterwu
+copr:copr.fedorainfracloud.org:swayfx:swayfx      Copr repo for swayfx owned by swayfx
+fedora                                            Fedora 45 - x86_64
+fedora-cisco-openh264                             Fedora 45 openh264 (From Cisco) - x86_64
+rpmfusion-free                                    RPM Fusion for Fedora 45 - Free
+rpmfusion-free-updates                            RPM Fusion for Fedora 45 - Free - Updates
+rpmfusion-nonfree                                 RPM Fusion for Fedora 45 - Nonfree
+rpmfusion-nonfree-updates                         RPM Fusion for Fedora 45 - Nonfree - Updates
+terra                                             Terra 45
+updates                                           Fedora 45 - x86_64 - Updates
+=== cargo-installed.txt ===
+# captured 2026-11-17T02:24:58+05:30
+# command: bash -c ls -1 ~/.cargo/bin 2>/dev/null
+cargo
+cargo-clippy
+cargo-fmt
+cargo-miri
+clippy-driver
+rls
+rust-analyzer
+rustc
+rustdoc
+rustfmt
+rust-gdb
+rust-gdbgui
+rust-lldb
+rustup
+=== rustup-toolchains.txt ===
+# captured 2026-11-17T02:24:58+05:30
+# command: rustup toolchain list
+stable-x86_64-unknown-linux-gnu (active, default)

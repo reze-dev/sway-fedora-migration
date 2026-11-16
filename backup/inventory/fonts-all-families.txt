@@ -1,0 +1,202 @@
+# captured 2026-11-17T02:28:10+05:30
+# command: bash -c fc-list : family 2>/dev/null | tr ',' '\n' | sort -u | head -200
+Adwaita Mono
+Adwaita Sans
+C059
+Cantarell
+Cantarell Extra Bold
+Cantarell Light
+Cantarell Thin
+Comfortaa
+Comfortaa Light
+Comfortaa Medium
+Comfortaa SemiBold
+D050000L
+Droid Arabic Kufi
+Droid Sans
+Droid Sans Armenian
+Droid Sans Devanagari
+Droid Sans Ethiopic
+Droid Sans Fallback
+Droid Sans Georgian
+Droid Sans Hebrew
+Droid Sans Japanese
+Droid Sans Tamil
+Droid Sans Thai
+Font Awesome 7 Brands
+Font Awesome 7 Free
+Font Awesome 7 Free Solid
+Inter
+Inter Black
+Inter Display
+Inter Display Black
+Inter Display ExtraBold
+Inter Display ExtraLight
+Inter Display Light
+Inter Display Medium
+Inter Display SemiBold
+Inter Display Thin
+Inter ExtraBold
+Inter ExtraLight
+Inter Light
+Inter Medium
+Inter SemiBold
+Inter Thin
+JetBrains Mono
+JetBrains Mono ExtraBold
+JetBrains Mono ExtraLight
+JetBrains Mono Light
+JetBrains Mono Medium
+JetBrainsMono Nerd Font
+JetBrainsMono Nerd Font Mono
+JetBrainsMono Nerd Font Propo
+JetBrainsMono NF
+JetBrainsMono NF ExtraBold
+JetBrainsMono NF ExtraLight
+JetBrainsMono NF Light
+JetBrainsMono NFM
+JetBrainsMono NF Medium
+JetBrainsMono NFM ExtraBold
+JetBrainsMono NFM ExtraLight
+JetBrainsMono NFM Light
+JetBrainsMono NFM Medium
+JetBrainsMono NFM SemiBold
+JetBrainsMono NFM Thin
+JetBrainsMono NFP
+JetBrainsMono NFP ExtraBold
+JetBrainsMono NFP ExtraLight
+JetBrainsMono NFP Light
+JetBrainsMono NFP Medium
+JetBrainsMono NFP SemiBold
+JetBrainsMono NFP Thin
+JetBrainsMono NF SemiBold
+JetBrainsMono NF Thin
+JetBrainsMonoNL Nerd Font
+JetBrainsMonoNL Nerd Font Mono
+JetBrainsMonoNL Nerd Font Propo
+JetBrainsMonoNL NF
+JetBrainsMonoNL NF ExtraBold
+JetBrainsMonoNL NF ExtraLight
+JetBrainsMonoNL NF Light
+JetBrainsMonoNL NFM
+JetBrainsMonoNL NF Medium
+JetBrainsMonoNL NFM ExtraBold
+JetBrainsMonoNL NFM ExtraLight
+JetBrainsMonoNL NFM Light
+JetBrainsMonoNL NFM Medium
+JetBrainsMonoNL NFM SemiBold
+JetBrainsMonoNL NFM Thin
+JetBrainsMonoNL NFP
+JetBrainsMonoNL NFP ExtraBold
+JetBrainsMonoNL NFP ExtraLight
+JetBrainsMonoNL NFP Light
+JetBrainsMonoNL NFP Medium
+JetBrainsMonoNL NFP SemiBold
+JetBrainsMonoNL NFP Thin
+JetBrainsMonoNL NF SemiBold
+JetBrainsMonoNL NF Thin
+JetBrains Mono SemiBold
+JetBrains Mono Thin
+Jomolhari
+Liberation Mono
+Liberation Sans
+Liberation Serif
+Madan
+Material Icons
+Material Icons Outlined
+Material Icons Round
+Material Icons Sharp
+Material Icons Two Tone
+Nimbus Mono PS
+Nimbus Roman
+Nimbus Sans
+Nimbus Sans Narrow
+Noto Color Emoji
+Noto Naskh Arabic
+Noto Sans
+Noto Sans Arabic
+Noto Sans Armenian
+Noto Sans Bengali
+Noto Sans Canadian Aboriginal
+Noto Sans Cherokee
+Noto Sans CJK HK
+Noto Sans CJK JP
+Noto Sans CJK KR
+Noto Sans CJK SC
+Noto Sans CJK TC
+Noto Sans Devanagari
+Noto Sans Ethiopic
+Noto Sans Georgian
+Noto Sans Gothic
+Noto Sans Gujarati
+Noto Sans Gurmukhi
+Noto Sans Hebrew
+Noto Sans Hebrew Light
+Noto Sans Kannada
+Noto Sans Khmer
+Noto Sans Lao
+Noto Sans Math
+Noto Sans Meetei Mayek
+Noto Sans Mono
+Noto Sans Mono CJK HK
+Noto Sans Mono CJK JP
+Noto Sans Mono CJK KR
+Noto Sans Mono CJK SC
+Noto Sans Mono CJK TC
+Noto Sans NKo
+Noto Sans Ol Chiki
+Noto Sans Oriya
+Noto Sans Sinhala
+Noto Sans Symbols
+Noto Sans Symbols 2
+Noto Sans Syriac
+Noto Sans Tamil
+Noto Sans Telugu
+Noto Sans Thaana
+Noto Sans Thai
+Noto Sans Yi
+Noto Serif
+Noto Serif Armenian
+Noto Serif Bengali
+Noto Serif CJK HK
+Noto Serif CJK JP
+Noto Serif CJK KR
+Noto Serif CJK SC
+Noto Serif CJK TC
+Noto Serif Devanagari
+Noto Serif Ethiopic
+Noto Serif Georgian
+Noto Serif Gujarati
+Noto Serif Gurmukhi
+Noto Serif Hebrew
+Noto Serif Kannada
+Noto Serif Khmer
+Noto Serif Lao
+Noto Serif Oriya
+Noto Serif Sinhala
+Noto Serif Tamil
+Noto Serif Telugu
+Noto Serif Thai
+Open Sans
+Open Sans Extrabold
+Open Sans Light
+Open Sans Semibold
+P052
+Padauk
+PakType Naskh Basic
+PakType Naskh Basic Semi Wide
+PakType Naskh Basic Wide
+RIT Meera New
+RIT Rachana
+Standard Symbols PS
+STIX
+STIX Two Math
+STIX Two Text
+STIX Two Text Medium
+STIX Two Text SemiBold
+URW Bookman
+URW Gothic
+Vazirmatn
+Z003
+ആർഐടി രചന
+രചന

@@ -1,0 +1,9 @@
+=== pip user ===
+/usr/bin/python3: No module named pip
+=== pipx ===
+/usr/bin/bash: line 1: pipx: command not found
+=== npm -g ===
+/usr/local/lib
+└── (empty)
+
+=== mise ls ===

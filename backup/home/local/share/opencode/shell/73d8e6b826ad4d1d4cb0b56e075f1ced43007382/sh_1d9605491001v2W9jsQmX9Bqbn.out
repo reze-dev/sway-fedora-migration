@@ -1,0 +1,38 @@
+=== step 1: a bare clone ===
+  configure.py
+  Dockerfile
+  Dockerfile.firefox
+  firefox-entrypoint.sh
+  justfile
+  LICENSE
+  podman-compose.test.yml
+  podman-compose.yml
+  README.md
+  test
+  verify.sh
+  vpn_entrypoint.sh
+
+=== step 2: just up refuses ===
+The credentials are missing, or one of them is a directory.
+That happens when the stack is started before ./configure.py has made them.
+Run 'just configure' first.
+
+=== step 3: configure.py creates everything ===
+  The browser's VNC password was not set, so one was generated: 3wwDd6Mb18C4fwV6vhTO
+  The browser's view-only VNC password was not set, so one was generated: jKNEABVFLcT3VY2wWLA4
+  The warpgate admin password is not set yet.
+  written to /tmp/opencode/clone3/secrets/admin_password
+Warpgate
+  the image runs as uid 1000
+  preparing warpgate's state, this takes a moment...
+  data/warpgate.yaml now points at 127.0.0.1:8443
+
+Done. The stack is configured.
+
+  bastion web    https://127.0.0.1:8443
+  bastion ssh    ssh -p 2222 <user>@127.0.0.1
+  browser vnc    127.0.0.1:6901
+  admin password in /tmp/opencode/clone3/secrets/admin_password
+
+Start it with:
+  podman-compose up -d

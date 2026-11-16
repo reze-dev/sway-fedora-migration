@@ -1,0 +1,4 @@
+0c40767 Satisfy the swaybg dependency with a provides-only shim
+6d879dc Install awww from Terra and remove swaybg
+7415efc Replace swaybg with awww and switch to the NVIDIA proprietary driver
+0fc40e5 Integrate wallpaper controls into Sway Control Center

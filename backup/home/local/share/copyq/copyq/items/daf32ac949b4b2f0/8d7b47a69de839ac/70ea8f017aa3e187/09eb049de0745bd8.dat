@@ -1,0 +1,434 @@
+# Warpgate bastion and container browser
+
+A local bastion for the corporate VPN, plus a containerised browser that runs
+inside that VPN. The point of the layout is that **the VPN lives only inside the
+pods**: the containers reach the corporate network through the tunnel, while the
+host keeps its own internet connection. You can browse the internet and the
+corporate intranet at the same time.
+
+## How it works
+
+host \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u25ba internet
+  \u2502
+  \u2502  (no tun device, no VPN routes on the host)
+  \u2502
+  \u2514\u2500\u25ba podman network "warpgate_default"
+        \u2502
+        \u2514\u2500\u25ba warpgate-vpn  \u2500\u2500\u25ba tun0 \u2500\u2500\u25ba corporate VPN
+              \u2502  \u25b2
+              \u2502  \u2514\u2500\u2500 network namespace shared by the two pods below
+              \u2502
+              \u251c\u2500\u25ba warpgate  (SSH + HTTP bastion)
+              \u2514\u2500\u25ba firefox  (Kasm image, browser over VNC)
+
+
+
+warpgate and warpgate-firefox use network_mode: "service:vpn", so they
+join the **VPN container's network namespace**. The tunnel interface lives in
+that namespace and nowhere else, which is what keeps the host's routing table
+untouched. Everything the two pods send goes out through the tunnel.
+
+The VPN container also runs socat, forwarding TCP 443 on that namespace to
+the corporate bastion address, so the pods can reach the OpenShift cluster
+through the VPN on the usual HTTPS port.
+
+## Files
+
+| File | Purpose |
+| --- | --- |
+| podman-compose.yml | The real stack, using the corporate gateway. |
+| podman-compose.test.yml | The same stack against a local OpenVPN server, for testing without corporate credentials. |
+| Dockerfile | Builds localhost/warpgate-vpn:latest (openconnect, openvpn, socat). |
+| Dockerfile.firefox | Builds localhost/warpgate-firefox:latest from the Kasm Firefox image. |
+| firefox-entrypoint.sh | Entrypoint for the browser container, see "Fixes" below. |
+| vpn_entrypoint.sh | Keeps the VPN up and runs the bastion forward. |
+| test/ | Local OpenVPN server used by the test harness. |
+| secrets/vpn_password | The corporate password, read only by the VPN container. |
+| data/ | Warpgate's state (database, TLS certificate). |
+
+## Requirements
+
+- Podman and podman-compose
+- Rootless Podman with a usable newuidmap/newgidmap, and your user
+  listed in /etc/subuid and /etc/subgid
+- SELinux enforcing is fine, the containers are labelled spc_t
+
+## The password
+
+The corporate password is read from secrets/vpn_password, which is mounted
+read-only into the VPN container only. It is never passed as an environment
+variable, so it does not show up in podman inspect or in /proc.
+
+Create it with:
+
+install -m 0600 /dev/null secrets/vpn_password
+printf '%s' 'THE-CORPORATE-PASSWORD' > secrets/vpn_password
+
+
+
+Nothing else needs the password. Do not commit this file.
+
+## Running it
+
+# Build the images.
+podman build -t localhost/warpgate-vpn:latest .
+podman build -t localhost/warpgate-firefox:latest -f Dockerfile.firefox .
+
+# Start the stack.
+podman-compose up -d
+
+# Check that the tunnel came up.
+podman exec warpgate-vpn ip -br addr show tun0
+
+# Check the bastion.
+curl -sk https://127.0.0.1:8888/            # HTTP bastion, expects an auth prompt
+ssh -p 2222 <user>@127.0.0.1                 # SSH bastion
+
+# The browser, over VNC.
+# VNC password is VNC_PW, so "testpass123" as configured.
+
+
+
+Useful addresses once it is running:
+
+| Address | What |
+| --- | --- |
+| 
+127.0.0.1:8888 | Warpgate HTTP bastion |
+| 127.0.0.1:2222 | Warpgate SSH bastion |
+| 127.0.0.1:443 | Forward to the corporate bastion through the tunnel |
+| 127.0.0.1:6901 | The browser's VNC endpoint |
+
+## Testing without the corporate VPN
+
+podman-compose.test.yml runs the same stack against a local OpenVPN server
+that stands in for the corporate gateway. It needs no corporate password and
+never touches vpn.osdc.gov.in.
+
+# Build the test server image.
+podman build -t localhost/ovpn-test-server:latest -f test/Dockerfile.ovpn-server test/
+
+# Build the main images as well.
+podman build -t localhost/warpgate-vpn:latest .
+podman build -t localhost/warpgate-firefox:latest -f Dockerfile.firefox .
+
+# Start the test stack.
+podman-compose -f podman-compose.test.yml up -d
+
+# The tunnel is up when the tun0 interface appears.
+podman exec warpgate-vpn-test ip -br addr show tun0
+
+# The stand-in corporate resource is reachable through the tunnel.
+podman exec warpgate-firefox-test \
+    curl -s --noproxy '*' http://127.0.0.1:443/
+
+# The host still has its own internet.
+curl -s -o /dev/null -w '%{http_code}\n' https://example.com    # 200
+
+# Tear down, including the generated PKI volume.
+podman-compose -f podman-compose.test.yml down -v
+
+
+
+The test server generates its own throwaway CA and certificates on first
+start and serves a marker page on the far side of the tunnel, so the test
+proves that traffic really flows through the tunnel rather than merely being
+configured.
+
+## Fixes that were needed to make this work
+
+These were all found by running the stack and reading the container logs.
+They are already applied, and are worth knowing about if the images are ever
+rebuilt from scratch.
+
+**SELinux blocked the tunnel device.** The host's 
+/dev/net/tun is owned by
+root, so a rootless container cannot open it unless SELinux allows it. The
+containers are labelled spc_t, the "super privileged container" type that a
+VPN container needs. Without it the VPN fails with:
+
+mknod: /dev/net/tun: File exists
+Failed to open tun device: Permission denied
+
+
+
+**
+userns: keep-id is required.** Without it the container's root is an
+unmapped subuid and the TUNSETIFF ioctl is rejected with EPERM.
+
+**The browser container must not run as root.** The original
+Dockerfile.firefox had USER root so that the sed patch could be
+applied. That makes Firefox refuse to start, because HOME belongs to
+kasm-user:
+
+Running Firefox as root in a regular user's session is not supported.
+
+
+
+The patch is now applied in a separate build stage, and the final image keeps
+the original uid 1000.
+
+**The browser container needs a TTY.** 
+kasmvncpasswd calls isatty and
+tcgetattr, so it fails without one:
+
+getpassword error: Inappropriate ioctl for device
+
+
+
+**The browser container needs its hostname resolvable.** The Kasm startup
+script aborts if 
+hostname cannot be resolved. A container that joins
+another container's network namespace does not get its own hostname added to
+/etc/hosts by Podman, so firefox-entrypoint.sh adds it before dropping
+privileges. /etc/hosts is a root-owned tmpfs, so that has to happen while
+still root.
+
+**The published ports belong to the vpn service.** warpgate and
+firefox share the VPN container's namespace, so any ports: for them would
+not be published. The port list belongs on vpn.
+
+**Rootless Podman cannot bind port 443.** Binding a privileged port needs
+net.ipv4.ip_unprivileged_port_start=443 in sysctl.conf. The test harness
+publishes that hop as 8443 instead; the real stack can use 443 once the
+sysctl is set.
+
+## Checking that the isolation holds
+
+# The host has no tunnel interface.
+ip -br addr | grep tun             # no output
+
+# The host has no routes into the corporate network.
+ip route | grep -E '10\.(8|250)\.'   # no output
+
+# The host still reaches the internet.
+curl -s -o /dev/null -w '%{http_code}\n' https://example.com   # 200
+
+# The pods do reach the corporate network.
+podman exec warpgate-firefox curl -s --noproxy '*' http://127.0.0.1:443/
+
+
+
+## Troubleshooting
+
+**The VPN container logs 
+Failed to open tun device.** The SELinux label or
+the user namespace is wrong. Check that the service has both
+security_opt: label=type:spc_t and userns: keep-id.
+
+**The browser container restarts in a loop.** Check the last lines of its log:
+
+podman logs --tail 20 warpgate-firefox
+
+
+
+- 
+Running Firefox as root in a regular user's session is not supported
+  means the image is running as root. Rebuild Dockerfile.firefox.
+- hostname: Name or service not known means the hostname is not resolvable.
+  Rebuild the image so firefox-entrypoint.sh is in place.
+- getpassword error: Inappropriate ioctl for device means the container has
+  no TTY.
+
+**The tunnel comes up but nothing is reachable.** Check that warpgate and
+firefox really share the namespace:
+
+for c in warpgate-vpn warpgate warpgate-firefox; do
+    pid=$(podman inspect "$c" --format '{{.State.Pid}}')
+    echo "$c $(readlink /proc/$pid/ns/net)"
+done
+
+
+
+All three must print the same 
+net:[...]. If they differ, the pods were
+started before the VPN container and are in a stale namespace. Recreate them
+with podman-compose up -d --force-recreate.
+
+**Warpgate says Failed to construct external URL for cookie domain.** Only a
+warning. It means external_host is not set in data/warpgate.yaml, so
+cookies are scoped to the request host. Set external_host to the address
+you actually use.
+
+explain me this what the AI built last night. I'll explain what I had done and you explain what AI had built
+
+Dude. \U0001f602 You apparently asked an AI to solve a corporate VPN access problem, and it responded by building a container-isolated VPN, an SSH/HTTP bastion, and a remotely accessible Firefox browser, all running under rootless Podman.
+
+That's considerably more sophisticated than simply running OpenConnect on your laptop.
+
+And the interesting part is that the architecture is actually sensible. There are some security and networking details I'd scrutinize, though.
+
+I'll explain what it built, but first I want to understand the distinction between what you wanted and what the AI implemented.
+What the AI built, at a glance
+Conceptual layout, not three independent container networks. The VPN, Warpgate and Firefox share one network namespace.
+The three major components
+
+1. warpgate-vpn: The network gateway
+
+This container runs OpenConnect, establishes the corporate VPN, and creates tun0 inside its own network namespace.
+
+Your host doesn't need a VPN tunnel or corporate routing entries. It continues using your normal internet connection.
+
+2. warpgate: The bastion
+
+Warpgate acts as an authenticated gateway to internal systems.
+
+Instead of directly connecting your host to internal SSH or web services, you connect to the locally published Warpgate ports, and Warpgate makes the onward connections from inside the VPN network.
+
+3. warpgate-firefox: The browser
+
+This is an actual Firefox instance running inside a container, using KasmVNC to present its graphical interface to your host browser.
+
+That means you're effectively controlling a second browser whose network connections originate inside the VPN namespace.
+
+For example, your normal host Firefox can visit YouTube while the containerized Firefox visits your internal OpenShift console.
+The clever part: network_mode: service:vpn
+
+This is the architectural centerpiece.
+
+Normally, separate containers have separate network namespaces. Here, the AI configured Warpgate and Firefox to join the VPN container's namespace.
+
+Consequently, all three see the same tun0, interfaces, IP addresses, routing table, and listening TCP ports.
+
+No need to run three VPN clients. No need to modify your host routing table.
+
+There is one important nuance, though: sharing the VPN namespace does not automatically mean all traffic goes through the VPN. That depends on the routes OpenConnect installs. With a split-tunnel configuration, corporate destinations can use tun0 while public internet traffic exits through the container's ordinary network connection. A full-tunnel configuration behaves differently.
+
+Also, spc_t is a broad SELinux concession, and the hardcoded VNC password in the documentation should not be treated as production-safe. The claimed password isolation and routing isolation are worth checking against the actual Compose files rather than accepting the README as proof.
+Now, tell me what you actually did
+
+I'm particularly interested in the original problem you gave the AI.
+
+Were you originally trying to access your corporate OpenShift console, internal servers, and websites through the government/corporate OpenConnect VPN, without allowing that VPN to take over your Fedora or NixOS host's networking?
+
+Explain your original setup, your requirements, and what you told the AI to build.
+
+Then I'll connect your requirements to each component it created, explain the packet flow and Linux network namespaces in detail, and distinguish the genuinely clever engineering from things the AI might have overengineered. Because, apparently, it spent last night building a miniature zero-trust access platform on your laptop. \U0001f480
+No actually Idea was mine and I had actually solved it (welp kinda) I used a fedora container running openconnect and then warpgate connect the same network and then via wrapgate I actually used to connect to the servers via ssh or the ocp  consoles via https endpoints. It was working but I needed more like I wanted a firefox inside container tabs of my host firefox so that I could have easier access to consoles. so I am stumpted by the enhancements it did and welp Now I understand little of it
+
+LMAO. \U0001f480 So the AI didn't invent the architecture. You'd already solved the difficult networking problem, and the AI essentially took your working prototype and turned it into a more elaborate, reproducible deployment.
+
+That changes how I interpret the entire README.
+
+Your original architecture was already quite clever:
+
+    Run OpenConnect inside a Fedora container, keeping the corporate VPN isolated from the host.
+
+    Put Warpgate in the same network namespace so it could reach corporate servers through the tunnel.
+
+    Access internal servers through Warpgate's SSH bastion and OpenShift console endpoints through its HTTP bastion.
+
+    Keep the host's normal internet connection intact.
+
+That's the fundamental architecture. The AI didn't discover some magical networking trick. You'd already done the important part.
+What you wanted versus what it added
+
+Component
+	
+
+Your original solution
+	
+
+AI's additions
+
+OpenConnect VPN container
+	
+
+Already working
+	
+
+Automated startup and credential handling
+
+Shared network namespace
+	
+
+Already working
+	
+
+Extended to Firefox
+
+Warpgate SSH bastion
+	
+
+Already working
+	
+
+Integrated into Compose deployment
+
+Warpgate HTTP bastion
+	
+
+Already working
+	
+
+Added forwarding and configuration
+
+Firefox inside VPN
+	
+
+Your new requirement
+	
+
+Added Kasm Firefox with remote graphical access
+
+Rootless Podman
+	
+
+Part of your environment
+	
+
+Worked around TUN/user namespace issues
+
+SELinux compatibility
+	
+
+Existing challenge
+	
+
+Applied spc_t labeling
+
+Local VPN testing
+	
+
+Not described in your original design
+	
+
+Added disposable OpenVPN test server
+The really interesting addition is KasmVNC
+
+Here's what happens when you open https://localhost:6901 (assuming HTTPS is how the Kasm image serves that port):
+
+    Your host Firefox opens the KasmVNC web interface.
+
+    KasmVNC streams the graphical session of the container Firefox into that browser tab.
+
+    You interact with the container Firefox using your regular mouse and keyboard.
+
+    The container Firefox makes its own HTTPS connections to the corporate OpenShift console through the VPN namespace.
+
+Crucially, the actual corporate HTTP requests originate from the container, not your host Firefox.
+
+This is why the design meets your requirement without changing the host's routing.
+
+There's a subtle difference from what you might initially expect: it's not a native Firefox tab running inside a container. It's a remote Firefox desktop rendered inside a normal Firefox tab.
+
+That's arguably the most practical way to achieve what you wanted.
+Three enhancements I particularly like
+
+First, the AI added a local OpenVPN testing environment. This is valuable engineering. You can recreate the networking topology and verify tunnel behavior without touching the actual corporate VPN. It makes debugging dramatically easier.
+
+Second, it handled the ugly Kasm startup details. Running Firefox under its intended non-root account, fixing hostname resolution, and providing the required TTY are exactly the little problems that can consume hours when containerizing graphical applications.
+
+Third, it separated the host from the VPN. That's something you already achieved, but the deployment now explicitly documents the shared network namespace, port ownership, and tunnel checks.
+
+One thing I'd question is the separate socat forward on port 443. Given that you already had Warpgate's HTTP bastion working, I'd want to examine why that additional forward is necessary and whether it exposes a corporate endpoint directly to the host, bypassing Warpgate authentication.
+
+And I would not consider spc_t plus userns: keep-id a universally necessary or minimal-privilege configuration. Those are environment-specific workarounds worth auditing.
+
+But here's the part I appreciate most: you designed the network isolation yourself. The AI solved the integration and operational headaches surrounding your existing architecture.
+
+That's a pretty compelling example of AI-assisted infrastructure engineering. You supplied the architecture and constraints; it handled a pile of implementation details that would otherwise require wrestling with Podman, SELinux, KasmVNC, and shell scripts.
+
+Essentially, you built the engine, and the AI installed the dashboard, wiring harness, and diagnostic equipment. And, naturally, added another reverse proxy-shaped contraption because apparently infrastructure isn't complete until port 443 has at least three competing explanations. \U0001f480
+
+

@@ -1,0 +1,13 @@
+^C⏎                                                                                                                                                                           󱎫 14s λ ls -l /dev/net/tun                                                                                                                         ~/Projects/warpgate  16:36
+        stat -c '%A %a %U:%G %u:%g' /dev/net/tun
+crw-rw-rw-. 1 root root 10, 200 Nov 12 12:13 /dev/net/tun
+crw-rw-rw- 666 root:root 0:0
+λ podman image inspect localhost/warpgate-vpn:latest \                                                                                             ~/Projects/warpgate  16:37
+        --format 'User={{.Config.User}} Entrypoint={{json .Config.Entrypoint}}'
+User= Entrypoint=["/usr/local/bin/vpn_entrypoint.sh"]
+λ podman-compose run --rm --entrypoint /usr/bin/stat vpn \                                                                                         ~/Projects/warpgate  16:38
+        -c '%A %a %u:%g %t:%T' /dev/net/tun
+stat: cannot statx '/dev/net/tun': Permission denied
+λ podman info --format '{{.Host.Security.Rootless}}'                                                                                               ~/Projects/warpgate  16:38
+true
+λ              

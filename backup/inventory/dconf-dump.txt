@@ -1,0 +1,63 @@
+# captured 2026-11-17T02:28:09+05:30
+# command: bash -c dconf dump / 2>&1 || true
+[org/blueman/general]
+window-properties=[947, 1027, 0, 0]
+
+[org/gnome/desktop/interface]
+accent-color='teal'
+color-scheme='prefer-dark'
+cursor-size=24
+cursor-theme='Bibata-Modern-Ice'
+font-name='Inter 11'
+gtk-theme='Yaru-prussiangreen-dark'
+icon-theme='Yaru-prussiangreen-dark'
+
+[org/gnome/epiphany]
+ask-for-default=false
+
+[org/gnome/epiphany/state]
+is-maximized=false
+window-size=(987, 1104)
+
+[org/gnome/login-screen]
+enable-fingerprint-authentication=true
+enable-smartcard-authentication=false
+enable-switchable-authentication=false
+
+[org/gnome/nautilus/preferences]
+migrated-gtk-settings=true
+
+[org/gnome/nautilus/window-state]
+initial-size=(890, 550)
+
+[org/gnome/software]
+check-timestamp=int64 1794666167
+first-run=false
+install-timestamp=int64 1793892836
+packagekit-historical-updates-timestamp=uint64 1794667972
+security-timestamp=int64 1793863811905768
+
+[org/gnome/tweaks]
+show-extensions-notice=false
+
+[org/gtk/gtk4/settings/color-chooser]
+custom-colors=[(0.54117649793624878, 0.16862745583057404, 1.0, 1.0), (0.0, 0.26666668057441711, 1.0, 1.0)]
+selected-color=(true, 0.64705884456634521, 0.11372549086809158, 0.17647059261798859, 1.0)
+
+[org/gtk/gtk4/settings/file-chooser]
+show-hidden=false
+sort-directories-first=false
+
+[org/gtk/settings/file-chooser]
+date-format='regular'
+location-mode='path-bar'
+show-hidden=false
+show-size-column=true
+show-type-column=true
+sidebar-width=167
+sort-column='name'
+sort-directories-first=false
+sort-order='ascending'
+type-format='category'
+window-position=(26, 23)
+window-size=(947, 977)

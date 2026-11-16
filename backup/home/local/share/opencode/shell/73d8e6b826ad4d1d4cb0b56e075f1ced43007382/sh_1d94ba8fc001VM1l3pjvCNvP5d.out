@@ -1,0 +1,12 @@
+=== build the images from the clone ===
+Successfully tagged localhost/warpgate-firefox:latest
+24357478e013215a980efaa89f0cd269066fb0960a10d88eb25539fee993faaf
+Successfully tagged localhost/warpgate-vpn:latest
+a1f1822895a0dc348bbfec84f7508687e7c209411eeebb73913bba3923c9fb76
+=== the test harness works from the clone ===
+warpgate-ovpn-server
+Error: unable to start container "96437d5aa3c24b793160ab846a3175c13ac9b8899576384b8282a3bc7f5a920b": rootlessport listen tcp 127.0.0.1:2222: bind: address already in use
+  warpgate-vpn Up 7 minutes
+  warpgate Up 7 minutes
+  warpgate-firefox Up 7 minutes
+  warpgate-ovpn-server Up 4 minutes

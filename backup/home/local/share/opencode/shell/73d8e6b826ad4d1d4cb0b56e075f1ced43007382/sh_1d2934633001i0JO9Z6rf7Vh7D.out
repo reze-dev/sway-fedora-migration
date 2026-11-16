@@ -1,0 +1,7 @@
+warpgate-warpgate-test
+warpgate-firefox-test
+=== containers ===
+warpgate-ovpn-server Up 56 seconds
+warpgate-vpn-test Up 56 seconds
+warpgate-warpgate-test Up 56 seconds
+warpgate-firefox-test Up 55 seconds

@@ -1,0 +1,8 @@
+=== tunnel ===
+tun0             UNKNOWN        10.8.0.2/24 fe80::cfb2:4a1c:ab67:9e97/64 
+=== host -> warpgate HTTP (published) ===
+  http=401
+=== host -> VNC 6901 ===
+  vnc port open ✓
+=== host internet ===
+  internet http=200

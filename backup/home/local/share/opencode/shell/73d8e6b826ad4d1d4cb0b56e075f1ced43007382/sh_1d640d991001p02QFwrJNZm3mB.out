@@ -1,0 +1,10 @@
+fingerprint recorded for the current password
+ls: cannot access 'data/.admin-password': No such file or directory
+=== now change the admin password ===
+  changed
+=== configure.py ===
+Warpgate
+  the image runs as uid 1000
+  the admin password in the database is unknown, so it was not
+  changed. Set it with: podman exec warpgate recover-access admin
+  data/warpgate.yaml now points at 127.0.0.1:8443

@@ -1,0 +1,6 @@
+restored. vpn_password sha256: 525d06bca2d9d196 (expect 525d06bca2d9d196)
+=== .env restored ===
+VPN_USERNAME=fincifms15
+VPN_GATEWAY=https://vpn.osdc.gov.in/
+OCP_BASTION_IP=10.250.18.140
+PUBLISH_HTTPS_PORT=8443

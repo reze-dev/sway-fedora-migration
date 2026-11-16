@@ -1,0 +1,109 @@
+λ podman unshare chown -R 1000:1000 data                                                                                                           ~/Projects/warpgate  14:40
+λ ll                                                                                                                                               ~/Projects/warpgate  14:41
+total 24K
+drwxr-xr-x. 2 525287 525287 4.0K Nov 12 14:13 data/
+-rw-r--r--. 1 asuna  asuna   342 Oct 30 03:36 Dockerfile
+-rw-r--r--. 1 asuna  asuna   244 Nov  2 18:22 Dockerfile.firefox
+-rw-r--r--. 1 asuna  asuna  1.1K Nov  2 18:36 podman-compose.yml
+drwxrwxr-x. 2 asuna  asuna  4.0K Nov  4 01:33 secrets/
+-rw-r--r--. 1 asuna  asuna  1.3K Oct 30 03:40 vpn_entrypoint.sh
+λ stat -c '%A %a %U:%G %u:%g' data                                                                                                                 ~/Projects/warpgate  14:41
+drwxr-xr-x 755 UNKNOWN:UNKNOWN 525287:525287
+λ podman-compose run warpgate setup                                                                                                                ~/Projects/warpgate  14:41
+warpgate-vpn
+09:12:36  INFO Welcome to Warpgate v0.30.4
+09:12:36  INFO Let's do some basic setup first.
+09:12:36  INFO The new config will be written in /data/warpgate.yaml.
+✔ Do you want to record user sessions? · yes
+✔ Set a password for the Warpgate admin user · ********
+09:12:40  INFO Generated configuration:
+sso_providers: []
+external_host: null
+database_url: sqlite:/data/db
+ssh:
+  enable: true
+  listen: '[::]:2222'
+  proxy_protocol: false
+  external_port: null
+  external_host: null
+  host_key_verification: prompt
+  inactivity_timeout: 5m
+  keepalive_interval: null
+  target_handshake_timeout: 30s
+http:
+  listen: '[::]:8888'
+  proxy_protocol: false
+  external_port: null
+  external_host: null
+  certificate: /data/tls.certificate.pem
+  key: /data/tls.key.pem
+  trust_x_forwarded_headers: false
+  session_max_age: 30m
+  cookie_max_age: 1day
+  sni_certificates: []
+kubernetes:
+  enable: true
+  listen: '[::]:8443'
+  proxy_protocol: false
+  external_port: null
+  external_host: null
+  certificate: /data/tls.certificate.pem
+  key: /data/tls.key.pem
+  session_max_age: 30m
+mysql:
+  enable: true
+  listen: '[::]:33306'
+  proxy_protocol: false
+  external_port: null
+  external_host: null
+  certificate: /data/tls.certificate.pem
+  key: /data/tls.key.pem
+  advertised_version: 8.0.3-Warpgate
+postgres:
+  enable: true
+  listen: '[::]:55432'
+  proxy_protocol: false
+  external_port: null
+  external_host: null
+  certificate: /data/tls.certificate.pem
+  key: /data/tls.key.pem
+vnc:
+  enable: false
+  listen: '[::]:5900'
+  proxy_protocol: false
+  external_port: null
+  external_host: null
+  certificate: /data/tls.certificate.pem
+  key: /data/tls.key.pem
+  enable_ard_auth: false
+rdp:
+  enable: false
+  listen: '[::]:3389'
+  proxy_protocol: false
+  external_port: null
+  external_host: null
+  certificate: /data/tls.certificate.pem
+  key: /data/tls.key.pem
+log:
+  retention: 7days
+  audit_retention: 11months 30days 3h 50m 24s
+  send_to: null
+  format: text
+
+09:12:40  INFO Saved into /data/warpgate.yaml
+09:12:40  INFO Using config: "/data/warpgate.yaml"
+09:12:40  INFO Generating root CA certificate
+09:12:41  INFO Using config: "/data/warpgate.yaml"
+09:12:41  INFO Generating SSH host key (Ed25519)
+09:12:41  INFO Generating SSH host key (Rsa)
+09:12:44  INFO Generating SSH client key (Ed25519)
+09:12:44  INFO Generating SSH client key (Rsa { hash: Some(Sha512) })
+09:12:45  INFO Generating a TLS certificate
+09:12:45  INFO 
+09:12:45  INFO Admin user credentials:
+09:12:45  INFO   * Username: admin
+09:12:45  INFO   * Password: <your password>
+09:12:45  INFO 
+09:12:45  INFO You can now start Warpgate with:
+09:12:45  INFO docker run -p 8888:8888 -p 2222:2222 -it -v <your data dir>:/data ghcr.io/warp-tech/warpgate
+󱎫 9s λ                     

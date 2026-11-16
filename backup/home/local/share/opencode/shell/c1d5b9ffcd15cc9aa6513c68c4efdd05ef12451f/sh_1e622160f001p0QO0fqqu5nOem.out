@@ -1,0 +1,63 @@
+/home/asuna/.codex/:
+total 20080
+drwxr-xr-x. 14 asuna asuna     4096 Nov  6 17:47 .
+drwx------. 27 asuna asuna     4096 Nov 15 09:25 ..
+drwx------.  2 asuna asuna     4096 Nov  6 17:17 app-server-control
+drwx------.  2 asuna asuna     4096 Nov  6 17:17 app-server-daemon
+-rw-------.  1 asuna asuna     4124 Nov  4 13:43 auth.json
+-rw-rw-r--.  1 asuna asuna        0 Nov  4 13:43 auth.lock
+drwxr-xr-x.  5 asuna asuna     4096 Nov  4 22:05 cache
+-rw-------.  1 asuna asuna      117 Nov  6 17:17 config.toml
+-rw-r--r--.  1 asuna asuna    32768 Nov  4 14:13 goals_1.sqlite
+-rw-------.  1 asuna asuna    14255 Nov  6 17:22 history.jsonl
+-rw-r--r--.  1 asuna asuna       36 Nov  4 13:43 installation_id
+-rw-r--r--.  1 asuna asuna 13541376 Nov  6 17:47 logs_2.sqlite
+-rw-r--r--.  1 asuna asuna    32768 Nov  6 17:58 logs_2.sqlite-shm
+-rw-r--r--.  1 asuna asuna  1071232 Nov  6 17:58 logs_2.sqlite-wal
+-rw-r--r--.  1 asuna asuna    45056 Nov  4 14:03 memories_1.sqlite
+-rw-rw-r--.  1 asuna asuna   177470 Nov  6 17:58 models_cache.json
+drwxr-xr-x.  4 asuna asuna     4096 Nov  4 22:15 packages
+drwxr-xr-x.  4 asuna asuna     4096 Nov  4 22:05 plugins
+-rw-r--r--.  1 asuna asuna    40960 Nov  5 13:31 queue_1.sqlite
+-rw-r--r--.  1 asuna asuna    32768 Nov  6 17:17 queue_1.sqlite-shm
+-rw-r--r--.  1 asuna asuna    82432 Nov  4 13:43 queue_1.sqlite-wal
+-rw-------.  1 asuna asuna        3 Nov  4 13:44 .sandbox_migration
+-rw-rw-r--.  1 asuna asuna      266 Nov  6 17:19 session_index.jsonl
+-rw-rw-r--.  1 asuna asuna        0 Nov  4 13:47 session_index.jsonl.lock
+drwxr-xr-x.  3 asuna asuna     4096 Nov  4 22:05 sessions
+drwxr-xr-x.  2 asuna asuna     4096 Nov  6 17:28 shell_snapshots
+drwxr-xr-x.  3 asuna asuna     4096 Nov  6 13:54 skills
+-rw-rw-r--.  1 asuna asuna        0 Nov  4 13:44 .sqlite-maintenance.lock
+-rw-r--r--.  1 asuna asuna   290816 Nov  6 17:47 state_5.sqlite
+-rw-r--r--.  1 asuna asuna  5091328 Nov  6 17:47 thread_history_1.sqlite
+drwxr-xr-x.  2 asuna asuna     4096 Nov  6 17:28 thread-writer-locks
+drwxr-xr-x.  3 asuna asuna     4096 Nov  4 22:05 .tmp
+drwxr-xr-x.  3 asuna asuna     4096 Nov  4 22:05 tmp
+drwxr-xr-x.  2 asuna asuna     4096 Nov  6 17:27 tui-thread-reference-capabilities
+-rw-rw-r--.  1 asuna asuna      105 Nov  6 13:47 version.json
+
+/home/asuna/.opencode/:
+total 12
+=== nix store top ===
+001gp43bjqzx60cg345n2slzg7131za8-nix-nss-open-files.patch
+004v2x2knfhy45rs8my61pxa0nw3hkwc-bison-3.8.2.tar.gz.drv
+00536kmkkfs3hjw1c2r0x2h4ssiw5az8-directx-headers-1.619.1.drv
+00biil1pqm65xlinwqrj1ykv8y7nlxmm-crate-windows_aarch64_msvc-0.53.1.tar.gz.drv
+00ccb1zri8dq7idn9bhf8av3s4iwq3ac-tagsoup-0.14.8.drv
+00fs4zz9c0jjcvs62wg39b91dydz7zqb-libidn2-2.3.8
+00gkmnzi4lqf07ygd7b6wymqbf8i92lr-crate-windows_x86_64_msvc-0.48.5.tar.gz.drv
+00h5ms41ywwa7cr21nrkkiyr51433j2l-ragel-6.10.drv
+00j00i02i13cb8skr8w99nbsi0i7qqv5-source.drv
+00j8iv0g3w0jy2l2s164mr6agjgcinih-gnutar-static-1.35.drv
+00nh3cspx4651b05bimjirff44r58783-xxhash-0.8.3.drv
+013mqc5ymx4cih72blz21l6ync49i3jg-expr-strcmp.patch.drv
+01ck6gg0aaxk3cqckvqgklddiqw6dv10-Class-Inspector-1.36.tar.gz.drv
+01gahr13mk3p411jhgxk7ab3pnl0c9yv-0001-No-impure-bin-sh.patch
+01jdmmln0rgdwsicwzfgmr4mpk1l0d1w-hslua-module-version-1.1.1.drv
+01n3gngq7zxl6kmb03m4gl7q8gxqw7pj-freetype-2.14.3.tar.xz.drv
+01prz3q30hvn3zdlfnyah7wx6h7848wy-rustc-bootstrap-wrapper-1.99.0.drv
+01q1glyj4yhrj6l0hpk92w0pb0ydiwj9-autogen-5.18.16.drv
+01q4nx6lam3j14s1j3ra72rv2mhp6zgr-libtool-2.6.2.drv
+01s4kpp42yyh2y3yqbfrijghspyd15ww-source.drv
+
+10547

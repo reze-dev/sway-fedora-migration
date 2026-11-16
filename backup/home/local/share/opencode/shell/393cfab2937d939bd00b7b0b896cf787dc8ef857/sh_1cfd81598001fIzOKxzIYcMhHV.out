@@ -1,0 +1,4 @@
+8:# Wallpaper daemon, replacing swaybg. Packaged by the Terra repository.
+44:# swaybg is deliberately not installed: the awww daemon paints the wallpaper
+45:# instead. swaybg is a hard dependency of sway-config-fedora, so it is
+=== update packages note ===

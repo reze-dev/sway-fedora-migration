@@ -1,0 +1,8 @@
+=== interactive run, answers piped in ===
+Path to an OpenVPN client config, only used when VPN_CLIENT=openvpn
+  : Port warpgate's web bastion is reached on, defaults to PUBLISH_HTTPS_PORT
+  : 
+The configuration is not complete:
+  - WARPGATE_EXTERNAL_PORT has to be a port number between 1 and 65535, not 'MyAuthGroup'
+
+Fill the empty values in .env, then run ./configure.py again to check it.

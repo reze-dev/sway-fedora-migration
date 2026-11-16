@@ -1,0 +1,10 @@
+# captured 2026-11-17T02:28:09+05:30
+# command: bash -c ls -1 ~/.local/share/applications 2>/dev/null
+io.github.erfanium.TufControl.desktop
+lxappearance.desktop
+mimeinfo.cache
+org.fedora.sway.Settings.desktop
+org.gnome.Settings.desktop
+org.gnome.tweaks.desktop
+qt5ct.desktop
+qt6ct.desktop

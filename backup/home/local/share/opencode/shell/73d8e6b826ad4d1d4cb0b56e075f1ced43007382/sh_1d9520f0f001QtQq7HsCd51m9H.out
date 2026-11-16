@@ -1,0 +1,11 @@
+=== happy path ===
+  check-secrets passed ✓
+
+=== the broken state is caught ===
+The credentials are missing, or one of them is a directory.
+That happens when the stack is started before ./configure.py has made them.
+Run 'just configure' first.
+error: recipe `check-secrets` failed on line 60 with exit code 1
+
+=== restored, happy again ===
+  check-secrets passed ✓

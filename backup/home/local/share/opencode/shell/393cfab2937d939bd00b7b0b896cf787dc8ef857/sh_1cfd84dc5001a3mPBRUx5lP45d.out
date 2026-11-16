@@ -1,0 +1,7 @@
+syntax OK
+=== non-root run: must not attempt rpm ===
+76:if [[ ${EUID} -eq 0 ]]; then
+77-    if rpm -q swaybg >/dev/null 2>&1; then
+78-        rpm -e --nodeps swaybg
+79-    fi
+80-    if ! grep -q '^exclude=.*swaybg' /etc/dnf/dnf.conf 2>/dev/null; then

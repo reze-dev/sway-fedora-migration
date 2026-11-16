@@ -1,0 +1,8 @@
+=== fingerprint recorded ===
+-rw-------. 1 asuna asuna 65 Nov 14 00:22 secrets/admin_password.applied
+=== a second run should be a no-op ===
+Warpgate
+  the image runs as uid 1000
+  the admin password is the one in the database.
+  data/warpgate.yaml now points at 127.0.0.1:8443
+

@@ -1,0 +1,94 @@
+[INFO  Thursday 05 November 2026 01:49:37 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=lua-language-server) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[INFO  Thursday 05 November 2026 01:49:37 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=basedpyright) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[INFO  Thursday 05 November 2026 01:49:37 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=gopls) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[INFO  Thursday 05 November 2026 01:49:37 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=typescript-language-server) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[INFO  Thursday 05 November 2026 01:49:37 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=html-lsp) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[INFO  Thursday 05 November 2026 01:49:37 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=css-lsp) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[INFO  Thursday 05 November 2026 01:49:37 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=json-lsp) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[INFO  Thursday 05 November 2026 01:49:37 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=yaml-language-server) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[INFO  Thursday 05 November 2026 01:49:37 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=dockerfile-language-server) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[INFO  Thursday 05 November 2026 01:49:37 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=docker-compose-language-service) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[INFO  Thursday 05 November 2026 01:49:37 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=terraform-ls) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[INFO  Thursday 05 November 2026 01:49:37 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=taplo) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[INFO  Thursday 05 November 2026 01:49:37 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=zls) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[ERROR Thursday 05 November 2026 01:49:38 PM] ...al/share/nvim/lazy/mason.nvim/lua/mason-core/process.lua:226: Failed to spawn process. cmd="go", err="ENOENT: no such file or directory"
+[ERROR Thursday 05 November 2026 01:49:38 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:100: Installation failed for Package(name=gopls) error=spawn: go failed with exit code - and signal -. Could not find executable "go" in PATH.
+
+[INFO  Thursday 05 November 2026 01:49:40 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:93: Installation succeeded for Package(name=lua-language-server)
+[INFO  Thursday 05 November 2026 01:49:45 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:93: Installation succeeded for Package(name=typescript-language-server)
+[INFO  Thursday 05 November 2026 01:49:48 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:93: Installation succeeded for Package(name=css-lsp)
+[INFO  Thursday 05 November 2026 01:49:49 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:93: Installation succeeded for Package(name=html-lsp)
+[INFO  Thursday 05 November 2026 01:49:49 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:93: Installation succeeded for Package(name=json-lsp)
+[INFO  Thursday 05 November 2026 01:49:51 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:93: Installation succeeded for Package(name=dockerfile-language-server)
+[INFO  Thursday 05 November 2026 01:49:51 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:93: Installation succeeded for Package(name=yaml-language-server)
+[INFO  Thursday 05 November 2026 01:49:52 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:93: Installation succeeded for Package(name=docker-compose-language-service)
+[INFO  Thursday 05 November 2026 01:49:55 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:93: Installation succeeded for Package(name=terraform-ls)
+[INFO  Thursday 05 November 2026 01:49:57 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:93: Installation succeeded for Package(name=taplo)
+[INFO  Thursday 05 November 2026 01:50:00 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:93: Installation succeeded for Package(name=zls)
+[INFO  Thursday 05 November 2026 01:50:36 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:93: Installation succeeded for Package(name=basedpyright)
+[INFO  Thursday 05 November 2026 09:19:28 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=gopls) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[ERROR Thursday 05 November 2026 09:19:28 PM] ...al/share/nvim/lazy/mason.nvim/lua/mason-core/process.lua:226: Failed to spawn process. cmd="go", err="ENOENT: no such file or directory"
+[ERROR Thursday 05 November 2026 09:19:28 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:100: Installation failed for Package(name=gopls) error=spawn: go failed with exit code - and signal -. Could not find executable "go" in PATH.
+
+[INFO  Thursday 05 November 2026 10:45:30 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:40: Executing installer for Package(name=gopls) {
+  debug = false,
+  force = false,
+  strict = false
+}
+[INFO  Thursday 05 November 2026 10:46:05 PM] ...zy/mason.nvim/lua/mason-core/installer/InstallRunner.lua:93: Installation succeeded for Package(name=gopls)

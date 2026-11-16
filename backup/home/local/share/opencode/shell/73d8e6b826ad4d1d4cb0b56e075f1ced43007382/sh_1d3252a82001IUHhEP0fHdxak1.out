@@ -1,0 +1,5 @@
+=== does the password leak into inspect/logs? ===
+  env contains password? 0
+  cmdline contains password? 0
+  secret readable in container? yes
+  secret writable in container? no-readonly

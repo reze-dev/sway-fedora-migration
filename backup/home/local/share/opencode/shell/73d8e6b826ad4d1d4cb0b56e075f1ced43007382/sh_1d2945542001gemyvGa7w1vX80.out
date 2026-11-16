@@ -1,0 +1,15 @@
+=== TUNNEL ===
+tun0             UNKNOWN        10.8.0.2/24 fe80::d0e3:c392:78cb:60cd/64 
+=== NETNS ===
+  warpgate-vpn-test net:[4026533168]
+  warpgate-warpgate-test net:[4026533168]
+  warpgate-firefox-test net:[4026533168]
+=== CORPORATE RESOURCE VIA TUNNEL ===
+CORPORATE-RESOURCE-REACHED
+=== HOST INTERNET ===
+  http=200
+=== HOST HAS NO TUN/ROUTES ===
+  tun count: 0
+  vpn routes: 0
+=== FIREFOX ===
+  status=running restarts=0

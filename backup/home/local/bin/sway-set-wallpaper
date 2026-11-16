@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+# Apply the wallpaper saved by Sway Control Center using the awww daemon.
+#
+# Sway's own "output * bg" directive spawns swaybg, so the Sway config no
+# longer carries a wallpaper line. This script is the single place that turns
+# the Sway Control Center state into an actual wallpaper.
+set -euo pipefail
+
+state_file="${XDG_CONFIG_HOME:-$HOME/.config}/sway-control-center/settings.json"
+awww_bin="${AWWW_BIN:-/usr/bin/awww}"
+
+if [[ ! -f "$state_file" ]]; then
+    echo "sway-set-wallpaper: no Sway Control Center state at $state_file" >&2
+    exit 0
+fi
+
+read -r wallpaper mode < <(python3 - "$state_file" <<'PY'
+import json
+import sys
+
+with open(sys.argv[1], encoding="utf-8") as handle:
+    settings = json.load(handle)
+
+wallpaper = settings.get("wallpaper", "")
+mode = settings.get("wallpaper_mode", "fill")
+print(wallpaper, mode)
+PY
+)
+
+if [[ -z "$wallpaper" ]]; then
+    echo "sway-set-wallpaper: no wallpaper configured" >&2
+    exit 0
+fi
+
+if [[ ! -f "$wallpaper" ]]; then
+    echo "sway-set-wallpaper: wallpaper not found: $wallpaper" >&2
+    exit 0
+fi
+
+# Map the Sway Control Center scaling modes onto awww's resize strategies.
+case "$mode" in
+    fill)    resize=crop ;;
+    fit)     resize=fit ;;
+    stretch) resize=stretch ;;
+    center)  resize=no ;;
+    tile)    resize=crop ;;
+    *)       resize=crop ;;
+esac
+
+# Wait for the awww daemon to become reachable, then hand over the image.
+for _ in $(seq 1 60); do
+    if "$awww_bin" query >/dev/null 2>&1; then
+        break
+    fi
+    sleep 0.5
+done
+
+if ! "$awww_bin" query >/dev/null 2>&1; then
+    echo "sway-set-wallpaper: awww daemon is not reachable" >&2
+    exit 0
+fi
+
+"$awww_bin" img --resize "$resize" --transition-type simple "$wallpaper"

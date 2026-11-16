@@ -1,0 +1,2 @@
+secrets/  perms=700  owner=asuna:asuna
+secrets/vpn_password  perms=600  owner=asuna:asuna

@@ -1,0 +1,29 @@
+=== environment ===
+QT_QPA_PLATFORM="wayland;xcb"
+QT_QPA_PLATFORMTHEME=qt6ct
+XCURSOR_THEME=Bibata-Modern-Ice
+XCURSOR_SIZE=24
+_JAVA_AWT_WM_NONREPARENTING=1
+
+# The NVIDIA proprietary driver is in use, so Sway shows a "Proprietary GPU
+# drivers are not supported by sway" notice on startup. This flag suppresses
+# that notice only; it does not change which renderer or GPU is used.
+# /usr/bin/start-sway passes SWAY_EXTRA_ARGS to the sway executable.
+SWAY_EXTRA_ARGS="$SWAY_EXTRA_ARGS --unsupported-gpu"
+=== config.d/60-bindings-screenshot.conf ===
+# Intentionally empty: the parent Sway config defines Print bindings that pipe
+# Fedora's grimshot output to Swappy, so suppress the vendor save-to-file binds.
+=== config.d/70-settings.conf ===
+# Fedora Sway settings applications and their window behavior.
+seat * xcursor_theme Bibata-Modern-Ice 24
+exec_always env XCURSOR_THEME=Bibata-Modern-Ice XCURSOR_SIZE=24 dbus-update-activation-environment --systemd XCURSOR_THEME XCURSOR_SIZE
+
+bindsym $mod+Shift+s exec ~/.local/bin/sway-control-center
+
+for_window [app_id="wdisplays"] floating enable
+for_window [app_id="org.fedora.sway.ControlCenter"] floating enable
+for_window [class="Lxappearance"] floating enable
+for_window [app_id="qt5ct"] floating enable
+for_window [app_id="qt6ct"] floating enable
+=== config.d/90-bar.conf ===
+# Intentionally no Sway-managed bar. Waybar is a systemd user service.

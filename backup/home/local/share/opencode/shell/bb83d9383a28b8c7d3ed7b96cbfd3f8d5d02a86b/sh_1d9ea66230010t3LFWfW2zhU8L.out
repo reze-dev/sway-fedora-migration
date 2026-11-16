@@ -1,0 +1,11 @@
+=== token in the environment? ===
+
+=== git credential helper ===
+
+=== a stored github credential? ===
+ls: cannot access '/home/asuna/.git-credentials': No such file or directory
+
+=== is gh installable? ===
+Name           : gh
+Version        : 2.97.0
+Repository     : fedora

@@ -1,0 +1,28 @@
+9.2M	home/cargo
+624K	home/codex
+43M	home/config
+4.0K	home/Documents
+724K	home/dotfiles
+16M	home/local
+124K	home/npm
+4.0K	home/opencode
+23M	home/Pictures
+20K	home/rustup
+164M	home/var-app
+11M	system
+436K	inventory
+648M	archives
+44K	secrets
+=== biggest plain files ===
+25764247 ./home/var-app/app.zen_browser.zen/.zen/z3ccipiu.Default (release)/storage/default/moz-extension+++0d35d414-cf13-43ed-952f-2c23c8ba7566^userContextId=4294967295/idb/3647222921wleabcEoxlt-eengsairo.files/96
+21965296 ./home/var-app/app.zen_browser.zen/.zen/z3ccipiu.Default (release)/gmp-widevinecdm/4.10.3112.0/libwidevinecdm.so
+18350080 ./home/var-app/app.zen_browser.zen/.zen/z3ccipiu.Default (release)/storage/permanent/chrome/idb/3870112724rsegmnoittet-es.sqlite
+16724243 ./home/Pictures/Wallpapers/wallhaven-po5lq9.png
+12834096 ./home/config/tmux/plugins/tmux-powerkit/.git/objects/pack/pack-b5abb7ff3ad8ed07de1ec2fd1fa4e08ed82e7d2e.pack
+12621982 ./home/var-app/app.zen_browser.zen/.zen/z3ccipiu.Default (release)/storage/default/moz-extension+++0d35d414-cf13-43ed-952f-2c23c8ba7566/idb/1671402671ueBglaorcokt0SCeahc.files/71
+9436808 ./home/cargo/bin/rustup
+9413153 ./home/config/tmux/plugins/tmux-powerkit/.git/modules/wiki/objects/pack/pack-b54b5410eabde1a0c812d5b45289f958906bd3e7.pack
+6332093 ./home/var-app/app.zen_browser.zen/.zen/z3ccipiu.Default (release)/extensions/uBlock0@raymondhill.net.xpi
+5849088 ./home/var-app/app.zen_browser.zen/.zen/z3ccipiu.Default (release)/storage/default/https+++web.whatsapp.com/idb/2181795718meogdaerlo-ts.sqlite
+5509792 ./home/var-app/app.zen_browser.zen/.zen/z3ccipiu.Default (release)/storage/default/moz-extension+++0d35d414-cf13-43ed-952f-2c23c8ba7566^userContextId=4294967295/idb/3647222921wleabcEoxlt-eengsairo.files/94
+5468535 ./home/var-app/app.zen_browser.zen/.zen/z3ccipiu.Default (release)/storage/default/moz-extension+++0d35d414-cf13-43ed-952f-2c23c8ba7566^userContextId=4294967295/idb/3647222921wleabcEoxlt-eengsairo.files/90

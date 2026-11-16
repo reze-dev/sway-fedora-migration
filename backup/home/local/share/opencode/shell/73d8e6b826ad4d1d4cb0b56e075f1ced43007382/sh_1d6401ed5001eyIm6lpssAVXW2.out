@@ -1,0 +1,8 @@
+warpgate-vpn
+warpgate
+warpgate-firefox
+=== the host label ===
+system_u:object_r:container_file_t:s0 data
+=== the warpgate container can read the database now? ===
+=== admin login ===
+  http=201

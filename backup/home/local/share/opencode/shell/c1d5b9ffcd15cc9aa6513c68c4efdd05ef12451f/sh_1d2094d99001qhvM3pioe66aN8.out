@@ -1,0 +1,16 @@
+=== cgroup v2 devices via BPF ===
+cpuset
+cpu
+io
+memory
+hugetlb
+pids
+rdma
+misc
+dmem
+=== podman rootless info ===
+{crun crun-1.30.1-1.fc45.x86_64 /usr/bin/crun crun version 1.30.1
+commit: 079ff6a7a16d029460af882f9ea44674e6a510b6
+rundir: /run/user/0/crun
+spec: 1.0.0
++SYSTEMD +SELINUX +APPARMOR +CAP +SECCOMP +EBPF +CRIU +LIBKRUN +WASM:wasmedge +JSON_C} | rootless=false

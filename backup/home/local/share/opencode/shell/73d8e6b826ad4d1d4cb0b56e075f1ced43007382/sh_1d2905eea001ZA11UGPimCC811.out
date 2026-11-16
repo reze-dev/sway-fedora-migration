@@ -1,0 +1,6 @@
+=== production image has openconnect? ===
+/usr/bin/openconnect
+OpenConnect version v9.21
+Using GnuTLS 3.8.13. Features present: TPMv2, PKCS#11, RSA software token, HOTP software token, TOTP software token, Yubikey OATH, System keys, DTLS, ESP
+/usr/bin/socat
+socat ok

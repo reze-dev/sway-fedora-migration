@@ -1,0 +1,17 @@
+=== the local repo ===
+## main...origin/main
+
+=== local vs remote ===
+  local:  1c84d698d4730aebe7f8055b0d8ea33760033608
+  remote: 1c84d698d4730aebe7f8055b0d8ea33760033608
+  in sync ✓
+
+=== identity ===
+  global: reze-dev <nsofbl@gmail.com>
+  repo:   reze-dev <25588579+reze-dev@users.noreply.github.com>
+
+=== the stack is still running and good ===
+  [32mok[0m    no database errors                   0
+
+[32m[1m checks passed[0m
+

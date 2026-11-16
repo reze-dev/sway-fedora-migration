@@ -1,0 +1,10 @@
+justfile parses
+=== the preflight check catches the bad state ===
+These are missing or are not files:390232missing
+Run 'just configure' first, it makes them.
+error: recipe `check-secrets` failed on line 63 with exit code 1
+exit=0
+
+=== and is happy once they are files again ===
+Run 'just configure' first, it makes them.
+error: recipe `check-secrets` failed on line 63 with exit code 1

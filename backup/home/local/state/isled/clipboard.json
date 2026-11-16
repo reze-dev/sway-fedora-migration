@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "id": 2,
+      "text": "er centred inside t",
+      "kind": "text",
+      "created_at_unix": 1794198697,
+      "pinned": false,
+      "use_count": 0
+    }
+  ],
+  "next_id": 3,
+  "capacity": 200
+}

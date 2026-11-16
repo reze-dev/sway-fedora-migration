@@ -1,0 +1,4 @@
+=== check ===
+sway-config-fedora-0:0.4.3-4.fc45.noarch
+ missing require "swaybg"
+Check discovered 1 problem(s) in 1 package(s)

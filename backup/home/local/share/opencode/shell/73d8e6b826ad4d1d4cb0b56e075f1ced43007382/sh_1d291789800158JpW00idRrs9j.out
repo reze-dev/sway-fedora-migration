@@ -1,0 +1,7 @@
+=== with a non-empty secret, it proceeds to authentication ===
+Connected to HTTPS on vpn.osdc.gov.in with ciphersuite (TLS1.2)-(ECDHE-SECP256R1)-(RSA-SHA512)-(AES-256-GCM)
+Please enter your username and password.
+Please enter your username and password.
+Login failed.
+Please enter your username and password.
+Failed to complete authentication

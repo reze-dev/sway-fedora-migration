@@ -1,0 +1,39 @@
+backup:  /home/asuna/sway-fedora-migration/backup
+target:  /home/asuna
+mode:    DRY RUN (pass --apply to write)
+
+[1/8] configuration tree
+  would restore ~/.config -> /home/asuna/.config
+[2/8] dotfiles
+  would restore .bash_history -> /home/asuna
+  would restore .bash_logout -> /home/asuna
+  would restore .bash_profile -> /home/asuna
+  would restore .bashrc -> /home/asuna
+  would restore kdeglobals -> /home/asuna/.config
+  would restore .gitconfig -> /home/asuna
+  would restore .gtkrc-2.0 -> /home/asuna
+  would restore ~/.local/share/zoxide -> /home/asuna/.local/share/zoxide
+  would restore .profile -> /home/asuna
+  would restore ~/.themes -> /home/asuna/.themes
+  would restore ~/.tmux -> /home/asuna/.tmux
+  would restore .zshenv -> /home/asuna
+[3/8] local scripts and data
+  would restore ~/.local/bin -> /home/asuna/.local/bin
+  would restore ~/.local/share -> /home/asuna/.local/share
+  would restore ~/.local/state -> /home/asuna/.local/state
+[4/8] toolchains (config only)
+  would restore ~/.cargo -> /home/asuna/.cargo
+  would restore ~/.rustup -> /home/asuna/.rustup
+[5/8] user data
+  would restore ~/Pictures -> /home/asuna/Pictures
+  would restore ~/Documents -> /home/asuna/Documents
+  would restore ~/.var/app -> /home/asuna/.var/app
+[6/8] app settings
+  would restore ~/.codex -> /home/asuna/.codex
+  would restore ~/.npm -> /home/asuna/.npm
+[7/8] secrets (mode 600)
+  would restore ~/.ssh, ~/.codex/auth.json, ~/.config/opencode/*, ~/.gitconfig
+[8/8] systemd user units
+  would restore ~/.config/systemd -> /home/asuna/.config/systemd
+
+dry run finished. re-run with --apply to restore.

@@ -1,0 +1,8 @@
+asuna:524288:65536
+warpgate:589824:65536
+asuna:524288:65536
+warpgate:589824:65536
+=== newuidmap present? ===
+/usr/bin/newuidmap
+/usr/bin/newgidmap
+-rwxr-xr-x. 1 root root 39312 Oct 15 05:30 /usr/bin/newuidmap

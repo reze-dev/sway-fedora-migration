@@ -1,0 +1,4 @@
+=== test with --userns=keep-id ===
+OPEN_FAILED
+=== test --uidmap 0:1000:1 ===
+OPEN_FAILED

@@ -1,0 +1,52 @@
+[
+  {
+    "id": 3,
+    "type": "output",
+    "orientation": "none",
+    "percent": 1.0,
+    "urgent": false,
+    "marks": [],
+    "layout": "output",
+    "border": "none",
+    "current_border_width": 0,
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080
+    },
+    "deco_rect": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "window_rect": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "geometry": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "name": "eDP-1",
+    "window": null,
+    "nodes": [],
+    "floating_nodes": [],
+    "focus": [
+=== bindings count ===
+00:00:00.000 [ERROR] [swaymsg/main.c:561] Unknown message type get_binding
+=== version ===
+{
+  "human_readable": "0.6.1",
+  "sway_original_version": "1.12.0",
+  "variant": "sway",
+  "major": 0,
+  "minor": 6,
+  "patch": 1,
+  "loaded_config_file_name": "\/home\/asuna\/.config\/sway\/config"
+}

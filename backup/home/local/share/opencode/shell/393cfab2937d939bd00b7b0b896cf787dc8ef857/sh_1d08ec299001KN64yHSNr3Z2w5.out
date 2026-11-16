@@ -1,0 +1,11 @@
+/tmp/opencode/sway-1.12/sway/main.c:292:		allow_unsupported_gpu = parse_boolean(unsupported_gpu_env, false);
+/tmp/opencode/sway-1.12/sway/commands/xwayland.c:17:	} else if (parse_boolean(argv[0], true)) {
+/tmp/opencode/sway-1.12/sway/commands/ws_auto_back_and_forth.c:12:		parse_boolean(argv[0], config->auto_back_and_forth);
+/tmp/opencode/sway-1.12/sway/commands/urgent.c:28:		view_set_urgent(view, parse_boolean(argv[0], view_is_urgent(view)));
+/tmp/opencode/sway-1.12/sway/commands/tiling_drag.c:10:	config->tiling_drag = parse_boolean(argv[0], config->tiling_drag);
+/tmp/opencode/sway-1.12/sway/commands/sticky.c:26:	container->is_sticky = parse_boolean(argv[0], container->is_sticky);
+/tmp/opencode/sway-1.12/sway/commands/smart_gaps.c:21:		config->smart_gaps = parse_boolean(argv[0], config->smart_gaps)
+/tmp/opencode/sway-1.12/sway/commands/smart_borders.c:16:		config->hide_edge_borders_smart = parse_boolean(argv[0], true) ?
+/tmp/opencode/sway-1.12/sway/commands/show_marks.c:22:	config->show_marks = parse_boolean(argv[0], config->show_marks);
+/tmp/opencode/sway-1.12/sway/commands/seat/hide_cursor.c:38:		seat_config->hide_cursor_when_typing = parse_boolean(argv[1], true) ?
+=== impl ===

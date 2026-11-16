@@ -1,0 +1,10 @@
+1008M	.var/app/app.zen_browser.zen/cache
+92K	.var/app/app.zen_browser.zen/data
+24K	.var/app/app.zen_browser.zen/config
+=== mozilla ===
+8.0K	.config/mozilla/extensions
+208M	.config/mozilla/firefox
+4.0K	.config/mozilla/plugins
+=== tmux ===
+42M	.config/tmux/plugins
+4.0K	.config/tmux/tmux.conf

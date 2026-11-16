@@ -1,0 +1,31 @@
+bool parse_boolean(const char *boolean, bool current) {
+	if (strcasecmp(boolean, "1") == 0
+			|| strcasecmp(boolean, "yes") == 0
+			|| strcasecmp(boolean, "on") == 0
+			|| strcasecmp(boolean, "true") == 0
+			|| strcasecmp(boolean, "enable") == 0
+			|| strcasecmp(boolean, "enabled") == 0
+			|| strcasecmp(boolean, "active") == 0) {
+		return true;
+	} else if (strcasecmp(boolean, "toggle") == 0) {
+		return !current;
+	}
+	// All other values are false to match i3
+	return false;
+}
+
+float parse_float(const char *value) {
+	errno = 0;
+	char *end;
+	float flt = strtof(value, &end);
+	if (*end || errno) {
+		sway_log(SWAY_DEBUG, "Invalid float value '%s', defaulting to NAN", value);
+		return NAN;
+	}
+	return flt;
+}
+
+enum movement_unit parse_movement_unit(const char *unit) {
+	if (strcasecmp(unit, "px") == 0) {
+		return MOVEMENT_UNIT_PX;
+	}

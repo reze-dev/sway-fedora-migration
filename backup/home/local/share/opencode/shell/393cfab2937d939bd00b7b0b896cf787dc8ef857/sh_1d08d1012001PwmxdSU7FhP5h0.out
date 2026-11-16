@@ -1,0 +1,5 @@
+9:#SWAY_EXTRA_ARGS="$SWAY_EXTRA_ARGS --unsupported-gpu"
+10:#SWAY_EXTRA_ARGS="$SWAY_EXTRA_ARGS --debug"
+=== full file with hidden chars ===
+9:#SWAY_EXTRA_ARGS="$SWAY_EXTRA_ARGS --unsupported-gpu"$
+10:#SWAY_EXTRA_ARGS="$SWAY_EXTRA_ARGS --debug"$

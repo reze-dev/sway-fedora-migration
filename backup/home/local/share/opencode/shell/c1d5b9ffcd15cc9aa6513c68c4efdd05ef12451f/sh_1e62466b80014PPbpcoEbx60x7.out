@@ -1,0 +1,61 @@
+254M	home
+11M	system
+436K	inventory
+648M	archives
+44K	secrets
+=== inventory files ===
+cargo-installed.txt
+dconf-dump.txt
+desktop-entries-system.txt
+desktop-entries-user.txt
+dnf-history-info.txt
+dnf-history.txt
+dnf-repos.txt
+dnf-user-installed.txt
+environment.txt
+flatpak-apps.txt
+flatpak-overrides.txt
+flatpak-remotes.txt
+flatpak-runtimes.txt
+flatpak-sbom.txt
+fonts-all-families.txt
+fonts-user.txt
+go-packages.txt
+go-version.txt
+groups-user.txt
+gsettings-list.txt
+gtk-theme.ini
+hardware-free.txt
+hardware-lscpu.txt
+hardware-lspci.txt
+hardware-lsusb.txt
+kernel-current.txt
+kernel-installed.txt
+kernel-modules-blacklist.txt
+mise-tools.txt
+nix-profile.txt
+nix-store-references.txt
+npm-global.txt
+opencode-runtime.txt
+passwd-user.txt
+podman-images.txt
+podman-ps.txt
+python-pip.txt
+rpm-owners-files.txt
+rpm-packages-full.txt
+rpm-packages-user-facing.txt
+rustup-components.txt
+rustup-toolchains.txt
+sway-config-effective.txt
+sway-inputs.txt
+sway-outputs.txt
+sway-tree.txt
+sway-version-json.txt
+sway-version.txt
+systemd-system-services.txt
+systemd-timers.txt
+systemd-user-enabled.txt
+systemd-user-running.txt
+systemd-user-units.txt
+xdg-user-dirs.txt
+xsettingsd-conf.txt

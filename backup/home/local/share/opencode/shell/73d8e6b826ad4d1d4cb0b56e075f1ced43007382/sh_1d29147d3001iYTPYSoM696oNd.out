@@ -1,0 +1,3 @@
+=== empty password -> clean error, no hang ===
+VPN password secret is missing or unreadable
+  exit=1

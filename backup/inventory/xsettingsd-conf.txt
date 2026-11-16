@@ -1,0 +1,13 @@
+# captured 2026-11-17T02:28:09+05:30
+# command: bash -c cat ~/.config/xsettingsd/xsettingsd.conf 2>/dev/null
+Net/ThemeName "Yaru-prussiangreen-dark"
+Net/IconThemeName "Yaru-prussiangreen-dark"
+Gtk/CursorThemeName "Bibata-Modern-Ice"
+Gtk/CursorThemeSize 24
+Net/EnableEventSounds 1
+EnableInputFeedbackSounds 0
+Xft/Antialias 1
+Xft/Hinting 1
+Xft/HintStyle "hintslight"
+Xft/RGBA "rgb"
+Gtk/FontName "Inter 11"

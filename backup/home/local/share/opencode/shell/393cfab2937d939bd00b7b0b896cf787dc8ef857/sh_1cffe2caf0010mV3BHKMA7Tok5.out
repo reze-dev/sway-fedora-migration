@@ -1,0 +1,3 @@
+ D fedora-overlay/install-swaybg-provider.sh
+ D fedora-overlay/rpm/swaybg-provider/README.md
+ D fedora-overlay/rpm/swaybg-provider/swaybg-provider.spec

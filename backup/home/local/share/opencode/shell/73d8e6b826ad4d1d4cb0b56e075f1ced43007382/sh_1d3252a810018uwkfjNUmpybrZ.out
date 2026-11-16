@@ -1,0 +1,15 @@
+=== is this dir under version control? ===
+fatal: not a git repository (or any of the parent directories): .git
+=== secrets dir ===
+total 8
+drwxrwxr-x. 2 asuna asuna 4096 Nov  4 01:33 .
+drwxrwxr-x. 5 asuna asuna 4096 Nov 13 07:07 ..
+-rw-------. 1 asuna asuna    0 Nov 13 04:07 vpn_password
+=== data dir (warpgate DB + TLS private key) ===
+total 24
+drwxr-xr-x. 3 525287 525287 4096 Nov 12 14:42 .
+drwxrwxr-x. 5 asuna  asuna  4096 Nov 13 07:07 ..
+drwx------. 2 525287 525287 4096 Nov 12 14:42 db
+-rw-------. 1 525287 525287  558 Nov 12 14:42 tls.certificate.pem
+-rw-------. 1 525287 525287  241 Nov 12 14:42 tls.key.pem
+-rw-------. 1 525287 525287 1803 Nov 12 14:42 warpgate.yaml

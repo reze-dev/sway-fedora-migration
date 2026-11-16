@@ -1,0 +1,12 @@
+=== syntax ===
+  configure.py OK
+  shell OK
+  podman-compose.yml OK
+  podman-compose.test.yml OK
+=== the test harness still works ===
+warpgate-ovpn-server
+Error: unable to start container "a2e352f37362446c9e7adab74b512f7a234de8459169a8033a00ef226710a603": rootlessport listen tcp 127.0.0.1:2222: bind: address already in use
+  warpgate-vpn Up 7 minutes
+  warpgate Up 7 minutes
+  warpgate-firefox Up 7 minutes
+  warpgate-ovpn-server Up 4 minutes

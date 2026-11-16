@@ -1,0 +1,309 @@
+# captured 2026-11-17T02:28:10+05:30
+# command: swaymsg -t get_inputs
+[
+  {
+    "identifier": "9011:26214:ydotoold_virtual_device",
+    "name": "ydotoold virtual device",
+    "type": "pointer",
+    "scroll_factor": 1.0,
+    "libinput": {
+      "send_events": "enabled",
+      "accel_speed": 0.0,
+      "accel_profile": "adaptive",
+      "natural_scroll": "disabled",
+      "middle_emulation": "disabled"
+    },
+    "vendor": 9011,
+    "product": 26214
+  },
+  {
+    "identifier": "9011:26214:ydotoold_virtual_device",
+    "name": "ydotoold virtual device",
+    "type": "keyboard",
+    "repeat_delay": 600,
+    "repeat_rate": 25,
+    "xkb_layout_names": [
+      "English (US)"
+    ],
+    "xkb_active_layout_index": 0,
+    "xkb_active_layout_name": "English (US)",
+    "libinput": {
+      "send_events": "enabled",
+      "accel_speed": 0.0,
+      "accel_profile": "adaptive",
+      "natural_scroll": "disabled",
+      "middle_emulation": "disabled"
+    },
+    "vendor": 9011,
+    "product": 26214
+  },
+  {
+    "identifier": "1:1:AT_Translated_Set_2_keyboard",
+    "name": "AT Translated Set 2 keyboard",
+    "type": "keyboard",
+    "repeat_delay": 600,
+    "repeat_rate": 25,
+    "xkb_layout_names": [
+      "English (US)"
+    ],
+    "xkb_active_layout_index": 0,
+    "xkb_active_layout_name": "English (US)",
+    "libinput": {
+      "send_events": "enabled"
+    },
+    "vendor": 1,
+    "product": 1
+  },
+  {
+    "identifier": "0:0:Asus_WMI_hotkeys",
+    "name": "Asus WMI hotkeys",
+    "type": "keyboard",
+    "repeat_delay": 600,
+    "repeat_rate": 25,
+    "xkb_layout_names": [
+      "English (US)"
+    ],
+    "xkb_active_layout_index": 0,
+    "xkb_active_layout_name": "English (US)",
+    "libinput": {
+      "send_events": "enabled"
+    },
+    "vendor": 0,
+    "product": 0
+  },
+  {
+    "identifier": "0:3:Sleep_Button",
+    "name": "Sleep Button",
+    "type": "keyboard",
+    "repeat_delay": 600,
+    "repeat_rate": 25,
+    "xkb_layout_names": [
+      "English (US)"
+    ],
+    "xkb_active_layout_index": 0,
+    "xkb_active_layout_name": "English (US)",
+    "libinput": {
+      "send_events": "enabled"
+    },
+    "vendor": 0,
+    "product": 3
+  },
+  {
+    "identifier": "0:5:Lid_Switch",
+    "name": "Lid Switch",
+    "type": "switch",
+    "libinput": {
+      "send_events": "enabled"
+    },
+    "vendor": 0,
+    "product": 5
+  },
+  {
+    "identifier": "0:1:Power_Button",
+    "name": "Power Button",
+    "type": "keyboard",
+    "repeat_delay": 600,
+    "repeat_rate": 25,
+    "xkb_layout_names": [
+      "English (US)"
+    ],
+    "xkb_active_layout_index": 0,
+    "xkb_active_layout_name": "English (US)",
+    "libinput": {
+      "send_events": "enabled"
+    },
+    "vendor": 0,
+    "product": 1
+  },
+  {
+    "identifier": "0:1:Power_Button",
+    "name": "Power Button",
+    "type": "keyboard",
+    "repeat_delay": 600,
+    "repeat_rate": 25,
+    "xkb_layout_names": [
+      "English (US)"
+    ],
+    "xkb_active_layout_index": 0,
+    "xkb_active_layout_name": "English (US)",
+    "libinput": {
+      "send_events": "enabled"
+    },
+    "vendor": 0,
+    "product": 1
+  },
+  {
+    "identifier": "4163:0:Asus_Wireless_Radio_Control",
+    "name": "Asus Wireless Radio Control",
+    "type": "keyboard",
+    "repeat_delay": 600,
+    "repeat_rate": 25,
+    "xkb_layout_names": [
+      "English (US)"
+    ],
+    "xkb_active_layout_index": 0,
+    "xkb_active_layout_name": "English (US)",
+    "libinput": {
+      "send_events": "enabled"
+    },
+    "vendor": 4163,
+    "product": 0
+  },
+  {
+    "identifier": "0:6:Video_Bus",
+    "name": "Video Bus",
+    "type": "keyboard",
+    "repeat_delay": 600,
+    "repeat_rate": 25,
+    "xkb_layout_names": [
+      "English (US)"
+    ],
+    "xkb_active_layout_index": 0,
+    "xkb_active_layout_name": "English (US)",
+    "libinput": {
+      "send_events": "enabled"
+    },
+    "vendor": 0,
+    "product": 6
+  },
+  {
+    "identifier": "1133:16419:Logitech_Wireless_Keyboard_PID:4023",
+    "name": "Logitech Wireless Keyboard PID:4023",
+    "type": "pointer",
+    "scroll_factor": 1.0,
+    "libinput": {
+      "send_events": "enabled",
+      "natural_scroll": "disabled"
+    },
+    "vendor": 1133,
+    "product": 16419
+  },
+  {
+    "identifier": "1133:16419:Logitech_Wireless_Keyboard_PID:4023",
+    "name": "Logitech Wireless Keyboard PID:4023",
+    "type": "keyboard",
+    "repeat_delay": 600,
+    "repeat_rate": 25,
+    "xkb_layout_names": [
+      "English (US)"
+    ],
+    "xkb_active_layout_index": 0,
+    "xkb_active_layout_name": "English (US)",
+    "libinput": {
+      "send_events": "enabled",
+      "natural_scroll": "disabled"
+    },
+    "vendor": 1133,
+    "product": 16419
+  },
+  {
+    "identifier": "1133:16418:Logitech_Wireless_Mouse_PID:4022",
+    "name": "Logitech Wireless Mouse PID:4022",
+    "type": "pointer",
+    "scroll_factor": 1.0,
+    "libinput": {
+      "send_events": "enabled",
+      "accel_speed": 0.0,
+      "accel_profile": "adaptive",
+      "natural_scroll": "disabled",
+      "left_handed": "disabled",
+      "middle_emulation": "disabled",
+      "scroll_method": "none",
+      "scroll_button": 274,
+      "scroll_button_lock": "disabled"
+    },
+    "vendor": 1133,
+    "product": 16418
+  },
+  {
+    "identifier": "1133:16418:Logitech_Wireless_Mouse_PID:4022",
+    "name": "Logitech Wireless Mouse PID:4022",
+    "type": "keyboard",
+    "repeat_delay": 600,
+    "repeat_rate": 25,
+    "xkb_layout_names": [
+      "English (US)"
+    ],
+    "xkb_active_layout_index": 0,
+    "xkb_active_layout_name": "English (US)",
+    "libinput": {
+      "send_events": "enabled",
+      "accel_speed": 0.0,
+      "accel_profile": "adaptive",
+      "natural_scroll": "disabled",
+      "left_handed": "disabled",
+      "middle_emulation": "disabled",
+      "scroll_method": "none",
+      "scroll_button": 274,
+      "scroll_button_lock": "disabled"
+    },
+    "vendor": 1133,
+    "product": 16418
+  },
+  {
+    "identifier": "12994:24:HS6209_2.4G_Wireless_Receiver_Mouse",
+    "name": "HS6209 2.4G Wireless Receiver Mouse",
+    "type": "pointer",
+    "scroll_factor": 1.0,
+    "libinput": {
+      "send_events": "enabled",
+      "accel_speed": 0.0,
+      "accel_profile": "adaptive",
+      "natural_scroll": "disabled",
+      "left_handed": "disabled",
+      "middle_emulation": "disabled",
+      "scroll_method": "none",
+      "scroll_button": 274,
+      "scroll_button_lock": "disabled"
+    },
+    "vendor": 12994,
+    "product": 24
+  },
+  {
+    "identifier": "12994:24:HS6209_2.4G_Wireless_Receiver_Keyboard",
+    "name": "HS6209 2.4G Wireless Receiver Keyboard",
+    "type": "pointer",
+    "scroll_factor": 1.0,
+    "libinput": {
+      "send_events": "enabled",
+      "natural_scroll": "disabled"
+    },
+    "vendor": 12994,
+    "product": 24
+  },
+  {
+    "identifier": "12994:24:HS6209_2.4G_Wireless_Receiver_Keyboard",
+    "name": "HS6209 2.4G Wireless Receiver Keyboard",
+    "type": "keyboard",
+    "repeat_delay": 600,
+    "repeat_rate": 25,
+    "xkb_layout_names": [
+      "English (US)"
+    ],
+    "xkb_active_layout_index": 0,
+    "xkb_active_layout_name": "English (US)",
+    "libinput": {
+      "send_events": "enabled",
+      "natural_scroll": "disabled"
+    },
+    "vendor": 12994,
+    "product": 24
+  },
+  {
+    "identifier": "12994:24:HS6209_2.4G_Wireless_Receiver",
+    "name": "HS6209 2.4G Wireless Receiver",
+    "type": "keyboard",
+    "repeat_delay": 600,
+    "repeat_rate": 25,
+    "xkb_layout_names": [
+      "English (US)"
+    ],
+    "xkb_active_layout_index": 0,
+    "xkb_active_layout_name": "English (US)",
+    "libinput": {
+      "send_events": "enabled"
+    },
+    "vendor": 12994,
+    "product": 24
+  }
+]

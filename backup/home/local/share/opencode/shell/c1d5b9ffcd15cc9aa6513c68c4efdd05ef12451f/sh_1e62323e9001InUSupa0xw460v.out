@@ -1,0 +1,45 @@
+02:23:55 files: 2903
+02:23:55 size:  1.3G
+02:23:55 === capture done: 2026-11-17T02:23:55+05:30 ===
+=== single-file check ===
+backup/system/etc/default/grub:
+total 12
+drwxr-xr-x. 2 asuna asuna 4096 Nov 17 02:23 .
+drwxr-xr-x. 3 asuna asuna 4096 Nov 17 02:23 ..
+-rw-r--r--. 1 asuna asuna  346 Nov 12 17:20 grub
+
+backup/system/etc/environment:
+total 8
+drwxr-xr-x.  2 asuna asuna 4096 Nov 17 02:23 .
+drwxr-xr-x. 17 asuna asuna 4096 Nov 17 02:23 ..
+-rw-r--r--.  1 asuna asuna    0 Jul 17 05:30 environment
+
+backup/system/etc/fstab:
+total 12
+drwxr-xr-x.  2 asuna asuna 4096 Nov 17 02:23 .
+drwxr-xr-x. 17 asuna asuna 4096 Nov 17 02:23 ..
+-rw-r--r--.  1 asuna asuna  522 Nov  4 21:12 fstab
+
+backup/system/etc/hostname:
+total 12
+drwxr-xr-x.  2 asuna asuna 4096 Nov 17 02:23 .
+drwxr-xr-x. 17 asuna asuna 4096 Nov 17 02:23 ..
+-rw-r--r--.  1 asuna asuna    1 Nov  4 21:13 hostname
+
+backup/system/etc/os-release:
+total 8
+drwxr-xr-x.  2 asuna asuna 4096 Nov 17 02:23 .
+drwxr-xr-x. 17 asuna asuna 4096 Nov 17 02:23 ..
+lrwxrwxrwx.  1 asuna asuna   21 Oct 23 05:30 os-release -> ../usr/lib/os-release
+
+backup/system/etc/pam.d/sddm:
+total 12
+drwxr-xr-x. 2 asuna asuna 4096 Nov 17 02:23 .
+drwxr-xr-x. 3 asuna asuna 4096 Nov 17 02:23 ..
+-rw-r--r--. 1 asuna asuna 1010 Sep  2 05:30 sddm
+
+backup/system/etc/sddm.conf:
+total 12
+drwxr-xr-x.  2 asuna asuna 4096 Nov 17 02:23 .
+drwxr-xr-x. 17 asuna asuna 4096 Nov 17 02:23 ..
+-rw-r--r--.  1 asuna asuna 2749 Sep  2 05:30 sddm.conf

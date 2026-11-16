@@ -1,0 +1,17 @@
+=== 1. VPN tunnel (real corporate gateway) ===
+tun0             UNKNOWN        10.150.72.72/32 fe80::5b0f:48cd:99e4:c2e1/64 
+=== 2. corporate console from the browser pod ===
+  http=200
+=== 3. web bastion ===
+  http=401
+=== 4. admin login ===
+  http=201
+=== 5. ssh bastion ===
+test@127.0.0.1: Permission denied (publickey,password,keyboard-interactive).
+=== 6. firefox ===
+  status=running restarts=0
+firefox         kasm-user
+=== 7. no database errors ===
+  error lines: 1
+=== 8. host isolation ===
+  host tun: 0  VPN routes: 0  internet: 200  host->corporate: 000

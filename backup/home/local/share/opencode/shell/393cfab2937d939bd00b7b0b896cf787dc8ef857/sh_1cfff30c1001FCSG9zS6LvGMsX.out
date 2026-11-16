@@ -1,0 +1,12 @@
+M  fedora-overlay/README.md
+M  fedora-overlay/apply-user-config.sh
+M  fedora-overlay/fedora45-packages.txt
+D  fedora-overlay/install-swaybg-provider.sh
+D  fedora-overlay/rpm/swaybg-provider/README.md
+D  fedora-overlay/rpm/swaybg-provider/swaybg-provider.spec
+ fedora-overlay/apply-user-config.sh                | 15 --------
+ fedora-overlay/fedora45-packages.txt               | 10 ++---
+ fedora-overlay/install-swaybg-provider.sh          | 42 ---------------------
+ fedora-overlay/rpm/swaybg-provider/README.md       | 30 ---------------
+ .../rpm/swaybg-provider/swaybg-provider.spec       | 44 ----------------------
+ 6 files changed, 8 insertions(+), 145 deletions(-)

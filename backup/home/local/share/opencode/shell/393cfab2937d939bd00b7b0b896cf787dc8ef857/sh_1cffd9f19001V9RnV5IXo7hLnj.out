@@ -1,0 +1,4 @@
+  dnf check exit=0
+=== swaybg ===
+swaybg-1.2.2-2.fc45.x86_64
+/usr/bin/swaybg

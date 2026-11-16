@@ -1,0 +1,131 @@
+total 44
+drwxrwxr-x. 5 asuna  asuna  4096 Nov 13 06:42 .
+drwxr-xr-x. 5 asuna  asuna  4096 Nov 12 13:05 ..
+drwxr-xr-x. 3 525287 525287 4096 Nov 12 14:42 data
+-rw-r--r--. 1 asuna  asuna   505 Nov 13 05:25 Dockerfile
+-rw-r--r--. 1 asuna  asuna  1599 Nov 13 06:51 Dockerfile.firefox
+-rwxr-xr-x. 1 asuna  asuna  1247 Nov 13 06:51 firefox-entrypoint.sh
+-rw-r--r--. 1 asuna  asuna  3370 Nov 13 07:00 podman-compose.test.yml
+-rw-r--r--. 1 asuna  asuna  1926 Nov 13 06:14 podman-compose.yml
+drwxrwxr-x. 2 asuna  asuna  4096 Nov  4 01:33 secrets
+drwxr-xr-x. 2 asuna  asuna  4096 Nov 13 05:26 test
+-rw-r--r--. 1 asuna  asuna  2113 Nov 13 05:25 vpn_entrypoint.sh
+=== current compose test ===
+# Test harness for the warpgate VPN plumbing.
+#
+# This stands up a local OpenVPN server and points the vpn container at it,
+# so the whole stack can be validated without the corporate gateway and
+# without a corporate credential. Nothing here touches vpn.osdc.gov.in.
+#
+# The PKI is generated inside the server container and shared with the
+# client through a named volume.
+#
+# Usage:
+#   podman-compose -f podman-compose.test.yml up -d
+#   podman-compose -f podman-compose.test.yml down -v
+services:
+  ovpn-server:
+    image: localhost/ovpn-test-server:latest
+    container_name: warpgate-ovpn-server
+    build:
+      context: ./test
+      dockerfile: Dockerfile.ovpn-server
+    security_opt:
+      - label=type:spc_t
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    userns: keep-id
+    volumes:
+      - ovpn-pki:/etc/openvpn/pki
+    networks:
+      warpgate_test:
+
+  vpn:
+    image: localhost/warpgate-vpn:latest
+    container_name: warpgate-vpn-test
+    build:
+      context: .
+      dockerfile: Dockerfile
+    security_opt:
+      - label=type:spc_t
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    userns: keep-id
+    environment:
+      VPN_CLIENT: openvpn
+      VPN_CONFIG: /etc/openvpn/client.conf
+      OCP_BASTION_IP: "10.8.0.1"
+    # The warpgate and firefox containers share this container's network
+    # namespace, so the published ports have to be declared here.
+    # Rootless Podman cannot bind a port below 1024, so the bastion hop is
+    # published as 8443 in the test setup.
+    ports:
+      - "127.0.0.1:2222:2222"
+      - "127.0.0.1:8888:8888"
+      - "127.0.0.1:8443:8888"
+      - "127.0.0.1:6901:6901"
+    volumes:
+      - ./test/client.conf:/etc/openvpn/client.conf:ro
+      - ovpn-pki:/etc/openvpn/pki:ro
+    depends_on:
+      - ovpn-server
+    networks:
+      warpgate_test:
+
+  warpgate:
+    image: ghcr.io/warp-tech/warpgate:latest
+    container_name: warpgate-warpgate-test
+    network_mode: "service:vpn"
+    depends_on:
+      - vpn
+    volumes:
+      - ./data:/data:Z
+    restart: unless-stopped
+
+  firefox:
+    image: localhost/warpgate-firefox:latest
+    container_name: warpgate-firefox-test
+    build:
+      context: .
+      dockerfile: Dockerfile.firefox
+    network_mode: "service:vpn"
+    # The Kasm image resolves its own hostname at startup and exits if that
+    # fails, so it needs an explicit one.
+    hostname: warpgate-firefox
+    depends_on:
+      - vpn
+    command: ["--wait"]
+    environment:
+      VNC_PW: "testpass123"
+      LAUNCH_URL: ""
+    shm_size: 512m
+    # The Kasm image sets the VNC password with a tool that needs a
+    # terminal, so the container has to be started with one.
+    tty: true
+    restart: unless-stopped
+
+  # Debug helper: runs the Kasm VNC startup in the foreground and keeps the
+  # trace, so a failing startup can be inspected. Not part of the normal run.
+  ff-trace:
+    image: localhost/warpgate-firefox:latest
+    container_name: warpgate-ff-trace
+    network_mode: "service:vpn"
+    hostname: warpgate-ff-trace
+    tty: true
+    depends_on:
+      - vpn
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      - "exec /dockerstartup/kasm_default_profile.sh /dockerstartup/vnc_startup.sh /dockerstartup/kasm_startup.sh --wait"
+    profiles: ["debug"]
+
+networks:
+  warpgate_test:
+    name: warpgate_test
+
+volumes:
+  ovpn-pki:

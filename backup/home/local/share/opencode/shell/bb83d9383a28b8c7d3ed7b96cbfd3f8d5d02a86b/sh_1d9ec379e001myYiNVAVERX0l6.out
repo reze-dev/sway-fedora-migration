@@ -1,0 +1,5 @@
+- `pr-title-description`: uses pull request title and description
+  -d, --description string                       Description of the repository
+  -h, --homepage URL                             Repository home page URL
+      --squash-merge-commit-message string       The default value for a squash merge commit message: {default|pr-title|pr-title-commits|pr-title-description}
+      --template                                 Make the repository available as a template repository

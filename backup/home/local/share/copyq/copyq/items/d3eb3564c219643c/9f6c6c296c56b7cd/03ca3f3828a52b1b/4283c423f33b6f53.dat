@@ -1,0 +1,68 @@
+λ sudo chmod 755 data                                                                                                                              ~/Projects/warpgate  14:16
+λ podman-compose run warpgate setup                                                                                                                ~/Projects/warpgate  14:17
+warpgate-vpn
+08:47:29  INFO Welcome to Warpgate v0.30.4
+08:47:29  INFO Let's do some basic setup first.
+08:47:29  INFO The new config will be written in /data/warpgate.yaml.
+✔ Do you want to record user sessions? · yes
+✔ Set a password for the Warpgate admin user · ********
+08:47:33 ERROR Fatal error error=Permission denied (os error 13)
+󱎫 5s λ stat -c '%A %a %U:%G %u:%g %n' data                                                                                                         ~/Projects/warpgate  14:17
+drwxr-xr-x 755 asuna:root 1000:0 data
+λ podman-compose run --rm --entrypoint sh warpgate -c '                                                                                            ~/Projects/warpgate  14:17
+    id
+    ls -ldn /data
+    touch /data/test
+  '
+warpgate-vpn
+Error: crun: executable file `sh` not found in $PATH: No such file or directory: OCI runtime attempted to invoke a command that was not found
+λ cat podman-compose.yml                                                                                                                           ~/Projects/warpgate  14:18
+─────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+     │ File: podman-compose.yml
+─────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │ services:
+   2 │   vpn:
+   3 │     image: localhost/warpgate-vpn:latest
+   4 │     container_name: warpgate-vpn
+   5 │     devices:
+   6 │       - /dev/net/tun:/dev/net/tun
+   7 │       - /dev/vhost-net:/dev/vhost-net
+   8 │     cap_add:
+   9 │       - NET_ADMIN
+  10 │     ports:
+  11 │       - "127.0.0.1:2222:2222"
+  12 │       - "127.0.0.1:8888:8888"
+  13 │       - "127.0.0.1:443:8888"
+  14 │       - "127.0.0.1:6901:6901"
+  15 │     environment:
+  16 │       VPN_USERNAME: fincifms15
+  17 │       VPN_AUTHGROUP: Anyconnect-OSDC
+  18 │       VPN_GATEWAY: https://vpn.osdc.gov.in/
+  19 │       OCP_BASTION_IP: "10.250.18.140"
+  20 │     volumes:
+  21 │       - ./secrets/vpn_password:/run/secrets/vpn_password:ro,Z
+  22 │     restart: unless-stopped
+  23 │ 
+  24 │   warpgate:
+  25 │     image: ghcr.io/warp-tech/warpgate:latest
+  26 │     container_name: warpgate
+  27 │     network_mode: "service:vpn"
+  28 │     depends_on:
+  29 │       - vpn
+  30 │     volumes:
+  31 │       - ./data:/data:Z
+  32 │     restart: unless-stopped
+  33 │ 
+  34 │   firefox:
+  35 │     image: localhost/warpgate-firefox:latest
+  36 │     container_name: warpgate-firefox
+  37 │     network_mode: "service:vpn"
+  38 │     depends_on:
+  39 │       - vpn
+  40 │     environment:
+  41 │       VNC_PW: "testpass123"
+  42 │       LAUNCH_URL: ""
+  43 │     shm_size: 512m
+  44 │     restart: unless-stopped
+─────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+λ                 

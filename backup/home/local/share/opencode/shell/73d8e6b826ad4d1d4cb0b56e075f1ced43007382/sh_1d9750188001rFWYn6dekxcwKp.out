@@ -1,0 +1,25 @@
+=== the remote now has ===
+  1c84d698d4730aebe7f8055b0d8ea33760033608	refs/heads/main
+
+=== and it matches the local ===
+  local  main: 1c84d698d4730aebe7f8055b0d8ea33760033608
+  remote main: 1c84d698d4730aebe7f8055b0d8ea33760033608
+  identical ✓
+
+=== the tree on the remote ===
+  .gitignore
+  Dockerfile
+  Dockerfile.firefox
+  LICENSE
+  README.md
+  configure.py
+  firefox-entrypoint.sh
+  justfile
+  podman-compose.test.yml
+  podman-compose.yml
+  test/Dockerfile.ovpn-server
+  test/client.conf
+  test/entrypoint.sh
+  test/server.conf
+  verify.sh
+  vpn_entrypoint.sh

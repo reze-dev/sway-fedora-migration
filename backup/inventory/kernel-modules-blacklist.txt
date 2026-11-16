@@ -1,0 +1,80 @@
+# captured 2026-11-17T02:28:10+05:30
+# command: bash -c grep -R . /etc/modprobe.d/ 2>/dev/null
+/etc/modprobe.d/nvidia-drm.conf:# Enable modesetting on the NVIDIA discrete GPU so Wayland compositors can
+/etc/modprobe.d/nvidia-drm.conf:# use it directly. Required for wlroots/Sway to drive the dGPU.
+/etc/modprobe.d/nvidia-drm.conf:options nvidia_drm modeset=1
+/etc/modprobe.d/nvidia-drm.conf:options nvidia_drm fbdev=1
+/etc/modprobe.d/nvidia-drm.conf:options nvidia NVreg_EnableGpuFirmware=1
+/etc/modprobe.d/nvidia-drm.conf:options nvidia NVreg_RegistryDwords="EnableGpuFirmware=1"
+/etc/modprobe.d/batman-adv-blacklist.conf:# This kernel module can be automatically loaded by non-root users. To
+/etc/modprobe.d/batman-adv-blacklist.conf:# enhance system security, the module is blacklisted by default to ensure
+/etc/modprobe.d/batman-adv-blacklist.conf:# system administrators make the module available for use as needed.
+/etc/modprobe.d/batman-adv-blacklist.conf:# See https://access.redhat.com/articles/3760101 for more details.
+/etc/modprobe.d/batman-adv-blacklist.conf:#
+/etc/modprobe.d/batman-adv-blacklist.conf:# Remove the blacklist by adding a comment # at the start of the line.
+/etc/modprobe.d/batman-adv-blacklist.conf:blacklist batman-adv
+/etc/modprobe.d/floppy-blacklist.conf:# This kernel module can be automatically loaded by non-root users. To
+/etc/modprobe.d/floppy-blacklist.conf:# enhance system security, the module is blacklisted by default to ensure
+/etc/modprobe.d/floppy-blacklist.conf:# system administrators make the module available for use as needed.
+/etc/modprobe.d/floppy-blacklist.conf:# See https://access.redhat.com/articles/3760101 for more details.
+/etc/modprobe.d/floppy-blacklist.conf:#
+/etc/modprobe.d/floppy-blacklist.conf:# Remove the blacklist by adding a comment # at the start of the line.
+/etc/modprobe.d/floppy-blacklist.conf:blacklist floppy
+/etc/modprobe.d/l2tp_eth-blacklist.conf:# This kernel module can be automatically loaded by non-root users. To
+/etc/modprobe.d/l2tp_eth-blacklist.conf:# enhance system security, the module is blacklisted by default to ensure
+/etc/modprobe.d/l2tp_eth-blacklist.conf:# system administrators make the module available for use as needed.
+/etc/modprobe.d/l2tp_eth-blacklist.conf:# See https://access.redhat.com/articles/3760101 for more details.
+/etc/modprobe.d/l2tp_eth-blacklist.conf:#
+/etc/modprobe.d/l2tp_eth-blacklist.conf:# Remove the blacklist by adding a comment # at the start of the line.
+/etc/modprobe.d/l2tp_eth-blacklist.conf:blacklist l2tp_eth
+/etc/modprobe.d/lockd.conf:#
+/etc/modprobe.d/lockd.conf:# Set the NFS lock manager grace period. n is measured in seconds. 
+/etc/modprobe.d/lockd.conf:#options lockd nlm_grace_period=90
+/etc/modprobe.d/lockd.conf:#
+/etc/modprobe.d/lockd.conf:# Set the TCP port that the NFS lock manager should use. 
+/etc/modprobe.d/lockd.conf:# port must be a valid TCP port value (1-65535).
+/etc/modprobe.d/lockd.conf:#options lockd nlm_tcpport
+/etc/modprobe.d/lockd.conf:#
+/etc/modprobe.d/lockd.conf:# Set the UDP port that the NFS lock manager should use.
+/etc/modprobe.d/lockd.conf:# port must be a valid UDP port value (1-65535).
+/etc/modprobe.d/lockd.conf:#options lockd nlm_udpport
+/etc/modprobe.d/lockd.conf:#
+/etc/modprobe.d/lockd.conf:# Set the maximum number of outstanding connections 
+/etc/modprobe.d/lockd.conf:#options lockd nlm_max_connections=1024
+/etc/modprobe.d/lockd.conf:#
+/etc/modprobe.d/lockd.conf:# Set the default time value for the NFS lock manager
+/etc/modprobe.d/lockd.conf:# in seconds. Default is 10 secs (min 3 max 20)
+/etc/modprobe.d/lockd.conf:#options lockd nlm_timeout=10
+/etc/modprobe.d/lockd.conf:#
+/etc/modprobe.d/lockd.conf:# Choose whether to record the caller_name or IP address
+/etc/modprobe.d/lockd.conf:# this peer in the local rpc.statd's database.
+/etc/modprobe.d/lockd.conf:#options lockd nsm_use_hostnames=0
+/etc/modprobe.d/rds-blacklist.conf:# This kernel module can be automatically loaded by non-root users. To
+/etc/modprobe.d/rds-blacklist.conf:# enhance system security, the module is blacklisted by default to ensure
+/etc/modprobe.d/rds-blacklist.conf:# system administrators make the module available for use as needed.
+/etc/modprobe.d/rds-blacklist.conf:# See https://access.redhat.com/articles/3760101 for more details.
+/etc/modprobe.d/rds-blacklist.conf:#
+/etc/modprobe.d/rds-blacklist.conf:# Remove the blacklist by adding a comment # at the start of the line.
+/etc/modprobe.d/rds-blacklist.conf:blacklist rds
+/etc/modprobe.d/nvdimm-security.conf:install libnvdimm /usr/bin/ndctl load-keys ; /sbin/modprobe --ignore-install libnvdimm $CMDLINE_OPTS
+/etc/modprobe.d/blacklist-nouveau.conf:# The NVIDIA proprietary driver replaces nouveau on the discrete GPU.
+/etc/modprobe.d/blacklist-nouveau.conf:# nouveau cannot coexist with the proprietary driver: it would keep the
+/etc/modprobe.d/blacklist-nouveau.conf:# device bound and the proprietary module would fail to load.
+/etc/modprobe.d/blacklist-nouveau.conf:blacklist nouveau
+/etc/modprobe.d/blacklist-nouveau.conf:blacklist nvidia-uvm
+/etc/modprobe.d/blacklist-nouveau.conf:options nouveau modeset=0
+/etc/modprobe.d/firewalld-sysctls.conf:install nf_conntrack /sbin/modprobe --ignore-install nf_conntrack $CMDLINE_OPTS && /sbin/sysctl --quiet --pattern 'net[.]netfilter[.]nf_conntrack.*' --system
+/etc/modprobe.d/l2tp_netlink-blacklist.conf:# This kernel module can be automatically loaded by non-root users. To
+/etc/modprobe.d/l2tp_netlink-blacklist.conf:# enhance system security, the module is blacklisted by default to ensure
+/etc/modprobe.d/l2tp_netlink-blacklist.conf:# system administrators make the module available for use as needed.
+/etc/modprobe.d/l2tp_netlink-blacklist.conf:# See https://access.redhat.com/articles/3760101 for more details.
+/etc/modprobe.d/l2tp_netlink-blacklist.conf:#
+/etc/modprobe.d/l2tp_netlink-blacklist.conf:# Remove the blacklist by adding a comment # at the start of the line.
+/etc/modprobe.d/l2tp_netlink-blacklist.conf:blacklist l2tp_netlink
+/etc/modprobe.d/l2tp_ppp-blacklist.conf:# This kernel module can be automatically loaded by non-root users. To
+/etc/modprobe.d/l2tp_ppp-blacklist.conf:# enhance system security, the module is blacklisted by default to ensure
+/etc/modprobe.d/l2tp_ppp-blacklist.conf:# system administrators make the module available for use as needed.
+/etc/modprobe.d/l2tp_ppp-blacklist.conf:# See https://access.redhat.com/articles/3760101 for more details.
+/etc/modprobe.d/l2tp_ppp-blacklist.conf:#
+/etc/modprobe.d/l2tp_ppp-blacklist.conf:# Remove the blacklist by adding a comment # at the start of the line.
+/etc/modprobe.d/l2tp_ppp-blacklist.conf:blacklist l2tp_ppp

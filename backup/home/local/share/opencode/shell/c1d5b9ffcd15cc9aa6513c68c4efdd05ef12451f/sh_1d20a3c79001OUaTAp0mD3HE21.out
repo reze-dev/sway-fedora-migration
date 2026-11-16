@@ -1,0 +1,17 @@
+=== is there a device cgroup restriction? check the container's own cgroup ===
+cgroup.freeze
+cgroup.kill
+cgroup.max.depth
+cgroup.max.descendants
+cgroup.pressure
+cgroup.procs
+cgroup.stat
+cgroup.stat.local
+=== check host sysctl for device access ===
+CapInh:	0000000800000000
+CapPrm:	000001ffffffffff
+CapEff:	000001ffffffffff
+CapBnd:	000001ffffffffff
+CapAmb:	0000000000000000
+=== apparmor ===
+bash: line 1: aa-status: command not found

@@ -1,0 +1,23 @@
+warpgate-warpgate-test
+warpgate-firefox-test
+
+  [32mok[0m    container warpgate-vpn-test          running
+  [32mok[0m    container warpgate-warpgate-test     running
+  [32mok[0m    container warpgate-firefox-test      running
+  [32mok[0m    vpn tunnel                           tun0             UNKNOWN        10.8.0.2/24 fe80::a552:2aed:a6e5:1f42/64 
+  [32mok[0m    shared network namespace             net:[4026533168]
+  [32mok[0m    corporate resource via the tunnel    200
+  [32mok[0m    host has no tunnel                   0
+  [32mok[0m    host has no vpn routes               0
+  [32mok[0m    host still has internet              200
+  [32mok[0m    browser runs as kasm-user            kasm-user
+  [32mok[0m    browser is not restarting            0
+  [32mok[0m    vnc password is not the image default set
+  [32mok[0m    web bastion answers                  401
+  [32mok[0m    admin can log in                     201
+  [32mok[0m    ssh bastion answers                  test@127.0.0.1: Permission denied (publickey,password,keyboard-interactive).
+  [32mok[0m    vnc port                             open
+  [32mok[0m    no database errors                   0
+
+[32m[1m checks passed[0m
+

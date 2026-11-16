@@ -1,0 +1,13 @@
+warpgate-vpn
+warpgate
+warpgate-firefox
+  warpgate-vpn Up 56 seconds
+  warpgate Up 56 seconds
+  warpgate-firefox Up 56 seconds
+
+=== warpgate's state was generated from nothing ===
+-rw-------. 1 525287 525287  558 Nov 14 00:24 tls.certificate.pem
+-rw-------. 1 525287 525287  241 Nov 14 00:24 tls.key.pem
+-rw-------. 1 525287 525287 1821 Nov 14 00:24 warpgate.yaml
+=== the admin password was recorded against the database ===
+-rw-------. 1 asuna asuna 65 Nov 14 00:24 secrets/admin_password.applied
