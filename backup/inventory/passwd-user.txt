@@ -1,3 +1,3 @@
-# captured 2026-11-17T02:32:16+05:30
+# captured 2026-11-17T02:32:43+05:30
 # command: bash -c getent passwd 1000
 asuna:x:1000:1000:Asuna:/home/asuna:/usr/bin/fish

@@ -1,4 +1,4 @@
-# captured 2026-11-17T02:32:14+05:30
+# captured 2026-11-17T02:32:42+05:30
 # command: bash -c podman images --format '{{.Repository}}:{{.Tag}} {{.Size}}' 2>&1 || true
 localhost/warpgate-firefox:latest 3.03 GB
 <none>:<none> 3.03 GB

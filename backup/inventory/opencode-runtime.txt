@@ -1,4 +1,4 @@
-# captured 2026-11-17T02:32:10+05:30
+# captured 2026-11-17T02:32:38+05:30
 # command: bash -c '/home/asuna/.opencode/bin/opencode' --version 2>&1 | head -3; ls -1 '/home/asuna/.opencode/bin' 2>/dev/null
 opencode v2.3.0
 opencode

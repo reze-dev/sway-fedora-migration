@@ -309,9 +309,9 @@ printf 'host=%s\nos=%s\nkernel=%s\nsway=%s\n' \
     "$(hostname)" "$(. /etc/os-release; echo "$PRETTY_NAME")" "$(uname -r)" \
     "$(sway --version 2>&1 | head -1)" > "$DEST/capture-meta.txt"
 ( cd "$DEST" && find . -type f -not -path './archives/*' -not -name 'checksums.sha256' \
-    -not -name 'capture.log' -printf '%10s  %p\n' | sort -k2 > MANIFEST.txt )
+    -not -name 'capture.log' -not -name 'archive-checksums.txt' -printf '%10s  %p\n' | sort -k2 > MANIFEST.txt )
 ( cd "$DEST" && find . -type f -not -path './archives/*' -not -name 'checksums.sha256' \
-    -not -name 'capture.log' -print0 | sort -z | xargs -0 sha256sum > checksums.sha256 )
+    -not -name 'capture.log' -not -name 'archive-checksums.txt' -print0 | sort -z | xargs -0 sha256sum > checksums.sha256 )
 ( cd "$DEST" && for f in archives/*.tar.zst; do
     [[ -e "$f" ]] || continue
     sha256sum "$f" >> checksums.sha256

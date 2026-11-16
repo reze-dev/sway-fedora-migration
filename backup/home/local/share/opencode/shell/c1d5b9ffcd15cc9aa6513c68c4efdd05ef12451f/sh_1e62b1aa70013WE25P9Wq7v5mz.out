@@ -1,0 +1,8 @@
+85629adf86833f4f4222e012ef29ae85283515a8ebc58baa4df305462d85da95  backup-full-2026-11-17.tar.zst
+-rw-r--r--. 1 asuna asuna 804M Nov 17 02:32 /home/asuna/backup-full-2026-11-17.tar.zst
+
+extract with:
+  tar --zstd -xf /home/asuna/backup-full-2026-11-17.tar.zst -C /target/directory
+b6461f3 Add Ryoku port files, portable archive and the Sway package fragments
+bca1e5b Add a full backup of the Fedora 45 SwayFX workstation
+7b97b74 Add a brightness slider to the Sway Control Center

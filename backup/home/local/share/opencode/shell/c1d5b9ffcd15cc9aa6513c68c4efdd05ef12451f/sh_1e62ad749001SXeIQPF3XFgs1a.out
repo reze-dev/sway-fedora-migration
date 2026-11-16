@@ -1,0 +1,17 @@
+02:32:20 files: 2211
+02:32:20 size:  886M
+02:32:20 === capture done: 2026-11-17T02:32:20+05:30 ===
+== plain files ==
+OK: 2209 files match
+== archives ==
+OK   archives/fonts.tar.zst (127M)
+OK   archives/mozilla-extensions.tar.zst (4.0K)
+OK   archives/mozilla-firefox-profile.tar.zst (125M)
+OK   archives/nvim-plugins-and-mason.tar.zst (262M)
+OK   archives/tmux-plugins.tar.zst (33M)
+OK   archives/zen-browser-profile.tar.zst (103M)
+== summary ==
+files: 2211
+size:  886M
+captured: 2026-11-17T02:32:19+05:30
+BACKUP OK
