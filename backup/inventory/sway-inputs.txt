@@ -1,4 +1,4 @@
-# captured 2026-11-17T02:32:43+05:30
+# captured 2026-11-17T02:33:25+05:30
 # command: swaymsg -t get_inputs
 [
   {

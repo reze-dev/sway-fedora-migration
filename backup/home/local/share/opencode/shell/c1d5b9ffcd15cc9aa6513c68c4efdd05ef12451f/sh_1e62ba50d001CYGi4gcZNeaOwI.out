@@ -1,0 +1,54 @@
+=== BACKUP TREE ===
+backup
+backup/archive-checksums.txt
+backup/archives
+backup/capture-date.txt
+backup/capture.log
+backup/capture-meta.txt
+backup/checksums.sha256
+backup/home
+backup/inventory
+backup/inventory/cargo-installed.txt
+backup/inventory/dconf-dump.txt
+backup/inventory/desktop-entries-system.txt
+backup/inventory/desktop-entries-user.txt
+backup/inventory/dnf-history-info.txt
+backup/inventory/dnf-history.txt
+backup/inventory/dnf-repos.txt
+backup/inventory/dnf-user-installed.txt
+backup/inventory/environment.txt
+backup/inventory/flatpak-apps.txt
+backup/inventory/flatpak-overrides.txt
+backup/inventory/flatpak-remotes.txt
+backup/inventory/flatpak-runtimes.txt
+backup/inventory/flatpak-sbom.txt
+backup/inventory/fonts-all-families.txt
+backup/inventory/fonts-user.txt
+backup/inventory/go-packages.txt
+backup/inventory/go-version.txt
+backup/inventory/groups-user.txt
+backup/inventory/gsettings-list.txt
+backup/inventory/gtk-theme.ini
+backup/inventory/hardware-free.txt
+backup/inventory/hardware-lscpu.txt
+backup/inventory/hardware-lspci.txt
+backup/inventory/hardware-lsusb.txt
+backup/inventory/kernel-current.txt
+backup/inventory/kernel-installed.txt
+backup/inventory/kernel-modules-blacklist.txt
+backup/INVENTORY.md
+backup/inventory/mise-tools.txt
+backup/inventory/nix-profile.txt
+
+=== SIZES ===
+227M	backup/home
+11M	backup/system
+436K	backup/inventory
+648M	backup/archives
+44K	backup/secrets
+36K	backup/ryoku-port
+652K	backup
+
+=== PORTABLE ARCHIVE ===
+-rw-r--r--. 1 asuna asuna 804M Nov 17 02:32 /home/asuna/backup-full-2026-11-17.tar.zst
+58036d3443c0d9d53cce3101d9fe11e80d9fb49f727bf863857342977a80ced5  backup-full-2026-11-17.tar.zst

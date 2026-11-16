@@ -6,6 +6,13 @@ installed apps, system files and the written record of every customisation.
 Captured: see `capture-date.txt` / `capture-meta.txt`.
 Host: ASUS TUF Gaming A15 FA506II — Fedora 45 (Sway) x86_64, SwayFX 0.6.1.
 
+> **Copy this somewhere else before you install Ryoku.**
+> The repository and the single-file archive both live on `/home/asuna`, which
+> is on the root partition (`nvme0n1p6`) — the same disk a Ryoku install
+> rewrites. Move `backup-full-2026-11-17.tar.zst` to external storage or a
+> second machine, and check it with `backup/archive-checksums.txt` when it
+> arrives.
+
 | Document | What it is |
 |---|---|
 | `README.md` | this file — layout, how to verify, how to restore |

@@ -1,11 +1,11 @@
-# captured 2026-11-17T02:32:42+05:30
+# captured 2026-11-17T02:33:24+05:30
 # command: bash -c systemctl list-timers --all
 NEXT                          LEFT LAST                          PASSED UNIT                         ACTIVATES
-Tue 2026-11-17 02:54:12 IST  21min -                                  - dnf-makecache.timer          dnf-makecache.service
+Tue 2026-11-17 02:54:12 IST  20min -                                  - dnf-makecache.timer          dnf-makecache.service
 Wed 2026-11-18 00:00:00 IST    21h Tue 2026-11-17 00:01:00 IST        - unbound-anchor.timer         unbound-anchor.service
-Wed 2026-11-18 00:32:54 IST    22h Tue 2026-11-17 00:21:36 IST        - plocate-updatedb.timer       plocate-updatedb.service
+Wed 2026-11-18 00:32:54 IST    21h Tue 2026-11-17 00:21:36 IST        - plocate-updatedb.timer       plocate-updatedb.service
 Wed 2026-11-18 00:45:25 IST    22h Tue 2026-11-17 00:11:55 IST        - logrotate.timer              logrotate.service
-Wed 2026-11-18 02:27:16 IST    23h Tue 2026-11-17 02:27:16 IST 5min ago systemd-tmpfiles-clean.timer systemd-tmpfiles-clean.service
+Wed 2026-11-18 02:27:16 IST    23h Tue 2026-11-17 02:27:16 IST 6min ago systemd-tmpfiles-clean.timer systemd-tmpfiles-clean.service
 Sun 2026-11-22 01:00:00 IST 4 days Sun 2026-11-15 09:14:49 IST        - raid-check.timer             raid-check.service
 Mon 2026-11-23 01:04:53 IST 5 days Mon 2026-11-16 03:01:16 IST        - fstrim.timer                 fstrim.service
 

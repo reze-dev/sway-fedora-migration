@@ -1,0 +1,5 @@
+--- clean ---
+0a172e8 Keep the portable archive checksum out of the file checksum set
+b6461f3 Add Ryoku port files, portable archive and the Sway package fragments
+bca1e5b Add a full backup of the Fedora 45 SwayFX workstation
+7b97b74 Add a brightness slider to the Sway Control Center

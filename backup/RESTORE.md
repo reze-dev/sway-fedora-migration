@@ -14,6 +14,11 @@ date and host are in `backup/capture-date.txt` and `backup/capture-meta.txt`.
 > desktop configuration in place and moves you off conflicting shells and
 > daemons. Keep this repository (and a copy of `backup/` on external storage)
 > somewhere safe before you start.
+>
+> This repository sits on `/home/asuna`, which is on the root partition — the
+> same disk the Ryoku install rewrites. Copy
+> `/home/asuna/backup-full-2026-11-17.tar.zst` to external storage first and
+> verify it against `backup/archive-checksums.txt`.
 
 ---
 

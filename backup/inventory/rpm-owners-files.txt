@@ -1,4 +1,4 @@
-# captured 2026-11-17T02:32:40+05:30
+# captured 2026-11-17T02:33:22+05:30
 # command: bash -c rpm -qf /usr/bin/sway /usr/bin/swaymsg /usr/bin/waybar /usr/bin/kitty 2>/dev/null | sort -u
 kitty-0.48.2-1.fc45.x86_64
 swayfx-0.6.1-1.fc45.x86_64

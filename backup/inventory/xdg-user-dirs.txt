@@ -1,4 +1,4 @@
-# captured 2026-11-17T02:32:42+05:30
+# captured 2026-11-17T02:33:24+05:30
 # command: bash -c cat ~/.config/user-dirs.dirs 2>/dev/null
 # This file is written by xdg-user-dirs-update
 # If you want to change or add directories, just edit the line you're

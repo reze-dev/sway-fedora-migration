@@ -1,4 +1,4 @@
-# captured 2026-11-17T02:32:41+05:30
+# captured 2026-11-17T02:33:23+05:30
 # command: flatpak override --user --show
 [Context]
 filesystems=/usr/share/icons/Bibata-Modern-Ice:ro;/usr/share/icons/Yaru-prussiangreen-dark:ro;

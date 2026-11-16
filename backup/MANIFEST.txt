@@ -1320,7 +1320,11 @@
       4573  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62a33d2001xNAbS2j27mfzeW.out
        515  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62ad749001SXeIQPF3XFgs1a.out
        479  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62b1aa70013WE25P9Wq7v5mz.out
-         0  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62b4351001iXWCPMdm73ZKny.out
+      1151  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62b4351001iXWCPMdm73ZKny.out
+       285  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62b961a001EblsRgxVvE9dH9.out
+      1645  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62ba50d001CYGi4gcZNeaOwI.out
+       417  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62bb979001ZSETmW5PWwlNe2.out
+         0  ./home/local/share/opencode/shell/c1d5b9ffcd15cc9aa6513c68c4efdd05ef12451f/sh_1e62be657001jFJ8F1wDQglYU6.out
      88413  ./home/local/share/opencode/tool-output/tool_1cf6f5a53001oiTgxnoXjvLIsG
    1380769  ./home/local/share/opentui/tree-sitter/languages/tree-sitter-bash.wasm
     625918  ./home/local/share/opentui/tree-sitter/languages/tree-sitter-c.wasm
@@ -1551,6 +1555,7 @@
        811  ./home/npm/_logs/2026-11-16T21_00_30_873Z-debug-0.log
        811  ./home/npm/_logs/2026-11-16T21_01_17_671Z-debug-0.log
        811  ./home/npm/_logs/2026-11-16T21_02_14_110Z-debug-0.log
+       811  ./home/npm/_logs/2026-11-16T21_02_41_764Z-debug-0.log
    2243972  ./home/Pictures/Wallpapers/Abyss Knight Amidst Gothic Ruins.png
    2462246  ./home/Pictures/Wallpapers/wallhaven-g7jgk3.jpg
   16724243  ./home/Pictures/Wallpapers/wallhaven-po5lq9.png
@@ -2116,8 +2121,8 @@
        404  ./inventory/xsettingsd-conf.txt
          0  ./MANIFEST.txt
      22787  ./PROCEDURES.md
-      7166  ./README.md
-     12114  ./RESTORE.md
+      7539  ./README.md
+     12370  ./RESTORE.md
       5569  ./ryoku-port/hypr/user.lua
       4646  ./ryoku-port/niri/user.kdl
       6092  ./ryoku-port/README.md

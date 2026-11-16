@@ -1,0 +1,10 @@
+NAME          SIZE FSTYPE MOUNTPOINT LABEL
+zram0           8G swap   [SWAP]     zram0
+nvme0n1     476.9G                   
+├─nvme0n1p1     4G vfat              BOOT
+├─nvme0n1p2 253.9G btrfs             
+├─nvme0n1p3    16G swap   [SWAP]     swap
+├─nvme0n1p4   1.9G vfat   /boot/efi  ESP
+├─nvme0n1p5   1.9G ext4   /boot      Boot
+└─nvme0n1p6 199.3G ext4   /          Root
+=== findmnt /home ===
