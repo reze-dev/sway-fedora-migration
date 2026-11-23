@@ -16,3 +16,5 @@ backup/archives/
 backup/home/var-app/app.zen_browser.zen/.zen/
 backup/home/config/tmux/plugins/
 backup/home/Pictures/
+
+**/gh/hosts.yml
